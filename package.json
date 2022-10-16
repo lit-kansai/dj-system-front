@@ -13,8 +13,17 @@
     "vue-tsc": "vue-tsc --noEmit"
   },
   "lint-staged": {
-    "*.{ts,js,vue}": "eslint --fix",
-    "*.{css,vue}": "stylelint --fix"
+    "*.{ts,js,vue}": [
+      "yarn eslint",
+      "yarn prettier"
+    ],
+    "*.{ts,js}": [
+      "yarn type-check"
+    ],
+    "*.{vue}": [
+      "yarn vue-tsc"
+    ],
+    "*.{css,vue}": "yarn stylelint"
   },
   "devDependencies": {
     "@nuxt/typescript-build": "^2.1.0",
