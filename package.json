@@ -5,14 +5,32 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "type-check": "tsc --pretty --noEmit",
+    "eslint": "eslint --fix --max-warnings 0",
+    "prettier": "prettier --write",
+    "stylelint": "stylelint --fix",
+    "vue-tsc": "vue-tsc --noEmit"
   },
   "lint-staged": {
-    "*.{ts,js,vue}": "eslint --fix",
-    "*.{css,vue}": "stylelint --fix"
+    "*.{ts,js,vue}": [
+      "yarn eslint",
+      "yarn prettier"
+    ],
+    "*.{ts,js}": [
+      "yarn type-check"
+    ],
+    "*.{vue}": [
+      "yarn vue-tsc"
+    ],
+    "*.{css,vue}": "yarn stylelint"
   },
   "devDependencies": {
+    "@nuxt/typescript-build": "^2.1.0",
+    "@nuxtjs/axios": "^5.13.6",
     "@nuxtjs/eslint-config-typescript": "^11.0.0",
+    "@nuxtjs/eslint-module": "^3.1.0",
+    "@nuxtjs/stylelint-module": "^4.1.0",
     "eslint": "^8.24.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-nuxt": "^4.0.0",
@@ -25,6 +43,7 @@
     "stylelint-config-prettier": "^9.0.3",
     "stylelint-config-rational-order": "^0.1.2",
     "stylelint-config-standard": "^28.0.0",
-    "typescript": "^4.8.4"
+    "typescript": "^4.8.4",
+    "vue-tsc": "^1.0.7"
   }
 }

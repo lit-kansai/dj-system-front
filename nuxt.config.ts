@@ -9,11 +9,13 @@ export default defineNuxtConfig({
       pathPrefix: false,
     },
   ],
-  buildModules: [],
-  router: {
-    middleware: [],
-  },
+  srcDir: 'src/',
+  modules: [
+    '@nuxt/typescript-build',
+    '@nuxtjs/stylelint-module',
+    '@nuxtjs/eslint-module',
+  ],
   alias: {
-    '@': path.resolve(__dirname),
+    '@': path.resolve(__dirname, 'src'),
   },
 })
