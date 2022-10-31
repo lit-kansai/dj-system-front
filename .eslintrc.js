@@ -16,4 +16,7 @@ module.exports = {
     parser: '@typescript-eslint/parser',
     sourceType: 'module',
   },
+  rules: {
+    'vue/script-indent': ['error', 2, { baseIndent: 1 }],
+  },
 }
