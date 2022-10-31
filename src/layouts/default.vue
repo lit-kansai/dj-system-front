@@ -1,7 +1,6 @@
 <template>
-  <div>
-    <h2>index page</h2>
-  </div>
+  <main id="app-layout">
+    <slot />
+  </main>
 </template>
-
 <script setup lang="ts"></script>
