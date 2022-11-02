@@ -10,6 +10,7 @@ export default defineNuxtConfig({
       pathPrefix: false,
     },
   ],
+  css: ['vuetify/lib/styles/main.sass'],
   meta: [
     { charset: 'utf-8' },
     { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -25,12 +26,15 @@ export default defineNuxtConfig({
     { name: 'twitter:site', content: 'DJ Gassi' },
   ],
   srcDir: 'src/',
-  modules: [
-    '@nuxt/typescript-build',
-    '@nuxtjs/stylelint-module',
-    '@nuxtjs/eslint-module',
-  ],
+  build: {
+    transpile: ['vuetify'],
+  },
   alias: {
     '@': path.resolve(__dirname, 'src'),
+  },
+  vite: {
+    define: {
+      'process.env.DEBUG': false,
+    },
   },
 })
