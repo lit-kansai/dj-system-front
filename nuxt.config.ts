@@ -10,7 +10,10 @@ export default defineNuxtConfig({
       pathPrefix: false,
     },
   ],
-  css: ['vuetify/lib/styles/main.sass', 'mdi/css/materialdesignicons.min.css'],
+  css: [
+    'vuetify/lib/styles/main.sass',
+    '@mdi/font/css/materialdesignicons.min.css',
+  ],
   meta: [
     { charset: 'utf-8' },
     { name: 'viewport', content: 'width=device-width, initial-scale=1' },
