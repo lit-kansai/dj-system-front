@@ -398,6 +398,11 @@
     semver "^7.3.5"
     tar "^6.1.11"
 
+"@mdi/font@^7.0.96":
+  version "7.0.96"
+  resolved "https://registry.yarnpkg.com/@mdi/font/-/font-7.0.96.tgz#9853c222623072f5575b4039c8c195ea929b61fc"
+  integrity sha512-rzlxTfR64hqY8yiBzDjmANfcd8rv+T5C0Yedv/TWk2QyAQYdc66e0kaN1ipmnYU3RukHRTRcBARHzzm+tIhL7w==
+
 "@mrmlnc/readdir-enhanced@^2.2.1":
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/@mrmlnc/readdir-enhanced/-/readdir-enhanced-2.2.1.tgz#524af240d1a360527b730475ecfa1344aa540dde"
