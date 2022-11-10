@@ -1,6 +1,6 @@
 <template>
   <div id="login-main" class="d-flex flex-column justify-center align-center">
-    <div id="login-box" class="mb-5" style=""></div>
+    <div id="login-box" class="mb-5"></div>
     <p id="login-text" class="text-h5 d-inline-flex font-weight-bold">
       Welcome to DJGassi Console
     </p>
