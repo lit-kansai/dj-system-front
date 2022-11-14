@@ -5,14 +5,19 @@
       Welcome to DJGassi Console
     </p>
     <v-btn id="login-button" color="#1867C0" class="d-inline-flex mt-5">
-      Sign in with Google</v-btn
-    >
+      Sign in with Google
+    </v-btn>
   </div>
 </template>
-<script setup lang="ts"></script>
-<style scoped>
+<script setup lang="ts">
+  definePageMeta({
+    layout: false,
+  })
+</script>
+<style lang="scss" scoped>
+  @import '@/assets/styles/main.scss';
   #login-main {
-    height: 100%;
+    min-height: calc(100vh - $app-bar-height);
   }
   #login-box {
     height: 200px;
