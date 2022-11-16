@@ -1,16 +1,15 @@
 <template>
   <div>
-    <div id="setting-main">
+    <div id="setting-main" class="mt-16">
       <p class="text-h5 mb-1 font-weight-black">外部サービス連携</p>
       <p class="mb-10">
         AppleMusicやSpotifyとサービス連携を行うことで、リクエストされた曲が自動でプレイリストに追加されるようになります。
       </p>
-
       <p class="font-weight-black text-h6 mb-1">Apple Music</p>
       <p class="mb-2">AppleMusicのサブスクへの登録が必要になります。</p>
       <v-btn
         id="apple-login-button"
-        color="#1867C0"
+        color="blue"
         class="d-inline-flex py-2 px-4 mb-10 text-none"
         >AppleMusicにログイン</v-btn
       >
@@ -20,7 +19,7 @@
       </p>
       <v-btn
         id="spotify-login-button"
-        color="#1867C0"
+        color="blue"
         class="d-inline-flex py-2 px-4 text-none"
         >Spotifyにログイン</v-btn
       >
@@ -29,14 +28,7 @@
 </template>
 <script setup lang="ts"></script>
 <style scoped>
-  #apple-login-button {
-    color: white;
-  }
-  #spotify-login-button {
-    color: white;
-  }
   #setting-main {
-    margin-left: 360px;
-    margin-top: 130px;
+    margin-left: 104px;
   }
 </style>
