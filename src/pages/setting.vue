@@ -9,9 +9,9 @@
       <p class="font-weight-black text-h6 mb-1">Apple Music</p>
       <p class="mb-2">AppleMusicのサブスクへの登録が必要になります。</p>
       <v-btn
-        id="Apple-login-button"
+        id="apple-login-button"
         color="#1867C0"
-        class="d-inline-flex py-2 px-4 mb-10"
+        class="d-inline-flex py-2 px-4 mb-10 text-none"
         >AppleMusicにログイン</v-btn
       >
       <p class="font-weight-black text-h6 mb-1">Spotify</p>
@@ -19,9 +19,9 @@
         APIの利用制限のため、選ばれし25名のみが使用できます。がっしーにご連絡ください。
       </p>
       <v-btn
-        id="Spotify-login-button"
+        id="spotify-login-button"
         color="#1867C0"
-        class="d-inline-flex py-2 px-4"
+        class="d-inline-flex py-2 px-4 text-none"
         >Spotifyにログイン</v-btn
       >
     </div>
@@ -29,15 +29,11 @@
 </template>
 <script setup lang="ts"></script>
 <style scoped>
-  #Apple-login-button {
+  #apple-login-button {
     color: white;
-    font-family: 'Roboto';
-    text-transform: none;
   }
-  #Spotify-login-button {
+  #spotify-login-button {
     color: white;
-    font-family: 'Roboto';
-    text-transform: none;
   }
   #setting-main {
     margin-left: 360px;
