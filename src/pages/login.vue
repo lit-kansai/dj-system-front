@@ -4,7 +4,11 @@
     <p id="login-text" class="text-h5 d-inline-flex font-weight-bold">
       Welcome to DJGassi Console
     </p>
-    <v-btn id="login-button" color="blue" class="d-inline-flex mt-5 text-none">
+    <v-btn
+      id="login-button"
+      color="blue-darken-3"
+      class="d-inline-flex mt-5 text-none"
+    >
       Sign in with Google
     </v-btn>
   </div>
