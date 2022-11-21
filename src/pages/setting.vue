@@ -10,17 +10,14 @@
       <v-btn
         id="apple-login-button"
         color="blue"
-        class="d-inline-flex py-2 px-4 mb-10 text-none"
+        class="py-2 px-4 mb-10 text-none"
         >AppleMusicにログイン</v-btn
       >
       <p class="font-weight-black text-h6 mb-1">Spotify</p>
       <p class="mb-2">
         APIの利用制限のため、選ばれし25名のみが使用できます。がっしーにご連絡ください。
       </p>
-      <v-btn
-        id="spotify-login-button"
-        color="blue"
-        class="d-inline-flex py-2 px-4 text-none"
+      <v-btn id="spotify-login-button" color="blue" class="py-2 px-4 text-none"
         >Spotifyにログイン</v-btn
       >
     </div>
