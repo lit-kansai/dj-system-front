@@ -1,5 +1,5 @@
 <template>
-  <div id="room-info" class="mt-16 mb-10">
+  <v-container class="px-0 pt-16 pb-10">
     <div class="d-flex justify-space-between mb-1">
       <p class="text-h5 font-weight-black">タイトル</p>
       <v-btn color="blue-darken-3" class="py-2 px-4 text-none"
@@ -10,7 +10,7 @@
     <div class="d-flex mb-3 align-center">
       <v-icon icon="mdi-link" />
       <p class="ml-1">
-        共有用URL: https://dj-system.lit-kansai-mentors.com/room/test
+        リクエストURL: https://dj-system.lit-kansai-mentors.com/room/test
       </p>
     </div>
     <div class="d-flex align-center">
@@ -19,12 +19,7 @@
         プレイリスト: https://open.spotify.com/playlist/396TkvvmaW0EesHOfCr32U
       </p>
     </div>
-  </div>
+  </v-container>
 </template>
 <script setup lang="ts"></script>
-<style scoped>
-  #room-info {
-    margin-left: 104px;
-    margin-right: 117px;
-  }
-</style>
+<style scoped></style>
