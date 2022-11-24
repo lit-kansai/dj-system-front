@@ -10,7 +10,7 @@
       <v-btn
         id="apple-login-button"
         color="blue-darken-3"
-        class="d-inline-flex py-2 px-4 mb-10 text-none"
+        class="py-2 px-4 mb-10 text-none"
         >AppleMusicにログイン</v-btn
       >
       <p class="font-weight-black text-h6 mb-1">Spotify</p>
@@ -20,7 +20,7 @@
       <v-btn
         id="spotify-login-button"
         color="blue-darken-3"
-        class="d-inline-flex py-2 px-4 text-none"
+        class="py-2 px-4 text-none"
         >Spotifyにログイン</v-btn
       >
     </div>
