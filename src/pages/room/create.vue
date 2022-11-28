@@ -1,5 +1,5 @@
 <template>
-  <div id="create">
+  <div class="create">
     <p class="text-h5 mb-1 font-weight-black mb-8">ルームを作成する</p>
     <v-text-field
       label="ルームネーム*"
@@ -26,7 +26,7 @@
 <script setup lang="ts"></script>
 
 <style scoped>
-  #create {
+  .create {
     max-width: 500px;
   }
 </style>
