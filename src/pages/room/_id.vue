@@ -1,5 +1,5 @@
 <template>
-  <v-container class="px-0 pt-16 pb-10">
+  <div>
     <div class="d-flex justify-space-between mb-1">
       <p class="text-h5 font-weight-black">タイトル</p>
       <v-btn color="blue-darken-3" class="py-2 px-4 text-none"
@@ -19,7 +19,7 @@
         プレイリスト: https://open.spotify.com/playlist/396TkvvmaW0EesHOfCr32U
       </p>
     </div>
-  </v-container>
+  </div>
 </template>
 <script setup lang="ts"></script>
 <style scoped></style>

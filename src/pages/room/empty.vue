@@ -1,5 +1,5 @@
 <template>
-  <div class="v-container h-full">
+  <div>
     <div class="d-flex flex-column justify-center align-center">
       <v-icon size="180" class="mb-4">mdi-rocket</v-icon>
       <p class="text-h5 mb-1 font-weight-black">まだルームがありません</p>

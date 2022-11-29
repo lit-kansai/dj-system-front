@@ -8,7 +8,9 @@
         </template>
       </v-app-bar>
       <v-main>
-        <slot />
+        <v-container class="px-0 pt-16 pb-10">
+          <slot />
+        </v-container>
       </v-main>
     </v-layout>
   </main>
