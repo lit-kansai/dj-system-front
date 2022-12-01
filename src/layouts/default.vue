@@ -1,5 +1,5 @@
 <template>
-  <main id="app-layout">
+  <v-app v-if="!loading" id="app-layout">
     <v-layout>
       <v-navigation-drawer permanent></v-navigation-drawer>
       <v-app-bar id="app-bar" color="grey-lighten-4">
@@ -13,9 +13,18 @@
         </v-container>
       </v-main>
     </v-layout>
-  </main>
+  </v-app>
 </template>
-<script setup lang="ts"></script>
+<script setup lang="ts">
+  /*
+	これ修正されるまでonMounted時まで非表示でよろ
+	[[Bug Report][3.0.0] V-App-Bar Collapse On Reload Page · Issue #15202 · vuetifyjs/vuetify](https://github.com/vuetifyjs/vuetify/issues/15202)
+	*/
+  const loading = ref(true)
+  onMounted(() => {
+    loading.value = false
+  })
+</script>
 <style scoped lang="scss">
   @import '@/assets/styles/main.scss';
   #app-layout {
