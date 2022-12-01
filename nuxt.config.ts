@@ -3,7 +3,6 @@ import path from 'path'
 const baseUrl = process.env.BASE_URL ?? ''
 export default defineNuxtConfig({
   telemetry: false,
-  ssr: false,
   components: [
     {
       path: '@/components/',
