@@ -666,6 +666,16 @@
     tiny-glob "^0.2.9"
     tslib "^2.4.0"
 
+"@quasar/extras@^1.15.7":
+  version "1.15.7"
+  resolved "https://registry.yarnpkg.com/@quasar/extras/-/extras-1.15.7.tgz#036a638011eb5af62524dfdab666009d599247c5"
+  integrity sha512-DuW+kVk8U1Cf3X5L/k5YVOMij9R0zTgVd0bjqT0v8QSMmLUhDPjd0LpV3t2eZrmEKyl2ZmxUUi0TuarqsLz+xg==
+
+"@quasar/vite-plugin@^1.2.3":
+  version "1.2.3"
+  resolved "https://registry.yarnpkg.com/@quasar/vite-plugin/-/vite-plugin-1.2.3.tgz#7da3653afbf45b11e9c344192fff2b9a7ccf3650"
+  integrity sha512-ErSyY3cHz40GBIQUmqSI8OzzshJM5pLq33Yq3NEtYdWYh1NuIc4C766xkatUdxvhX9sLNnQQZax2ysJ5u7kUJA==
+
 "@rollup/plugin-alias@^3.1.9":
   version "3.1.9"
   resolved "https://registry.yarnpkg.com/@rollup/plugin-alias/-/plugin-alias-3.1.9.tgz#a5d267548fe48441f34be8323fb64d1d4a1b3fdf"
@@ -6236,6 +6246,11 @@ punycode@^2.1.0:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/punycode/-/punycode-2.1.1.tgz#b58b010ac40c22c5657616c8d2c2c02c7bf479ec"
   integrity sha512-XRsRjdf+j5ml+y/6GKHPZbrF/8p2Yga0JPtdqTIY2Xe5ohJPD9saDJJLPvp9+NSBprVvevdXZybnj2cv8OEd0A==
+
+quasar@^2.10.2:
+  version "2.10.2"
+  resolved "https://registry.yarnpkg.com/quasar/-/quasar-2.10.2.tgz#0a35d654a645d33fbe7dc537ea3be52917fa543d"
+  integrity sha512-y6suu0f2hJKrnFPHzx+p2EBVGzDF6xHaqYGkDIsMNkhxsrO9Qi2+dZCjq1J6+48EJiqPEOn8t9X/gT7yLSSnLw==
 
 queue-microtask@^1.2.2:
   version "1.2.3"
