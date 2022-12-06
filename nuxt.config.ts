@@ -1,9 +1,13 @@
 import path from 'path'
+import { quasar } from '@quasar/vite-plugin'
 
 const baseUrl = process.env.BASE_URL ?? ''
 export default defineNuxtConfig({
   telemetry: false,
   ssr: false,
+  build: {
+    transpile: ['quasar', 'vuetify'],
+  },
   components: [
     {
       path: '@/components/',
@@ -12,6 +16,10 @@ export default defineNuxtConfig({
   ],
   css: [
     '@/assets/styles/main.scss',
+    'quasar/dist/quasar.prod.css',
+    '@quasar/extras/roboto-font/roboto-font.css',
+    '@quasar/extras/material-icons/material-icons.css',
+    '@quasar/extras/fontawesome-v6/fontawesome-v6.css',
     'vuetify/lib/styles/main.sass',
     '@mdi/font/css/materialdesignicons.min.css',
   ],
@@ -30,15 +38,17 @@ export default defineNuxtConfig({
     { name: 'twitter:site', content: 'DJ Gassi' },
   ],
   srcDir: 'src/',
-  build: {
-    transpile: ['vuetify'],
-  },
   alias: {
     '@': path.resolve(__dirname, 'src'),
   },
   vite: {
     define: {
-      'process.env.DEBUG': false,
+      // 'process.env.DEBUG': false,
     },
+    plugins: [
+      quasar({
+        sassVariables: 'assets/styles/quasar-variables.sass',
+      }),
+    ],
   },
 })
