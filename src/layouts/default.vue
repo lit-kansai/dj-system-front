@@ -12,7 +12,7 @@
     </q-drawer>
 
     <q-page-container>
-      <div class="q-pa-xl">
+      <div class="q-mx-xl q-py-xl container">
         <router-view />
       </div>
     </q-page-container>
@@ -29,6 +29,9 @@
 
 <style scoped lang="scss">
   @import '@/assets/styles/main.scss';
+  @import '@/assets/styles/_breakpoint';
+  @import '@/assets/styles/_mixin';
+
   #app-layout {
     height: 100%;
     min-height: 100vh;
@@ -36,5 +39,15 @@
 
   #app-bar {
     height: $app-bar-height;
+  }
+
+  .container {
+    max-width: 1072px;
+    padding-right: 12px;
+    padding-left: 12px;
+
+    @include mq(md) {
+      margin: 0 auto;
+    }
   }
 </style>
