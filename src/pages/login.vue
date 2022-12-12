@@ -1,7 +1,7 @@
 <template>
-  <div id="login-main" class="d-flex flex-column justify-center align-center">
-    <div id="login-box" class="mb-5"></div>
-    <p id="login-text" class="text-h5 d-inline-flex font-weight-bold">
+  <div id="login-main" class="column justify-center items-center">
+    <div id="login-box" class="q-mb-md"></div>
+    <p id="login-text" class="text-h5 text-weight-bold q-mb-md">
       Welcome to DJGassi Console
     </p>
     <q-btn
