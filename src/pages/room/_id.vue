@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="q-mb-lg">
+    <div class="q-mb-xl">
       <div class="row justify-between items-center q-mb-md">
         <div>
           <p class="text-h5 text-weight-bold q-mb-xs">ディジェクマクン</p>
@@ -23,12 +23,49 @@
         </p>
       </div>
     </div>
+
+    <div>
+      <p class="text-h6 text-weight-bold q-mb-xs">お便り一覧</p>
+      <q-table :rows="otayoriRows" :columns="otayoriColumns" row-key="name" />
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
   const requestUrl = 'https://dj.life-is-tech.com/room/test'
   const playlistUrl = 'https://open.spotify.com/playlist/396TkvvmaW0EesHOfCr32U'
+  const otayoriColumns = [
+    {
+      name: 'createdAt',
+      label: '投稿日時',
+      sortable: true,
+      align: 'left',
+      field: 'createdAt',
+    },
+    {
+      name: 'radioName',
+      label: 'ラジオネーム',
+      align: 'left',
+      field: 'radioName',
+      sortable: true,
+    },
+    { name: 'message', label: 'お便り', align: 'left', field: 'message' },
+    {
+      name: 'musicName',
+      label: '曲名',
+      align: 'left',
+      field: 'musicName',
+      sortable: true,
+    },
+  ]
+  const otayoriRows = [
+    {
+      radioName: 'テク子',
+      message: '流れるの楽しみにしてます！',
+      createdAt: '2022-10-06T07:10:04.799Z',
+      musicName: 'ray',
+    },
+  ]
 </script>
 
 <style scoped></style>
