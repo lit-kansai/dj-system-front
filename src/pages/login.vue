@@ -13,11 +13,13 @@
     </v-btn>
   </div>
 </template>
+
 <script setup lang="ts">
   definePageMeta({
     layout: false,
   })
 </script>
+
 <style lang="scss" scoped>
   @import '@/assets/styles/main.scss';
   #login-main {
