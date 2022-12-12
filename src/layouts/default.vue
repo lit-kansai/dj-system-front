@@ -1,30 +1,32 @@
 <template>
-  <v-app v-if="!loading" id="app-layout">
-    <v-layout>
-      <v-navigation-drawer permanent></v-navigation-drawer>
-      <v-app-bar id="app-bar" color="grey-lighten-4">
-        <template #prepend>
-          <v-app-bar-nav-icon></v-app-bar-nav-icon>
-        </template>
-      </v-app-bar>
-      <v-main>
-        <v-container class="px-0 pt-16 pb-10">
-          <slot />
-        </v-container>
-      </v-main>
-    </v-layout>
-  </v-app>
+  <q-layout id="app-layout" view="lHh Lpr lFf">
+    <q-header id="app-bar" elevated class="bg-grey-1 text-dark">
+      <q-toolbar>
+        <q-btn dense flat round icon="menu" @click="toggleLeftDrawer" />
+
+        <q-toolbar-title>DJ Gassi Console</q-toolbar-title>
+      </q-toolbar>
+    </q-header>
+
+    <q-drawer v-model="leftDrawerOpen" show-if-above side="left" bordered>
+    </q-drawer>
+
+    <q-page-container>
+      <div class="q-pa-xl">
+        <router-view />
+      </div>
+    </q-page-container>
+  </q-layout>
 </template>
+
 <script setup lang="ts">
-  /*
-	これ修正されるまでonMounted時まで非表示でよろ
-	[[Bug Report][3.0.0] V-App-Bar Collapse On Reload Page · Issue #15202 · vuetifyjs/vuetify](https://github.com/vuetifyjs/vuetify/issues/15202)
-	*/
-  const loading = ref(true)
-  onMounted(() => {
-    loading.value = false
-  })
+  const leftDrawerOpen = ref(false)
+
+  const toggleLeftDrawer = () => {
+    leftDrawerOpen.value = !leftDrawerOpen.value
+  }
 </script>
+
 <style scoped lang="scss">
   @import '@/assets/styles/main.scss';
   #app-layout {
