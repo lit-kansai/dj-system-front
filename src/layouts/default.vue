@@ -1,5 +1,5 @@
 <template>
-  <q-layout id="app-layout" view="lHh Lpr lFf">
+  <q-layout view="lHh Lpr lFf">
     <q-header id="app-bar" elevated class="bg-grey-1 text-dark">
       <q-toolbar>
         <q-btn dense flat round icon="menu" @click="toggleLeftDrawer" />
@@ -28,19 +28,12 @@
 </script>
 
 <style scoped lang="scss">
-  @import '@/assets/styles/main.scss';
-
-  #app-layout {
-    height: 100%;
-  }
-
   .container {
-    max-width: 1072px;
-    padding-right: 12px;
-    padding-left: 12px;
+    max-width: 1024px;
+    margin: 0 auto;
 
-    @media (max-width: $breakpoint-md-max) {
-      margin: 0 auto;
+    @media (max-width: $breakpoint-md-min) {
+      margin: 0 12px;
     }
   }
 </style>
