@@ -29,8 +29,6 @@
 
 <style scoped lang="scss">
   @import '@/assets/styles/main.scss';
-  @import '@/assets/styles/_breakpoint';
-  @import '@/assets/styles/_mixin';
 
   #app-layout {
     height: 100%;
@@ -46,7 +44,7 @@
     padding-right: 12px;
     padding-left: 12px;
 
-    @include mq(md) {
+    @media (max-width: $breakpoint-md-max) {
       margin: 0 auto;
     }
   }
