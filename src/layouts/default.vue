@@ -32,11 +32,6 @@
 
   #app-layout {
     height: 100%;
-    min-height: 100vh;
-  }
-
-  #app-bar {
-    height: $app-bar-height;
   }
 
   .container {
