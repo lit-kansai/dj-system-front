@@ -30,10 +30,10 @@
 <style scoped lang="scss">
   .container {
     max-width: 1024px;
-    margin: 0 auto;
+    margin: 0 12px;
 
-    @media (max-width: $breakpoint-md-min) {
-      margin: 0 12px;
+    @media (min-width: $breakpoint-md-min) {
+      margin: 0 auto;
     }
   }
 </style>
