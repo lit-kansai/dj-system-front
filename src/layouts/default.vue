@@ -9,6 +9,38 @@
     </q-header>
 
     <q-drawer v-model="leftDrawerOpen" show-if-above side="left" bordered>
+      <div class="column q-ml-lg justify-between window-height">
+        <div class="q-mt-xl">
+          <div class="column q-mb-xl items-start">
+            <p class="text-subtitle1 font-weight-bold">自分のルーム</p>
+            <q-btn flat align="left" class="q-pa-none q-my-sm"
+              >ディジェクマクン</q-btn
+            >
+            <q-btn flat align="left" class="q-pa-none q-my-sm"
+              >ディジェクマクン</q-btn
+            >
+            <q-btn flat align="left" class="q-pa-none q-my-sm">DJ Gassi</q-btn>
+            <q-btn flat align="left" class="q-pa-none q-my-sm">DJ Gassi</q-btn>
+            <q-btn flat align="left" class="q-pa-none q-my-sm">
+              <q-icon name="add" size="0.9em"></q-icon>ルームを追加</q-btn
+            >
+          </div>
+          <div class="column items-start">
+            <p class="text-subtitle1 font-weight-bold">自分のルーム</p>
+            <q-btn flat align="left" class="q-pa-none q-my-sm">DJ Gassi</q-btn>
+          </div>
+        </div>
+        <div class="column">
+          <div class="q-mb-md">
+            <q-icon name="settings" size="1.6em"></q-icon
+            ><q-btn flat>外部サービス連携</q-btn>
+          </div>
+          <div class="q-mb-md">
+            <q-icon name="reviews" size="1.6em"></q-icon
+            ><q-btn flat>フィードバックを送信</q-btn>
+          </div>
+        </div>
+      </div>
     </q-drawer>
 
     <q-page-container>
