@@ -13,7 +13,7 @@
   // prettier-ignore
   // eslint-disable
   import { Ref } from 'nuxt/dist/app/compat/capi'
-  import { Post } from '@/features/post/api/create-post'
+  import { Post } from '@/features/post'
 
   const posts: Ref<Post[]> = ref([])
   const pending = ref(false)
@@ -23,7 +23,7 @@
     title: '',
     body: '',
   })
-  const _createPosts = await createPost(form)
+  const _createPosts = createPost(form)
   const _getPosts = await getPosts()
   watch(_getPosts.data, (data) =>
     data ? data.map((post) => posts.value.push(post)) : null
@@ -33,6 +33,7 @@
   watch(_createPosts.data, (data) => (data ? posts.value.unshift(data) : null))
   watch(_createPosts.pending, (data) => (pending.value = data))
   watch(_createPosts.error, (data) => (error.value = data))
+
   const addPost = async () => {
     await _createPosts.execute()
   }
