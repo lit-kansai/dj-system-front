@@ -8,8 +8,7 @@
       </q-toolbar>
     </q-header>
 
-    <q-drawer v-model="leftDrawerOpen" show-if-above side="left" bordered>
-    </q-drawer>
+    <q-drawer v-model="leftDrawerOpen" show-if-above side="left" bordered />
 
     <q-page-container>
       <div class="q-mx-xl q-py-xl container">
@@ -21,7 +20,6 @@
 
 <script setup lang="ts">
   const leftDrawerOpen = ref(false)
-
   const toggleLeftDrawer = () => {
     leftDrawerOpen.value = !leftDrawerOpen.value
   }

@@ -6,10 +6,9 @@ module.exports = {
     node: true,
   },
   extends: [
+    'eslint:recommended',
     '@nuxtjs/eslint-config-typescript',
     'plugin:nuxt/recommended',
-    'plugin:prettier/recommended',
-    'prettier',
   ],
   parserOptions: {
     ecmaVersion: 'latest',
@@ -17,6 +16,34 @@ module.exports = {
     sourceType: 'module',
   },
   rules: {
+    'comma-dangle': ['error', 'only-multiline'],
+    quotes: ['error', 'single', { avoidEscape: true }],
+    semi: ['error', 'never'],
+    'object-curly-spacing': ['error', 'always'],
+    'sort-keys': 'off',
+    'no-return-await': 'error',
+    'no-warning-comments': 'off',
+    '@typescript-eslint/explicit-module-boundary-types': 'off',
+    '@typescript-eslint/no-explicit-any': 'error',
+    '@typescript-eslint/no-unused-vars': 'error',
+    '@typescript-eslint/prefer-interface': 'off',
+    '@typescript-eslint/array-type': [
+      'error',
+      {
+        default: 'array-simple',
+      },
+    ],
     'vue/script-indent': ['error', 2, { baseIndent: 1 }],
+    'vue/singleline-html-element-content-newline': 'off',
+    indent: ['error', 2],
   },
+  overrides: [
+    {
+      files: ['*vue'],
+      rules: {
+        '@typescript-eslint/indent': 'off',
+        indent: 'off',
+      },
+    },
+  ],
 }

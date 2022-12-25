@@ -3,8 +3,12 @@
     <div class="q-mb-xl">
       <div class="row justify-between items-center q-mb-md">
         <div>
-          <p class="text-h5 text-weight-bold q-mb-xs">ディジェクマクン</p>
-          <p class="q-mb-none">Life is Tech! Summer Camp 2022 関西大学D日程</p>
+          <p class="text-h5 text-weight-bold q-mb-xs">
+            ディジェクマクン
+          </p>
+          <p class="q-mb-none">
+            Life is Tech! Summer Camp 2022 関西大学D日程
+          </p>
         </div>
         <q-btn color="primary" label="ルームを編集する" />
       </div>
@@ -25,7 +29,9 @@
     </div>
 
     <div>
-      <p class="text-h6 text-weight-bold q-mb-xs">お便り一覧</p>
+      <p class="text-h6 text-weight-bold q-mb-xs">
+        お便り一覧
+      </p>
       <q-table :rows="otayoriRows" :columns="otayoriColumns" row-key="name" />
     </div>
   </div>
