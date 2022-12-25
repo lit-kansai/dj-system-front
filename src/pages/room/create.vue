@@ -1,6 +1,8 @@
 <template>
   <div class="create">
-    <p class="text-h5 text-weight-bold q-mb-sm">ルームを作成する</p>
+    <p class="text-h5 text-weight-bold q-mb-sm">
+      ルームを作成する
+    </p>
     <q-input
       outlined
       label="ルームネーム*"
@@ -20,8 +22,7 @@
       class="url-prefix"
       prefix="https://dj.life-is-tech.com/"
       :rules="[(val) => !!val || 'Field is required']"
-    >
-    </q-input>
+    />
     <div class="column items-end">
       <q-btn color="primary" label="ルームを作成する" />
     </div>

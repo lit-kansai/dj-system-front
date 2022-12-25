@@ -1,7 +1,9 @@
 <template>
   <q-card class="q-mt-md">
     <q-card-section>
-      <div class="text-h6">{{ post.title }}</div>
+      <div class="text-h6">
+        {{ post.title }}
+      </div>
     </q-card-section>
 
     <q-card-section class="q-pt-none">

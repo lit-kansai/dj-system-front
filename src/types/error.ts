@@ -5,6 +5,7 @@ export type NuxtError = {
   statusMessage: string
   message: string
   description: string
-  data?: any
+  data?: unknown
 }
+
 export type CurrentError = null | Error | NuxtError

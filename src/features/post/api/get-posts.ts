@@ -5,7 +5,7 @@ import { Posts } from '@/features/post'
 export type GetPostsOutput = APIRequestOutput<Posts>['get']
 
 export const getPosts = async (): GetPostsOutput => {
-  const response = await useLazyAsyncData(() =>
+  const response = await useLazyAsyncData<Posts>(() =>
     sampleApiClient.api.posts.$get()
   )
   return response

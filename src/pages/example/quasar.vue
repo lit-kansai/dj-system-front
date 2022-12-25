@@ -8,7 +8,7 @@
       <q-icon name="today" />
       <q-icon name="style" />
     </div>
-    <q-btn color="white" text-color="black" label="Standard"></q-btn>
+    <q-btn color="white" text-color="black" label="Standard" />
   </div>
 </template>
 
