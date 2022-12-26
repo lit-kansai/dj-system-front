@@ -20,9 +20,9 @@
       "yarn prettier"
     ],
     "*.{ts,js}": [
-      "yarn type-check"
+      "bash -c 'yarn type-check'"
     ],
-    "*.{vue}": [
+    "*.vue": [
       "yarn vue-tsc"
     ],
     "*.{css,vue}": "yarn stylelint"
