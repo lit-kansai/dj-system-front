@@ -9,15 +9,13 @@
     "postinstall": "nuxt prepare",
     "type-check": "tsc --pretty --noEmit",
     "eslint": "eslint --fix --max-warnings 0",
-    "prettier": "prettier --write",
     "stylelint": "stylelint --fix",
     "vue-tsc": "vue-tsc --noEmit",
     "prepare": "husky install"
   },
   "lint-staged": {
     "*.{ts,js,vue}": [
-      "yarn eslint",
-      "yarn prettier"
+      "yarn eslint"
     ],
     "*.{ts,js}": [
       "bash -c 'yarn type-check'"
