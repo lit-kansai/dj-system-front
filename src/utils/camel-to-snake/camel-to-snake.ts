@@ -1,26 +1,29 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-// TODO: anyやめる&テスト書く
-export const camelToSnake = (obj: { [key: string]: any } | any[]): any => {
-  if (typeof obj !== "object") {
-    return obj;
-  }
+import { isRecord, ObjectType, isObjectArray } from '../is-record'
+
+export const camelToSnake = (obj: ObjectType): ObjectType => {
   if (Array.isArray(obj)) {
-    return obj.map(camelToSnake);
+    const array = obj.map(camelToSnake)
+    if (!isObjectArray(array)) { throw new Error('unknown error') }
+    return array
   }
-  if (obj === null) {
-    return null;
-  }
-  return Object.keys(obj).reduce((acc: { [key: string]: any }, key: string) => {
+  return Object.keys(obj).reduce((
+    acc: Record<string, unknown>, key: string
+  ) => {
     // 値がobjectの場合は再帰的にconvertを実行
-    const type = Object.prototype.toString.call(obj[key]);
-    if (type === "[object Object]" || type === "[object Array]") {
-      acc[toSnake(key)] = camelToSnake(obj[key]);
-      return acc;
+    const value = obj[key]
+    if (isRecord(value)) {
+      acc[toSnake(key)] = camelToSnake(value)
+      return acc
     }
-    acc[toSnake(key)] = obj[key];
-    return acc;
-  }, {});
-};
+    if (Array.isArray(value)) {
+      acc[toSnake(key)] = camelToSnake(value)
+      return acc
+    }
+    acc[toSnake(key)] = obj[key]
+    return acc
+  }, {})
+}
+
 const toSnake = (key: string) => {
-  return key.replace(/([A-Z])/g, "_$1").toLowerCase();
-};
+  return key.replace(/([A-Z])/g, '_$1').toLowerCase()
+}
