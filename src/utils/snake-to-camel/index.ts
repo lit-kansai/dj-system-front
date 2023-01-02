@@ -1,1 +1,1 @@
-export * from "./snake-to-camel";
+export * from './snake-to-camel'
