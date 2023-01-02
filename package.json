@@ -7,21 +7,17 @@
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
-    "type-check": "tsc --pretty --noEmit",
+    "typecheck": "nuxt typecheck",
     "eslint": "eslint --fix --max-warnings 0",
     "stylelint": "stylelint --fix",
-    "vue-tsc": "vue-tsc --noEmit",
     "prepare": "husky install"
   },
   "lint-staged": {
     "*.{ts,js,vue}": [
       "yarn eslint"
     ],
-    "*.{ts,js}": [
-      "bash -c 'yarn type-check'"
-    ],
     "*.vue": [
-      "yarn vue-tsc"
+      "yarn typecheck"
     ],
     "*.{css,vue}": "yarn stylelint"
   },
