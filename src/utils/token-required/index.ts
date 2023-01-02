@@ -1,1 +1,1 @@
-export * from "./token-required";
+export * from './token-required'
