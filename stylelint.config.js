@@ -20,6 +20,7 @@ module.exports = {
         ],
       },
     ],
+    'block-no-empty': null,
     'declaration-block-trailing-semicolon': null,
     'no-descending-specificity': null,
   },
