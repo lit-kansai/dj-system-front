@@ -4,7 +4,7 @@
       <div class="row justify-between items-center q-mb-md">
         <div>
           <p class="text-h5 text-weight-bold q-mb-xs">
-            ディジェクマクン!
+            ディジェクマクン
           </p>
           <p class="q-mb-none">
             Life is Tech! Summer Camp 2022 関西大学D日程
@@ -73,3 +73,5 @@
     },
   ]
 </script>
+
+<style scoped></style>
