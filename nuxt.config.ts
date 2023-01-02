@@ -1,5 +1,6 @@
 import path from 'path'
 import { quasar } from '@quasar/vite-plugin'
+import { domainComponentsPaths } from './src/data'
 
 const baseUrl = process.env.BASE_URL ?? ''
 export default defineNuxtConfig({
@@ -10,9 +11,11 @@ export default defineNuxtConfig({
   },
   components: [
     {
-      path: '@/components/',
+      path: 'components',
       pathPrefix: false,
     },
+    // /directory/**/ みたいな記法が壊れてるのでこんな感じでやってます
+    ...domainComponentsPaths,
   ],
   css: [
     '@/assets/styles/main.scss',
@@ -38,13 +41,13 @@ export default defineNuxtConfig({
     { name: 'twitter:site', content: 'DJ Gassi' },
   ],
   srcDir: 'src/',
+  imports: {
+    dirs: ['features/**/api/', 'utils', 'data'],
+  },
   alias: {
     '@': path.resolve(__dirname, 'src'),
   },
   vite: {
-    define: {
-      // 'process.env.DEBUG': false,
-    },
     plugins: [
       quasar({
         sassVariables: 'assets/styles/quasar-variables.sass',

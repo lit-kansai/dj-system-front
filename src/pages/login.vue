@@ -1,23 +1,25 @@
 <template>
-  <div id="login-main" class="d-flex flex-column justify-center align-center">
-    <div id="login-box" class="mb-5"></div>
-    <p id="login-text" class="text-h5 d-inline-flex font-weight-bold">
+  <div id="login-main" class="column justify-center items-center">
+    <div id="login-box" class="q-mb-md" />
+    <p id="login-text" class="text-h5 text-weight-bold q-mb-md">
       Welcome to DJGassi Console
     </p>
-    <v-btn
+    <q-btn
       id="login-button"
-      color="blue-darken-3"
-      class="d-inline-flex mt-5 text-none"
-    >
-      Sign in with Google
-    </v-btn>
+      color="primary"
+      class="q-mb-lg"
+      no-caps
+      label="Sign in with Google"
+    />
   </div>
 </template>
+
 <script setup lang="ts">
   definePageMeta({
     layout: false,
   })
 </script>
+
 <style lang="scss" scoped>
   @import '@/assets/styles/main.scss';
   #login-main {

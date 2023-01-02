@@ -1,11 +1,15 @@
 <template>
   <div>
     <h2>Error handling example</h2>
-    <button @click="triggerError">triggerError</button>
+    <button @click="triggerError">
+      triggerError
+    </button>
     <div v-if="currentError">
       {{ JSON.stringify(currentError) }}
-      <br />
-      <button @click="clearError()">clear</button>
+      <br>
+      <button @click="clearError()">
+        clear
+      </button>
     </div>
   </div>
 </template>

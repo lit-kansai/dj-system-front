@@ -1,25 +1,75 @@
 <template>
   <div>
-    <div class="d-flex justify-space-between mb-1">
-      <p class="text-h5 font-weight-black">タイトル</p>
-      <v-btn color="blue-darken-3" class="py-2 px-4 text-none"
-        >ルームを編集</v-btn
-      >
+    <div class="q-mb-xl">
+      <div class="row justify-between items-center q-mb-md">
+        <div>
+          <p class="text-h5 text-weight-bold q-mb-xs">
+            ディジェクマクン
+          </p>
+          <p class="q-mb-none">
+            Life is Tech! Summer Camp 2022 関西大学D日程
+          </p>
+        </div>
+        <q-btn color="primary" label="ルームを編集する" />
+      </div>
+      <div class="row q-mb-xs">
+        <v-icon icon="mdi-link" class="q-mr-xs" />
+        <p class="q-mb-none">
+          リクエストURL:
+          <a :href="requestUrl" target="_blank">{{ requestUrl }}</a>
+        </p>
+      </div>
+      <div class="row">
+        <v-icon icon="mdi-spotify" class="q-mr-xs" />
+        <p class="q-mb-none">
+          プレイリスト:
+          <a :href="playlistUrl" target="_blank">{{ playlistUrl }}</a>
+        </p>
+      </div>
     </div>
-    <p class="mb-5">Life is Tech! Summer Camp 2022 関西大学D日程</p>
-    <div class="d-flex mb-3 align-center">
-      <v-icon icon="mdi-link" />
-      <p class="ml-1">
-        リクエストURL: https://dj-system.lit-kansai-mentors.com/room/test
+
+    <div>
+      <p class="text-h6 text-weight-bold q-mb-xs">
+        お便り一覧
       </p>
-    </div>
-    <div class="d-flex align-center">
-      <v-icon icon="mdi-spotify" />
-      <p class="ml-1">
-        プレイリスト: https://open.spotify.com/playlist/396TkvvmaW0EesHOfCr32U
-      </p>
+      <q-table :rows="otayoriRows" :columns="otayoriColumns" row-key="name" />
     </div>
   </div>
 </template>
-<script setup lang="ts"></script>
-<style scoped></style>
+
+<script setup lang="ts">
+  const requestUrl = 'https://dj.life-is-tech.com/room/test'
+  const playlistUrl = 'https://open.spotify.com/playlist/396TkvvmaW0EesHOfCr32U'
+  const otayoriColumns = [
+    {
+      name: 'createdAt',
+      label: '投稿日時',
+      sortable: true,
+      align: 'left',
+      field: 'createdAt',
+    },
+    {
+      name: 'radioName',
+      label: 'ラジオネーム',
+      align: 'left',
+      field: 'radioName',
+      sortable: true,
+    },
+    { name: 'message', label: 'お便り', align: 'left', field: 'message' },
+    {
+      name: 'musicName',
+      label: '曲名',
+      align: 'left',
+      field: 'musicName',
+      sortable: true,
+    },
+  ]
+  const otayoriRows = [
+    {
+      radioName: 'テク子',
+      message: '流れるの楽しみにしてます！',
+      createdAt: '2022-10-06T07:10:04.799Z',
+      musicName: 'ray',
+    },
+  ]
+</script>
