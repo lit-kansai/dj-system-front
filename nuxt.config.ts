@@ -7,7 +7,7 @@ export default defineNuxtConfig({
   telemetry: false,
   ssr: false,
   build: {
-    transpile: ['quasar', 'vuetify'],
+    transpile: ['quasar'],
   },
   components: [
     {
@@ -23,7 +23,6 @@ export default defineNuxtConfig({
     '@quasar/extras/roboto-font/roboto-font.css',
     '@quasar/extras/material-icons/material-icons.css',
     '@quasar/extras/fontawesome-v6/fontawesome-v6.css',
-    'vuetify/lib/styles/main.sass',
     '@mdi/font/css/materialdesignicons.min.css',
   ],
   meta: [
