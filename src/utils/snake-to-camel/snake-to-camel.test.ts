@@ -19,4 +19,21 @@ describe('snake-to-camel', () => {
     expect(snakeToCamel({ names: [{ first_name: 'hoge' }] }))
       .toEqual({ names: [{ firstName: 'hoge' }] })
   })
+
+  it('二重配列', () => {
+    expect(snakeToCamel([[{ first_name: 'name' }]]))
+      .toEqual([[{ firstName: 'name' }]])
+  })
+
+  it('null', () => {
+    expect(snakeToCamel(null)).toEqual(null)
+  })
+
+  it('{}', () => {
+    expect(snakeToCamel({})).toEqual({})
+  })
+
+  it('プリミティブ', () => {
+    expect(snakeToCamel('name')).toEqual('name')
+  })
 })
