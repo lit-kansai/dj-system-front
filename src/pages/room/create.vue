@@ -35,10 +35,10 @@
 
 <style lang="scss" scoped>
   .create {
-    max-width: 500px;
     display: grid;
     gap: 12px;
   }
+
   .not-rule-input {
     margin-bottom: 20px;
   }
