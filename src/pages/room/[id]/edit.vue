@@ -1,24 +1,24 @@
 <template>
   <div class="edit">
     <p class="text-h5 text-weight-bold q-mb-sm">
-      "{{ roomName }}"を編集する
+      "{{ currentRoomName }}"を編集する
     </p>
     <q-input
-      v-model="roomName"
+      v-model="form.roomName"
       outlined
       label="ルームネーム*"
       :rules="[(val) => !!val || 'Field is required']"
     />
-    <q-input v-model="roomDescription" outlined label="ルーム説明" class="not-rule-input" />
+    <q-input v-model="form.roomDescription" outlined label="ルーム説明" class="not-rule-input" />
     <q-select
-      v-model="provider"
+      v-model="form.provider"
       outlined
       :options="providerOptions"
       label="外部サービス*"
       class="not-rule-input"
     />
     <q-input
-      v-model="requestUrl"
+      v-model="form.requestUrl"
       outlined
       label="リクエストURL*"
       class="url-prefix"
@@ -35,10 +35,13 @@
   const route = useRoute()
   const router = useRouter()
 
-  const roomName = ref('ディジェクマクン')
-  const roomDescription = ref('Life is Tech! Summer Camp 2022 関西大学D日程')
-  const provider = ref('Spotify')
-  const requestUrl = ref('djgassi')
+  const currentRoomName = 'ディジェクマクン'
+  const form = reactive({
+    roomName: 'ディジェクマクン',
+    roomDescription: 'Life is Tech! Summer Camp 2022 関西大学D日程',
+    provider: 'Spotify',
+    requestUrl: 'djgassi'
+  })
 
   const providerOptions = ['Spotify', 'AppleMusic']
 
