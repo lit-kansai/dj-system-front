@@ -25,7 +25,8 @@
       prefix="https://dj.life-is-tech.com/"
       :rules="[(val) => !!val || 'Field is required']"
     />
-    <div class="column items-end">
+    <div class="row justify-end items-end">
+      <q-btn color="grey-1" text-color="dark" class="q-mr-sm" label="キャンセル" @click="onClickCancel" />
       <q-btn color="primary" label="保存する" @click="onClickSave" />
     </div>
   </div>
@@ -36,6 +37,7 @@
   const router = useRouter()
 
   const currentRoomName = 'ディジェクマクン'
+  const currentDisplayId = route.params.id
   const form = reactive({
     roomName: 'ディジェクマクン',
     roomDescription: 'Life is Tech! Summer Camp 2022 関西大学D日程',
@@ -45,9 +47,12 @@
 
   const providerOptions = ['Spotify', 'AppleMusic']
 
+  const onClickCancel = () => {
+    router.push('/room/' + currentDisplayId)
+  }
   const onClickSave = () => {
     alert('TODO: 保存のAPIをたたく')
-    router.push('/room/' + route.params.id)
+    router.push('/room/' + currentDisplayId)
   }
 </script>
 

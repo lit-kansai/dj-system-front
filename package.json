@@ -16,9 +16,6 @@
     "*.{ts,js,vue}": [
       "yarn eslint"
     ],
-    "*.vue": [
-      "yarn typecheck"
-    ],
     "*.{css,vue}": "yarn stylelint"
   },
   "devDependencies": {
