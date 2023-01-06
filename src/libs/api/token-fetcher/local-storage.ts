@@ -1,12 +1,12 @@
-import { TokenFetcher } from "../interceptors";
+import { TokenFetcher } from '../interceptors'
 
 export const local: TokenFetcher = {
   fetch: () => {
-    const data = localStorage.getItem("userInfo");
+    const data = localStorage.getItem('userInfo')
     if (!data) {
-      return null;
+      return null
     }
-    const { token } = JSON.parse(data) as { token: string };
-    return token || null;
+    const { token } = JSON.parse(data) as { token: string }
+    return token || null
   },
-};
+}
