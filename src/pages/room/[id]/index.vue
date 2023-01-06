@@ -20,8 +20,7 @@
         </p>
       </div>
       <div class="row items-center">
-        <q-icon v-if="roomDetails.provider == 'spotify'" name="fa-brands fa-spotify" class="q-mr-xs" />
-        <q-icon v-else name="fa-solid fa-music" class="q-mr-xs" />
+        <q-icon :name="roomDetails.provider=='spotify'?'fa-brands fa-spotify':'fa-solid fa-music'" class="q-mr-xs" />
         <p class="q-mb-none">
           プレイリスト:
           <a :href="roomDetails.playlistUrl" target="_blank">{{ roomDetails.playlistUrl }}</a>
