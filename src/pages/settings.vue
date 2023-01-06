@@ -12,7 +12,7 @@
     <p class="q-mb-sm">
       AppleMusicのサブスクへの登録が必要になります。
     </p>
-    <q-btn color="primary" class="q-mb-lg" label="AppleMusicにログイン" />
+    <q-btn v-if="!linkedProviders.applemusic" color="primary" class="q-mb-lg" label="AppleMusicにログイン" />
 
     <p class="text-h6 text-weight-bold q-mb-xs">
       Spotify
@@ -20,8 +20,13 @@
     <p class="q-mb-sm">
       APIの利用制限のため、選ばれし25名のみが使用できます。がっしーにご連絡ください。
     </p>
-    <q-btn color="primary" class="q-mb-lg" label="Spotifyにログイン" />
+    <q-btn v-if="!linkedProviders.spotify" color="primary" class="q-mb-lg" label="Spotifyにログイン" />
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+  const linkedProviders = reactive({
+    spotify: true,
+    applemusic: false
+  })
+</script>
