@@ -4,26 +4,26 @@
       <div class="row justify-between items-center q-mb-md">
         <div>
           <p class="text-h5 text-weight-bold q-mb-xs">
-            ディジェクマクン
+            {{ roomDetails.name }}
           </p>
           <p class="q-mb-none">
-            Life is Tech! Summer Camp 2022 関西大学D日程
+            {{ roomDetails.description }}
           </p>
         </div>
-        <q-btn color="primary" label="ルームを編集する" />
+        <q-btn :to="`/room/${roomDetails.displayId}/edit`" color="primary" label="ルームを編集する" />
       </div>
-      <div class="row q-mb-xs">
-        <v-icon icon="mdi-link" class="q-mr-xs" />
+      <div class="row items-center q-mb-xs">
+        <q-icon name="link" class="q-mr-xs" />
         <p class="q-mb-none">
           リクエストURL:
-          <a :href="requestUrl" target="_blank">{{ requestUrl }}</a>
+          <a :href="roomDetails.requestUrl" target="_blank">{{ roomDetails.requestUrl }}</a>
         </p>
       </div>
-      <div class="row">
-        <v-icon icon="mdi-spotify" class="q-mr-xs" />
+      <div class="row items-center">
+        <q-icon :name="roomDetails.provider=='spotify'?'fa-brands fa-spotify':'fa-solid fa-music'" class="q-mr-xs" />
         <p class="q-mb-none">
           プレイリスト:
-          <a :href="playlistUrl" target="_blank">{{ playlistUrl }}</a>
+          <a :href="roomDetails.playlistUrl" target="_blank">{{ roomDetails.playlistUrl }}</a>
         </p>
       </div>
     </div>
@@ -32,7 +32,7 @@
       <p class="text-h6 text-weight-bold q-mb-xs">
         お便り一覧
       </p>
-      <q-table :rows="otayoriRows" :columns="otayoriColumns" row-key="name" />
+      <q-table :rows="roomDetails.letters" :columns="otayoriColumns" row-key="name" />
     </div>
   </div>
 </template>
@@ -40,8 +40,23 @@
 <script setup lang="ts">
   import { QTableProps } from 'quasar'
 
-  const requestUrl = 'https://dj.life-is-tech.com/room/test'
-  const playlistUrl = 'https://open.spotify.com/playlist/396TkvvmaW0EesHOfCr32U'
+  const roomDetails = reactive({
+    displayId: 'test',
+    name: 'ディジェクマクン',
+    description: 'Life is Tech! Summer Camp 2022 関西大学D日程',
+    requestUrl: 'https://dj.life-is-tech.com/test',
+    playlistUrl: 'https://open.spotify.com/playlist/396TkvvmaW0EesHOfCr32U',
+    provider: 'spotify',
+    letters: [
+      {
+        radioName: 'テク子',
+        message: '流れるの楽しみにしてます！',
+        createdAt: '2022-10-06T07:10:04.799Z',
+        musicName: 'ray',
+      },
+    ]
+  })
+
   const otayoriColumns: QTableProps['columns'] = [
     {
       name: 'createdAt',
@@ -70,14 +85,6 @@
       sortable: true,
       align: 'left',
       field: 'musicName',
-    },
-  ]
-  const otayoriRows = [
-    {
-      radioName: 'テク子',
-      message: '流れるの楽しみにしてます！',
-      createdAt: '2022-10-06T07:10:04.799Z',
-      musicName: 'ray',
     },
   ]
 </script>
