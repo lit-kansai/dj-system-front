@@ -25,13 +25,15 @@
       prefix="https://dj.life-is-tech.com/"
       :rules="[(val) => !!val || 'Field is required']"
     />
-    <div class="column items-end">
+    <div class="row justify-end items-end">
+      <q-btn color="grey-1" text-color="dark" class="q-mr-sm" label="キャンセル" @click="onClickCancel" />
       <q-btn color="primary" label="ルームを作成する" />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
+  const router = useRouter()
   const form = reactive({
     roomName: '',
     roomDescription: '',
@@ -39,6 +41,10 @@
     requestUrl: ''
   })
   const providerOptions = ['Spotify', 'AppleMusic']
+
+  const onClickCancel = () => {
+    router.go(-1)
+  }
 </script>
 
 <style lang="scss" scoped>
