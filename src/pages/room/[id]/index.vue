@@ -12,15 +12,16 @@
         </div>
         <q-btn :to="`/room/${roomDetails.displayId}/edit`" color="primary" label="ルームを編集する" />
       </div>
-      <div class="row q-mb-xs">
-        <v-icon icon="mdi-link" class="q-mr-xs" />
+      <div class="row items-center q-mb-xs">
+        <q-icon name="link" class="q-mr-xs" />
         <p class="q-mb-none">
           リクエストURL:
           <a :href="roomDetails.requestUrl" target="_blank">{{ roomDetails.requestUrl }}</a>
         </p>
       </div>
-      <div class="row">
-        <v-icon icon="mdi-spotify" class="q-mr-xs" />
+      <div class="row items-center">
+        <q-icon v-if="roomDetails.provider == 'spotify'" name="fa-brands fa-spotify" class="q-mr-xs" />
+        <q-icon v-else name="fa-solid fa-music" class="q-mr-xs" />
         <p class="q-mb-none">
           プレイリスト:
           <a :href="roomDetails.playlistUrl" target="_blank">{{ roomDetails.playlistUrl }}</a>
@@ -46,6 +47,7 @@
     description: 'Life is Tech! Summer Camp 2022 関西大学D日程',
     requestUrl: 'https://dj.life-is-tech.com/test',
     playlistUrl: 'https://open.spotify.com/playlist/396TkvvmaW0EesHOfCr32U',
+    provider: 'spotify',
     letters: [
       {
         radioName: 'テク子',
