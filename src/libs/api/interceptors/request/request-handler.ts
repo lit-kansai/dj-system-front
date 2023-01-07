@@ -11,13 +11,12 @@ export const requestHandler = (
   tokenFetcher: TokenFetcher
 ): AxiosRequestConfig<{}> => {
   if (request.data) {
-    request.data = camelToSnake(request.data)
+    const _data = camelToSnake(request.data)
+    if (_data) { request.data = _data }
   }
 
   const { url } = request
-  if (url && !tokenRequired(url)) {
-    return request
-  }
+  if (url && !tokenRequired(url)) { return request }
 
   const controller = new AbortController()
   request.signal = controller.signal

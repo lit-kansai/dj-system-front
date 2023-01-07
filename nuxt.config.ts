@@ -6,6 +6,7 @@ const baseUrl = process.env.BASE_URL ?? ''
 export default defineNuxtConfig({
   telemetry: false,
   ssr: false,
+  dev: process.env.NODE_ENV !== 'production',
   build: {
     transpile: ['quasar'],
   },
@@ -42,6 +43,11 @@ export default defineNuxtConfig({
   srcDir: 'src/',
   imports: {
     dirs: ['features/**/api/', 'utils', 'data'],
+  },
+  runtimeConfig: {
+    public: {
+      API_BASE_URL: process.env.BASE_API_URL || '',
+    }
   },
   alias: {
     '@': path.resolve(__dirname, 'src'),
