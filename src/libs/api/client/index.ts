@@ -19,7 +19,6 @@ const axios = (): AxiosInstance => {
   return instance
 }
 
-export type ApiInstance = typeof api
 export const apiClient = () => {
   return api(
     aspida(axios(), {
@@ -28,3 +27,4 @@ export const apiClient = () => {
     })
   )
 }
+export type ApiInstance = ReturnType<typeof apiClient>
