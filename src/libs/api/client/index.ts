@@ -10,10 +10,7 @@ import { api } from '../generated'
 import { CONTENT_TYPE_KEY, CONTENT_TYPE_VALUE } from '@/constants'
 
 const axios = (): AxiosInstance => {
-  const runtimeConfig = useRuntimeConfig()
-  const instance = _axios.create({
-    baseURL: runtimeConfig.public.API_BASE_URL,
-  })
+  const instance = _axios.create()
   instance.defaults.headers.common[CONTENT_TYPE_KEY] = CONTENT_TYPE_VALUE
   instance.interceptors.request.use((request) => {
     return requestHandler(request, tokenFetcher.cookie)
@@ -23,8 +20,11 @@ const axios = (): AxiosInstance => {
 }
 
 export type ApiInstance = typeof api
-export const apiClient = api(
-  aspida(axios(), {
-    timeout: 3000,
-  })
-)
+export const apiClient = () => {
+  return api(
+    aspida(axios(), {
+      timeout: 3000,
+      baseURL: useRuntimeConfig().public.API_BASE_URL
+    })
+  )
+}
