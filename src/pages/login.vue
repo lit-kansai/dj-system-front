@@ -10,24 +10,40 @@
       class="q-mb-lg"
       no-caps
       label="Sign in with Google"
+      @click="login"
     />
   </div>
 </template>
 
 <script setup lang="ts">
+  import { GOOGLE_API_CALLBACK_PATH } from '@/constants'
+
   definePageMeta({
     layout: false,
+  })
+
+  const result = await signin({ redirectUrl: GOOGLE_API_CALLBACK_PATH })
+  const state = reactive({ result })
+  const login = () => { state.result.execute() }
+
+  // 同じスコープ内にあるreactiveなオブジェクトが変化したら呼ばれる
+  watchEffect(() => {
+    const { data } = result
+    if (!data.value) { return }
+    window.location.assign(data.value.redirectUrl)
   })
 </script>
 
 <style lang="scss" scoped>
   @import '@/assets/styles/main.scss';
+
   #login-main {
     min-height: calc(100vh - $app-bar-height);
   }
+
   #login-box {
-    height: 200px;
     width: 200px;
+    height: 200px;
     background-color: #d9d9d9;
   }
 </style>
