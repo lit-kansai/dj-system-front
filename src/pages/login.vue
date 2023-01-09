@@ -28,7 +28,11 @@
 
   // 同じスコープ内にあるreactiveなオブジェクトが変化したら呼ばれる
   watchEffect(() => {
-    const { data } = result
+    const { data, error } = result
+    if (error.value) {
+      alert(JSON.stringify(error.value))
+      return
+    }
     if (!data.value) { return }
     window.location.assign(data.value.redirectUrl)
   })
