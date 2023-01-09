@@ -25,7 +25,11 @@ export const signin = async (input: SigninInput): GetRequestOutput<SinginRespons
 
     // 5. 返ってくる値をキャメルケースに変換する
     const parseResult = responseSchema.safeParse(response)
-    if (!parseResult.success) { throw parseResult.error }
+    if (!parseResult.success) {
+      const { setCurrentError } = useCurrentError()
+      setCurrentError(parseResult.error)
+      throw parseResult.error
+    }
     return parseResult.data
   }, {
     // 後からgetを実行したいときだけ
