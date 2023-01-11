@@ -43,6 +43,8 @@ export const updateRoom = async (input: updateRoomInput): GetRequestOutput<updat
       throw parseResult.error
     }
     return parseResult.data
+  }, {
+    immediate: false
   })
   return result
 }
