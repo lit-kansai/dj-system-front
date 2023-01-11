@@ -13,42 +13,56 @@
         <div class="q-pt-xl">
           <div class="column q-pb-xl items-start">
             <p class="text-subtitle1 font-weight-bold">自分のルーム</p>
-            <q-btn flat align="left" class="q-py-sm q-pl-none full-width"
-              >ディジェクマクン</q-btn
-            >
-            <q-btn flat align="left" class="q-pl-none full-width q-py-sm"
-              >ディジェクマクン</q-btn
-            >
-            <q-btn flat align="left" class="q-pl-none full-width q-py-sm"
-              >DJ Gassi</q-btn
-            >
-            <q-btn flat align="left" class="q-pl-none full-width q-py-sm"
-              >DJ Gassi</q-btn
-            >
-            <q-btn flat align="left" class="q-pl-none full-width q-py-sm">
-              <q-icon name="add" size="0.9em"></q-icon>ルームを追加</q-btn
-            >
+            <NuxtLink to="/room/:id" target="blank" style="text-decoration: none;" class="full-width">
+              <q-btn flat align="left" class="q-py-sm q-pl-none full-width">
+                ディジェクマクン
+              </q-btn>
+            </NuxtLink>
+            <NuxtLink to="/room/:id" target="blank" style="text-decoration: none;" class="full-width">
+              <q-btn flat align="left" class="q-pl-none full-width q-py-sm">
+                ディジェクマクン
+              </q-btn>
+            </NuxtLink>
+            <NuxtLink to="/room/:id" target="blank" style="text-decoration: none;" class="full-width">
+              <q-btn flat align="left" class="q-pl-none full-width q-py-sm">
+                DJ Gassi
+              </q-btn>
+            </NuxtLink>
+            <NuxtLink to="/room/:id" target="blank" style="text-decoration: none;" class="full-width">
+              <q-btn flat align="left" class="q-pl-none full-width q-py-sm">
+                DJ Gassi
+              </q-btn>
+            </NuxtLink>
+            <NuxtLink to="/room/:id" target="blank" style="text-decoration: none;" class="full-width">
+              <q-btn flat align="left" class="q-pl-none full-width q-py-sm">
+                <q-icon name="add" size="0.9em">ルームを追加</q-icon>
+              </q-btn>
+            </NuxtLink>
           </div>
           <div class="column items-start">
-            <p class="text-subtitle1 font-weight-bold">自分のルーム</p>
-            <q-btn flat align="left" class="q-pl-none full-width q-py-sm"
-              >DJ Gassi</q-btn
-            >
+            <p class="text-subtitle1 font-weight-bold">共有されたルーム</p>
+            <NuxtLink to="/room/:id" target="blank" style="text-decoration: none;" class="full-width">
+              <q-btn flat align="left" class="q-pl-none full-width q-py-sm">
+                DJ Gassi
+              </q-btn>
+            </NuxtLink>
           </div>
         </div>
         <div class="column">
-          <div class="q-pb-md">
-            <q-btn flat align="left" class="q-pl-none full-width"
-              ><q-icon name="settings" size="1.6em"></q-icon
-              >外部サービス連携</q-btn
-            >
-          </div>
-          <div class="q-pb-md">
-            <q-btn flat align="left" class="q-pl-none full-width"
-              ><q-icon name="reviews" size="1.6em"></q-icon
-              >フィードバックを送信</q-btn
-            >
-          </div>
+          <NuxtLink to="/settings" target="blank" style="text-decoration: none;">
+            <div class="q-pb-md">
+              <q-btn flat align="left" class="q-pl-none full-width">
+                <q-icon name="settings" size="1.6em" />外部サービス連携
+              </q-btn>
+            </div>
+          </NuxtLink>
+          <NuxtLink to="https://forms.gle/AbUwewkPuLWJjgrL8" target="blank" style="text-decoration: none;">
+            <div class="q-pb-md">
+              <q-btn flat align="left" class="q-pl-none full-width">
+                <q-icon name="reviews" size="1.6em" />フィードバックを送信
+              </q-btn>
+            </div>
+          </NuxtLink>
         </div>
       </div>
     </q-drawer>
