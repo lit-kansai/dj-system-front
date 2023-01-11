@@ -14,13 +14,13 @@ export type updateRoomResponse = CamelizedAPIResponse<ReturnType<ApiInstance['mc
 
 const responseSchema = toSchema<updateRoomResponse>()(
   z.object({
-    id: z.number(),
+    id: z.object({ roomId: z.string() }),
     ownerUserId: z.number(),
     displayId: z.string(),
     name: z.string(),
     description: z.string(),
-    playlistId: z.string().optional(),
-    provider: z.string().optional(),
+    playlistId: z.object({ playlist_id: z.string() }).optional(),
+    provider: z.object({ provider: z.string() }).optional(),
     createdAt: z.string(),
     updatedAt: z.string(),
   })
