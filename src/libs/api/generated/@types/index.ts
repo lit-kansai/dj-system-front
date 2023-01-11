@@ -1,145 +1,3 @@
-/* eslint-disable */
-export type Room_id = {
-  /** Room表示ID */
-  roomId: string
-}
-
-export type Letter_id = {
-  /** お便りID */
-  letterId: string
-}
-
-export type Music_id = {
-  /** 音楽ID */
-  musicId: string
-}
-
-export type Query = {
-  /** 検索キーワード */
-  q: string
-}
-
-export type Google_redirect_url = {
-  /** ログイン成功時のリダイレクトURL */
-  redirect_url: string
-}
-
-export type Spotify_redirect_url = {
-  /** ログイン成功時のリダイレクトURL */
-  redirect_url: string
-}
-
-export type Provider = {
-  /** プロバイダ識別子 */
-  provider: string
-}
-
-export type Playlist_id = {
-  /** プレイリストID */
-  playlist_id: string
-}
-
-export type User = {
-  id: User_id
-  google_id: Google_id
-  email: Email
-  name: Name
-  icon: Icon
-  is_admin: Is_admin
-  created_at: Created_at
-  updated_at: Updated_at
-  linked_providers?: Linked_provider[] | undefined
-}
-
-export type Room = {
-  id: Room_id
-  owner_user_id: Owner_user_id
-  display_id: Room_display_id
-  name: Room_name
-  description: Description
-  playlist_id?: Playlist_id | undefined
-  provider?: Provider | undefined
-  created_at: Created_at
-  updated_at: Updated_at
-}
-
-export type DetailedRoom = {
-  id: Room_id
-  owner_user_id: Owner_user_id
-  display_id: Room_display_id
-  name: Room_name
-  description: Description
-  playlist_id?: Playlist_id | undefined
-  provider?: Provider | undefined
-  created_at: Created_at
-  updated_at: Updated_at
-  users: User[]
-  musics: MusicWithLetter[]
-  letters: LetterWithMusics[]
-}
-
-/** お便り */
-export type Letter = {
-  id: Letter_id
-  room_id: Room_id
-  radio_name: Radio_name
-  message: Message
-  created_at: Created_at
-  updated_at: Updated_at
-}
-
-/** 楽曲情報 */
-export type Track = {
-  id: Provided_music_id
-  artists: Artists
-  album: Album
-  name: Music_name
-  thumbnail: Thumbnail
-  duration: Duration
-}
-
-/** リクエストに保存される曲情報 */
-export type Music = {
-  id: Music_id
-  provided_music_id: Provided_music_id
-  letter_id?: Letter_id | undefined
-  artists: Artists
-  album: Album
-  name: Music_name
-  thumbnail: Thumbnail
-  duration: Duration
-}
-
-export type LetterWithMusics = {
-  id: Letter_id
-  room_id: Room_id
-  radio_name: Radio_name
-  message: Message
-  created_at: Created_at
-  updated_at: Updated_at
-  musics: Music[]
-}
-
-export type MusicWithLetter = {
-  id: Music_id
-  provided_music_id: Provided_music_id
-  letter_id?: Letter_id | undefined
-  artists: Artists
-  album: Album
-  name: Music_name
-  thumbnail: Thumbnail
-  duration: Duration
-  letter: Letter
-}
-
-export type Playlist = {
-  id: Playlist_id
-  name: Playlist_name
-  image_url: Playlist_thumbnail
-  description: Playlist_description
-  provider: Provider
-}
-
 /** リダイレクトURL */
 export type Redirect_url = string
 
@@ -277,3 +135,104 @@ export type BadRequestOrAlreadyExists = Error
 export type BadRequestOrUnsupportedProvider = Error
 
 export type InternalServerError = Error
+
+export type User = {
+  id: User_id
+  google_id: Google_id
+  email: Email
+  name: Name
+  icon: Icon
+  is_admin: Is_admin
+  created_at: Created_at
+  updated_at: Updated_at
+  linked_providers?: Linked_provider[] | undefined
+}
+
+export type Room = {
+  id: Room_id
+  owner_user_id: Owner_user_id
+  display_id: Room_display_id
+  name: Room_name
+  description: Description
+  playlist_id?: Playlist_id | undefined
+  provider?: Provider | undefined
+  created_at: Created_at
+  updated_at: Updated_at
+}
+
+/** お便り */
+export type Letter = {
+  id: Letter_id
+  room_id: Room_id
+  radio_name: Radio_name
+  message: Message
+  created_at: Created_at
+  updated_at: Updated_at
+}
+
+export type MusicWithLetter = {
+  id: Music_id
+  provided_music_id: Provided_music_id
+  letter_id?: Letter_id | undefined
+  artists: Artists
+  album: Album
+  name: Music_name
+  thumbnail: Thumbnail
+  duration: Duration
+  letter: Letter
+}
+
+export type Playlist = {
+  id: Playlist_id
+  name: Playlist_name
+  image_url: Playlist_thumbnail
+  description: Playlist_description
+  provider: Provider
+}
+
+/** リクエストに保存される曲情報 */
+export type Music = {
+  id: Music_id
+  provided_music_id: Provided_music_id
+  letter_id?: Letter_id | undefined
+  artists: Artists
+  album: Album
+  name: Music_name
+  thumbnail: Thumbnail
+  duration: Duration
+}
+
+export type LetterWithMusics = {
+  id: Letter_id
+  room_id: Room_id
+  radio_name: Radio_name
+  message: Message
+  created_at: Created_at
+  updated_at: Updated_at
+  musics: Music[]
+}
+
+export type DetailedRoom = {
+  id: Room_id
+  owner_user_id: Owner_user_id
+  display_id: Room_display_id
+  name: Room_name
+  description: Description
+  playlist_id?: Playlist_id | undefined
+  provider?: Provider | undefined
+  created_at: Created_at
+  updated_at: Updated_at
+  users: User[]
+  musics: MusicWithLetter[]
+  letters: LetterWithMusics[]
+}
+
+/** 楽曲情報 */
+export type Track = {
+  id: Provided_music_id
+  artists: Artists
+  album: Album
+  name: Music_name
+  thumbnail: Thumbnail
+  duration: Duration
+}
