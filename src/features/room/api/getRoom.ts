@@ -27,7 +27,6 @@ export const getRoom = async (input: getRoomInput): GetRequestOutput<getRoomResp
     }
     return parseResult.data
   }, {
-    immediate: false
   })
   return result
 }
