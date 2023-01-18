@@ -1,6 +1,7 @@
 import path from 'path'
 import { quasar } from '@quasar/vite-plugin'
 import { domainComponentsPaths } from './src/data'
+import { isDev } from './src/utils/is-dev'
 
 const baseUrl = process.env.BASE_URL ?? ''
 export default defineNuxtConfig({
@@ -46,11 +47,21 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     public: {
-      API_BASE_URL: process.env.BASE_API_URL || '',
+      API_BASE_URL: isDev ? process.env.API_URL_DEV : process.env.API_URL_PROD
     }
   },
   alias: {
     '@': path.resolve(__dirname, 'src'),
+  },
+  hooks: {
+    'prepare:types': ({ tsConfig }) => {
+      const aliasesToRemoveFromAutocomplete = ['~~', '~~/*', '~']
+      for (const alias of aliasesToRemoveFromAutocomplete) {
+        if (tsConfig.compilerOptions?.paths[alias]) {
+          delete tsConfig.compilerOptions.paths[alias]
+        }
+      }
+    }
   },
   vite: {
     plugins: [
