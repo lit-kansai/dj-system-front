@@ -4,19 +4,19 @@ import { CamelizedAPIResponse, toSchema } from '@/types'
 import { GetRequestOutput } from '@/libs'
 
 // 1. request body か query parametersを受け取るinput
-export type SigninInput = { redirectUrl: string }
+export type GetLoginURLInput = { redirectUrl: string }
 
 // 2. aspidaが返す値をキャメルケースに変換する
-export type SinginResponse = CamelizedAPIResponse<ApiInstance['mc']['auth']['signin']['$get']>
+export type GetLoginUrlResponse = CamelizedAPIResponse<ApiInstance['mc']['auth']['signin']['$get']>
 
 // 3. 2で作った型からzodのschemaを作る
-const responseSchema = toSchema<SinginResponse>()(
+const responseSchema = toSchema<GetLoginUrlResponse>()(
   z.object({
     redirectUrl: z.string()
   })
 )
 
-export const signin = async (input: SigninInput): GetRequestOutput<SinginResponse> => {
+export const getLoginUrl = async (input: GetLoginURLInput): GetRequestOutput<GetLoginUrlResponse> => {
   // 4. NuxtのuseLazyAsyncDataでaspidaをラップする
   const result = await useLazyAsyncData(async () => {
     const response = await apiClient().mc.auth.signin.$get({
