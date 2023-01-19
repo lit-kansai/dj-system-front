@@ -22,7 +22,7 @@
     layout: false,
   })
 
-  const result = await signin({ redirectUrl: GOOGLE_API_CALLBACK_PATH })
+  const result = await getLoginUrl({ redirectUrl: GOOGLE_API_CALLBACK_PATH })
   const state = reactive({ result })
   const login = () => { state.result.execute() }
 
