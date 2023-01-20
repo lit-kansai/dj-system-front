@@ -1,16 +1,27 @@
 import { registerUser } from '@/features/auth/api'
 import { oauthCallback } from '@/libs/routeMiddleware/oauthCallback/oauthCallback'
-import { GOOGLE_API_CALLBACK_URL } from '@/constants'
+import { USER_INFO, GOOGLE_API_CALLBACK_PATH, GOOGLE_API_CALLBACK_URL, SPOTIFY_API_CALLBACK_PATH, APPLE_MUSIC_API_CALLBACK_PATH } from '@/constants'
 
-export default defineNuxtRouteMiddleware((to) => {
-  oauthCallback(to.path, to.query, {
+const isCallbackPath = (path: string): boolean => {
+  return path === GOOGLE_API_CALLBACK_PATH ||
+    path === SPOTIFY_API_CALLBACK_PATH ||
+    path === APPLE_MUSIC_API_CALLBACK_PATH
+}
+
+export default defineNuxtRouteMiddleware(async ({ path, query }) => {
+  if (!isCallbackPath(path)) { return }
+  await oauthCallback(path, query, {
     google: async (e) => {
-      await registerUser({
+      // TODO: エラーハンドリング
+      const { data } = await registerUser({
         code: e.code,
         redirectUrl: GOOGLE_API_CALLBACK_URL
       })
+      if (!data.value) { return }
+      localStorage.setItem(USER_INFO, JSON.stringify(data.value))
     },
     apple: async (_) => {},
     spotify: async (_) => {},
   })
+  return navigateTo('/')
 })
