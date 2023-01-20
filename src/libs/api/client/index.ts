@@ -13,7 +13,8 @@ const axios = (): AxiosInstance => {
   const instance = _axios.create()
   instance.defaults.headers.common[CONTENT_TYPE_KEY] = CONTENT_TYPE_VALUE
   instance.interceptors.request.use((request) => {
-    return requestHandler(request, tokenFetcher.cookie)
+    // TODO: Cookieに書き換える
+    return requestHandler(request, tokenFetcher.local)
   })
   instance.interceptors.response.use(responseHandler, responseErrorHandler)
   return instance
@@ -23,7 +24,8 @@ export const apiClient = () => {
   return api(
     aspida(axios(), {
       timeout: 3000,
-      baseURL: useRuntimeConfig().public.API_BASE_URL
+      baseURL: useRuntimeConfig().public.API_BASE_URL,
+      withCredentials: true
     })
   )
 }

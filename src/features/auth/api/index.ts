@@ -1,3 +1,3 @@
 export * from './getLoginUrl'
 export * from './linkSpotify'
-export * from './registerUser'
+export * from './register-user'
