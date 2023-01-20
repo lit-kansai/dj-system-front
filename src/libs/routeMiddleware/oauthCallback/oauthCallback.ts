@@ -3,7 +3,7 @@ import { logger } from '@/libs'
 import { APPLE_MUSIC_API_CALLBACK_PATH, GOOGLE_API_CALLBACK_PATH, SPOTIFY_API_CALLBACK_PATH } from '@/constants'
 import { LocationQuery } from '@/types'
 
-export const oauthCallback = (
+export const oauthCallback = async (
   path: string,
   query: LocationQuery,
   callbacks: {
@@ -14,18 +14,22 @@ export const oauthCallback = (
     google: async (_) => {},
     spotify: async (_) => {},
     apple: async (_) => {},
-  }
+  },
 ) => {
-  // TODO: 必要なQueryParametersなかったらreturnする
-  if (path === GOOGLE_API_CALLBACK_PATH) {
-    const parseResult = googleOAuthQuerySchema.safeParse(query)
-    if (!parseResult.success) { logger.log('invalid parameters', query); return }
-    callbacks.google(parseResult.data)
-  }
-  if (path === SPOTIFY_API_CALLBACK_PATH) {
-    callbacks.spotify(query)
-  }
-  if (path === APPLE_MUSIC_API_CALLBACK_PATH) {
-    callbacks.apple(query)
+  switch (path) {
+    case GOOGLE_API_CALLBACK_PATH: {
+      const parseResult = googleOAuthQuerySchema.safeParse(query)
+      if (!parseResult.success) { logger.log('invalid parameters', query); return }
+      await callbacks.google(parseResult.data)
+      break
+    }
+    case SPOTIFY_API_CALLBACK_PATH: {
+      await callbacks.spotify(query)
+      break
+    }
+    case APPLE_MUSIC_API_CALLBACK_PATH: {
+      await callbacks.apple(query)
+      break
+    }
   }
 }

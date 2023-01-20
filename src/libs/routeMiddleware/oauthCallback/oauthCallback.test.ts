@@ -6,8 +6,6 @@ describe('oauthCallback', () => {
   describe('google oauth', () => {
     test('正常系', () => {
       const query = {
-        state: 'sample state',
-        scope: 'sample scope',
         code: 'sample code',
       }
       oauthCallback(GOOGLE_API_CALLBACK_PATH, query, {
@@ -23,8 +21,7 @@ describe('oauthCallback', () => {
     })
     test('queryが足りない時', () => {
       const query = {
-        scope: 'sample scope',
-        code: 'sample code',
+        parameter: 'invalid parameter',
       }
       oauthCallback(GOOGLE_API_CALLBACK_PATH, query, {
         google: (_) => { assert.fail() },
@@ -37,8 +34,6 @@ describe('oauthCallback', () => {
 
   describe('正しくルーティングされているか', () => {
     const query = {
-      state: 'sample state',
-      scope: 'sample scope',
       code: 'sample code',
     }
     test('google', () => {
