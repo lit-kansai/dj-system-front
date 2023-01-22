@@ -1,6 +1,7 @@
 import { describe, it, expect } from 'vitest'
 import { tokenRequired } from './token-required'
 
+// @vitest-environment jsdom
 describe('token-required', () => {
   it('正常系', () => {
     expect(tokenRequired('/mc')).toBe(true)
