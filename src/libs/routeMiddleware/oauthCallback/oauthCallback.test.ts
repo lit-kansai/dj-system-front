@@ -1,7 +1,12 @@
 import { describe, test, assert, expectTypeOf } from 'vitest'
 import { oauthCallback } from './oauthCallback'
-import { APPLE_MUSIC_API_CALLBACK_PATH, GOOGLE_API_CALLBACK_PATH, SPOTIFY_API_CALLBACK_PATH } from '@@/src/constants'
+import {
+  APPLE_MUSIC_API_CALLBACK_PATH,
+  GOOGLE_API_CALLBACK_PATH,
+  SPOTIFY_API_CALLBACK_PATH
+} from '@/constants'
 
+// @vitest-environment jsdom
 describe('oauthCallback', () => {
   describe('google oauth', () => {
     test('正常系', () => {
