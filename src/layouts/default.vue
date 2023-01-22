@@ -9,7 +9,7 @@
     </q-header>
 
     <q-drawer v-model="leftDrawerOpen" show-if-above side="left" bordered>
-      <div class="column q-px-lg justify-between window-height">
+      <div class="column q-px-lg justify-between window-height no-wrap">
         <div class="q-pt-xl">
           <div class="column q-pb-xl items-start">
             <p class="text-subtitle1 font-weight-bold">自分のルーム</p>
