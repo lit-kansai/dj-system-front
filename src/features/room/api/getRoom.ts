@@ -5,13 +5,50 @@ import { GetRequestOutput } from '@/libs'
 
 export type getRoomInput = { roomId: string }
 
-export type getRoomResponse = CamelizedAPIResponse<ReturnType<ApiInstance['room']['_roomId']>['$get']>
+export type getRoomResponse = CamelizedAPIResponse<ReturnType<ApiInstance['mc']['room']['_roomId']>['$get']>
 
 const responseSchema = toSchema<getRoomResponse>()(
   z.object({
-    id: z.string(),
+    id: z.number(),
+    ownerUserId: z.number(),
+    displayId: z.string(),
     name: z.string(),
-    description: z.string()
+    description: z.string(),
+    playlistId: z.union([z.string(), z.undefined()]),
+    provider: z.union([z.string(), z.undefined()]),
+    createdAt: z.string(),
+    updatedAt: z.string(),
+    users: z.object({
+      id: z.number(),
+      googleId: z.string(),
+      email: z.string(),
+      name: z.string(),
+      isAdmin: z.boolean(),
+      createdAt: z.string(),
+      updatedAt: z.string(),
+      linkedProviders: z.object({
+        provider: z.string(),
+        isConnected: z.boolean()
+      }).array()
+    }).array(),
+    musics: z.object({
+      id: z.number(),
+      providedMusicId: z.string(),
+      letterId: z.string(),
+      artists: z.string(),
+      album: z.string(),
+      name: z.string(),
+      thumbnail: z.string(),
+      duration: z.string(),
+    }).array(),
+    letters: z.object({
+      id: z.string(),
+      roomId: z.number(),
+      radioName: z.string(),
+      message: z.string(),
+      createdAt: z.string(),
+      updatedAt: z.string(),
+    }).array()
   })
 )
 
