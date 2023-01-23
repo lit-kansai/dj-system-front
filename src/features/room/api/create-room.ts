@@ -3,18 +3,18 @@ import { apiClient, ApiInstance } from '@/libs/api'
 import { CamelizedAPIResponse, toSchema } from '@/types'
 import { GetRequestOutput } from '@/libs'
 
-export type createRoomInput = {
+export type CreateRoomInput = {
   id: string,
   urlName: string,
   roomName: string,
   description: string,
   provider: string,
-  playlistId: string | undefined
+  playlistId: string | null
 }
 
-export type createRoomResponse = CamelizedAPIResponse<ApiInstance['mc']['room']['$post']>
+export type CreateRoomResponse = CamelizedAPIResponse<ApiInstance['mc']['room']['$post']>
 
-const responseSchema = toSchema<createRoomResponse>()(
+const responseSchema = toSchema<CreateRoomResponse>()(
   z.object({
     id: z.string(),
     urlName: z.string(),
@@ -25,7 +25,7 @@ const responseSchema = toSchema<createRoomResponse>()(
   })
 )
 
-export const createRoom = async (input: createRoomInput): GetRequestOutput<createRoomResponse> => {
+export const createRoom = async (input: CreateRoomInput): GetRequestOutput<CreateRoomResponse> => {
   const result = await useLazyAsyncData(async () => {
     const response = await apiClient().mc.room.$post({
       body: {

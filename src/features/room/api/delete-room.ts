@@ -3,19 +3,19 @@ import { apiClient, ApiInstance } from '@/libs/api'
 import { CamelizedAPIResponse, toSchema } from '@/types'
 import { GetRequestOutput } from '@/libs'
 
-export type deleteRoomInput = {
+export type DeleteRoomInput = {
   roomId: string
 }
 
-export type deleteRoomResponse = CamelizedAPIResponse<ReturnType<ApiInstance['mc']['room']['_roomId']>['$delete']>
+export type DeleteRoomResponse = CamelizedAPIResponse<ReturnType<ApiInstance['mc']['room']['_roomId']>['$delete']>
 
-const responseSchema = toSchema<deleteRoomResponse>()(
+const responseSchema = toSchema<DeleteRoomResponse>()(
   z.object({
     ok: z.boolean()
   })
 )
 
-export const deleteRoom = async (input: deleteRoomInput): GetRequestOutput<deleteRoomResponse> => {
+export const deleteRoom = async (input: DeleteRoomInput): GetRequestOutput<DeleteRoomResponse> => {
   const result = await useLazyAsyncData(async () => {
     const response = await apiClient().mc.room._roomId(input.roomId).$delete()
 
