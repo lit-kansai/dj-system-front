@@ -3,9 +3,9 @@ import { apiClient, ApiInstance } from '@/libs/api'
 import { CamelizedAPIResponse, toSchema } from '@/types'
 import { GetRequestOutput } from '@/libs'
 
-export type getRoomsResponse = CamelizedAPIResponse<ApiInstance['mc']['room']['$get']>
+export type GetRoomsResponse = CamelizedAPIResponse<ApiInstance['mc']['room']['$get']>
 
-const responseSchema = toSchema<getRoomsResponse>()(
+const responseSchema = toSchema<GetRoomsResponse>()(
   z.object({
     id: z.number(),
     ownerUserId: z.number(),
@@ -19,7 +19,7 @@ const responseSchema = toSchema<getRoomsResponse>()(
   }).array()
 )
 
-export const getRooms = async (): GetRequestOutput<getRoomsResponse> => {
+export const getRooms = async (): GetRequestOutput<GetRoomsResponse> => {
   const result = await useLazyAsyncData(async () => {
     const response = await apiClient().mc.room.$get()
 

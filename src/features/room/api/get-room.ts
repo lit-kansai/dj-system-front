@@ -3,11 +3,11 @@ import { apiClient, ApiInstance } from '@/libs/api'
 import { CamelizedAPIResponse, toSchema } from '@/types'
 import { GetRequestOutput } from '@/libs'
 
-export type getRoomInput = { roomId: string }
+export type GetRoomInput = { roomId: string }
 
-export type getRoomResponse = CamelizedAPIResponse<ReturnType<ApiInstance['mc']['room']['_roomId']>['$get']>
+export type GetRoomResponse = CamelizedAPIResponse<ReturnType<ApiInstance['mc']['room']['_roomId']>['$get']>
 
-const responseSchema = toSchema<getRoomResponse>()(
+const responseSchema = toSchema<GetRoomResponse>()(
   z.object({
     id: z.number(),
     ownerUserId: z.number(),
@@ -52,7 +52,7 @@ const responseSchema = toSchema<getRoomResponse>()(
   })
 )
 
-export const getRoom = async (input: getRoomInput): GetRequestOutput<getRoomResponse> => {
+export const getRoom = async (input: GetRoomInput): GetRequestOutput<GetRoomResponse> => {
   const result = await useLazyAsyncData(async () => {
     const response = await apiClient().room._roomId(input.roomId).$get()
 
