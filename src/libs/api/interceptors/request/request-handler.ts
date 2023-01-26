@@ -26,9 +26,7 @@ export const requestHandler = (
     navigateTo(LOGIN_PAGE)
     return request
   }
-  if (request.headers) {
-    request.headers[AUTHRIZATION_HEADER_FIELD] = token
-  }
+  if (request.headers) { request.headers[AUTHRIZATION_HEADER_FIELD] = token }
 
   return request
 }
