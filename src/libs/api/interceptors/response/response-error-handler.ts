@@ -1,12 +1,16 @@
-export const responseErrorHandler = (error: unknown) => {
+import { AxiosError } from 'axios'
+import { LOGIN_PAGE, USER_INFO } from '@/constants'
+
+export const responseErrorHandler = (error: AxiosError) => {
   const { setCurrentError } = useCurrentError()
   const appConfig = useAppConfig()
-  /* eslint-disable no-console */
-  if (appConfig.dev) { console.error(error) }
-  if (!(error instanceof Error)) {
-    setCurrentError(new Error(JSON.stringify(error)))
-    return Promise.reject(error)
+  if (error.code === '401') {
+    localStorage.removeItem(USER_INFO)
+    navigateTo(LOGIN_PAGE)
   }
-  setCurrentError(error)
-  return Promise.reject(error)
+  /* eslint-disable no-console */
+  // TODO: ここらへん雑すぎ
+  if (appConfig.dev) { console.error(error) }
+  setCurrentError(new Error(JSON.stringify(error.toJSON)))
+  return Promise.reject(new Error(JSON.stringify(error.toJSON)))
 }
