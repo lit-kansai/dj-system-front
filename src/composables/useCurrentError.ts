@@ -1,4 +1,4 @@
-import { CurrentError } from '~~/src/types/error'
+import { CurrentError } from '@/types/error'
 
 export const useCurrentError = () => {
   const currentError = useState<CurrentError>('currentError', () => null)
