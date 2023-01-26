@@ -8,15 +8,24 @@ import {
 import { tokenFetcher } from '../token-fetcher'
 import { api } from '../generated'
 import { CONTENT_TYPE_KEY, CONTENT_TYPE_VALUE } from '@/constants'
+import { isDev } from '@/utils/is-dev'
+import { logger } from '@/libs/logger'
 
 const axios = (): AxiosInstance => {
   const instance = _axios.create()
   instance.defaults.headers.common[CONTENT_TYPE_KEY] = CONTENT_TYPE_VALUE
   instance.interceptors.request.use((request) => {
-    // TODO: Cookieに書き換える
-    return requestHandler(request, tokenFetcher.local)
+    // TODO: ここらへんのDIまとめたい。いちいちisDev?とかするのつらい
+    if (isDev) { return requestHandler(request, tokenFetcher.local) }
+    return requestHandler(request, tokenFetcher.cookie)
   })
-  instance.interceptors.response.use(responseHandler, responseErrorHandler)
+  instance.interceptors.response.use(
+    responseHandler,
+    (error) => {
+      if (_axios.isAxiosError(error)) { return responseErrorHandler(error) }
+      logger.log(`unexpected error ${JSON.stringify(error)}`)
+    }
+  )
   return instance
 }
 

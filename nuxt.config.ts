@@ -47,7 +47,7 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     public: {
-      API_BASE_URL: isDev ? process.env.API_URL_DEV : process.env.API_URL_PROD
+      API_BASE_URL: isDev ? process.env.API_URL_STAGING : process.env.API_URL_PROD
     }
   },
   alias: {
@@ -55,7 +55,7 @@ export default defineNuxtConfig({
   },
   hooks: {
     'prepare:types': ({ tsConfig }) => {
-      const aliasesToRemoveFromAutocomplete = ['~~', '~~/*', '~', '@@']
+      const aliasesToRemoveFromAutocomplete = ['~~', '~~/*', '~', '~/*', '@@', '@@/*']
       for (const alias of aliasesToRemoveFromAutocomplete) {
         if (tsConfig.compilerOptions?.paths[alias]) {
           delete tsConfig.compilerOptions.paths[alias]
