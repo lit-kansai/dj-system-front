@@ -395,5 +395,3 @@ export const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
     }
   }
 }
-
-export type ApiInstance = ReturnType<typeof api>

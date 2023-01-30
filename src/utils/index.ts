@@ -1,4 +1,5 @@
 export * from './camel-to-snake'
+export * from './is-dev'
+export * from './is-record'
 export * from './snake-to-camel'
 export * from './token-required'
-export * from './is-record'
