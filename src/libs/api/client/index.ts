@@ -1,15 +1,15 @@
 import aspida from '@aspida/axios'
 import _axios, { AxiosInstance } from 'axios'
+import { CONTENT_TYPE_KEY, CONTENT_TYPE_VALUE } from '@/constants'
+import { isDev } from '@/utils/is-dev'
 import {
+  api,
+  logger,
+  tokenFetcher,
   requestHandler,
   responseErrorHandler,
   responseHandler,
-} from '../interceptors'
-import { tokenFetcher } from '../token-fetcher'
-import { api } from '../generated'
-import { CONTENT_TYPE_KEY, CONTENT_TYPE_VALUE } from '@/constants'
-import { isDev } from '@/utils/is-dev'
-import { logger } from '@/libs/logger'
+} from '@/libs'
 
 const axios = (): AxiosInstance => {
   const instance = _axios.create()
