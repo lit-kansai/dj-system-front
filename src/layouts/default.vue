@@ -49,7 +49,7 @@
           </div>
         </div>
         <div class="column">
-          <NuxtLink to="/settings" target="blank" style="text-decoration: none;">
+          <NuxtLink to="/settings" style="text-decoration: none;">
             <div class="q-pb-md">
               <q-btn flat align="left" class="q-pl-none full-width">
                 <q-icon name="settings" size="1.6em" />外部サービス連携
@@ -89,6 +89,8 @@
 
     @media (min-width: $breakpoint-md-min) {
       margin: 0 auto;
+      padding-right: 24px;
+      padding-left: 24px;
     }
   }
 </style>
