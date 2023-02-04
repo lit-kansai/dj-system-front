@@ -1,13 +1,13 @@
 export type User = {
   id: number
-  google_id: string
+  googleId: string
   email: string
   name: string
   icon: string
-  is_admin: boolean
-  created_at: string
-  updated_at: string
-  linked_providers?: Array<{provider: string, is_connected: boolean}> | undefined
+  isAdmin: boolean
+  createdAt: string
+  updatedAt: string
+  linkedProviders?: Array<{provider: string, isConnected: boolean}> | null
 }
 
 export type CurrentUser = User | null;
