@@ -1,4 +1,10 @@
-import { api } from './api'
+import { getRooms, getRoom, updateRoom, createRoom, deleteRoom } from './api'
 export const room = {
-  api
+  api: {
+    getRoom,
+    getRooms,
+    updateRoom,
+    createRoom,
+    deleteRoom
+  }
 }
