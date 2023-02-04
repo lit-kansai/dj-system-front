@@ -1,13 +1,10 @@
 import { useUserState } from '@/composables/useUserState'
 import { getUser } from '@/features/user'
-import { User } from '@/types'
+import { User } from '@/features/user/domain'
 
 export default defineNuxtRouteMiddleware(async ({ path }) => {
   const userState = useUserState()
-
-  if (path === '/login') {
-    userState.setState(null)
-  } else if (!userState.isNull) {
+  if (path !== '/login' && !userState.state) {
     const result = await getUser()
     const { data, error } = result
     if (error.value) {

@@ -1,15 +1,13 @@
-import { CurrentUser } from '@/types'
+import { CurrentUser } from '@/features/user/domain'
 
 export const useUserState = () => {
   const state = useState<CurrentUser>('user', () => null)
   const setState = (user: CurrentUser): void => {
     state.value = user
   }
-  const isNull = state.value === null
 
   return {
     state,
-    setState,
-    isNull
+    setState
   }
 }
