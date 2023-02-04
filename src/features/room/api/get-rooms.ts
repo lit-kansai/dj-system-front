@@ -12,8 +12,8 @@ const responseSchema = toSchema<GetRoomsResponse>()(
     displayId: z.string(),
     name: z.string(),
     description: z.string(),
-    playlistId: z.union([z.string(), z.undefined()]),
-    provider: z.union([z.string(), z.undefined()]),
+    playlistId: z.string(),
+    provider: z.string(),
     createdAt: z.string(),
     updatedAt: z.string(),
   }).array()
