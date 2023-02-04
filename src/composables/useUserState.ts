@@ -1,13 +1,15 @@
 import { CurrentUser } from '@/types'
 
 export const useUserState = () => {
-  const userState = useState<CurrentUser>('user', () => null)
-  const setUserState = (user: CurrentUser): void => {
-    userState.value = user
+  const state = useState<CurrentUser>('user', () => null)
+  const setState = (user: CurrentUser): void => {
+    state.value = user
   }
+  const isNull = state.value === null
 
   return {
-    userState,
-    setUserState
+    state,
+    setState,
+    isNull
   }
 }
