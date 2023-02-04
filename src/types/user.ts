@@ -9,3 +9,5 @@ export type User = {
   updated_at: string
   linked_providers?: Array<{provider: string, is_connected: boolean}> | undefined
 }
+
+export type CurrentUser = User | null;
