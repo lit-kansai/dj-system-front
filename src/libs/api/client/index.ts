@@ -33,7 +33,7 @@ export const apiClient = () => {
   return api(
     aspida(axios(), {
       timeout: 3000,
-      baseURL: useRuntimeConfig().public.API_BASE_URL,
+      baseURL: useRuntimeConfig().public.BASE_API_URL,
       withCredentials: true
     })
   )
