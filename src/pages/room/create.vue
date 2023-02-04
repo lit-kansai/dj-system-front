@@ -47,7 +47,7 @@
       provider: '',
     },
     // TODO: ここユーザーのlinkedProvidersから抽出したい
-    providers: ['spotify']
+    providers: ['Spotify']
   })
   const result = await room.api.createRoom(toRaw(state.form))
 
@@ -57,6 +57,10 @@
     await result.execute()
     $q.loading.hide()
     stop()
+    const { error, data } = result
+    if (error.value) { alert(JSON.stringify(error.value)) }
+    if (!data.value) { alert('data not found'); return }
+    router.push(`/room/${data.value.displayId}`)
   }
 
   const onClickCancel = () => {

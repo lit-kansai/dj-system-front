@@ -1,7 +1,6 @@
 import { z } from 'zod'
-import { apiClient, ApiInstance } from '@/libs/api'
-import { CamelizedAPIResponse, toSchema } from '@/types'
-import { GetRequestOutput } from '@/libs'
+import { SnakeToCamel } from '@/types'
+import { apiClient, GetRequestOutput } from '@/libs'
 
 export type CreateRoomInput = {
   urlName: string
@@ -10,16 +9,28 @@ export type CreateRoomInput = {
   provider: string,
 }
 
-export type CreateRoomResponse = CamelizedAPIResponse<ApiInstance['mc']['room']['$post']>
+const responseSchema = z.object({
+  id: z.number(),
+  ownerUserId: z.number(),
+  displayId: z.string(),
+  name: z.string(),
+  playlistId: z.string(),
+  provider: z.string()
+})
 
-const responseSchema = toSchema<CreateRoomResponse>()(
-  z.object({
-    urlName: z.string(),
-    roomName: z.string(),
-    description: z.string(),
-    provider: z.string(),
-  })
-)
+type ResponseSchema = z.infer<typeof responseSchema>
+export type CreateRoomResponse = SnakeToCamel<ResponseSchema>
+// export type CreateRoomResponse = CamelizedAPIResponse<ApiInstance['mc']['room']['$post']>
+
+// NOTE: Swaggerの仕様と異なるレスポンスが返ってきてるので一旦放置
+// const responseSchema = toSchema<CreateRoomResponse>()(
+//   z.object({
+//     urlName: z.string(),
+//     roomName: z.string(),
+//     description: z.string(),
+//     provider: z.string(),
+//   })
+// )
 
 export const createRoom = async (input: CreateRoomInput): GetRequestOutput<CreateRoomResponse> => {
   const result = await useLazyAsyncData(async () => {
@@ -28,9 +39,10 @@ export const createRoom = async (input: CreateRoomInput): GetRequestOutput<Creat
         url_name: input.urlName,
         room_name: input.roomName,
         description: input.description,
-        provider: input.provider,
+        provider: input.provider.toLowerCase(),
       }
-    })
+      /* eslint-disable @typescript-eslint/no-explicit-any  */
+    }) as any // TODO: Swagger更新され次第更新する
 
     const parseResult = responseSchema.safeParse(response)
     if (!parseResult.success) {
