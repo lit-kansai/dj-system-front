@@ -1,8 +1,9 @@
 import { z } from 'zod'
 
 const env = z.object({
-  API_URL_PROD: z.string(),
-  API_URL_DEV: z.string()
+  NODE_ENV: z.string(),
+  HOST_URL: z.string(),
+  API_URL: z.string(),
 })
 
 declare global {
