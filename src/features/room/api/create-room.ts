@@ -4,24 +4,20 @@ import { CamelizedAPIResponse, toSchema } from '@/types'
 import { GetRequestOutput } from '@/libs'
 
 export type CreateRoomInput = {
-  id: string,
-  urlName: string,
+  urlName: string
   roomName: string,
   description: string,
   provider: string,
-  playlistId: string | null
 }
 
 export type CreateRoomResponse = CamelizedAPIResponse<ApiInstance['mc']['room']['$post']>
 
 const responseSchema = toSchema<CreateRoomResponse>()(
   z.object({
-    id: z.string(),
     urlName: z.string(),
     roomName: z.string(),
     description: z.string(),
     provider: z.string(),
-    playlistId: z.string(),
   })
 )
 
@@ -33,7 +29,6 @@ export const createRoom = async (input: CreateRoomInput): GetRequestOutput<Creat
         room_name: input.roomName,
         description: input.description,
         provider: input.provider,
-        playlist_id: input.playlistId ?? undefined
       }
     })
 
@@ -47,5 +42,6 @@ export const createRoom = async (input: CreateRoomInput): GetRequestOutput<Creat
   }, {
     immediate: false
   })
+  result.pending.value = false
   return result
 }
