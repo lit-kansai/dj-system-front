@@ -4,21 +4,21 @@
       ルームを作成する
     </p>
     <q-input
-      v-model="form.roomName"
+      v-model="state.form.roomName"
       outlined
       label="ルームネーム*"
       :rules="[(val) => !!val || 'Field is required']"
     />
-    <q-input v-model="form.roomDescription" outlined label="ルーム説明" class="not-rule-input" />
+    <q-input v-model="state.form.description" outlined label="ルーム説明" class="not-rule-input" />
     <q-select
-      v-model="form.provider"
+      v-model="state.form.provider"
       outlined
-      :options="providerOptions"
+      :options="state.providers"
       label="外部サービス*"
       class="not-rule-input"
     />
     <q-input
-      v-model="form.requestUrl"
+      v-model="state.form.urlName"
       outlined
       label="リクエストURL*"
       class="url-prefix"
@@ -27,30 +27,54 @@
     />
     <div class="row justify-end items-end">
       <q-btn color="grey-1" text-color="dark" class="q-mr-sm" label="キャンセル" @click="onClickCancel" />
-      <q-btn color="primary" label="ルームを作成する" />
+      <q-btn color="primary" label="ルームを作成する" @click="onClickCreateButton" />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
+  import { useQuasar } from 'quasar'
+  import { room } from '@/features'
+
+  const $q = useQuasar()
   const router = useRouter()
-  const form = reactive({
-    roomName: '',
-    roomDescription: '',
-    provider: '',
-    requestUrl: ''
+  const state = reactive({
+    loading: false,
+    form: {
+      urlName: '',
+      roomName: '',
+      description: '',
+      provider: '',
+    },
+    // TODO: ここユーザーのlinkedProvidersから抽出したい
+    providers: ['spotify']
   })
-  const providerOptions = ['Spotify', 'AppleMusic']
+  const result = await room.api.createRoom(toRaw(state.form))
+
+  const onClickCreateButton = async () => {
+    const stop = watch(result.pending, (pending) => { state.loading = pending })
+    $q.loading.show()
+    await result.execute()
+    $q.loading.hide()
+    stop()
+  }
 
   const onClickCancel = () => {
     router.go(-1)
   }
+
 </script>
 
 <style lang="scss" scoped>
   .create {
     display: grid;
     gap: 12px;
+  }
+
+  /* stylelint-disable*/
+  // これあまり良くない説はある
+  .q-input :deep(.q-field__prefix) {
+    padding-right: 0px;
   }
 
   .not-rule-input {
