@@ -3,46 +3,45 @@
     <q-header id="app-bar" elevated class="bg-grey-1 text-dark">
       <q-toolbar>
         <q-btn dense flat round icon="menu" @click="toggleLeftDrawer" />
-
         <q-toolbar-title>DJ Gassi Console</q-toolbar-title>
       </q-toolbar>
     </q-header>
 
     <q-drawer v-model="leftDrawerOpen" show-if-above side="left" bordered>
-      <div class="column q-px-lg justify-between window-height no-wrap">
+      <div class="column justify-between window-height no-wrap">
         <div class="q-pt-xl">
           <div class="column q-pb-xl items-start">
-            <p class="text-subtitle1 font-weight-bold">自分のルーム</p>
-            <NuxtLink to="/room/:id" target="blank" style="text-decoration: none;" class="full-width">
-              <q-btn flat align="left" class="q-py-sm q-pl-none full-width">
+            <p class="q-px-lg text-subtitle1 font-weight-bold">自分のルーム</p>
+            <NuxtLink to="/room/:id" style="text-decoration: none;" class="full-width">
+              <q-btn flat align="left" class="q-px-lg q-py-sm q-pl-none full-width">
                 ディジェクマクン
               </q-btn>
             </NuxtLink>
-            <NuxtLink to="/room/:id" target="blank" style="text-decoration: none;" class="full-width">
-              <q-btn flat align="left" class="q-pl-none full-width q-py-sm">
+            <NuxtLink to="/room/:id" style="text-decoration: none;" class="full-width">
+              <q-btn flat align="left" class="q-px-lg q-pl-none full-width q-py-sm">
                 ディジェクマクン
               </q-btn>
             </NuxtLink>
-            <NuxtLink to="/room/:id" target="blank" style="text-decoration: none;" class="full-width">
-              <q-btn flat align="left" class="q-pl-none full-width q-py-sm">
+            <NuxtLink to="/room/:id" style="text-decoration: none;" class="full-width">
+              <q-btn flat align="left" class="q-px-lg q-pl-none full-width q-py-sm">
                 DJ Gassi
               </q-btn>
             </NuxtLink>
-            <NuxtLink to="/room/:id" target="blank" style="text-decoration: none;" class="full-width">
-              <q-btn flat align="left" class="q-pl-none full-width q-py-sm">
+            <NuxtLink to="/room/:id" style="text-decoration: none;" class="full-width">
+              <q-btn flat align="left" class="q-px-lg q-pl-none full-width q-py-sm">
                 DJ Gassi
               </q-btn>
             </NuxtLink>
-            <NuxtLink to="/room/:id" target="blank" style="text-decoration: none;" class="full-width">
-              <q-btn flat align="left" class="q-pl-none full-width q-py-sm">
+            <NuxtLink to="/room/create" style="text-decoration: none;" class="full-width">
+              <q-btn flat align="left" class="q-px-lg q-pl-none full-width q-py-sm">
                 <q-icon name="add" size="0.9em">ルームを追加</q-icon>
               </q-btn>
             </NuxtLink>
           </div>
           <div class="column items-start">
-            <p class="text-subtitle1 font-weight-bold">共有されたルーム</p>
-            <NuxtLink to="/room/:id" target="blank" style="text-decoration: none;" class="full-width">
-              <q-btn flat align="left" class="q-pl-none full-width q-py-sm">
+            <p class="q-px-lg text-subtitle1 font-weight-bold">共有されたルーム</p>
+            <NuxtLink to="/room/:id" style="text-decoration: none;" class="full-width">
+              <q-btn flat align="left" class="q-px-lg q-pl-none full-width q-py-sm">
                 DJ Gassi
               </q-btn>
             </NuxtLink>
@@ -51,14 +50,14 @@
         <div class="column">
           <NuxtLink to="/settings" style="text-decoration: none;">
             <div class="q-pb-md">
-              <q-btn flat align="left" class="q-pl-none full-width">
+              <q-btn flat align="left" class="q-px-lg q-pl-none full-width">
                 <q-icon name="settings" size="1.6em" />外部サービス連携
               </q-btn>
             </div>
           </NuxtLink>
-          <NuxtLink to="https://forms.gle/AbUwewkPuLWJjgrL8" target="blank" style="text-decoration: none;">
+          <NuxtLink to="https://forms.gle/AbUwewkPuLWJjgrL8" target="_blank" style="text-decoration: none;">
             <div class="q-pb-md">
-              <q-btn flat align="left" class="q-pl-none full-width">
+              <q-btn flat align="left" class="q-px-lg q-pl-none full-width">
                 <q-icon name="reviews" size="1.6em" />フィードバックを送信
               </q-btn>
             </div>
