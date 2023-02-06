@@ -27,7 +27,7 @@ const responseSchema = toSchema<updateRoomResponse>()(
 )
 
 export const updateRoom = async (input: updateRoomInput): GetRequestOutput<updateRoomResponse> => {
-  const result = await useLazyAsyncData(async () => {
+  const result = await useAsyncData(async () => {
     const response = await apiClient().mc.room._roomId(input.roomId).$put({
       body: {
         url_name: input.urlName,
@@ -43,8 +43,7 @@ export const updateRoom = async (input: updateRoomInput): GetRequestOutput<updat
       throw parseResult.error
     }
     return parseResult.data
-  }, {
-    immediate: false
   })
+  result.pending.value = false
   return result
 }
