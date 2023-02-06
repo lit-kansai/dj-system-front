@@ -12,37 +12,21 @@
         <div class="q-pt-xl">
           <div class="column q-pb-xl items-start">
             <p class="q-px-lg text-subtitle1 font-weight-bold">自分のルーム</p>
-            <NuxtLink to="/room/:id" style="text-decoration: none;" class="full-width">
+
+            <NuxtLink
+              v-for="room of rooms"
+              :key="room.id"
+              :to="'/room/' + room.id"
+              style="text-decoration: none;"
+              class="full-width"
+            >
               <q-btn flat align="left" class="q-px-lg q-py-sm q-pl-none full-width">
-                ディジェクマクン
-              </q-btn>
-            </NuxtLink>
-            <NuxtLink to="/room/:id" style="text-decoration: none;" class="full-width">
-              <q-btn flat align="left" class="q-px-lg q-pl-none full-width q-py-sm">
-                ディジェクマクン
-              </q-btn>
-            </NuxtLink>
-            <NuxtLink to="/room/:id" style="text-decoration: none;" class="full-width">
-              <q-btn flat align="left" class="q-px-lg q-pl-none full-width q-py-sm">
-                DJ Gassi
-              </q-btn>
-            </NuxtLink>
-            <NuxtLink to="/room/:id" style="text-decoration: none;" class="full-width">
-              <q-btn flat align="left" class="q-px-lg q-pl-none full-width q-py-sm">
-                DJ Gassi
+                {{ room.name }}
               </q-btn>
             </NuxtLink>
             <NuxtLink to="/room/create" style="text-decoration: none;" class="full-width">
               <q-btn flat align="left" class="q-px-lg q-pl-none full-width q-py-sm">
                 <q-icon name="add" size="0.9em">ルームを追加</q-icon>
-              </q-btn>
-            </NuxtLink>
-          </div>
-          <div class="column items-start">
-            <p class="q-px-lg text-subtitle1 font-weight-bold">共有されたルーム</p>
-            <NuxtLink to="/room/:id" style="text-decoration: none;" class="full-width">
-              <q-btn flat align="left" class="q-px-lg q-pl-none full-width q-py-sm">
-                DJ Gassi
               </q-btn>
             </NuxtLink>
           </div>
@@ -75,6 +59,7 @@
 </template>
 
 <script setup lang="ts">
+  const { rooms } = useRoomsState()
   const leftDrawerOpen = ref(false)
   const toggleLeftDrawer = () => {
     leftDrawerOpen.value = !leftDrawerOpen.value
