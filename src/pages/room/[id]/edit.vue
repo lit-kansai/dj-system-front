@@ -4,21 +4,14 @@
       "{{ currentRoomName }}"を編集する
     </p>
     <q-input
-      v-model="form.roomName"
+      v-model="state.form.roomName"
       outlined
       label="ルームネーム*"
       :rules="[(val) => !!val || 'Field is required']"
     />
-    <q-input v-model="form.roomDescription" outlined label="ルーム説明" class="not-rule-input" />
-    <q-select
-      v-model="form.provider"
-      outlined
-      :options="providerOptions"
-      label="外部サービス*"
-      class="not-rule-input"
-    />
+    <q-input v-model="state.form.roomDescription" outlined label="ルーム説明" class="not-rule-input" />
     <q-input
-      v-model="form.requestUrl"
+      v-model="state.form.requestUrl"
       outlined
       label="リクエストURL*"
       class="url-prefix"
@@ -33,27 +26,51 @@
 </template>
 
 <script setup lang="ts">
-  const route = useRoute()
+  import { room } from '@/features'
+  import { getRouteParams } from '@/utils'
   const router = useRouter()
 
-  const currentRoomName = 'ディジェクマクン'
-  const currentDisplayId = route.params.id
-  const form = reactive({
-    roomName: 'ディジェクマクン',
-    roomDescription: 'Life is Tech! Summer Camp 2022 関西大学D日程',
-    provider: 'Spotify',
-    requestUrl: 'djgassi'
+  const currentRoomName = ref('')
+  const state = reactive({
+    loading: false,
+    form: {
+      roomName: '',
+      roomDescription: '',
+      requestUrl: ''
+    }
   })
 
-  const providerOptions = ['Spotify', 'AppleMusic']
-
   const onClickCancel = () => {
-    router.push('/room/' + currentDisplayId)
+    const { id } = getRouteParams.room()
+    router.push('/room/' + id)
   }
-  const onClickSave = () => {
-    alert('TODO: 保存のAPIをたたく')
-    router.push('/room/' + currentDisplayId)
+
+  const onClickSave = async () => {
+    state.loading = true
+    const { id } = getRouteParams.room()
+    const { error } = await room.api.updateRoom({
+      roomId: id,
+      urlName: state.form.requestUrl,
+      roomName: state.form.roomName,
+      description: state.form.roomDescription
+    })
+    if (error.value) { JSON.stringify(error); return }
+
+    state.loading = false
+    router.push('/room/' + id)
   }
+
+  onMounted(async () => {
+    const { id } = getRouteParams.room()
+    state.loading = true
+    const { data } = await room.api.getRoom({ roomId: id })
+    if (!data.value) { state.loading = false; return }
+    currentRoomName.value = data.value.name
+    state.form.roomName = data.value.name
+    state.form.roomDescription = data.value.description
+    state.form.requestUrl = data.value.id
+    state.loading = false
+  })
 </script>
 
 <style lang="scss" scoped>
@@ -64,5 +81,11 @@
 
   .not-rule-input {
     margin-bottom: 20px;
+  }
+
+  /* stylelint-disable*/
+  // これあまり良くない説はある
+  .q-input :deep(.q-field__prefix) {
+    padding-right: 0px;
   }
 </style>
