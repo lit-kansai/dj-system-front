@@ -14,8 +14,11 @@ const responseSchema = z.object({
   ownerUserId: z.number(),
   displayId: z.string(),
   name: z.string(),
-  playlistId: z.string(),
-  provider: z.string()
+  description: z.string(),
+  playlistId: z.union([z.string(), z.undefined()]),
+  provider: z.union([z.string(), z.undefined()]),
+  createdAt: z.string(),
+  updatedAt: z.string(),
 })
 
 type ResponseSchema = z.infer<typeof responseSchema>
