@@ -8,3 +8,4 @@ export const room = {
     deleteRoom
   }
 }
+export * from './domain'
