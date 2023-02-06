@@ -52,6 +52,7 @@
   const result = await room.api.createRoom(toRaw(state.form))
 
   const onClickCreateButton = async () => {
+    const { setRoom } = useRoomsState()
     const stop = watch(result.pending, (pending) => { state.loading = pending })
     $q.loading.show()
     await result.execute()
@@ -60,6 +61,7 @@
     const { error, data } = result
     if (error.value) { alert(JSON.stringify(error.value)) }
     if (!data.value) { alert('data not found'); return }
+    setRoom(data.value)
     router.push(`/room/${data.value.displayId}`)
   }
 
