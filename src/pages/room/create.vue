@@ -38,6 +38,7 @@
 
   const $q = useQuasar()
   const router = useRouter()
+  const userState = useUserState()
   const state = reactive({
     loading: false,
     form: {
@@ -46,8 +47,7 @@
       description: '',
       provider: '',
     },
-    // TODO: ここユーザーのlinkedProvidersから抽出したい
-    providers: ['Spotify']
+    providers: userState.state.value?.linkedProviders?.map(v => v.isConnected ? v.provider : '').filter(v => !!v)
   })
   const result = await room.api.createRoom(toRaw(state.form))
 
