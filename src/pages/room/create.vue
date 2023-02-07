@@ -29,6 +29,28 @@
       <q-btn color="grey-1" text-color="dark" class="q-mr-sm" label="キャンセル" @click="onClickCancel" />
       <q-btn color="primary" label="ルームを作成する" @click="onClickCreateButton" />
     </div>
+    <q-dialog v-model="confirmProviders" persistent>
+      <q-card>
+        <q-card-section>
+          <div class="row items-center q-pb-sm">
+            <FaRegDizzy />
+            <q-avatar icon="link_off" color="primary" text-color="white" />
+            <span class="text-body1 text-weight-bold q-ml-sm">連携済みの外部サービスがありません</span>
+          </div>
+          <span>ルームを新しく作成するには、外部サービス（Spotify/AppleMusic）と事前に連携する必要があります。</span>
+        </q-card-section>
+
+        <q-card-actions align="right">
+          <q-btn
+            v-close-popup
+            flat
+            label="今すぐ連携する"
+            color="primary"
+            to="/settings"
+          />
+        </q-card-actions>
+      </q-card>
+    </q-dialog>
   </div>
 </template>
 
@@ -47,8 +69,9 @@
       description: '',
       provider: '',
     },
-    providers: userState.state.value?.linkedProviders?.map(v => v.isConnected ? v.provider : '').filter(v => !!v)
+    providers: userState.state.value?.linkedProviders?.map(v => v.isConnected ? v.provider : '').filter(v => !!v) ?? [],
   })
+  const confirmProviders = computed(() => state.providers.length === 0)
   const result = await room.api.createRoom(toRaw(state.form))
 
   const onClickCreateButton = async () => {
