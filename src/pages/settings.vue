@@ -79,7 +79,7 @@
       case 'spotify':
         state.provider.spotify = service.isConnected
         break
-      case 'appleMusic':
+      case 'applemusic':
         state.provider.applemusic = service.isConnected
         break
       }
