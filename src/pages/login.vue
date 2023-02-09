@@ -17,12 +17,13 @@
 
 <script setup lang="ts">
   import { GOOGLE_API_CALLBACK_PATH } from '@/constants'
+  import { auth } from '@/features'
 
   definePageMeta({
     layout: false,
   })
 
-  const result = await getLoginUrl({ redirectUrl: GOOGLE_API_CALLBACK_PATH })
+  const result = await auth.api.getLoginUrl({ redirectUrl: GOOGLE_API_CALLBACK_PATH })
   const state = reactive({ result })
   const login = () => { state.result.execute() }
 
