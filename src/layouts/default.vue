@@ -16,7 +16,7 @@
             <NuxtLink
               v-for="room of rooms"
               :key="room.id"
-              :to="'/room/' + room.id"
+              :to="'/room/' + room.displayId"
               style="text-decoration: none;"
               class="full-width"
             >
