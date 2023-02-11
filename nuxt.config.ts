@@ -48,6 +48,7 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       BASE_API_URL: '',
+      MEMBER_SITE_URL: '',
       MOCK_ENABLED: false,
     }
   },
