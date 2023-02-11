@@ -6,4 +6,7 @@ export type CamelizedAPIResponse<T extends (...args: any) => any> =
     Array<SnakeToCamel<Awaited<ReturnType<T>>[number]>> :
     SnakeToCamel<Awaited<ReturnType<T>>>
 
-export type _CamelizedAPIResponse<T extends object | any[]> = SnakeToCamel<T>
+export type _CamelizedAPIResponse<T extends object | any[]> =
+  T extends any [] ?
+    Array<SnakeToCamel<T[number]>> :
+    SnakeToCamel<T>
