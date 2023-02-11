@@ -1,7 +1,8 @@
-import { getRooms, getRoom, updateRoom, createRoom, deleteRoom } from './api'
+import { getRooms, getRoom, getRoomDetail, updateRoom, createRoom, deleteRoom } from './api'
 export const room = {
   api: {
     getRoom,
+    getRoomDetail,
     getRooms,
     updateRoom,
     createRoom,
