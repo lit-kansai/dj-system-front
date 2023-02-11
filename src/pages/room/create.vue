@@ -22,7 +22,7 @@
       outlined
       label="リクエストURL*"
       class="url-prefix"
-      prefix="https://dj.life-is-tech.com/"
+      :prefix="MEMBER_SITE_URL()"
       :rules="[(val) => !!val || 'Field is required']"
     />
     <div class="row justify-end items-end">
@@ -35,6 +35,7 @@
 <script setup lang="ts">
   import { useQuasar } from 'quasar'
   import { room } from '@/features'
+  import { MEMBER_SITE_URL } from '@/constants'
 
   const $q = useQuasar()
   const router = useRouter()
