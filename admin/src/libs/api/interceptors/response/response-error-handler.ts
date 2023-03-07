@@ -5,6 +5,7 @@ export const responseErrorHandler = (error: AxiosError) => {
   const { setCurrentError } = useCurrentError()
   const appConfig = useAppConfig()
   if (error.code === '401') {
+    console.log('token removed')
     localStorage.removeItem(USER_INFO)
     navigateTo(LOGIN_PAGE)
   }

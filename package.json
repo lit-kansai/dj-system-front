@@ -1,6 +1,9 @@
 {
   "private": true,
   "name": "dj-system",
+  "scripts": {
+    "admin": "yarn workspace admin"
+  },
   "workspaces": [
     "packages/*",
     "admin"
