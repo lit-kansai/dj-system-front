@@ -1,5 +1,6 @@
 export * from './get-room'
 export * from './get-rooms'
+export * from './get-room-detail'
 export * from './update-room'
 export * from './create-room'
 export * from './delete-room'

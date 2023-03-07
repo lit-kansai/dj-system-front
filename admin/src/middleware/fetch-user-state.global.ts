@@ -4,7 +4,7 @@ import { User } from '@/features/user/domain'
 
 export default defineNuxtRouteMiddleware(async ({ path }) => {
   const userState = useUserState()
-  if (path !== '/login' && !userState.state) {
+  if (path !== '/login' && !userState.state.value) {
     const result = await getUser()
     const { data, error } = result
     if (error.value) {

@@ -22,22 +22,46 @@
       outlined
       label="リクエストURL*"
       class="url-prefix"
-      prefix="https://dj.life-is-tech.com/"
+      :prefix="MEMBER_SITE_URL()"
       :rules="[(val) => !!val || 'Field is required']"
     />
     <div class="row justify-end items-end">
       <q-btn color="grey-1" text-color="dark" class="q-mr-sm" label="キャンセル" @click="onClickCancel" />
       <q-btn color="primary" label="ルームを作成する" @click="onClickCreateButton" />
     </div>
+    <q-dialog v-model="confirmProviders" persistent>
+      <q-card>
+        <q-card-section>
+          <div class="row items-center q-pb-sm">
+            <FaRegDizzy />
+            <q-avatar icon="link_off" color="primary" text-color="white" />
+            <span class="text-body1 text-weight-bold q-ml-sm">連携済みの外部サービスがありません</span>
+          </div>
+          <span>ルームを新しく作成するには、外部サービス（Spotify/AppleMusic）と事前に連携する必要があります。</span>
+        </q-card-section>
+
+        <q-card-actions align="right">
+          <q-btn
+            v-close-popup
+            flat
+            label="今すぐ連携する"
+            color="primary"
+            to="/settings"
+          />
+        </q-card-actions>
+      </q-card>
+    </q-dialog>
   </div>
 </template>
 
 <script setup lang="ts">
   import { useQuasar } from 'quasar'
   import { room } from '@/features'
+  import { MEMBER_SITE_URL } from '@/constants'
 
   const $q = useQuasar()
   const router = useRouter()
+  const userState = useUserState()
   const state = reactive({
     loading: false,
     form: {
@@ -46,9 +70,9 @@
       description: '',
       provider: '',
     },
-    // TODO: ここユーザーのlinkedProvidersから抽出したい
-    providers: ['Spotify']
+    providers: userState.state.value?.linkedProviders?.map(v => v.isConnected ? v.provider : '').filter(v => !!v) ?? [],
   })
+  const confirmProviders = computed(() => state.providers.length === 0)
   const result = await room.api.createRoom(toRaw(state.form))
 
   const onClickCreateButton = async () => {
