@@ -1,6 +1,10 @@
 /** リダイレクトURL */
 export type Redirect_url = string
 
+export type Google_redirect_url = Record<string, any>
+export type Spotify_redirect_url = Record<string, any>
+export type Query = Record<string, any>
+
 /** ログイン用URL */
 export type Login_url = string
 
