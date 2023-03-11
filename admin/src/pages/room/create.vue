@@ -22,7 +22,7 @@
       outlined
       label="リクエストURL*"
       class="url-prefix"
-      :prefix="MEMBER_SITE_URL()"
+      :prefix="`${MEMBER_SITE_URL()}/`"
       :rules="[(val) => !!val || 'Field is required']"
     />
     <div class="row justify-end items-end">
@@ -33,7 +33,7 @@
       <q-card>
         <q-card-section>
           <div class="row items-center q-pb-sm">
-            <FaRegDizzy />
+            <q-icon size="13em" class="q-mb-md" name="fa-reg-dizzy" />
             <q-avatar icon="link_off" color="primary" text-color="white" />
             <span class="text-body1 text-weight-bold q-ml-sm">連携済みの外部サービスがありません</span>
           </div>
@@ -55,11 +55,10 @@
 </template>
 
 <script setup lang="ts">
-  import { useQuasar } from 'quasar'
   import { room } from '@/features'
   import { MEMBER_SITE_URL } from '@/constants'
 
-  const $q = useQuasar()
+  // const $q = useQuasar()
   const router = useRouter()
   const userState = useUserState()
   const state = reactive({
@@ -78,9 +77,9 @@
   const onClickCreateButton = async () => {
     const { setRoom } = useRoomsState()
     const stop = watch(result.pending, (pending) => { state.loading = pending })
-    $q.loading.show()
+    // loading.show()
     await result.execute()
-    $q.loading.hide()
+    // loading.hide()
     stop()
     const { error, data } = result
     if (error.value) { alert(JSON.stringify(error.value)) }
@@ -102,7 +101,6 @@
   }
 
   /* stylelint-disable*/
-  // これあまり良くない説はある
   .q-input :deep(.q-field__prefix) {
     padding-right: 0px;
   }

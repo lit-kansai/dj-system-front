@@ -38,7 +38,7 @@
 </template>
 
 <script setup lang="ts">
-  import { QTableProps, useQuasar } from 'quasar'
+  import { useQuasar, QTableProps } from 'quasar'
   import { ComputedRef } from 'vue'
   import { SPOTIFY_PLAYLIST_URL, MEMBER_REQUEST_URL } from '@/constants'
   import { room, letter } from '@/features'
@@ -59,7 +59,7 @@
       musicName: string
     }>
   }
-  const $q = useQuasar()
+  // const $q = useQuasar()
   const roomId = useRoomId()
   const roomDetail = await room.api.getRoomDetail({ roomId })
   const letters = await letter.api.getRoomLetters({ roomId })
@@ -75,7 +75,7 @@
     },
     letters: [],
   })
-  watch(toRefs(state).loading, loading => loading ? $q.loading.show() : $q.loading.hide())
+  // watch(toRefs(state).loading, loading => loading ? $q.loading.show() : $q.loading.hide())
   watch(roomId, () => { letters.refresh(); roomDetail.refresh() }, { immediate: true })
   watch(roomDetail.data, (data) => {
     if (!data) { return }
@@ -98,6 +98,7 @@
   })
 
   const letterColumns: QTableProps['columns'] = [
+    // const letterColumns = [
     {
       name: 'createdAt',
       label: '投稿日時',
