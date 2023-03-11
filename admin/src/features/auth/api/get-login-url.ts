@@ -1,6 +1,6 @@
 import { z } from 'zod'
+import { CamelizedAPIResponse, toSchema } from '@dj-system/utils'
 import { apiClient, ApiInstance } from '@/libs/api'
-import { CamelizedAPIResponse, toSchema } from '@/types'
 import { GetRequestOutput } from '@/libs'
 
 // 1. request body か query parametersを受け取るinput

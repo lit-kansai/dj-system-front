@@ -1,7 +1,6 @@
 import { z } from 'zod'
-import { apiClient, ApiInstance } from '@/libs/api'
-import { CamelizedAPIResponse, toSchema } from '@/types'
-import { GetRequestOutput } from '@/libs'
+import { CamelizedAPIResponse, toSchema } from '@dj-system/utils'
+import { GetRequestOutput, apiClient, ApiInstance } from '@/libs'
 import { SPOTIFY_API_CALLBACK_URL } from '@/constants'
 
 export type GetSpotifyOauthURLResponse = CamelizedAPIResponse<ApiInstance['mc']['user']['link']['spotify']['$get']>

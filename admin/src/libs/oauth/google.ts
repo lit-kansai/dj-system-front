@@ -1,7 +1,7 @@
+import { LocationQuery } from '@dj-system/utils'
 import { logger, googleOAuthQuerySchema } from '@/libs'
 import { isDev } from '@/utils'
 import { GOOGLE_API_CALLBACK_URL, USER_INFO } from '@/constants'
-import { LocationQuery } from '@/types'
 import { auth } from '@/features'
 
 export const google = async (input: {query: LocationQuery}) => {

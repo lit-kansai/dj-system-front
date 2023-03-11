@@ -1,7 +1,7 @@
 import { z } from 'zod'
-import { CamelizedAPIResponse, toSchema } from '@/types'
-import { GetRequestOutput, apiClient, ApiInstance } from '@/libs'
+import { CamelizedAPIResponse, toSchema } from '@dj-system/utils'
 import { SPOTIFY_API_CALLBACK_URL } from '@/constants'
+import { GetRequestOutput, apiClient, ApiInstance } from '@/libs'
 
 export type IntegrateSpotifyInput = { code: string }
 

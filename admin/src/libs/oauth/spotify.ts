@@ -1,5 +1,5 @@
+import { LocationQuery } from '@dj-system/utils'
 import { logger, spotifyOAuthQuerySchema } from '@/libs'
-import { LocationQuery } from '@/types'
 import { integrateSpotify } from '@/features/auth/api/'
 
 export const spotify = async (input: {query: LocationQuery}) => {

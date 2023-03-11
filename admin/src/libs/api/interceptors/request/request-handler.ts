@@ -1,6 +1,7 @@
 import { AxiosRequestConfig } from 'axios'
+import { camelToSnake } from '@dj-system/utils'
 import { AUTHRIZATION_HEADER_FIELD, LOGIN_PAGE } from '@/constants'
-import { camelToSnake, tokenRequired } from '@/utils'
+import { tokenRequired } from '@/utils'
 
 export type TokenFetcher = {
   fetch: () => string | null;

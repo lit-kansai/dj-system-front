@@ -1,5 +1,5 @@
 import { z } from 'zod'
-import { SnakeToCamel } from '@/types'
+import { SnakeToCamel } from '@dj-system/utils'
 import { apiClient, GetRequestOutput } from '@/libs'
 
 export type CreateRoomInput = {
