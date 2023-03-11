@@ -1,4 +1,6 @@
 import path from 'path'
+const baseUrl = process.env.HOST_URL ?? 'not found'
+
 export default defineNuxtConfig({
   app: {
     head: {
@@ -11,8 +13,8 @@ export default defineNuxtConfig({
         { property: 'og:type', content: 'website' },
         { property: 'og:description', content: 'DJ Systemの管理画面サイト' },
         { property: 'og:title', content: 'DJ System' },
-        { property: 'og:url', content: ''},
-        { property: 'og:image', content: `` },
+        { property: 'og:url', content: baseUrl },
+        { property: 'og:image', content: `${baseUrl}/ogp.png` },
         { name: 'twitter:card', content: 'summary_large_image' },
         { name: 'twitter:site', content: 'DJ System' },
       ],
@@ -32,8 +34,7 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     public: {
-      BASE_API_URL: '',
-      MEMBER_SITE_URL: '',
+      BASE_API_URL: process.env.BASE_API_URL,
       MOCK_ENABLED: false,
     }
   },
