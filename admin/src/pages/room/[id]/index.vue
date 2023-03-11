@@ -38,7 +38,7 @@
 </template>
 
 <script setup lang="ts">
-  import { useQuasar, QTableProps } from 'quasar'
+  import type { QTableProps } from 'quasar'
   import { ComputedRef } from 'vue'
   import { SPOTIFY_PLAYLIST_URL, MEMBER_REQUEST_URL } from '@/constants'
   import { room, letter } from '@/features'
