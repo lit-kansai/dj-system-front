@@ -1,6 +1,5 @@
 import { z } from 'zod'
-import { Room as _Room } from '@/libs/api/generated/@types'
-import { SnakeToCamel, toSchema } from '@/types'
+import { SnakeToCamel, toSchema } from '@dj-system/utils'
 
 export type _Room = {
   id: number

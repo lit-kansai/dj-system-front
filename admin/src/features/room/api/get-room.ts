@@ -1,7 +1,6 @@
 import { z } from 'zod'
-import { apiClient } from '@/libs/api'
-import { _CamelizedAPIResponse } from '@/types'
-import { GetRequestOutput } from '@/libs'
+import { _CamelizedAPIResponse } from '@dj-system/utils'
+import { GetRequestOutput, apiClient } from '@/libs'
 
 export type GetRoomInput = { roomId: string }
 const responseSchema = z.object({

@@ -1,8 +1,7 @@
 import { z } from 'zod'
 import { Ref } from 'nuxt/dist/app/compat/capi'
-import { apiClient } from '@/libs/api'
-import { CamelizedAPIResponse, toSchema } from '@/types'
-import { ApiInstance, GetRequestOutput } from '@/libs'
+import { CamelizedAPIResponse, toSchema } from '@dj-system/utils'
+import { GetRequestOutput, apiClient, ApiInstance } from '@/libs'
 
 export type GetRoomDetailInput = { roomId: Ref<string> }
 export type _GetRoomDetailResponse = CamelizedAPIResponse<ReturnType<ApiInstance['mc']['room']['_roomId']>['$get']>
