@@ -1,41 +1,33 @@
-import aspida from '@aspida/axios'
-import _axios, { AxiosInstance } from 'axios'
-import { CONTENT_TYPE_KEY, CONTENT_TYPE_VALUE } from '@/constants'
+import { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios'
+import { ApiInstance as _ApiInstance, aspidaAxios, generateApiClient } from '@dj-system/api-client'
 import { isDev } from '@/utils/is-dev'
 import {
-  api,
-  logger,
   tokenFetcher,
   requestHandler,
   responseErrorHandler,
   responseHandler,
 } from '@/libs'
 
-const axios = (): AxiosInstance => {
-  const instance = _axios.create()
-  instance.defaults.headers.common[CONTENT_TYPE_KEY] = CONTENT_TYPE_VALUE
-  instance.interceptors.request.use((request) => {
-    // TODO: ここらへんのDIまとめたい。いちいちisDev?とかするのつらい
-    if (isDev) { return requestHandler(request, tokenFetcher.local) }
-    return requestHandler(request, tokenFetcher.cookie)
-  })
-  instance.interceptors.response.use(
-    responseHandler,
-    (error) => {
-      if (_axios.isAxiosError(error)) { return responseErrorHandler(error) }
-      logger.log(`unexpected error ${JSON.stringify(error)}`)
-    }
-  )
-  return instance
+const requestInterceptor = (request: AxiosRequestConfig) => {
+  if (isDev) { return requestHandler(request, tokenFetcher.local) }
+  return requestHandler(request, tokenFetcher.cookie)
 }
 
+const responseInterceptor = (response: AxiosResponse) => responseHandler(response)
+
+const responseErrorIntercepter = (error: AxiosError) => responseErrorHandler(error)
+
+const axios = aspidaAxios({
+  requestInterceptor,
+  responseInterceptor,
+  responseErrorIntercepter
+})
+
 export const apiClient = () => {
-  return api(
-    aspida(axios(), {
-      timeout: 3000,
-      baseURL: useRuntimeConfig().public.BASE_API_URL,
-      withCredentials: true
-    })
-  )
+  return generateApiClient(axios, {
+    baseURL: useRuntimeConfig().public.BASE_API_URL,
+    timeout: 3000,
+    withCredentials: true
+  })
 }
-export type ApiInstance = ReturnType<typeof apiClient>
+export type ApiInstance = _ApiInstance
