@@ -2,10 +2,12 @@
   "private": true,
   "name": "dj-system",
   "scripts": {
-    "admin": "yarn workspace admin"
+    "admin": "yarn workspace admin",
+    "member": "yarn workspace member"
   },
   "workspaces": [
     "packages/*",
-    "admin"
+    "admin",
+    "member"
   ]
 }
