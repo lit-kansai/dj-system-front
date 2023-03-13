@@ -10,20 +10,22 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
-    "axios": "^0.26.0",
-    "zod": "^3.20.2",
     "@dj-system/api-client": "*",
-    "@dj-system/utils": "*"
+    "@dj-system/utils": "*",
+    "axios": "^0.26.0",
+    "zod": "^3.20.2"
   },
   "devDependencies": {
+    "@dj-system/eslint-config": "*",
+    "@nuxt/typescript-build": "^2.1.0",
+    "eslint": "^8.24.0",
     "nuxt": "^3.2.3",
+    "scss": "^0.2.4",
+    "scss-loader": "^0.0.1",
     "stylelint": "^14.13.0",
     "stylelint-config-prettier": "^9.0.3",
     "stylelint-config-rational-order": "^0.1.2",
     "stylelint-config-standard": "^28.0.0",
-    "typescript": "^4.8.4",
-    "@dj-system/eslint-config": "*",
-    "@nuxt/typescript-build": "^2.1.0",
-    "eslint": "^8.24.0"
+    "typescript": "^4.8.4"
   }
 }
