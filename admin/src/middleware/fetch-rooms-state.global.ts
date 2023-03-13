@@ -1,7 +1,11 @@
+import { GOOGLE_API_CALLBACK_PATH, SPOTIFY_API_CALLBACK_PATH } from '@/constants'
 import { room } from '@/features'
-import { logger } from '@/libs'
+import { logger, tokenFetcher } from '@/libs'
 
-export default defineNuxtRouteMiddleware(async () => {
+export default defineNuxtRouteMiddleware(async ({ path }) => {
+  if (path === GOOGLE_API_CALLBACK_PATH || path === SPOTIFY_API_CALLBACK_PATH) { return }
+  if (!tokenFetcher.fetch()) { return }
+
   const { rooms, setRooms } = useRoomsState()
   if (rooms.value.length) { return }
 
