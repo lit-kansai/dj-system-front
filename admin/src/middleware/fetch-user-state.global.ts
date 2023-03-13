@@ -1,8 +1,12 @@
 import { useUserState } from '@/composables/useUserState'
+import { GOOGLE_API_CALLBACK_PATH, SPOTIFY_API_CALLBACK_PATH } from '@/constants'
 import { getUser } from '@/features/user'
 import { User } from '@/features/user/domain'
+import { tokenFetcher } from '@/libs'
 
 export default defineNuxtRouteMiddleware(async ({ path }) => {
+  if (path === GOOGLE_API_CALLBACK_PATH || path === SPOTIFY_API_CALLBACK_PATH) { return }
+  if (tokenFetcher.fetch()) { return }
   const userState = useUserState()
   if (path !== '/login' && !userState.state.value) {
     const result = await getUser()
