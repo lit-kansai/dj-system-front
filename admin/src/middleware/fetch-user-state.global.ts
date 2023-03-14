@@ -6,7 +6,7 @@ import { tokenFetcher } from '@/libs'
 
 export default defineNuxtRouteMiddleware(async ({ path }) => {
   if (path === GOOGLE_API_CALLBACK_PATH || path === SPOTIFY_API_CALLBACK_PATH) { return }
-  if (tokenFetcher.fetch()) { return }
+  if (!tokenFetcher.fetch()) { return }
   const userState = useUserState()
   if (path !== '/login' && !userState.state.value) {
     const result = await getUser()
