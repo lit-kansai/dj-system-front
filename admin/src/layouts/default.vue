@@ -4,10 +4,36 @@
       <q-toolbar>
         <q-btn dense flat round icon="menu" @click="toggleLeftDrawer" />
         <q-toolbar-title>DJ Gassi Console</q-toolbar-title>
+        <div class="profile">
+          <div class="button">
+            <q-btn round @click="toggleProfileOpen">
+              <q-avatar size="42px">
+                <img :src="state.user.image">
+              </q-avatar>
+            </q-btn>
+            <div class="toggle">
+              <svg v-if="!state.profileOpen" viewBox="0 0 8 6" fill="black" xmlns="http://www.w3.org/2000/svg" class="fill-current"><path d="M4.21053 5.05263L8 0H0.421053L4.21053 5.05263Z" /></svg>
+              <svg v-else viewBox="0 0 8 6" fill="black" xmlns="http://www.w3.org/2000/svg" class="fill-current rotate-180"><path d="M4.21053 5.05263L8 0H0.421053L4.21053 5.05263Z" /></svg>
+            </div>
+          </div>
+          <div v-if="state.profileOpen" class="menu">
+            <div class="content">
+              <q-avatar size="42px">
+                <img :src="state.user.image">
+              </q-avatar>
+              <div class="q-ml-sm">
+                <p class="text-weight-bold">{{ state.user.name }}</p>
+                <p>{{ state.user.email }}</p>
+              </div>
+            </div>
+            <hr>
+            <q-btn flat align="left" class="q-pl-none width-max" @click="logout">Logout</q-btn>
+          </div>
+        </div>
       </q-toolbar>
     </q-header>
 
-    <q-drawer v-model="leftDrawerOpen" show-if-above side="left" bordered>
+    <q-drawer v-model="state.leftDrawerOpen" show-if-above side="left" bordered>
       <div class="column justify-between window-height no-wrap">
         <div class="q-pt-xl">
           <div class="column q-pb-xl items-start">
@@ -59,10 +85,29 @@
 </template>
 
 <script setup lang="ts">
+  import { auth } from '@/features'
+  import { LOGIN_PAGE } from '@/constants'
+
   const { rooms } = useRoomsState()
-  const leftDrawerOpen = ref(false)
+  const userState = useUserState()
+  const state = reactive({
+    leftDrawerOpen: false,
+    profileOpen: false,
+    user: {
+      image: userState.state.value?.icon,
+      email: userState.state.value?.email,
+      name: userState.state.value?.name
+    }
+  })
   const toggleLeftDrawer = () => {
-    leftDrawerOpen.value = !leftDrawerOpen.value
+    state.leftDrawerOpen = !state.leftDrawerOpen
+  }
+  const toggleProfileOpen = () => {
+    state.profileOpen = !state.profileOpen
+  }
+  const logout = () => {
+    auth.api.logout()
+    navigateTo(LOGIN_PAGE)
   }
 </script>
 
@@ -75,6 +120,56 @@
       margin: 0 auto;
       padding-right: 24px;
       padding-left: 24px;
+    }
+  }
+  .profile {
+    position: relative;
+
+    .button {
+      display: flex;
+      align-items: center;
+
+        .toggle {
+          width: 9px;
+          height: 9px;
+          margin-left: 8px;
+          margin-bottom: 12px;
+        }
+      }
+
+    .menu {
+      position: absolute;
+      right: 0;
+      width: 310px;
+      margin-top: 4px;
+      padding: 20px 20px 13px 20px;
+      box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, .2);
+      border-radius: 1rem;
+      background-color: white;
+      z-index: 30;
+
+      hr {
+        margin: 15px 0 5px 0;
+      }
+
+      .content{
+        display: flex;
+        align-items: center;
+
+        img {
+          width: 2rem;
+          height: 2rem;
+          object-fit: cover;
+        }
+
+        p {
+          margin: 0;
+        }
+
+        :global(.width-max) {
+          width: 100%;
+        }
+      }
     }
   }
 </style>
