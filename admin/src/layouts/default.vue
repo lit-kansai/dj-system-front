@@ -135,7 +135,7 @@
       right: 0;
       width: 310px;
       margin-top: 4px;
-      padding: 20px;
+      padding: 20px 20px 13px 20px;
       box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, .2);
       border-radius: 1rem;
       background-color: white;
