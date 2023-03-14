@@ -4,6 +4,32 @@
       <q-toolbar>
         <q-btn dense flat round icon="menu" @click="toggleLeftDrawer" />
         <q-toolbar-title>DJ Gassi Console</q-toolbar-title>
+        <div class="profile">
+          <div class="button">
+            <q-btn round @click="toggleProfileOpen">
+              <q-avatar size="42px">
+                <img src="https://cdn.quasar.dev/img/avatar2.jpg">
+              </q-avatar>
+            </q-btn>
+            <div class="toggle">
+              <svg v-if="!state.profileOpen" viewBox="0 0 8 6" fill="black" xmlns="http://www.w3.org/2000/svg" class="fill-current"><path d="M4.21053 5.05263L8 0H0.421053L4.21053 5.05263Z" /></svg>
+              <svg v-else viewBox="0 0 8 6" fill="black" xmlns="http://www.w3.org/2000/svg" class="fill-current rotate-180"><path d="M4.21053 5.05263L8 0H0.421053L4.21053 5.05263Z" /></svg>
+            </div>
+          </div>
+          <div v-if="state.profileOpen" class="menu">
+            <div class="content">
+              <q-avatar size="42px">
+                <img src="https://cdn.quasar.dev/img/avatar2.jpg">
+              </q-avatar>
+              <div class="q-ml-sm">
+                <p class="text-weight-bold">{{ state.user.name }}</p>
+                <p>{{ state.user.email }}</p>
+              </div>
+            </div>
+            <hr>
+            <q-btn flat align="left" class="q-pl-none width-max">Logout</q-btn>
+          </div>
+        </div>
       </q-toolbar>
     </q-header>
 
@@ -62,10 +88,18 @@
   const { rooms } = useRoomsState()
   const state = reactive({
     leftDrawerOpen: false,
-    profileOpen: false
+    profileOpen: false,
+    user: {
+      image: 'https://cdn.quasar.dev/img/avatar2.jpg',
+      email: 'hoge@hoge.com',
+      name: 'hahihuheko'
+    }
   })
   const toggleLeftDrawer = () => {
     state.leftDrawerOpen = !state.leftDrawerOpen
+  }
+  const toggleProfileOpen = () => {
+    state.profileOpen = !state.profileOpen
   }
 </script>
 
@@ -78,6 +112,51 @@
       margin: 0 auto;
       padding-right: 24px;
       padding-left: 24px;
+    }
+  }
+  .profile {
+    position: relative;
+
+    .button {
+      display: flex;
+      align-items: center;
+        .toggle {
+          width: 9px;
+          height: 9px;
+          margin-left: 8px;
+          margin-bottom: 12px;
+        }
+      }
+
+    .menu {
+      position: absolute;
+      right: 0;
+      width: 310px;
+      margin-top: 4px;
+      padding: 20px;
+      box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, .2);
+      border-radius: 1rem;
+      background-color: white;
+      z-index: 30;
+
+      .content{
+        display: flex;
+        align-items: center;
+
+        img {
+          width: 2rem;
+          height: 2rem;
+          object-fit: cover;
+        }
+
+        p {
+          margin: 0;
+        }
+
+        :global(.width-max) {
+          width: 100%;
+        }
+      }
     }
   }
 </style>
