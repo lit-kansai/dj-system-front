@@ -7,7 +7,7 @@
       </q-toolbar>
     </q-header>
 
-    <q-drawer v-model="leftDrawerOpen" show-if-above side="left" bordered>
+    <q-drawer v-model="state.leftDrawerOpen" show-if-above side="left" bordered>
       <div class="column justify-between window-height no-wrap">
         <div class="q-pt-xl">
           <div class="column q-pb-xl items-start">
@@ -60,9 +60,12 @@
 
 <script setup lang="ts">
   const { rooms } = useRoomsState()
-  const leftDrawerOpen = ref(false)
+  const state = reactive({
+    leftDrawerOpen: false,
+    profileOpen: false
+  })
   const toggleLeftDrawer = () => {
-    leftDrawerOpen.value = !leftDrawerOpen.value
+    state.leftDrawerOpen = !state.leftDrawerOpen
   }
 </script>
 
