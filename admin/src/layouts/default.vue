@@ -121,6 +121,7 @@
     .button {
       display: flex;
       align-items: center;
+
         .toggle {
           width: 9px;
           height: 9px;
@@ -139,6 +140,10 @@
       border-radius: 1rem;
       background-color: white;
       z-index: 30;
+
+      hr {
+        margin: 15px 0 5px 0;
+      }
 
       .content{
         display: flex;
