@@ -27,7 +27,7 @@
               </div>
             </div>
             <hr>
-            <q-btn flat align="left" class="q-pl-none width-max">Logout</q-btn>
+            <q-btn flat align="left" class="q-pl-none width-max" @click="logout">Logout</q-btn>
           </div>
         </div>
       </q-toolbar>
@@ -85,6 +85,9 @@
 </template>
 
 <script setup lang="ts">
+  import { auth } from '@/features'
+  import { LOGIN_PAGE } from '@/constants'
+
   const { rooms } = useRoomsState()
   const userState = useUserState()
   const state = reactive({
@@ -101,6 +104,10 @@
   }
   const toggleProfileOpen = () => {
     state.profileOpen = !state.profileOpen
+  }
+  const logout = () => {
+    auth.api.logout()
+    navigateTo(LOGIN_PAGE)
   }
 </script>
 
