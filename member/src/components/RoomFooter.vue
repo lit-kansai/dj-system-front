@@ -5,7 +5,7 @@
   </div>
 </template>
 <script setup lang="ts"></script>
-<style lang="scss">
+<style scoped lang="scss">
   .wrapper {
     display: flex;
     justify-content: center;
