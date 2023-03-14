@@ -8,7 +8,7 @@
           <div class="button">
             <q-btn round @click="toggleProfileOpen">
               <q-avatar size="42px">
-                <img src="https://cdn.quasar.dev/img/avatar2.jpg">
+                <img :src="state.user.image">
               </q-avatar>
             </q-btn>
             <div class="toggle">
@@ -19,7 +19,7 @@
           <div v-if="state.profileOpen" class="menu">
             <div class="content">
               <q-avatar size="42px">
-                <img src="https://cdn.quasar.dev/img/avatar2.jpg">
+                <img :src="state.user.image">
               </q-avatar>
               <div class="q-ml-sm">
                 <p class="text-weight-bold">{{ state.user.name }}</p>
@@ -86,13 +86,14 @@
 
 <script setup lang="ts">
   const { rooms } = useRoomsState()
+  const userState = useUserState()
   const state = reactive({
     leftDrawerOpen: false,
     profileOpen: false,
     user: {
-      image: 'https://cdn.quasar.dev/img/avatar2.jpg',
-      email: 'hoge@hoge.com',
-      name: 'hahihuheko'
+      image: userState.state.value?.icon,
+      email: userState.state.value?.email,
+      name: userState.state.value?.name
     }
   })
   const toggleLeftDrawer = () => {
