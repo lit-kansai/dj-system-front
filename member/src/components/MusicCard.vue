@@ -1,18 +1,21 @@
 <template>
   <div class="music-card">
-    <img :src="state.music.image" :alt="`${state.music.name}のサムネイル写真`">
-    <p class="name">{{ state.music.name }}</p>
-    <p class="artists">{{ state.music.artists }}</p>
+    <img :src="thumbnail" :alt="`${name}のサムネイル写真`">
+    <p class="name">{{ name }}</p>
+    <p class="artists">{{ artists }}</p>
   </div>
 </template>
 
 <script setup lang="ts">
-  const state = reactive({
-    music: {
-      image: 'https://i.kfs.io/album/global/162607085,0v1/fit/500x500.jpg',
-      name: 'きらり',
-      artists: '藤井風',
-    }
+  interface Props {
+    thumbnail: string,
+    name: string,
+    artists: string
+  }
+  withDefaults(defineProps<Props>(), {
+    thumbnail: '',
+    name: '',
+    artists: ''
   })
 </script>
 

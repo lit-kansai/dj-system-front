@@ -1,10 +1,17 @@
 <template>
   <div class="wrapper search-result">
     <div v-if="state.loading">loading</div>
-    <div v-else-if="state.music.length === 0">
+    <div v-else-if="state.musics.length === 0">
       <p>楽曲が見つかりませんでした</p>
     </div>
-    <MusicCard v-for="music in state.music" v-else :key="music.id" />
+    <MusicCard
+      v-for="music in state.musics"
+      v-else
+      :key="music.id"
+      :thumbnail="music.thumbnail"
+      :name="music.name"
+      :artists="music.artists"
+    />
   </div>
 </template>
 <script setup lang="ts">
@@ -21,7 +28,7 @@
   const musicInit: Music[] = []
 
   const state = reactive({
-    music: musicInit,
+    musics: musicInit,
     loading: true,
   })
 
@@ -33,7 +40,7 @@
     const result = music.api.searchMusics(requestMusicInput)
     await result.execute()
     if (!result.data.value) { state.loading = false; return }
-    state.music = result.data.value!.map(function (v) {
+    state.musics = result.data.value!.map(function (v) {
       return {
         id: v.id,
         thumbnail: v.thumbnail,
