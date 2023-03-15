@@ -41,8 +41,8 @@
 
       p {
         font-weight: 400;
-        font-size: 21px;
-        line-height: 25px;
+        font-size: 16px;
+        line-height: 19px;
       }
     }
   }
