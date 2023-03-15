@@ -19,7 +19,7 @@
   nav {
     width: 100%;
     height: 90px;
-    background-color: $background-color-white;
+    background-color: $background-color;
     box-shadow: 0px 3px 6px $shadow-color;
     position: sticky;
     top: 0;
