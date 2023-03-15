@@ -1,5 +1,5 @@
 import { z } from 'zod'
-import { CamelizedAPIResponse, toSchema, _CamelizedAPIResponse } from '@dj-system/utils'
+import { CamelizedAPIResponse, toSchema } from '@dj-system/utils'
 import { apiClient, ApiInstance, PostRequestOutput } from '@/libs'
 
 export type SearchMusicResponse = CamelizedAPIResponse<ReturnType<ApiInstance['room']['_roomId']>['music']['search']['$get']>
@@ -17,11 +17,11 @@ const responseSchema = toSchema<SearchMusicResponse>()(
       album: z.string(),
       name: z.string(),
       thumbnail: z.string(),
-      duration: z.string()
+      duration: z.number()
     })
   )
 )
-export const requestMusic = (input: SearchMusicInput): PostRequestOutput<SearchMusicResponse> => {
+export const searchMusics = (input: SearchMusicInput): PostRequestOutput<SearchMusicResponse> => {
   const result = useLazyAsyncData(async () => {
     const response = await apiClient().room._roomId(input.roomId).music.search.$get({
       // HELP: ここ型つかない？(Swagger頑張ればワンチャンある？)

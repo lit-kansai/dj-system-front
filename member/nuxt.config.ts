@@ -79,6 +79,7 @@ export default defineNuxtConfig({
           additionalData: `
             @import "@/assets/css/variables.scss";
             @import "@/assets/css/reset.scss";
+            @import "@/assets/css/global.scss";
           `,
         },
       },
