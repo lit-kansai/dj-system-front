@@ -15,7 +15,7 @@
   const query = ref(route.query.q)
 
   watchEffect(() => {
-    router.push({ path: route.path, query: { q: query.value } })
+    router.push({ path: `/${route.params.id}/search`, query: { q: query.value } })
   })
 
 </script>
