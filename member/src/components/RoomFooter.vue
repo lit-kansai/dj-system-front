@@ -1,12 +1,12 @@
 <template>
-  <div class="wrapper">
+  <footer>
     <img width="60px" src="~/assets/img/kansai-logo-white.svg">
     <p>&copy; Life is Tech! Kansai Mentors</p>
-  </div>
+  </footer>
 </template>
 <script setup lang="ts"></script>
 <style scoped lang="scss">
-  .wrapper {
+  footer {
     display: flex;
     justify-content: center;
     align-items: center;
