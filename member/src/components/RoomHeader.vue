@@ -5,7 +5,7 @@
         <img src="~/assets/img/logo.svg">
         <p class="room_name">ルーム名</p>
       </div>
-      <TextInput />
+      <NavSearchTextInput />
     </div>
   </nav>
 </template>
