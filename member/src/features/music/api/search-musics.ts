@@ -21,7 +21,7 @@ const responseSchema = toSchema<SearchMusicResponse>()(
     })
   )
 )
-export const requestMusic = (input: SearchMusicInput): PostRequestOutput<SearchMusicResponse> => {
+export const searchMusics = (input: SearchMusicInput): PostRequestOutput<SearchMusicResponse> => {
   const result = useLazyAsyncData(async () => {
     const response = await apiClient().room._roomId(input.roomId).music.search.$get({
       // HELP: ここ型つかない？(Swagger頑張ればワンチャンある？)
