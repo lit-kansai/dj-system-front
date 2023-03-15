@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper">
-    <img width="60px" src="img/kansai-logo-white.svg">
+    <img width="60px" src="~/assets/img/kansai-logo-white.svg">
     <p>&copy; Life is Tech! Kansai Mentors</p>
   </div>
 </template>

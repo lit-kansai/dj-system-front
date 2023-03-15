@@ -2,7 +2,7 @@
   <div class="wrapper">
     <div class="container">
       <div class="logo">
-        <img height="36px" src="img/logo.svg">
+        <img height="36px" src="~/assets/img/logo.svg">
         <p class="room_name">ルーム名</p>
       </div>
       <TextInput />
