@@ -29,13 +29,16 @@
 
   const state = reactive({
     musics: musicInit,
+    query: route.query.q,
     loading: true,
+    timerObj: setTimeout(function () {}, 0)
   })
 
-  onMounted(async () => {
+  const fetchMusics = async () => {
+    state.loading = true
     const requestMusicInput: SearchMusicInput = {
       roomId: `${route.params.id}`,
-      query: '藤井風'
+      query: state.query?.toString() ?? ''
     }
     const result = music.api.searchMusics(requestMusicInput)
     await result.execute()
@@ -45,10 +48,23 @@
         id: v.id,
         thumbnail: v.thumbnail,
         name: v.name,
-        artists: v.artists
+        artists: v.artists,
       }
     })
     state.loading = false
+  }
+
+  onMounted(async () => {
+    await fetchMusics()
+  })
+
+  onBeforeUpdate(() => {
+    state.query = route.query.q
+    clearTimeout(state.timerObj)
+    state.timerObj = setTimeout(async function () {
+      await fetchMusics()
+      clearTimeout(state.timerObj)
+    }, 3000)
   })
 </script>
 <style scoped lang="scss">

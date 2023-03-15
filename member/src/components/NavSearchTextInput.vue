@@ -1,7 +1,23 @@
 <template>
-  <div><input class="search" type="text" placeholder="曲名・アーティスト名で検索" autocomplete="on"></div>
+  <div>
+    <input
+      v-model="query"
+      class="search"
+      type="text"
+      placeholder="曲名・アーティスト名で検索"
+      autocomplete="on"
+    >
+  </div>
 </template>
 <script setup lang="ts">
+  const route = useRoute()
+  const router = useRouter()
+  const query = ref(route.query.q)
+
+  watchEffect(() => {
+    router.push({ path: route.path, query: { q: query.value } })
+  })
+
 </script>
 <style scoped lang="scss">
   .search {
