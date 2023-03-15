@@ -16,6 +16,8 @@
     height: 90px;
     background-color: $background-color-white;
     box-shadow: 0px 3px 6px $shadow-color;
+    position: sticky;
+    top: 0;
 
     .container{
       height: 100%;
