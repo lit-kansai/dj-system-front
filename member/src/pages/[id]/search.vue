@@ -1,5 +1,5 @@
 <template>
-  <div class="wrapper search-result">
+  <div class="wrapper search">
     <div v-if="state.loading">loading</div>
     <div v-else-if="state.musics.length === 0">
       <p>楽曲が見つかりませんでした</p>
@@ -70,7 +70,7 @@
   })
 </script>
 <style scoped lang="scss">
-.search-result {
+.search {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
