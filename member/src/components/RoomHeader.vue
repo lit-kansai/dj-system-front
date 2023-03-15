@@ -1,30 +1,28 @@
 <template>
-  <div class="wrapper">
-    <div class="container">
+  <nav>
+    <div class="container wrapper">
       <div class="logo">
-        <img height="36px" src="~/assets/img/logo.svg">
+        <img src="~/assets/img/logo.svg">
         <p class="room_name">ルーム名</p>
       </div>
       <TextInput />
     </div>
-  </div>
+  </nav>
 </template>
 <script setup lang="ts"></script>
 <style scoped lang="scss">
-  .wrapper {
+  nav {
     width: 100%;
     height: 90px;
     background-color: $background-color-white;
     box-shadow: 0px 3px 6px $shadow-color;
 
     .container{
-      max-width: 1400px;
       height: 100%;
       margin: 0 auto;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0 55px;
     }
 
     .logo, p {
@@ -36,6 +34,10 @@
       align-items: center;
       gap: 10px;
       color: $text-color-gray;
+
+      img {
+        height: 36px;
+      }
 
       p {
         font-weight: 400;
