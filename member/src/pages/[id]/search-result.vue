@@ -31,7 +31,8 @@
     musics: musicInit,
     query: route.query.q,
     loading: true,
-    timerObj: setTimeout(function () {}, 0)
+    timerObj: setTimeout(function () {}, 0),
+    isFirstFetched: false
   })
 
   const fetchMusics = async () => {
@@ -59,12 +60,13 @@
   })
 
   onBeforeUpdate(() => {
+    if (!state.isFirstFetched) { state.isFirstFetched = true; return }
     state.query = route.query.q
     clearTimeout(state.timerObj)
     state.timerObj = setTimeout(async function () {
       await fetchMusics()
       clearTimeout(state.timerObj)
-    }, 3000)
+    }, 1800)
   })
 </script>
 <style scoped lang="scss">
