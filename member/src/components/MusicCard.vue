@@ -16,7 +16,7 @@
   })
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
   .music-card {
     width: 220px;
     height: 335px;

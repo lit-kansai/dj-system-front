@@ -1,5 +1,5 @@
 <template>
-  <div class="wrapper">
+  <div class="wrapper search-result">
     <div v-if="state.loading">loading</div>
     <div v-else-if="state.music.length === 0">
       <p>楽曲が見つかりませんでした</p>
@@ -30,9 +30,10 @@
       roomId: `${route.params.id}`,
       query: '藤井風'
     }
-    const { data } = await music.api.searchMusics(requestMusicInput)
-    if (!data.value) { state.loading = false; return }
-    state.music = data.value.map(function (v) {
+    const result = music.api.searchMusics(requestMusicInput)
+    await result.execute()
+    if (!result.data.value) { state.loading = false; return }
+    state.music = result.data.value!.map(function (v) {
       return {
         id: v.id,
         thumbnail: v.thumbnail,
@@ -43,4 +44,16 @@
     state.loading = false
   })
 </script>
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.search-result {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 60px 30px;
+  margin: 110px auto;
+
+  .music-card {
+    width: 220px;
+  }
+}
+</style>
