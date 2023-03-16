@@ -27,8 +27,8 @@
   onMounted(() => {
     const countdown = () => {
       const time = requestTimer.waitingTime()
-      state.displayTimer.min = ('00' + Math.floor(time / 60) % 60).slice(-2)
-      state.displayTimer.sec = ('00' + requestTimer.waitingTime() % 60).slice(-2)
+      state.displayTimer.min = time.min
+      state.displayTimer.sec = time.sec
     }
     timer = setInterval(countdown, 1000)
 
