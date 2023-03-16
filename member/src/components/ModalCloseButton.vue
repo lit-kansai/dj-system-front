@@ -25,8 +25,8 @@
     height: 48px;
     background: $gradient-orange;
     border-radius: 9999px;
-    top: -25px;
-    right: -25px;
+    top: -15px;
+    right: -15px;
     transform-origin: center;
     --transform-translate-x: 50%;
     --transform-translate-y: -50%;
@@ -41,8 +41,8 @@
       fill: white;
     }
     @media (min-width: 768px) {
-      top: -25px;
-      right: -25px;
+      top: -15px;
+      right: -15px;
     }
   }
 </style>
