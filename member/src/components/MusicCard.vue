@@ -21,8 +21,8 @@
 
 <style scoped lang="scss">
   .music-card {
-    width: 220px;
-    height: 335px;
+    width: 270px;
+    height: 360px;
     padding: 25px 25px 0 25px;
     border-radius: 10px;
     box-shadow: 0px 0px 12px 2px $music-card-shadow;

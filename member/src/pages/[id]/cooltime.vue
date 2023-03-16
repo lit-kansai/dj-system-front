@@ -8,8 +8,8 @@
 </script>
 <style scoped lang="scss">
 .cooltime {
-  width: calc(100vw - 160px);
-  height: calc(100vh - 250px);
+  width: 100vw;
+  height: calc(100vh - 90px);
   background: $gradient-orange;
   padding: 60px 80px 100px 80px;
   display: flex;
