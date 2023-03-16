@@ -79,17 +79,19 @@
   .container {
     display: flex;
     align-items: center;
-    gap: 32px;
-    padding: 32px;
+    gap: 30px;
+    padding: 70px;
     img {
-      width: 300px;
-      height: 300px;
+      width: 400px;
+      height: 400px;
+      object-fit: cover;
     }
   }
   .music_name {
     font-size: 48px;
     color: $text-color-black;
     font-weight: 700;
+    margin-left: -5px;
   }
   .artist_name {
     font-size: 20px;
@@ -104,6 +106,9 @@
   }
   .form_element {
     font-size: 14px;
+  }
+  .form_label {
+    padding-bottom: 5px;
   }
   .right {
     flex-grow: 1;
