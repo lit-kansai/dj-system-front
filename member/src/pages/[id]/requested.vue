@@ -6,13 +6,42 @@
         <p>送信完了</p>
         <div class="timer">
           <p>次のリクエストまで</p>
-          <strong>05:00</strong>
+          <strong>{{ state.displayTimer.min }}:{{ state.displayTimer.sec }}</strong>
         </div>
       </div>
     </div>
   </div>
 </template>
 <script setup lang="ts">
+  import { useRequestTimer } from '@/features'
+  const requestTimer = useRequestTimer()
+  const route = useRoute()
+  const state = reactive({
+    displayTimer: {
+      min: '00',
+      sec: '00'
+    }
+  })
+  let timer: NodeJS.Timer
+
+  onMounted(() => {
+    const countdown = () => {
+      const time = requestTimer.waitingTime()
+      state.displayTimer.min = time.min
+      state.displayTimer.sec = time.sec
+    }
+    timer = setInterval(countdown, 1000)
+
+    if (window.performance && route.params.id) {
+      if (window.performance.navigation.type === 1) {
+        navigateTo(`/${route.params.id}/cooltime`)
+      }
+    }
+  })
+
+  onUnmounted(() => {
+    clearInterval(timer)
+  })
 </script>
 <style scoped lang="scss">
 .requested {

@@ -1,0 +1,2 @@
+// デフォルトは5分で設定（60 * 5 * 1000 = 300000）
+export const MEMBER_REQUEST_ALLOW_INTERVAL_DEFAULT_TIME = 300000 as const
