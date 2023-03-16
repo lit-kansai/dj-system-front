@@ -74,11 +74,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  gap: 60px 30px;
+  gap: 60px 15px;
   margin: 110px auto;
-
-  .music-card {
-    width: 220px;
-  }
 }
 </style>
