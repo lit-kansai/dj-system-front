@@ -51,36 +51,4 @@
 
 </script>
 <style scoped lang="scss">
-  .container {
-    display: flex;
-    align-items: center;
-    gap: 32px;
-    padding: 32px;
-    img {
-      width: 300px;
-      height: 300px;
-    }
-  }
-  .music_name {
-    font-size: 48px;
-    color: $text-color-black;
-    font-weight: 700;
-  }
-  .artist_name {
-    font-size: 20px;
-    color: $text-color-gray;
-  }
-
-  .form_container {
-    gap: 24px;
-    margin-top: 32px;
-    display: flex;
-    flex-direction: column;
-  }
-  .form_element {
-    font-size: 14px;
-  }
-  .right {
-    flex-grow: 1;
-  }
 </style>
