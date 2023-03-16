@@ -39,6 +39,8 @@
     musicName: string,
     artistName: string,
     albumUrl: string
+    textField: string,
+    textArea: string
   }
 
   const props = withDefaults(defineProps<Props>(), {
