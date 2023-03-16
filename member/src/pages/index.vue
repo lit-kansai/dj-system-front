@@ -7,6 +7,8 @@
           music-name="きらり"
           artist-name="藤井風"
           album-url="https://i.kfs.io/album/global/162607085,0v1/fit/500x500.jpg"
+          text-area=""
+          text-field=""
           @change-text-field="changeTextField"
           @change-text-area="changeTextArea"
           @on-click-submit-button="onClickSubmitButton"
