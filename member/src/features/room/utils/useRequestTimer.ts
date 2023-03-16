@@ -9,11 +9,11 @@ export const useRequestTimer = () => {
     localStorage.setItem(MEMBER_ALLOW_REQUEST_TIME_LOCAL_STORAGE_KEY, String(now + intervalTime.value))
   }
 
-  // 残り時間(秒)
+  // 残り時間(ミリ秒)
   const waitingTime = () => {
     const now = new Date().getTime()
-    const allowTime = Number(localStorage.getItem(MEMBER_ALLOW_REQUEST_TIME_LOCAL_STORAGE_KEY) ?? '')
-    return allowTime !== 0 ? Math.floor((allowTime - now) / 1000) % 60 : 0
+    const allowRequestTime = Number(localStorage.getItem(MEMBER_ALLOW_REQUEST_TIME_LOCAL_STORAGE_KEY) ?? '')
+    return Math.floor((allowRequestTime - now) / 1000)
   }
 
   // 音楽リクエストが許可されるか
