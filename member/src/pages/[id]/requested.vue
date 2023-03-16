@@ -16,8 +16,13 @@
 </script>
 <style scoped lang="scss">
 .requested {
+<<<<<<< HEAD
   width: 100vw;
   height: calc(100vh - 90px);
+=======
+  width: calc(100vw - 160px);
+  height: calc(100vh - 250px);
+>>>>>>> master
   background: $gradient-orange;
   padding: 60px 80px 100px 80px;
   display: flex;
