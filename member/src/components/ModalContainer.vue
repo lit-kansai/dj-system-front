@@ -40,7 +40,7 @@
     width: 100%;
     max-width: 1024px;
     border-radius: 25px;
-    background-color: $background-color-white;
+    background-color: $background-color;
     box-shadow: 0px 4px 4px $shadow-color;
 
     @media (min-width: 768px) {
