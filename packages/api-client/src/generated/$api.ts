@@ -19,6 +19,7 @@ import type { Methods as Methods15 } from './mc/user/playlist/_provider@string/_
 import type { Methods as Methods16 } from './room/_roomId@string'
 import type { Methods as Methods17 } from './room/_roomId@string/music/search'
 import type { Methods as Methods18 } from './room/_roomId@string/request'
+import type { Methods as MusicTop } from './room/_roomId@string/music/top'
 
 export const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
   const prefix = (baseURL === undefined ? 'https://raw.githubusercontent.com/' : baseURL).replace(/\/$/, '')
@@ -348,9 +349,23 @@ export const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
     room: {
       _roomId: (val1: string) => {
         const prefix1 = `${PATH13}/${val1}`
+        const musicTop = `/music/top`
 
         return {
           music: {
+            top: {
+              /**
+               * @returns Success
+               */
+              get: (option?: { config?: T | undefined } | undefined) =>
+                fetch<MusicTop['get']['resBody'], BasicHeaders, MusicTop['get']['status']>(prefix, `${prefix1}${musicTop}`, GET, option).json(),
+              /**
+               * @returns Success
+               */
+              $get: (option?: { config?: T | undefined } | undefined) =>
+                fetch<MusicTop['get']['resBody'], BasicHeaders, MusicTop['get']['status']>(prefix, `${prefix1}${musicTop}`, GET, option).json().then(r => r.body),
+              $path: () => `${prefix}${prefix1}${musicTop}`
+            },
             search: {
               /**
                * @returns 音楽情報の配列
