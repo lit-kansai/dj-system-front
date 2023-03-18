@@ -18,7 +18,9 @@
   "devDependencies": {
     "@dj-system/eslint-config": "*",
     "@nuxt/typescript-build": "^2.1.0",
+    "cypress": "^12.8.1",
     "eslint": "^8.24.0",
+    "msw": "^1.1.0",
     "nuxt": "^3.2.3",
     "scss": "^0.2.4",
     "scss-loader": "^0.0.1",
@@ -27,5 +29,8 @@
     "stylelint-config-rational-order": "^0.1.2",
     "stylelint-config-standard": "^28.0.0",
     "typescript": "^4.8.4"
+  },
+  "msw": {
+    "workerDirectory": "public"
   }
 }
