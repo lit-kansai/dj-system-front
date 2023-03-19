@@ -23,6 +23,7 @@
 </script>
 <style scoped lang="scss">
   .search {
+    box-sizing: content-box;
     display: block;
     width: 330px;
     height: 20px;
