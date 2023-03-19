@@ -30,9 +30,10 @@
   </div>
 </template>
 <script setup lang="ts">
-  import { music } from '@/features'
+  import { music, useRequestTimer } from '@/features'
   import { RequestMusicInput, SearchMusicInput } from '@/features/music/api'
   const route = useRoute()
+  const requestTimer = useRequestTimer()
 
   type Music = {
     id: string,
@@ -127,6 +128,7 @@
     await result.execute()
     if (result.data.value) {
       await navigateTo(`/${roomId}/requested`)
+      requestTimer.requestMusic()
     } else {
       alert(result.error.value)
     }
