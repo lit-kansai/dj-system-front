@@ -11,7 +11,20 @@
       :thumbnail="music.thumbnail"
       :name="music.name"
       :artists="music.artists"
+      @click="onClickMusicCard(music)"
     />
+    <ModalContainer v-bind="modalProps">
+      <template #content>
+        <MusicRequestForm
+          :music-name="state.selectedMusic.name"
+          :artist-name="state.selectedMusic.artists"
+          :album-url="state.selectedMusic.thumbnail"
+          text-area=""
+          text-field=""
+          @on-click-submit-button="onClickSubmitButton"
+        />
+      </template>
+    </ModalContainer>
   </div>
 </template>
 <script setup lang="ts">
@@ -32,8 +45,38 @@
     query: route.query.q,
     loading: true,
     timerObj: setTimeout(function () {}, 0),
-    isFirstFetched: false
+    isFirstFetched: false,
+    isModalOpen: false,
+    selectedMusic: {
+      thumbnail: '',
+      name: '',
+      artists: ''
+    }
   })
+
+  const onClickMusicCard = (music: Music) => {
+    state.selectedMusic.artists = music.artists
+    state.selectedMusic.thumbnail = music.thumbnail
+    state.selectedMusic.name = music.name
+    state.isModalOpen = true
+  }
+
+  const onClickOutside = () => {
+    state.isModalOpen = false
+  }
+  const onClickCloseButton = () => {
+    state.isModalOpen = false
+  }
+
+  const modalProps = reactive({
+    isOpen: toRef(state, 'isModalOpen'),
+    onClickOutside,
+    onClickCloseButton
+  })
+
+  const onClickSubmitButton = () => {
+    console.log('onClickSubmitButton')
+  }
 
   const fetchMusics = async () => {
     state.loading = true
