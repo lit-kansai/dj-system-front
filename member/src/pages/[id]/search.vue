@@ -43,6 +43,7 @@
   const state = reactive({
     musics: musicInit,
     query: route.query.q,
+    beforeQuery: '',
     loading: true,
     timerObj: setTimeout(function () {}, 0),
     isFirstFetched: false,
@@ -100,16 +101,20 @@
 
   onMounted(async () => {
     await fetchMusics()
+    state.isFirstFetched = true
   })
 
   onBeforeUpdate(() => {
     if (!state.isFirstFetched) { state.isFirstFetched = true; return }
-    state.query = route.query.q
-    clearTimeout(state.timerObj)
-    state.timerObj = setTimeout(async function () {
-      await fetchMusics()
+    if (state.query !== state.beforeQuery) {
       clearTimeout(state.timerObj)
-    }, 1800)
+      state.timerObj = setTimeout(async function () {
+        await fetchMusics()
+        clearTimeout(state.timerObj)
+      }, 1800)
+    } else {
+      clearTimeout(state.timerObj)
+    }
   })
 </script>
 <style scoped lang="scss">
