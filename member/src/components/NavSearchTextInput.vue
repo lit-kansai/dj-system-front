@@ -1,7 +1,7 @@
 <template>
   <div>
     <input
-      v-model="query"
+      v-model="textComputed"
       class="search"
       type="text"
       placeholder="曲名・アーティスト名で検索"
@@ -14,10 +14,17 @@
   const router = useRouter()
   const query = ref(route.query.q)
 
-  watchEffect(() => {
-    if (route.params.id && query.value && query.value !== '') {
-      router.push({ path: `/${route.params.id}/search`, query: { q: query.value } })
+  const textComputed = computed({
+    get: () => query.value,
+    set: (value) => {
+      const roomId = route.params.id
+      if (!roomId) { return }
+      router.push({ path: `/${roomId}/search`, query: { q: value } })
     }
+  })
+
+  onMounted(() => {
+    query.value = route.query.q ?? ''
   })
 
 </script>

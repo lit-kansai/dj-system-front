@@ -126,7 +126,7 @@
     const result = music.api.requestMusic(requestMusicInput)
     await result.execute()
     if (result.data.value) {
-      navigateTo(`/${roomId}/requested`)
+      await navigateTo(`/${roomId}/requested`)
     } else {
       alert(result.error.value)
     }
