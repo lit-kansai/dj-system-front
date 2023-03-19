@@ -16,11 +16,13 @@
     <ModalContainer v-bind="modalProps">
       <template #content>
         <MusicRequestForm
-          :music-name="state.selectedMusic.name"
-          :artist-name="state.selectedMusic.artists"
-          :album-url="state.selectedMusic.thumbnail"
-          text-area=""
-          text-field=""
+          :music-name="state.modal.name"
+          :artist-name="state.modal.artists"
+          :album-url="state.modal.thumbnail"
+          :text-area="state.modal.textArea"
+          :text-field="state.modal.textField"
+          @change-text-field="changeTextField"
+          @change-text-area="changeTextArea"
           @on-click-submit-button="onClickSubmitButton"
         />
       </template>
@@ -29,7 +31,7 @@
 </template>
 <script setup lang="ts">
   import { music } from '@/features'
-  import { SearchMusicInput } from '@/features/music/api'
+  import { RequestMusicInput, SearchMusicInput } from '@/features/music/api'
   const route = useRoute()
 
   type Music = {
@@ -46,20 +48,31 @@
     beforeQuery: '',
     loading: true,
     timerObj: setTimeout(function () {}, 0),
-    isFirstFetched: false,
     isModalOpen: false,
-    selectedMusic: {
+    modal: {
+      id: '',
       thumbnail: '',
       name: '',
-      artists: ''
+      artists: '',
+      textArea: '',
+      textField: '',
     }
   })
 
   const onClickMusicCard = (music: Music) => {
-    state.selectedMusic.artists = music.artists
-    state.selectedMusic.thumbnail = music.thumbnail
-    state.selectedMusic.name = music.name
+    state.modal.id = music.id
+    state.modal.artists = music.artists
+    state.modal.thumbnail = music.thumbnail
+    state.modal.name = music.name
     state.isModalOpen = true
+  }
+
+  const changeTextField = (value: string) => {
+    state.modal.textField = value
+  }
+
+  const changeTextArea = (value: string) => {
+    state.modal.textArea = value
   }
 
   const onClickOutside = () => {
@@ -76,14 +89,15 @@
   })
 
   const onClickSubmitButton = () => {
-    console.log('onClickSubmitButton')
+    requestMusic()
   }
 
   const fetchMusics = async () => {
     state.loading = true
+    if (!state.query) { state.loading = false; return }
     const requestMusicInput: SearchMusicInput = {
       roomId: `${route.params.id}`,
-      query: state.query?.toString() ?? ''
+      query: state.query.toString()
     }
     const result = music.api.searchMusics(requestMusicInput)
     await result.execute()
@@ -97,15 +111,33 @@
       }
     })
     state.loading = false
+    state.beforeQuery = state.query.toString()
+  }
+
+  const requestMusic = async () => {
+    const roomId: string = String(route.params.id)
+    const requestMusicInput: RequestMusicInput = {
+      roomId,
+      musics: [state.modal.id],
+      radioName: state.modal.textField,
+      message: state.modal.textArea
+    }
+
+    const result = music.api.requestMusic(requestMusicInput)
+    await result.execute()
+    if (result.data.value) {
+      navigateTo(`/${roomId}/requested`)
+    } else {
+      alert(result.error.value)
+    }
   }
 
   onMounted(async () => {
     await fetchMusics()
-    state.isFirstFetched = true
   })
 
   onBeforeUpdate(() => {
-    if (!state.isFirstFetched) { state.isFirstFetched = true; return }
+    state.query = String(route.query.q)
     if (state.query !== state.beforeQuery) {
       clearTimeout(state.timerObj)
       state.timerObj = setTimeout(async function () {
