@@ -31,17 +31,11 @@
 </template>
 <script setup lang="ts">
   import { music, useRequestTimer } from '@/features'
-  import { RequestMusicInput, SearchMusicInput } from '@/features/music/api'
+  import { RequestMusicInput, SearchMusicInput, SearchMusicResponse } from '@/features/music/api'
   const route = useRoute()
   const requestTimer = useRequestTimer()
 
-  type Music = {
-    id: string,
-    thumbnail: string,
-    name: string,
-    artists: string
-  }
-  const musicInit: Music[] = []
+  const musicInit: SearchMusicResponse = []
 
   const state = reactive({
     musics: musicInit,
@@ -60,7 +54,7 @@
     }
   })
 
-  const onClickMusicCard = (music: Music) => {
+  const onClickMusicCard = (music: SearchMusicResponse[0]) => {
     state.modal.id = music.id
     state.modal.artists = music.artists
     state.modal.thumbnail = music.thumbnail
@@ -103,14 +97,7 @@
     const result = music.api.searchMusics(requestMusicInput)
     await result.execute()
     if (!result.data.value) { state.loading = false; return }
-    state.musics = result.data.value!.map(function (v) {
-      return {
-        id: v.id,
-        thumbnail: v.thumbnail,
-        name: v.name,
-        artists: v.artists,
-      }
-    })
+    state.musics = result.data.value
     state.loading = false
     state.beforeQuery = state.query.toString()
   }
