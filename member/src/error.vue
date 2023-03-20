@@ -28,7 +28,7 @@
       text-align: center;
       padding-bottom: 70px;
       h1, p {
-        font-family: 'Mukta';
+        font-family: $english-font;
         font-weight: 700;
       }
       h1 {
