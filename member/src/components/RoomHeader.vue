@@ -5,20 +5,22 @@
         <img src="~/assets/img/logo.svg">
         <p class="room_name">ルーム名</p>
       </div>
-      <NavSearchTextInput v-if="!state.isHiddenShowNavSearchTextInput" />
+      <NavSearchTextInput v-if="props.isShowSearch" />
     </div>
   </nav>
 </template>
 <script setup lang="ts">
-  const route = useRoute()
-  const state = reactive({
-    isHiddenShowNavSearchTextInput: route.path.match('.*(requested|cooltime).*')
+  interface Props {
+    isShowSearch: boolean
+  }
+  const props = withDefaults(defineProps<Props>(), {
+    isShowSearch: false
   })
 </script>
 <style scoped lang="scss">
   nav {
     width: 100%;
-    height: 90px;
+    height: $app-bar-height;
     background-color: $background-color;
     box-shadow: 0px 3px 6px $shadow-color;
     position: sticky;
