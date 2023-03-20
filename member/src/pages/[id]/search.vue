@@ -12,7 +12,6 @@
       :thumbnail="music.thumbnail"
       :name="music.name"
       :artists="music.artists"
-      @click="onClickMusicCard(music)"
     />
   </div>
 </template>
@@ -29,24 +28,7 @@
     beforeQuery: '',
     loading: true,
     timerObj: setTimeout(function () {}, 0),
-    isModalOpen: false,
-    modal: {
-      id: '',
-      thumbnail: '',
-      name: '',
-      artists: '',
-      textArea: '',
-      textField: '',
-    }
   })
-
-  const onClickMusicCard = (music: SearchMusicResponse[0]) => {
-    state.modal.id = music.id
-    state.modal.artists = music.artists
-    state.modal.thumbnail = music.thumbnail
-    state.modal.name = music.name
-    state.isModalOpen = true
-  }
 
   const fetchMusics = async () => {
     state.loading = true
