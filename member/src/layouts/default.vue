@@ -1,6 +1,6 @@
 <template>
   <div>
-    <room-header />
+    <room-header :is-show-search="state.header.isShowSearch" />
     <router-view />
     <room-footer v-if="!state.isHiddenFooter" />
   </div>
@@ -9,10 +9,20 @@
 <script setup lang="ts">
   const route = useRoute()
   const state = reactive({
-    isHiddenFooter: route.path.match('.*(requested|cooltime).*')
+    header: {
+      isShowSearch: false,
+    },
+    isHiddenFooter: false
   })
   useHead({
     style: [{ children: 'body{margin: 0}' }]
+  })
+
+  onMounted(() => {
+    if (!route.path.match('.*(requested|cooltime).*')) {
+      state.header.isShowSearch = true
+      state.isHiddenFooter = true
+    }
   })
 </script>
 
