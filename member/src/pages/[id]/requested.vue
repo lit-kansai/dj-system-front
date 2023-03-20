@@ -46,7 +46,7 @@
 <style scoped lang="scss">
 .requested {
   width: 100vw;
-  height: calc(100vh - 90px);
+  height: calc(100vh - $app-bar-height);
   background: $gradient-orange;
   padding: 60px 80px 100px 80px;
   display: flex;

@@ -20,7 +20,7 @@
 <style scoped lang="scss">
   nav {
     width: 100%;
-    height: 90px;
+    height: $app-bar-height;
     background-color: $background-color;
     box-shadow: 0px 3px 6px $shadow-color;
     position: sticky;
