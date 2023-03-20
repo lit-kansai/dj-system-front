@@ -1,17 +1,15 @@
 <template>
   <div>
-    <room-header :is-show-search="state.header.isShowSearch" />
+    <room-header :is-show-search="state.isShowHeaderSearch" />
     <router-view />
-    <room-footer v-if="!state.isHiddenFooter" />
+    <room-footer v-if="state.isHiddenFooter" />
   </div>
 </template>
 
 <script setup lang="ts">
   const route = useRoute()
   const state = reactive({
-    header: {
-      isShowSearch: false,
-    },
+    isShowHeaderSearch: false,
     isHiddenFooter: false
   })
   useHead({
@@ -20,7 +18,7 @@
 
   onMounted(() => {
     if (!route.path.match('.*(requested|cooltime).*')) {
-      state.header.isShowSearch = true
+      state.isShowHeaderSearch = true
       state.isHiddenFooter = true
     }
   })
