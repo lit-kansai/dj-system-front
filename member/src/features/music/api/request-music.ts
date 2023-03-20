@@ -17,14 +17,14 @@ const responseSchema = toSchema<RequestMusicResponse>()(
 )
 export const requestMusic = (input: RequestMusicInput): PostRequestOutput<RequestMusicResponse> => {
   const result = useLazyAsyncData(async () => {
-    const response = await apiClient().room._roomId(input.roomId).request.$post({
+    const response = await apiClient().room._roomId(input.roomId).request.post({
       body: {
         musics: input.musics,
         radio_name: input.radioName,
         message: input.message
       }
     })
-    const parseResult = responseSchema.safeParse(response)
+    const parseResult = responseSchema.safeParse(response.body)
     if (!parseResult.success) {
       // const { setCurrentError } = useCurrentError()
       // setCurrentError(parseResult.error)
