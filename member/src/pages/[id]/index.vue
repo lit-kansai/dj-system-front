@@ -75,7 +75,7 @@
   .music-list {
     margin-top: 50px;
     @include pc() {
-      margin: 0;
+      margin: 0 auto;
     }
   }
   .wrapper {
