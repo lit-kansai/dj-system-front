@@ -15,6 +15,7 @@
         />
       </template>
     </ModalContainer>
+    <musicLoading class="loading" />
   </div>
 </template>
 <script setup lang="ts">
@@ -53,4 +54,7 @@
 
 </script>
 <style scoped lang="scss">
+.loading {
+  margin-top: 100px;
+}
 </style>
