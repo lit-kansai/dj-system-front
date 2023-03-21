@@ -5,13 +5,5 @@
 
 .wrapper {
   max-width: 1400px;
-  padding: 0 16px;
-
-  @include tablet() {
-    padding: 0 32px;
-  }
-
-  @include pc() {
-    padding: 0 100px;
-  }
+  padding: 0 $padding-wrapper;
 }

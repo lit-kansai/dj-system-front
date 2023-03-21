@@ -4,15 +4,28 @@
     <div v-else-if="state.musics.length === 0">
       <p>楽曲が見つかりませんでした</p>
     </div>
-    <MusicCard
-      v-for="music in state.musics"
-      v-else
-      :id="music.id"
-      :key="music.id"
-      :thumbnail="music.thumbnail"
-      :name="music.name"
-      :artists="music.artists"
-    />
+    <div v-else class="container">
+      <div class="music-cards">
+        <MusicCard
+          v-for="music in state.musics"
+          :id="music.id"
+          :key="music.id"
+          :thumbnail="music.thumbnail"
+          :name="music.name"
+          :artists="music.artists"
+        />
+      </div>
+      <div class="music-cells">
+        <MusicCell
+          v-for="music in state.musics"
+          :id="music.id"
+          :key="music.id"
+          :thumbnail="music.thumbnail"
+          :name="music.name"
+          :artists="music.artists"
+        />
+      </div>
+    </div>
   </div>
 </template>
 <script setup lang="ts">
@@ -51,14 +64,27 @@
   })
 </script>
 <style scoped lang="scss">
-.loading {
-  width: 100%;
-}
-.search {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  gap: 60px 15px;
-  margin: 110px auto;
-}
+  .loading {
+    width: 100%;
+  }
+  .container {
+    .music-cards {
+      display: none;
+      @include pc() {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 60px 15px;
+        margin: 110px auto;
+      }
+    }
+    .music-cells {
+      margin: 18px 0 40px 0;
+      display: flex;
+      flex-direction: column;
+      div + div {
+        border-top: 1px solid $color-light-gray;
+      }
+    }
+  }
 </style>
