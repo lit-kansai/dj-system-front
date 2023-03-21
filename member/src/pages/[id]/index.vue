@@ -36,7 +36,7 @@
       roomId: `${route.params.id}`,
     }
     const result = await music.api.getTop50Musics(requestInput)
-    result.execute()
+    await result.execute()
     state.musics = result.data.value ?? []
   }
 
@@ -54,8 +54,8 @@
       padding: 130px 0;
       .contents {
         h1 {
-          font-weight: 500;
-          font-size: 95px;
+          font-weight: 600;
+          font-size: 80px;
           line-height: 115px;
           padding-bottom: 10px;
         }
