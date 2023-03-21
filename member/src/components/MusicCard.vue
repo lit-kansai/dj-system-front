@@ -84,8 +84,8 @@
     const result = music.api.requestMusic(requestMusicInput)
     await result.execute()
     if (result.data.value) {
-      await navigateTo(`/${roomId}/requested`)
       requestTimer.requestMusic()
+      await navigateTo(`/${roomId}/requested`)
     } else {
       alert(result.error.value)
     }
