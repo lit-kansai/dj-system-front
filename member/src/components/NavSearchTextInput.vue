@@ -29,7 +29,7 @@
   }
 
   onMounted(() => {
-    query.value = String(route.query.q ?? '')
+    query.value = router.currentRoute.value.query.q?.toString() ?? ''
   })
 
 </script>
