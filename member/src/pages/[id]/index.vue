@@ -1,17 +1,24 @@
 <template>
   <div>
-    <RoomHeader :is-show-search="true" />
-    <div class="wrapper">
-      <div class="header">
-        <div class="contents">
-          <h1>DJ Gassi</h1>
-          <p>自分の好きな曲をリクエストしよう！</p>
-          <GradationSearchTextInput />
+    <div class="pc-header">
+      <RoomHeader :is-show-search="true" />
+      <div class="wrapper">
+        <div class="container">
+          <div class="contents">
+            <h1>DJ Gassi</h1>
+            <p>自分の好きな曲をリクエストしよう！</p>
+            <GradationSearchTextInput />
+          </div>
+          <img src="~/assets/img/logo.svg">
         </div>
-        <img src="~/assets/img/logo.svg">
       </div>
-      <MusicList :musics="musics" />
     </div>
+    <div class="mobile-header">
+      <img src="~/assets/img/logo.svg">
+      <h1>ルーム名</h1>
+      <GradationSearchTextInput />
+    </div>
+    <MusicList :musics="musics" class="wrapper music-list" />
     <RoomFooter />
   </div>
 </template>
@@ -39,8 +46,40 @@
 </script>
 
 <style scoped lang="scss">
-  .wrapper {  margin: 0 auto;
-    .header {
+  .pc-header {
+    display: none;
+    @include pc() {
+      display: block;
+    }
+  }
+  .mobile-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    img {
+      margin-top: 80px;
+      width: 200px;
+      height: 200px;
+      object-fit: contain;
+    }
+    h1 {
+      margin: 30px 0;
+      font-weight: 700;
+      font-size: 21px;
+      line-height: 30px;
+    }
+    @include pc() {
+      display: none;
+    }
+  }
+  .music-list {
+    margin-top: 50px;
+    @include pc() {
+      margin: 0;
+    }
+  }
+  .wrapper {
+    .container {
       display: flex;
       justify-content: space-between;
       padding: 130px 0;
