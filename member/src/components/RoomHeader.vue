@@ -1,6 +1,6 @@
 <template>
   <nav>
-    <div class="container wrapper">
+    <div class="wrapper">
       <div class="logo">
         <img src="~/assets/img/logo.svg">
         <p class="room_name">ルーム名</p>
@@ -27,9 +27,8 @@
     top: 0;
     z-index: 999;
 
-    .container{
+    .wrapper{
       height: 100%;
-      margin: 0 auto;
       display: flex;
       align-items: center;
       justify-content: space-between;

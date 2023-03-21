@@ -58,8 +58,7 @@
 </script>
 
 <style scoped lang="scss">
-  .wrapper {
-    margin: 0 auto;
+  .wrapper {  margin: 0 auto;
     .header {
       display: flex;
       justify-content: space-between;
