@@ -4,28 +4,7 @@
     <div v-else-if="state.musics.length === 0">
       <p>楽曲が見つかりませんでした</p>
     </div>
-    <div v-else class="container">
-      <div class="music-cards">
-        <MusicCard
-          v-for="music in state.musics"
-          :id="music.id"
-          :key="music.id"
-          :thumbnail="music.thumbnail"
-          :name="music.name"
-          :artists="music.artists"
-        />
-      </div>
-      <div class="music-cells">
-        <MusicCell
-          v-for="music in state.musics"
-          :id="music.id"
-          :key="music.id"
-          :thumbnail="music.thumbnail"
-          :name="music.name"
-          :artists="music.artists"
-        />
-      </div>
-    </div>
+    <MusicList v-else :musics="state.musics" />
   </div>
 </template>
 <script setup lang="ts">
@@ -66,28 +45,5 @@
 <style scoped lang="scss">
   .loading {
     width: 100%;
-  }
-  .container {
-    .music-cards {
-      display: none;
-      @include pc() {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-        gap: 60px 15px;
-        margin: 110px auto;
-      }
-    }
-    .music-cells {
-      margin: 18px 0 40px 0;
-      display: flex;
-      flex-direction: column;
-      @include pc() {
-        display: none;
-      }
-      div + div {
-        border-top: 1px solid $color-light-gray;
-      }
-    }
   }
 </style>

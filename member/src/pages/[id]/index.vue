@@ -8,28 +8,17 @@
       </div>
       <img src="~/assets/img/logo.svg">
     </div>
-    <div class="top-musics">
-      <MusicCard
-        v-for="music in state.musics"
-        :id="music.id"
-        :key="music.id"
-        :thumbnail="music.thumbnail"
-        :name="music.name"
-        :artists="music.artists"
-      />
-    </div>
+    <MusicList :musics="musics" />
   </div>
 </template>
 
 <script setup lang="ts">
+  import { Track } from '@dj-system/api-client/src/generated/@types'
   import { music } from '@/features'
-  import { GetTop50MusicsInput, GetTop50MusicsResponse } from '@/features/music/api'
+  import { GetTop50MusicsInput } from '@/features/music/api'
   const route = useRoute()
 
-  const musicInit: GetTop50MusicsResponse = []
-  const state = reactive({
-    musics: musicInit,
-  })
+  const musics = ref<Track[]>([])
 
   const fetchTop50Musics = async () => {
     const requestInput: GetTop50MusicsInput = {
@@ -37,7 +26,7 @@
     }
     const result = await music.api.getTop50Musics(requestInput)
     await result.execute()
-    state.musics = result.data.value ?? []
+    musics.value = result.data.value ?? []
   }
 
   onMounted(async () => {
@@ -68,11 +57,13 @@
       }
     }
     .top-musics {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 60px 15px;
-    margin-bottom: 110px;
-  }
+      .music-cards {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 60px 15px;
+        margin-bottom: 110px;
+      }
+    }
 }
 </style>
