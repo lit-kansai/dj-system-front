@@ -1,22 +1,21 @@
 <template>
   <footer>
-    <img width="60px" src="~/assets/img/kansai-logo-white.svg">
-    <p>&copy; Life is Tech! Kansai Mentors</p>
+    <KansaiMentors />
   </footer>
 </template>
+
 <script setup lang="ts"></script>
+
 <style scoped lang="scss">
   footer {
-    display: flex;
+    width: 100vw;
+    height: 70px;
+    display: flex !important;
     justify-content: center;
     align-items: center;
     background: $gradient-orange;
-    padding: 32px 0;
-    p {
-      font-size: 20px;
-      color: $text-color-white;
-      margin-left: 16px;
-      vertical-align: middle;
+    @include tablet() {
+      height: 100px;
     }
   }
 </style>
