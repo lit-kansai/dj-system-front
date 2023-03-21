@@ -25,6 +25,7 @@
     box-shadow: 0px 3px 6px $shadow-color;
     position: sticky;
     top: 0;
+    z-index: 999;
 
     .container{
       height: 100%;

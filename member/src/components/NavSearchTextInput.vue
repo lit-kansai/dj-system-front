@@ -6,25 +6,30 @@
       type="text"
       placeholder="曲名・アーティスト名で検索"
       autocomplete="on"
+      @keypress.enter="searchMusics"
     >
   </div>
 </template>
 <script setup lang="ts">
   const route = useRoute()
   const router = useRouter()
-  const query = ref(route.query.q)
+  const query = ref('')
 
   const textComputed = computed({
     get: () => query.value,
     set: (value) => {
-      const roomId = route.params.id
-      if (!roomId) { return }
-      router.push({ path: `/${roomId}/search`, query: { q: value } })
+      query.value = value
     }
   })
 
+  const searchMusics = () => {
+    const roomId = route.params.id
+    if (!roomId) { return }
+    router.push({ path: `/${roomId}/search`, query: { q: query.value } })
+  }
+
   onMounted(() => {
-    query.value = route.query.q ?? ''
+    query.value = router.currentRoute.value.query.q?.toString() ?? ''
   })
 
 </script>
