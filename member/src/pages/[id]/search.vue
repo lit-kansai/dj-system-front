@@ -1,12 +1,17 @@
 <template>
-  <div class="wrapper">
-    <div v-if="state.loading" class="loading"><music-loading /></div>
-    <div v-else-if="state.musics.length === 0">
-      <p>楽曲が見つかりませんでした</p>
+  <div>
+    <RoomHeader :is-show-search="true" />
+    <div class="wrapper">
+      <div v-if="state.loading" class="loading"><music-loading /></div>
+      <div v-else-if="state.musics.length === 0">
+        <p>楽曲が見つかりませんでした</p>
+      </div>
+      <MusicList v-else :musics="state.musics" />
     </div>
-    <MusicList v-else :musics="state.musics" />
+    <RoomFooter />
   </div>
 </template>
+
 <script setup lang="ts">
   import { music } from '@/features'
   import { SearchMusicInput, SearchMusicResponse } from '@/features/music/api'
@@ -42,6 +47,7 @@
     await fetchMusics(query)
   })
 </script>
+
 <style scoped lang="scss">
   .loading {
     width: 100%;

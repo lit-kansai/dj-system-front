@@ -1,9 +1,12 @@
 <template>
-  <div class="cooltime">
-    <p>次のリクエストまでちょっと待ってね！</p>
-    <strong>{{ state.displayTimer.min }}:{{ state.displayTimer.sec }}</strong>
+  <div>
+    <RoomHeader :is-show-search="false" /> <div class="cooltime">
+      <p>次のリクエストまでちょっと待ってね！</p>
+      <strong>{{ state.displayTimer.min }}:{{ state.displayTimer.sec }}</strong>
+    </div>
   </div>
 </template>
+
 <script setup lang="ts">
   import { useRequestTimer } from '@/features'
   const timer = useRequestTimer()
@@ -23,6 +26,7 @@
     setInterval(countdown, 1000)
   })
 </script>
+
 <style scoped lang="scss">
 .cooltime {
   width: 100vw;

@@ -1,12 +1,15 @@
 <template>
-  <div class="requested">
-    <div class="alert">
-      <img src="~/assets/img/requested-orange.svg">
-      <div class="message">
-        <p>送信完了</p>
-        <div class="timer">
-          <p>次のリクエストまで</p>
-          <strong>{{ state.displayTimer.min }}:{{ state.displayTimer.sec }}</strong>
+  <div>
+    <RoomHeader :is-show-search="false" />
+    <div class="requested">
+      <div class="alert">
+        <img src="~/assets/img/requested-orange.svg">
+        <div class="message">
+          <p>送信完了</p>
+          <div class="timer">
+            <p>次のリクエストまで</p>
+            <strong>{{ state.displayTimer.min }}:{{ state.displayTimer.sec }}</strong>
+          </div>
         </div>
       </div>
     </div>

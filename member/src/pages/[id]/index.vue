@@ -1,14 +1,18 @@
 <template>
-  <div class="wrapper">
-    <div class="header">
-      <div class="contents">
-        <h1>DJ Gassi</h1>
-        <p>自分の好きな曲をリクエストしよう！</p>
-        <GradationSearchTextInput />
+  <div>
+    <RoomHeader :is-show-search="true" />
+    <div class="wrapper">
+      <div class="header">
+        <div class="contents">
+          <h1>DJ Gassi</h1>
+          <p>自分の好きな曲をリクエストしよう！</p>
+          <GradationSearchTextInput />
+        </div>
+        <img src="~/assets/img/logo.svg">
       </div>
-      <img src="~/assets/img/logo.svg">
+      <MusicList :musics="musics" />
     </div>
-    <MusicList :musics="musics" />
+    <RoomFooter />
   </div>
 </template>
 
