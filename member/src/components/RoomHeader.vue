@@ -3,7 +3,7 @@
     <div class="wrapper mobile">
       <h1>ルーム名</h1>
       <div class="input">
-        <TopSearchTextInput />
+        <GradationSearchTextInput />
       </div>
     </div>
     <div class="wrapper tablet">

@@ -4,7 +4,7 @@
       <div class="contents">
         <h1>DJ Gassi</h1>
         <p>自分の好きな曲をリクエストしよう！</p>
-        <TopSearchTextInput />
+        <GradationSearchTextInput />
       </div>
       <img src="~/assets/img/logo.svg">
     </div>
