@@ -2,7 +2,7 @@
   <nav>
     <div class="wrapper mobile">
       <h1>ルーム名</h1>
-      <div class="input">
+      <div v-if="props.isShowSearch" class="input">
         <GradationSearchTextInput />
       </div>
     </div>
@@ -43,10 +43,10 @@
         font-size: 21px;
         line-height: 30px;
         text-align: center;
-        padding-top: 30px;
+        padding: 30px 0 25px 0;
       }
       .input {
-        padding: 25px 0 20px 0;
+        padding-bottom: 20px;
       }
     }
     .wrapper.tablet {
