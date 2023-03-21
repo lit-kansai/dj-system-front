@@ -7,7 +7,7 @@
       placeholder="曲名・アーティスト名で検索"
       autocomplete="on"
     >
-    <input type="submit" value="検索" @click="emits('onClickSearch')">
+    <input v-if="textComputed.length != 0" type="submit" value="検索" @click="emits('onClickSearch')">
   </div>
 </template>
 <script setup lang="ts">
