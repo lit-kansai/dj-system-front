@@ -6,14 +6,15 @@
       type="text"
       placeholder="曲名・アーティスト名で検索"
       autocomplete="on"
+      @keypress.enter="emits('search')"
     >
-    <input v-if="textComputed.length != 0" type="submit" value="検索" @click="emits('onClickSearch')">
+    <input :class="textComputed.length == 0 ? 'none' : ''" type="submit" value="検索" @click="emits('search')">
   </div>
 </template>
 <script setup lang="ts">
   const emits = defineEmits<{
     (e: 'change', value?: string): void,
-    (e: 'onClickSearch'): void
+    (e: 'search'): void
   }>()
   interface Props {
     text: string
@@ -29,6 +30,9 @@
 </script>
 
 <style scoped lang="scss">
+  .none {
+    display: none;
+  }
   div {
     width: 425px;
     height: 50px;
@@ -79,6 +83,10 @@
         &::placeholder {
           color: $text-color-black;
         }
+      }
+
+      &:focus + input[type="submit"] {
+        display: block;
       }
     }
 

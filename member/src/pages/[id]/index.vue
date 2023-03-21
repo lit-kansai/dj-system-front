@@ -4,7 +4,7 @@
       <div class="contents">
         <h1>DJ Gassi</h1>
         <p>自分の好きな曲をリクエストしよう！</p>
-        <TopSearchTextInput :text="state.query" @change="changeTextField" @on-click-search="searchMusics" />
+        <TopSearchTextInput :text="state.query" @change="changeTextField" @search="searchMusics" />
       </div>
       <img src="~/assets/img/logo.svg">
     </div>
