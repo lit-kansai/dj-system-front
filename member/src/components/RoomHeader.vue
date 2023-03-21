@@ -32,6 +32,9 @@
     top: 0;
     z-index: 999;
     min-height: $app-bar-height;
+    @include tablet() {
+      height: $app-bar-height;
+    }
     .wrapper.mobile {
       @include tablet() {
         display: none;
