@@ -19,47 +19,32 @@
   import { music } from '@/features'
   import { SearchMusicInput, SearchMusicResponse } from '@/features/music/api'
   const route = useRoute()
+  const { q } = route.query
 
   const musicInit: SearchMusicResponse = []
 
   const state = reactive({
     musics: musicInit,
-    query: route.query.q,
-    beforeQuery: '',
     loading: true,
-    timerObj: setTimeout(function () {}, 0),
   })
 
   const fetchMusics = async () => {
     state.loading = true
-    if (!state.query) { state.loading = false; return }
+    await refreshNuxtData('route')
+    if (!q) { state.loading = false; return }
     const requestMusicInput: SearchMusicInput = {
       roomId: `${route.params.id}`,
-      query: state.query.toString()
+      query: q.toString()
     }
     const result = music.api.searchMusics(requestMusicInput)
     await result.execute()
     if (!result.data.value) { state.loading = false; return }
     state.musics = result.data.value
     state.loading = false
-    state.beforeQuery = state.query.toString()
   }
 
   onMounted(async () => {
     await fetchMusics()
-  })
-
-  onBeforeUpdate(() => {
-    state.query = String(route.query.q)
-    if (state.query !== state.beforeQuery) {
-      clearTimeout(state.timerObj)
-      state.timerObj = setTimeout(async function () {
-        await fetchMusics()
-        clearTimeout(state.timerObj)
-      }, 1800)
-    } else {
-      clearTimeout(state.timerObj)
-    }
   })
 </script>
 <style scoped lang="scss">

@@ -7,22 +7,24 @@
       placeholder="曲名・アーティスト名で検索"
       autocomplete="on"
     >
-    <input type="submit" value="検索" @click="onclickSearch">
+    <input type="submit" value="検索" @click="emits('onClickSearch')">
   </div>
 </template>
 <script setup lang="ts">
-  const route = useRoute()
-  const router = useRouter()
-
-  const query = ref('')
-  const onclickSearch = () => {
-    const roomId = route.params.id
-    if (!roomId) { return }
-    router.push({ path: `/${roomId}/search`, query: { q: query.value } })
+  const emits = defineEmits<{
+    (e: 'change', value?: string): void,
+    (e: 'onClickSearch'): void
+  }>()
+  interface Props {
+    text: string
   }
+  const props = withDefaults(defineProps<Props>(), {
+    text: '',
+  })
+
   const textComputed = computed({
-    get: () => query.value,
-    set: (value) => { query.value = value }
+    get: () => props.text,
+    set: value => emits('change', value)
   })
 </script>
 

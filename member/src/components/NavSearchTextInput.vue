@@ -12,7 +12,7 @@
 <script setup lang="ts">
   const route = useRoute()
   const router = useRouter()
-  const query = ref(route.query.q)
+  const query = ref('')
 
   const textComputed = computed({
     get: () => query.value,
@@ -24,7 +24,7 @@
   })
 
   onMounted(() => {
-    query.value = route.query.q ?? ''
+    query.value = String(route.query.q ?? '')
   })
 
 </script>

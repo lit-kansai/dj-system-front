@@ -4,7 +4,7 @@
       <div class="contents">
         <h1>DJ Gassi</h1>
         <p>自分の好きな曲をリクエストしよう！</p>
-        <TopSearchTextInput />
+        <TopSearchTextInput :text="state.query" @change="changeTextField" @on-click-search="searchMusics" />
       </div>
       <img src="~/assets/img/logo.svg">
     </div>
@@ -29,6 +29,7 @@
   const musicInit: GetTop50MusicsResponse = []
   const state = reactive({
     musics: musicInit,
+    query: '',
   })
 
   const fetchTop50Musics = async () => {
@@ -38,6 +39,16 @@
     const result = await music.api.getTop50Musics(requestInput)
     await result.execute()
     state.musics = result.data.value ?? []
+  }
+
+  const searchMusics = () => {
+    const roomId = route.params.id
+    if (!roomId) { return }
+    window.location.href = `/${roomId}/search?q=${state.query}`
+  }
+
+  const changeTextField = (value?: string) => {
+    state.query = value ?? ''
   }
 
   onMounted(async () => {
