@@ -82,6 +82,9 @@
       margin: 18px 0 40px 0;
       display: flex;
       flex-direction: column;
+      @include pc() {
+        display: none;
+      }
       div + div {
         border-top: 1px solid $color-light-gray;
       }
