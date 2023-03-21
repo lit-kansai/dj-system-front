@@ -37,7 +37,6 @@
     justify-content: left;
     align-items: center;
     position: relative;
-    z-index: 1;
     &::before {
       content: "";
       background-color: $text-color-white;
@@ -48,7 +47,6 @@
       display: inline-block;
       width: 20px;
       height: 20px;
-      z-index: 900;
     }
     &:focus-within::before {
       display: none;
@@ -92,7 +90,6 @@
       color: $text-color-white;
       background-color: transparent;
       border: none;
-      z-index: 999;
       cursor: pointer;
     }
   }
