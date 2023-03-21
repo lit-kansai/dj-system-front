@@ -8,7 +8,6 @@
       </div>
       <MusicList v-else :musics="state.musics" />
     </div>
-    <RoomFooter />
   </div>
 </template>
 

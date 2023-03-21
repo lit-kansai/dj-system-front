@@ -16,6 +16,7 @@ $music-card-shadow: rgba(143, 143, 143, 0.25);
 $app-bar-height: 90px;
 $english-font: 'Mukta';
 $padding-wrapper: 16px;
+$footer-height: 70px;
 
 $tablet-breakpoint: 767px;
 $pc-breakpoint: 1025px;
@@ -34,6 +35,7 @@ $pc-breakpoint: 1025px;
 
 @include tablet() {
   $padding-wrapper: 32px;
+  $footer-height: 100px
 }
 
 @include pc() {
