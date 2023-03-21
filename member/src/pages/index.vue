@@ -1,5 +1,6 @@
 <template>
   <div>
+    <musicLoading />
     <button @click="openModal">openModal</button>
     <ModalContainer v-bind="modalProps">
       <template #content>
