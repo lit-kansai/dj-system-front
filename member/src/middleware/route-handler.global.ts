@@ -1,27 +1,18 @@
 import { room } from '@/features'
-import { getRouteParams } from '@/utils'
+import { getRouteParams, removeExpiredCooltime } from '@/utils'
 import { MEMBER_ALLOW_REQUEST_TIME_LOCAL_STORAGE_KEY } from '@/constants'
 
-const isSearchOrRootPath = (path: string): boolean => {
-  const searchPath = /^\/[a-zA-Z0-9_-]+(\/search)?\/?$/
+const isRootPath = (path: string): boolean => {
   const rootPath = /^\/[a-zA-Z0-9_-]+\/?$/
-  return searchPath.test(path) || rootPath.test(path)
+  return rootPath.test(path)
 }
 
-const isCooltimeOrRequestedPath = (path: string): boolean => {
-  const cooltimePaths = /^\/[a-zA-Z0-9_-]+\/(requested|cooltime)\/?$/
-  return cooltimePaths.test(path)
-}
-const isCooltimePath = (path: string): boolean => {
-  const cooltimePaths = /^\/[a-zA-Z0-9_-]+\/cooltime\/?$/
-  return cooltimePaths.test(path)
-}
+const extractPath = (path: string): string | null => {
+  const cooltimePaths = /^\/[a-zA-Z0-9_-]+\/(requested|cooltime|search)\/?$/
+  const match = path.match(cooltimePaths)
+  if (match && match[1]) { return match[1] }
 
-const removeExpiredCooltime = () => {
-  const cooltime = localStorage.getItem(MEMBER_ALLOW_REQUEST_TIME_LOCAL_STORAGE_KEY)
-  // cooltimeあるけど現在時刻より前やったら消しつつ遷移
-  const currentTime = new Date().getTime()
-  if (currentTime >= Number(cooltime)) { localStorage.removeItem(MEMBER_ALLOW_REQUEST_TIME_LOCAL_STORAGE_KEY) }
+  return null
 }
 
 export default defineNuxtRouteMiddleware(async ({ path }) => {
@@ -34,16 +25,26 @@ export default defineNuxtRouteMiddleware(async ({ path }) => {
     // ルームが見つからなかったとき(今のやつやと404以外もなのであまり良くないかも)
     if (error.value) { throw createError({ statusCode: 404, statusMessage: 'Page Not Found' }) }
 
-    // cooltime, requestのとき
-    if (isCooltimeOrRequestedPath(path)) {
-      const cooltime = localStorage.getItem(MEMBER_ALLOW_REQUEST_TIME_LOCAL_STORAGE_KEY)
-      if (!cooltime) { return navigateTo(`/${roomId}`) }
+    const cooltime = localStorage.getItem(MEMBER_ALLOW_REQUEST_TIME_LOCAL_STORAGE_KEY)
+    if (isRootPath(path)) {
+      // navigateToだとバグるので
+      if (cooltime) { window.location.href = `/${roomId}/cooltime`; return }
+      return
     }
 
-    if (isSearchOrRootPath(path)) {
-      const cooltime = localStorage.getItem(MEMBER_ALLOW_REQUEST_TIME_LOCAL_STORAGE_KEY)
-      console.log(isCooltimePath(path), path)
-      if (!isCooltimePath(path) && cooltime) { return navigateTo(`/${roomId}/cooltime`) }
+    const roomPagePath = extractPath(path)
+    if (roomPagePath === 'search') {
+      if (cooltime) { window.location.href = `/${roomId}/cooltime`; return }
+      return
+    }
+
+    if (roomPagePath === 'cooltime') {
+      if (!cooltime) { return navigateTo(`/${roomId}`) }
+      return
+    }
+
+    if (roomPagePath === 'requested') {
+      if (!cooltime) { return navigateTo(`/${roomId}`) }
     }
   }
 })
