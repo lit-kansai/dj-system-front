@@ -4,7 +4,7 @@
       <div class="contents">
         <h1>DJ Gassi</h1>
         <p>自分の好きな曲をリクエストしよう！</p>
-        <TopSearchTextInput :text="state.query" @change="changeTextField" @search="searchMusics" />
+        <TopSearchTextInput />
       </div>
       <img src="~/assets/img/logo.svg">
     </div>
@@ -25,12 +25,10 @@
   import { music } from '@/features'
   import { GetTop50MusicsInput, GetTop50MusicsResponse } from '@/features/music/api'
   const route = useRoute()
-  const router = useRouter()
 
   const musicInit: GetTop50MusicsResponse = []
   const state = reactive({
     musics: musicInit,
-    query: '',
   })
 
   const fetchTop50Musics = async () => {
@@ -40,16 +38,6 @@
     const result = await music.api.getTop50Musics(requestInput)
     await result.execute()
     state.musics = result.data.value ?? []
-  }
-
-  const searchMusics = () => {
-    const roomId = route.params.id
-    if (!roomId) { return }
-    router.push({ path: `/${roomId}/search`, query: { q: state.query } })
-  }
-
-  const changeTextField = (value?: string) => {
-    state.query = value ?? ''
   }
 
   onMounted(async () => {
