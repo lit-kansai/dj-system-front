@@ -1,6 +1,7 @@
 <template>
   <div>
     <input
+      v-model="textComputed"
       class="search"
       type="text"
       placeholder="曲名・アーティスト名で検索"
@@ -10,9 +11,19 @@
   </div>
 </template>
 <script setup lang="ts">
+  const route = useRoute()
+  const router = useRouter()
+
+  const query = ref('')
   const onclickSearch = () => {
-    console.log('search')
+    const roomId = route.params.id
+    if (!roomId) { return }
+    router.push({ path: `/${roomId}/search`, query: { q: query.value } })
   }
+  const textComputed = computed({
+    get: () => query.value,
+    set: (value) => { query.value = value }
+  })
 </script>
 
 <style scoped lang="scss">
