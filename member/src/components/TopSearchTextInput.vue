@@ -34,7 +34,7 @@
     display: none;
   }
   div {
-    width: 425px;
+    width: 100%;
     height: 50px;
     padding: 3px !important;
     border-radius: 40px;
@@ -43,6 +43,9 @@
     justify-content: left;
     align-items: center;
     position: relative;
+    @include tablet() {
+      width: 425px;
+    }
     &::before {
       content: "";
       background-color: $text-color-white;
