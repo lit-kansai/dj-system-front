@@ -12,6 +12,7 @@
 </template>
 <script setup lang="ts">
   const route = useRoute()
+  const router = useRouter()
   const query = ref('')
 
   const textComputed = computed({
@@ -24,7 +25,7 @@
   const searchMusics = () => {
     const roomId = route.params.id
     if (!roomId) { return }
-    window.location.href = `/${roomId}/search?q=${query.value}`
+    router.push({ path: `/${roomId}/search`, query: { q: query.value } })
   }
 
   onMounted(() => {

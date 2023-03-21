@@ -19,22 +19,24 @@
   import { music } from '@/features'
   import { SearchMusicInput, SearchMusicResponse } from '@/features/music/api'
   const route = useRoute()
-  const { q } = route.query
+  const router = useRouter()
 
   const musicInit: SearchMusicResponse = []
-
   const state = reactive({
     musics: musicInit,
     loading: true,
   })
 
-  const fetchMusics = async () => {
+  watch(router.currentRoute, (currentRoute, _) => {
+    fetchMusics(currentRoute.query.q?.toString() ?? '')
+  })
+
+  const fetchMusics = async (query: string) => {
     state.loading = true
-    await refreshNuxtData('route')
-    if (!q) { state.loading = false; return }
+    if (query === '') { state.loading = false; return }
     const requestMusicInput: SearchMusicInput = {
       roomId: `${route.params.id}`,
-      query: q.toString()
+      query
     }
     const result = music.api.searchMusics(requestMusicInput)
     await result.execute()
@@ -44,7 +46,8 @@
   }
 
   onMounted(async () => {
-    await fetchMusics()
+    const query = router.currentRoute.value.query.q?.toString() ?? ''
+    await fetchMusics(query)
   })
 </script>
 <style scoped lang="scss">

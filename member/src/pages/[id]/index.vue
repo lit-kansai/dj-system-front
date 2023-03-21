@@ -25,6 +25,7 @@
   import { music } from '@/features'
   import { GetTop50MusicsInput, GetTop50MusicsResponse } from '@/features/music/api'
   const route = useRoute()
+  const router = useRouter()
 
   const musicInit: GetTop50MusicsResponse = []
   const state = reactive({
@@ -44,7 +45,7 @@
   const searchMusics = () => {
     const roomId = route.params.id
     if (!roomId) { return }
-    window.location.href = `/${roomId}/search?q=${state.query}`
+    router.push({ path: `/${roomId}/search`, query: { q: state.query } })
   }
 
   const changeTextField = (value?: string) => {
