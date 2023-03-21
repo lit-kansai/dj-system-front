@@ -19,7 +19,6 @@
       <GradationSearchTextInput />
     </div>
     <MusicList :musics="musics" class="wrapper music-list" />
-    <RoomFooter />
   </div>
 </template>
 
