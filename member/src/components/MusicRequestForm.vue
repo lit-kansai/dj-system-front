@@ -13,12 +13,12 @@
       </div>
       <div class="form_container">
         <div class="form_element">
-          <p class="form_label">ニックネーム(匿名可)</p>
+          <p class="form_label">ニックネーム(匿名OK)</p>
           <TextField v-model="textFieldComputed" :text="props.textField" placeholder="がっしー" />
         </div>
         <div class="form_element">
           <p class="form_label">メッセージ</p>
-          <TextArea v-model="textAreaComputed" :text="props.textArea" placeholder="開発ここまで終わったよ！" />
+          <TextArea v-model="textAreaComputed" :text="props.textArea" placeholder="開発ここまで終わったよ！（入力しなくても送信できるよ！）" />
         </div>
         <div class="submit_button_container">
           <button
@@ -67,11 +67,19 @@
 </script>
 <style scoped lang="scss">
   .container {
-    display: flex;
-    align-items: center;
-    gap: 30px;
-    padding: 70px;
-    img {
+    @include pc() {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+      padding: 70px;
+    }
+  }
+  .left {
+    display: none;
+    @include pc() {
+      display: block;
+    }
+    .img {
       width: 400px;
       height: 400px;
       object-fit: cover;
@@ -79,19 +87,46 @@
   }
   .right {
     flex-grow: 1;
-    .music_name {
-      font-size: 48px;
-      color: $text-color-black;
-      font-weight: 700;
-      margin-left: -5px;
-    }
-    .artist_name {
-      font-size: 20px;
-      color: $text-color-gray;
+    .music {
+      max-width: calc(100vw - ($padding-wrapper * 2));
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      img {
+        width: 55px;
+        height: 55px;
+        object-fit: cover;
+        @include pc() {
+          display: none;
+        }
+      }
+      .music_name, .artist_name {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      .name {
+        .music_name {
+          font-size: 16px;
+          color: $text-color-black;
+          font-weight: 700;
+          @include pc() {
+            font-size: 40px;
+            margin-left: -3px;
+          }
+        }
+        .artist_name {
+          font-size: 13px;
+          color: $text-color-gray;
+          @include pc() {
+            font-size: 20px;
+          }
+        }
+      }
     }
     .form_container {
       gap: 24px;
-      margin-top: 32px;
+      margin-top: 30px;
       display: flex;
       flex-direction: column;
       .form_element {

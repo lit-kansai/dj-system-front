@@ -1,7 +1,7 @@
 <template>
   <div v-if="isOpen" class="wrapper" @click="onClickOutside">
     <div class="container" @click.stop>
-      <ModalCloseButton @click.stop="onClickCloseButton" />
+      <ModalCloseButton class="close-button" @click.stop="onClickCloseButton" />
       <slot name="content" />
     </div>
   </div>
@@ -34,22 +34,57 @@
     align-items: center;
     width: 100vw;
     max-width: 100vw !important;
+    background-color: rgba(0, 0, 0, 0.3);
   }
   .container {
-    position: relative;
-    margin-left: 1rem;
-    margin-right: 1rem;
     width: 100%;
     max-width: 1024px;
-    border-radius: 25px;
+    position: absolute;
+    bottom: 0;
+    padding: 20px 15px;
+    border-radius: 20px 20px 0px 0px;
     background-color: $background-color;
-    box-shadow: 0px 4px 4px $shadow-color;
+    box-shadow: 0px -2px 10px rgba(0, 0, 0, 0.25);
+    animation-name:fadeUpAnime;
+    animation-duration:0.5s;
+    animation-fill-mode:forwards;
+    opacity:0;
+    @include pc() {
+      animation-name:fadeInAnime;
+      animation-duration:1s;
+      position: relative;
+      margin: 0 1rem;
+      padding: 0;
+      border-radius: 25px;
+      box-shadow: 0px 4px 4px $shadow-color;
+    }
+    .close-button {
+      display: none;
+      @include pc() {
+        display: block;
+      }
+    }
+  }
 
-    @media (min-width: 768px) {
-      padding-left: 0.75rem;
-      padding-right: 0.75rem;
-      margin-left: auto;
-      margin-right: auto;
+  @keyframes fadeInAnime{
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes fadeUpAnime{
+    from {
+      opacity: 0;
+      transform: translateY(100px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
     }
   }
 

@@ -31,6 +31,7 @@
     --transform-translate-x: 50%;
     --transform-translate-y: -50%;
     opacity: 1;
+    cursor: pointer;
     &:hover {
       opacity: 0.8;
     }

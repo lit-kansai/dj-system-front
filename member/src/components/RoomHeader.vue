@@ -30,7 +30,7 @@
     box-shadow: 0px 3px 6px $shadow-color;
     position: sticky;
     top: 0;
-    z-index: 999;
+    z-index: 15;
     min-height: $app-bar-height;
     @include tablet() {
       height: $app-bar-height;
