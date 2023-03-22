@@ -71,7 +71,7 @@
       display: flex;
       align-items: center;
       gap: 30px;
-      padding: 70px;
+      padding: 90px;
     }
   }
   .left {
@@ -79,7 +79,7 @@
     @include pc() {
       display: block;
     }
-    .img {
+    img {
       width: 400px;
       height: 400px;
       object-fit: cover;
