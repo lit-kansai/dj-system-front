@@ -6,9 +6,8 @@
 </template>
 
 <script setup lang="ts">
-  const route = useRoute()
+  const router = useRouter()
   const state = reactive({
-    isShowHeaderSearch: false,
     isHiddenFooter: false
   })
 
@@ -16,11 +15,19 @@
     style: [{ children: 'html{height: 100%} body{margin: 0; min-height: 100%;}' }]
   })
 
-  onMounted(() => {
-    if (!route.path.match('.*(requested|cooltime).*')) {
-      state.isShowHeaderSearch = true
+  const updateHiddenFooter = () => {
+    const path = router.currentRoute.value.path
+    if (!path.match('.*(requested|cooltime).*')) {
       state.isHiddenFooter = true
     }
+  }
+
+  onMounted(() => {
+    updateHiddenFooter()
+  })
+
+  onBeforeUpdate(() => {
+    updateHiddenFooter()
   })
 </script>
 
