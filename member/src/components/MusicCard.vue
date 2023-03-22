@@ -1,95 +1,24 @@
 <template>
-  <div>
-    <div
-      class="music-card"
-      @click="onClickMusicCard"
-    >
-      <img :src="thumbnail" :alt="`${name}のサムネイル写真`">
-      <p class="name">{{ name }}</p>
-      <p class="artists">{{ artists }}</p>
-    </div>
-    <ModalContainer v-bind="modalProps">
-      <template #content>
-        <MusicRequestForm
-          :music-name="name"
-          :artist-name="artists"
-          :album-url="thumbnail"
-          :text-area="state.modal.textArea"
-          :text-field="state.modal.textField"
-          @change-text-field="changeTextField"
-          @change-text-area="changeTextArea"
-          @on-click-submit-button="onClickSubmitButton"
-        />
-      </template>
-    </ModalContainer>
+  <div
+    class="music-card"
+  >
+    <img :src="thumbnail" :alt="`${name}のサムネイル写真`">
+    <p class="name">{{ name }}</p>
+    <p class="artists">{{ artists }}</p>
   </div>
 </template>
 
 <script setup lang="ts">
-  import { music, useRequestTimer } from '@/features'
-  import { RequestMusicInput } from '@/features/music/api'
-  const requestTimer = useRequestTimer()
-
-  const route = useRoute()
   interface Props {
-    id: string,
     thumbnail: string,
     name: string,
-    artists: string
+    artists: string,
   }
-  const props = withDefaults(defineProps<Props>(), {
+  withDefaults(defineProps<Props>(), {
     thumbnail: '',
     name: '',
-    artists: ''
+    artists: '',
   })
-  const state = reactive({
-    isModalOpen: false,
-    modal: {
-      textArea: '',
-      textField: '',
-    }
-  })
-  const onClickMusicCard = () => {
-    state.isModalOpen = true
-  }
-  const changeTextField = (value: string) => {
-    state.modal.textField = value
-  }
-  const changeTextArea = (value: string) => {
-    state.modal.textArea = value
-  }
-  const onClickOutside = () => {
-    state.isModalOpen = false
-  }
-  const onClickCloseButton = () => {
-    state.isModalOpen = false
-  }
-  const onClickSubmitButton = () => {
-    requestMusic()
-  }
-  const modalProps = reactive({
-    isOpen: toRef(state, 'isModalOpen'),
-    onClickOutside,
-    onClickCloseButton
-  })
-  const requestMusic = async () => {
-    const roomId: string = String(route.params.id)
-    const requestMusicInput: RequestMusicInput = {
-      roomId,
-      musics: [props.id],
-      radioName: state.modal.textField,
-      message: state.modal.textArea
-    }
-
-    const result = music.api.requestMusic(requestMusicInput)
-    await result.execute()
-    if (result.data.value) {
-      await navigateTo(`/${roomId}/requested`)
-      requestTimer.requestMusic()
-    } else {
-      alert(result.error.value)
-    }
-  }
 </script>
 
 <style scoped lang="scss">

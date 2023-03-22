@@ -23,7 +23,6 @@
     justify-content: center;
     align-items: center;
     height: calc(100vh - $app-bar-height);
-    margin: 0 auto;
     .container {
       text-align: center;
       padding-bottom: 70px;

@@ -1,6 +1,7 @@
 $text-color-black: #333333;
 $text-color-white: #F8F8F8;
 $text-color-gray: #bbbbbb;
+$color-light-gray: #eeeeee;
 $text-color-placeholder: #bbbbbb;
 $background-color-textfield: #eeeeee;
 $background-color: #FFFFFF;
@@ -14,3 +15,23 @@ $default-font: 'Noto Sans', sans-serif;
 $music-card-shadow: rgba(143, 143, 143, 0.25);
 $app-bar-height: 90px;
 $english-font: 'Mukta';
+$padding-wrapper: 16px;
+$tablet-padding-wrapper: 32px;
+$pc-padding-wrapper: 100px;
+$footer-height: 70px;
+$tablet-footer-height: 100px;
+
+$tablet-breakpoint: 767px;
+$pc-breakpoint: 1025px;
+
+@mixin tablet() {
+  @media screen and (min-width: $tablet-breakpoint) {
+    @content;
+  }
+}
+
+@mixin pc() {
+  @media screen and (min-width: $pc-breakpoint) {
+    @content;
+  }
+}

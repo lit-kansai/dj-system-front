@@ -1,25 +1,22 @@
 <template>
-  <div class="wrapper search">
-    <div v-if="state.loading" class="loading"><music-loading /></div>
-    <div v-else-if="state.musics.length === 0">
-      <p>楽曲が見つかりませんでした</p>
+  <div>
+    <RoomHeader :is-show-search="true" />
+    <div class="wrapper">
+      <div v-if="state.loading" class="loading"><music-loading /></div>
+      <div v-else-if="state.musics.length === 0">
+        <p>楽曲が見つかりませんでした</p>
+      </div>
+      <MusicList v-else :musics="state.musics" :on-click-submit-button="requestMusic" />
     </div>
-    <MusicCard
-      v-for="music in state.musics"
-      v-else
-      :id="music.id"
-      :key="music.id"
-      :thumbnail="music.thumbnail"
-      :name="music.name"
-      :artists="music.artists"
-    />
   </div>
 </template>
+
 <script setup lang="ts">
-  import { music } from '@/features'
-  import { SearchMusicInput, SearchMusicResponse } from '@/features/music/api'
+  import { music, useRequestTimer } from '@/features'
+  import { RequestMusicInput, SearchMusicInput, SearchMusicResponse } from '@/features/music/api'
   const route = useRoute()
   const router = useRouter()
+  const requestTimer = useRequestTimer()
 
   const musicInit: SearchMusicResponse = []
   const state = reactive({
@@ -45,20 +42,33 @@
     state.loading = false
   }
 
+  const requestMusic = async (musicId: string, radioName: string, message: string) => {
+    const roomId: string = String(route.params.id)
+    const requestMusicInput: RequestMusicInput = {
+      roomId,
+      musics: [musicId],
+      radioName,
+      message
+    }
+
+    const result = music.api.requestMusic(requestMusicInput)
+    await result.execute()
+    if (result.data.value) {
+      requestTimer.requestMusic()
+      await navigateTo(`/${roomId}/requested`)
+    } else {
+      alert(result.error.value)
+    }
+  }
+
   onMounted(async () => {
     const query = router.currentRoute.value.query.q?.toString() ?? ''
     await fetchMusics(query)
   })
 </script>
+
 <style scoped lang="scss">
-.loading {
-  width: 100%;
-}
-.search {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  gap: 60px 15px;
-  margin: 110px auto;
-}
+  .loading {
+    width: 100%;
+  }
 </style>

@@ -1,9 +1,15 @@
 <template>
   <nav>
-    <div class="container wrapper">
+    <div class="wrapper mobile">
+      <h1>ルーム名</h1>
+      <div v-if="props.isShowSearch" class="input">
+        <GradationSearchTextInput />
+      </div>
+    </div>
+    <div class="wrapper tablet">
       <div class="logo">
         <img src="~/assets/img/logo.svg">
-        <p class="room_name">ルーム名</p>
+        <h1 class="room_name">ルーム名</h1>
       </div>
       <NavSearchTextInput v-if="props.isShowSearch" />
     </div>
@@ -19,40 +25,57 @@
 </script>
 <style scoped lang="scss">
   nav {
-    width: 100%;
-    height: $app-bar-height;
+    width: 100vw;
     background-color: $background-color;
     box-shadow: 0px 3px 6px $shadow-color;
     position: sticky;
     top: 0;
-    z-index: 999;
-
-    .container{
-      height: 100%;
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+    z-index: 15;
+    min-height: $app-bar-height;
+    @include tablet() {
+      height: $app-bar-height;
     }
-
-    .logo, p {
-      display: inline;
-    }
-
-    .logo{
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      color: $text-color-gray;
-
-      img {
-        height: 36px;
+    .wrapper.mobile {
+      @include tablet() {
+        display: none;
       }
-
-      p {
-        font-weight: 400;
-        font-size: 16px;
-        line-height: 19px;
+      h1 {
+        font-weight: 700;
+        font-size: 21px;
+        line-height: 30px;
+        text-align: center;
+        padding: 30px 0 25px 0;
+      }
+      .input {
+        padding-bottom: 20px;
+      }
+    }
+    .wrapper.tablet {
+      display: none;
+      @include tablet() {
+        display: block;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .logo, p {
+        display: inline;
+      }
+      .logo{
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        img {
+          height: 36px;
+          display: block;
+        }
+        h1 {
+          font-weight: 400;
+          font-size: 16px;
+          line-height: 19px;
+          color: $text-color-gray;
+        }
       }
     }
   }

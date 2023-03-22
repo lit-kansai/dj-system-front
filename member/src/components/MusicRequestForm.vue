@@ -4,16 +4,21 @@
       <img :src="albumUrl">
     </div>
     <div class="right">
-      <p class="music_name">{{ musicName }}</p>
-      <p class="artist_name">{{ artistName }}</p>
+      <div class="music">
+        <img :src="albumUrl">
+        <div class="name">
+          <p class="music_name">{{ musicName }}</p>
+          <p class="artist_name">{{ artistName }}</p>
+        </div>
+      </div>
       <div class="form_container">
         <div class="form_element">
-          <p class="form_label">ニックネーム(匿名可)</p>
+          <p class="form_label">ニックネーム(匿名OK)</p>
           <TextField v-model="textFieldComputed" :text="props.textField" placeholder="がっしー" />
         </div>
         <div class="form_element">
           <p class="form_label">メッセージ</p>
-          <TextArea v-model="textAreaComputed" :text="props.textArea" placeholder="開発ここまで終わったよ！" />
+          <TextArea v-model="textAreaComputed" :text="props.textArea" placeholder="開発ここまで終わったよ！（入力しなくても送信できるよ！）" />
         </div>
         <div class="submit_button_container">
           <button
@@ -61,62 +66,102 @@
   })
 </script>
 <style scoped lang="scss">
-  .submit_button {
-    background: $gradient-orange;
-    color: $text-color-white;
-    width: 260px;
-    padding: 12px 16px;
-    font-size: 16px;
-    border: none;
-    border-radius: 24px;
-    opacity: 1;
-    cursor: pointer;
-    &:hover {
-      opacity: 0.9;
-    }
-    &:active {
-      opacity: 0.8;
+  .container {
+    @include pc() {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+      padding: 90px;
     }
   }
-  .container {
-    display: flex;
-    align-items: center;
-    gap: 30px;
-    padding: 70px;
+  .left {
+    display: none;
+    @include pc() {
+      display: block;
+    }
     img {
       width: 400px;
       height: 400px;
       object-fit: cover;
     }
   }
-  .music_name {
-    font-size: 48px;
-    color: $text-color-black;
-    font-weight: 700;
-    margin-left: -5px;
-  }
-  .artist_name {
-    font-size: 20px;
-    color: $text-color-gray;
-  }
-
-  .form_container {
-    gap: 24px;
-    margin-top: 32px;
-    display: flex;
-    flex-direction: column;
-  }
-  .form_element {
-    font-size: 14px;
-  }
-  .form_label {
-    padding-bottom: 5px;
-  }
   .right {
     flex-grow: 1;
+    .music {
+      max-width: calc(100vw - ($padding-wrapper * 2));
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      @include tablet() {
+        max-width: calc(100vw - ($tablet-padding-wrapper * 2));
+      }
+      @include pc() {
+        max-width: calc(100vw - ($pc-padding-wrapper * 2));
+      }
+      img {
+        width: 55px;
+        height: 55px;
+        object-fit: cover;
+        @include pc() {
+          display: none;
+        }
+      }
+      .name, .music_name, .artist_name {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      .name {
+        .music_name {
+          font-size: 16px;
+          color: $text-color-black;
+          font-weight: 700;
+          @include pc() {
+            font-size: 40px;
+            margin-left: -3px;
+          }
+        }
+        .artist_name {
+          font-size: 13px;
+          color: $text-color-gray;
+          @include pc() {
+            font-size: 20px;
+          }
+        }
+      }
+    }
+    .form_container {
+      gap: 24px;
+      margin-top: 30px;
+      display: flex;
+      flex-direction: column;
+      .form_element {
+        font-size: 14px;
+      }
+      .form_label {
+        padding-bottom: 5px;
+      }
+    }
   }
 
   .submit_button_container {
     text-align: center;
+    .submit_button {
+      background: $gradient-orange;
+      color: $text-color-white;
+      width: 260px;
+      padding: 12px 16px;
+      font-size: 16px;
+      border: none;
+      border-radius: 24px;
+      opacity: 1;
+      cursor: pointer;
+      &:hover {
+        opacity: 0.9;
+      }
+      &:active {
+        opacity: 0.8;
+      }
+    }
   }
 </style>

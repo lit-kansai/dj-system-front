@@ -6,26 +6,29 @@
       type="text"
       placeholder="曲名・アーティスト名で検索"
       autocomplete="on"
-      @keypress.enter="emits('search')"
+      @keypress.enter="search"
     >
-    <input :class="textComputed.length == 0 ? 'none' : ''" type="submit" value="検索" @click="emits('search')">
+    <input :class="textComputed.length == 0 ? 'none' : ''" type="submit" value="検索" @click="search">
   </div>
 </template>
 <script setup lang="ts">
-  const emits = defineEmits<{
-    (e: 'change', value?: string): void,
-    (e: 'search'): void
-  }>()
-  interface Props {
-    text: string
-  }
-  const props = withDefaults(defineProps<Props>(), {
-    text: '',
-  })
+  const route = useRoute()
+  const router = useRouter()
+  const query = ref('')
 
   const textComputed = computed({
-    get: () => props.text,
-    set: value => emits('change', value)
+    get: () => query.value,
+    set: (value) => { query.value = value }
+  })
+
+  const search = () => {
+    const roomId = route.params.id
+    if (!roomId) { return }
+    router.push({ path: `/${roomId}/search`, query: { q: query.value } })
+  }
+
+  onMounted(() => {
+    query.value = router.currentRoute.value.query.q?.toString() ?? ''
   })
 </script>
 
@@ -34,7 +37,7 @@
     display: none;
   }
   div {
-    width: 425px;
+    width: 100%;
     height: 50px;
     padding: 3px !important;
     border-radius: 40px;
@@ -43,6 +46,9 @@
     justify-content: left;
     align-items: center;
     position: relative;
+    @include tablet() {
+      width: 425px;
+    }
     &::before {
       content: "";
       background-color: $text-color-white;
