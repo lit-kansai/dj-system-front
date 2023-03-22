@@ -50,7 +50,7 @@
       padding-right: 0.75rem;
       margin-left: auto;
       margin-right: auto;
-     }
+    }
   }
 
 </style>

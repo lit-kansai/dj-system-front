@@ -4,8 +4,13 @@
       <img :src="albumUrl">
     </div>
     <div class="right">
-      <p class="music_name">{{ musicName }}</p>
-      <p class="artist_name">{{ artistName }}</p>
+      <div class="music">
+        <img :src="albumUrl">
+        <div class="name">
+          <p class="music_name">{{ musicName }}</p>
+          <p class="artist_name">{{ artistName }}</p>
+        </div>
+      </div>
       <div class="form_container">
         <div class="form_element">
           <p class="form_label">ニックネーム(匿名可)</p>
@@ -61,23 +66,6 @@
   })
 </script>
 <style scoped lang="scss">
-  .submit_button {
-    background: $gradient-orange;
-    color: $text-color-white;
-    width: 260px;
-    padding: 12px 16px;
-    font-size: 16px;
-    border: none;
-    border-radius: 24px;
-    opacity: 1;
-    cursor: pointer;
-    &:hover {
-      opacity: 0.9;
-    }
-    &:active {
-      opacity: 0.8;
-    }
-  }
   .container {
     display: flex;
     align-items: center;
@@ -89,34 +77,50 @@
       object-fit: cover;
     }
   }
-  .music_name {
-    font-size: 48px;
-    color: $text-color-black;
-    font-weight: 700;
-    margin-left: -5px;
-  }
-  .artist_name {
-    font-size: 20px;
-    color: $text-color-gray;
-  }
-
-  .form_container {
-    gap: 24px;
-    margin-top: 32px;
-    display: flex;
-    flex-direction: column;
-  }
-  .form_element {
-    font-size: 14px;
-  }
-  .form_label {
-    padding-bottom: 5px;
-  }
   .right {
     flex-grow: 1;
+    .music_name {
+      font-size: 48px;
+      color: $text-color-black;
+      font-weight: 700;
+      margin-left: -5px;
+    }
+    .artist_name {
+      font-size: 20px;
+      color: $text-color-gray;
+    }
+    .form_container {
+      gap: 24px;
+      margin-top: 32px;
+      display: flex;
+      flex-direction: column;
+      .form_element {
+        font-size: 14px;
+      }
+      .form_label {
+        padding-bottom: 5px;
+      }
+    }
   }
 
   .submit_button_container {
     text-align: center;
+    .submit_button {
+      background: $gradient-orange;
+      color: $text-color-white;
+      width: 260px;
+      padding: 12px 16px;
+      font-size: 16px;
+      border: none;
+      border-radius: 24px;
+      opacity: 1;
+      cursor: pointer;
+      &:hover {
+        opacity: 0.9;
+      }
+      &:active {
+        opacity: 0.8;
+      }
+    }
   }
 </style>

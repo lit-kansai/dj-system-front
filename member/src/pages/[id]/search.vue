@@ -6,16 +6,17 @@
       <div v-else-if="state.musics.length === 0">
         <p>楽曲が見つかりませんでした</p>
       </div>
-      <MusicList v-else :musics="state.musics" />
+      <MusicList v-else :musics="state.musics" :on-click-submit-button="requestMusic" />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-  import { music } from '@/features'
-  import { SearchMusicInput, SearchMusicResponse } from '@/features/music/api'
+  import { music, useRequestTimer } from '@/features'
+  import { RequestMusicInput, SearchMusicInput, SearchMusicResponse } from '@/features/music/api'
   const route = useRoute()
   const router = useRouter()
+  const requestTimer = useRequestTimer()
 
   const musicInit: SearchMusicResponse = []
   const state = reactive({
@@ -39,6 +40,25 @@
     if (!result.data.value) { state.loading = false; return }
     state.musics = result.data.value
     state.loading = false
+  }
+
+  const requestMusic = async (musicId: string, radioName: string, message: string) => {
+    const roomId: string = String(route.params.id)
+    const requestMusicInput: RequestMusicInput = {
+      roomId,
+      musics: [musicId],
+      radioName,
+      message
+    }
+
+    const result = music.api.requestMusic(requestMusicInput)
+    await result.execute()
+    if (result.data.value) {
+      requestTimer.requestMusic()
+      await navigateTo(`/${roomId}/requested`)
+    } else {
+      alert(result.error.value)
+    }
   }
 
   onMounted(async () => {

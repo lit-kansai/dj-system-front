@@ -1,21 +1,18 @@
 <template>
-  <div>
-    <div class="cell">
-      <div class="contents">
-        <img :src="thumbnail" :alt="`${name}のサムネイル写真`">
-        <div class="text">
-          <p class="name">{{ name }}</p>
-          <p class="artists">{{ artists }}</p>
-        </div>
+  <div class="cell">
+    <div class="contents">
+      <img :src="thumbnail" :alt="`${name}のサムネイル写真`">
+      <div class="text">
+        <p class="name">{{ name }}</p>
+        <p class="artists">{{ artists }}</p>
       </div>
-      <img src="~/assets/img/arrow_forward.svg" class="icon">
     </div>
+    <img src="~/assets/img/arrow_forward.svg" class="icon">
   </div>
 </template>
 
 <script setup lang="ts">
   interface Props {
-    id: string,
     thumbnail: string,
     name: string,
     artists: string
