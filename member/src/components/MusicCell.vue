@@ -41,6 +41,12 @@
     align-items: center;
     gap: 10px;
     padding: 12px 0;
+    @include tablet() {
+      max-width: calc(100vw - ($tablet-padding-wrapper * 2) - 35px);
+    }
+    @include pc() {
+      max-width: calc(100vw - ($pc-padding-wrapper * 2) - 35px);
+    }
     img {
       width: 55px;
       height: 55px;

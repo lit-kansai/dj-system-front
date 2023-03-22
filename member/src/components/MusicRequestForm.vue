@@ -92,6 +92,12 @@
       display: flex;
       align-items: center;
       gap: 10px;
+      @include tablet() {
+        max-width: calc(100vw - ($tablet-padding-wrapper * 2));
+      }
+      @include pc() {
+        max-width: calc(100vw - ($pc-padding-wrapper * 2));
+      }
       img {
         width: 55px;
         height: 55px;
@@ -100,7 +106,7 @@
           display: none;
         }
       }
-      .music_name, .artist_name {
+      .name, .music_name, .artist_name {
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;

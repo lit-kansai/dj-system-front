@@ -14,5 +14,8 @@
     justify-content: center;
     align-items: center;
     background: $gradient-orange;
+    @include tablet() {
+      height: $tablet-footer-height;
+    }
   }
 </style>

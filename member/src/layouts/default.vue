@@ -27,6 +27,9 @@
 <style scoped lang="scss">
   div {
     min-height: calc(100vh - $footer-height);
+    @include tablet() {
+      min-height: calc(100vh - $tablet-footer-height);
+    }
   }
   .footer {
     position: sticky;

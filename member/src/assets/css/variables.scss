@@ -16,7 +16,10 @@ $music-card-shadow: rgba(143, 143, 143, 0.25);
 $app-bar-height: 90px;
 $english-font: 'Mukta';
 $padding-wrapper: 16px;
+$tablet-padding-wrapper: 32px;
+$pc-padding-wrapper: 100px;
 $footer-height: 70px;
+$tablet-footer-height: 100px;
 
 $tablet-breakpoint: 767px;
 $pc-breakpoint: 1025px;
@@ -31,13 +34,4 @@ $pc-breakpoint: 1025px;
   @media screen and (min-width: $pc-breakpoint) {
     @content;
   }
-}
-
-@include tablet() {
-  $padding-wrapper: 32px;
-  $footer-height: 100px
-}
-
-@include pc() {
-  $padding-wrapper: 100px;
 }
