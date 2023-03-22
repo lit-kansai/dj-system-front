@@ -23,7 +23,7 @@ export default defineNuxtRouteMiddleware(async ({ path }) => {
     const roomId = roomRouteParams.id
     const { error } = await room.api.getRoomOverview({ roomId })
     // ルームが見つからなかったとき(今のやつやと404以外もなのであまり良くないかも)
-    if (error.value) { throw createError({ statusCode: 404, statusMessage: 'Page Not Found' }) }
+    if (error.value) { throw createError({ statusCode: 404, statusMessage: 'Room Not Found' }) }
 
     const cooltime = localStorage.getItem(MEMBER_ALLOW_REQUEST_TIME_LOCAL_STORAGE_KEY)
     if (isRootPath(path)) {
