@@ -18,15 +18,16 @@
       <h1>ルーム名</h1>
       <GradationSearchTextInput />
     </div>
-    <MusicList :musics="musics" class="wrapper music-list" />
+    <MusicList :musics="musics" class="wrapper music-list" :on-click-submit-button="requestMusic" />
   </div>
 </template>
 
 <script setup lang="ts">
   import { Track } from '@dj-system/api-client/src/generated/@types'
-  import { music } from '@/features'
-  import { GetTop50MusicsInput } from '@/features/music/api'
+  import { music, useRequestTimer } from '@/features'
+  import { GetTop50MusicsInput, RequestMusicInput } from '@/features/music/api'
   const route = useRoute()
+  const requestTimer = useRequestTimer()
 
   const musics = ref<Track[]>([])
 
@@ -37,6 +38,25 @@
     const result = await music.api.getTop50Musics(requestInput)
     await result.execute()
     musics.value = result.data.value ?? []
+  }
+
+  const requestMusic = async (musicId: string, radioName: string, message: string) => {
+    const roomId: string = String(route.params.id)
+    const requestMusicInput: RequestMusicInput = {
+      roomId,
+      musics: [musicId],
+      radioName,
+      message
+    }
+
+    const result = music.api.requestMusic(requestMusicInput)
+    await result.execute()
+    if (result.data.value) {
+      requestTimer.requestMusic()
+      await navigateTo(`/${roomId}/requested`)
+    } else {
+      alert(result.error.value)
+    }
   }
 
   onMounted(async () => {
@@ -55,6 +75,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin: 0 $padding-wrapper;
     img {
       margin-top: 80px;
       width: 200px;
