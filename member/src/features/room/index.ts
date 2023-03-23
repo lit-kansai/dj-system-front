@@ -1,5 +1,7 @@
 import { getRoomOverview } from './api'
-export { useRequestTimer } from './utils/useRequestTimer'
+export * from './types'
+export * from './composables'
+export { useRequestTimer } from './utils'
 export const room = {
   api: {
     getRoomOverview
