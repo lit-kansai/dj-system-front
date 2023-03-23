@@ -46,12 +46,6 @@
       }
     }
     timer = setInterval(countdown, 1000)
-
-    // if (window.performance && route.params.id) {
-    //   if (window.performance.navigation.type === 1) {
-    //     navigateTo(`/${route.params.id}/cooltime`)
-    //   }
-    // }
   })
 
   onUnmounted(() => {
