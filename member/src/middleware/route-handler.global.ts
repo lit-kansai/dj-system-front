@@ -1,4 +1,4 @@
-import { room, useRequestTimer, useRoomState } from '@/features'
+import { room, useHasMusicRequested, useRequestTimer, useRoomState } from '@/features'
 import { getRouteParams } from '@/utils'
 import { MEMBER_ALLOW_REQUEST_TIME_LOCAL_STORAGE_KEY } from '@/constants'
 
@@ -49,6 +49,8 @@ export default defineNuxtRouteMiddleware(async ({ path }) => {
     }
 
     if (roomPagePath === 'requested') {
+      const { hasMusicRequested } = useHasMusicRequested()
+      if (!hasMusicRequested.value) { return navigateTo(`/${roomId}/cooltime`) }
       if (!cooltime) { return navigateTo(`/${roomId}`) }
     }
   }
