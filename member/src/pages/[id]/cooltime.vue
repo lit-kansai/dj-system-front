@@ -13,7 +13,8 @@
 
 <script setup lang="ts">
   import { useRequestTimer } from '@/features'
-  const timer = useRequestTimer()
+  const { isAllowRequestMusic, removeExpiredCooltime, intervalTime } = useRequestTimer()
+  const route = useRoute()
   const state = reactive({
     displayTimer: {
       min: '00',
@@ -23,9 +24,13 @@
 
   onMounted(() => {
     const countdown = () => {
-      const time = timer.waitingTime()
+      const time = intervalTime()
       state.displayTimer.min = time.min
       state.displayTimer.sec = time.sec
+      if (isAllowRequestMusic()) {
+        removeExpiredCooltime()
+        navigateTo(`/${route.params.id}`)
+      }
     }
     setInterval(countdown, 1000)
   })
