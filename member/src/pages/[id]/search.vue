@@ -2,7 +2,7 @@
   <div>
     <RoomHeader :is-show-search="true" />
     <div class="wrapper">
-      <div v-if="state.loading" class="loading"><music-loading /></div>
+      <music-loading v-if="state.loading" />
       <div v-else-if="state.musics.length === 0">
         <p>楽曲が見つかりませんでした</p>
       </div>
@@ -12,11 +12,19 @@
 </template>
 
 <script setup lang="ts">
-  import { music, useHasMusicRequested, useRequestTimer } from '@/features'
+  import { music, useHasMusicRequested, useRequestTimer, useRoomState } from '@/features'
   import { RequestMusicInput, SearchMusicInput, SearchMusicResponse } from '@/features/music/api'
+  const { currentRoom } = useRoomState()
   const route = useRoute()
   const router = useRouter()
   const requestTimer = useRequestTimer()
+
+  useHead({
+    title: `${currentRoom.value?.name ?? ''}`,
+    meta: [
+      { property: 'og:title', content: `${currentRoom.value?.name ?? ''} | DJ Gassi System` },
+    ]
+  })
 
   const musicInit: SearchMusicResponse = []
   const state = reactive({
@@ -70,7 +78,6 @@
 </script>
 
 <style scoped lang="scss">
-  .loading {
-    width: 100%;
-  }
+  // これ書かないとglobalのものが反映されない時がある
+  .wrapper {}
 </style>

@@ -24,8 +24,9 @@
   </div>
 </template>
 <script setup lang="ts">
-  import { useRequestTimer } from '@/features'
+  import { useRequestTimer, useRoomState } from '@/features'
   const { isAllowRequestMusic, intervalTime } = useRequestTimer()
+  const { currentRoom } = useRoomState()
   const route = useRoute()
   const state = reactive({
     displayTimer: {
@@ -34,6 +35,17 @@
     }
   })
   let timer: NodeJS.Timer
+
+  definePageMeta({
+    layout: 'plain'
+  })
+
+  useHead({
+    title: `${currentRoom.value?.name ?? ''}`,
+    meta: [
+      { property: 'og:title', content: `${currentRoom.value?.name ?? ''} | DJ Gassi System` },
+    ]
+  })
 
   onMounted(() => {
     const countdown = () => {
