@@ -46,12 +46,12 @@
     background-color: $background-color;
     box-shadow: 0px -2px 10px rgba(0, 0, 0, 0.25);
     animation-name:fadeUpAnime;
-    animation-duration:0.5s;
+    animation-duration: 0.5s;
     animation-fill-mode:forwards;
     opacity:0;
     @include pc() {
       animation-name:fadeInAnime;
-      animation-duration:1s;
+      animation-duration: 0.3s;
       position: relative;
       margin: 0 1rem;
       padding: 0;
