@@ -91,6 +91,7 @@
         p {
           font-size: 16px;
           line-height: 19px;
+          text-align: center;
           @include pc() {
             font-size: 24px;
             line-height: 29px;
