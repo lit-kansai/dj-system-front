@@ -27,6 +27,7 @@
     bottom: 0;
     left: 0;
     z-index: 20;
+    overflow: hidden;
     padding-top: 2.5rem;
     padding-bottom: 2.5rem;
     display: flex;
