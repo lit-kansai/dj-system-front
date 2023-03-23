@@ -35,6 +35,10 @@
   })
   let timer: NodeJS.Timer
 
+  definePageMeta({
+    layout: 'plain'
+  })
+
   onMounted(() => {
     const countdown = () => {
       const time = requestTimer.waitingTime()
