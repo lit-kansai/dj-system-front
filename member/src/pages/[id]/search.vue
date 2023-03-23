@@ -12,7 +12,7 @@
 </template>
 
 <script setup lang="ts">
-  import { music, useRequestTimer } from '@/features'
+  import { music, useHasMusicRequested, useRequestTimer } from '@/features'
   import { RequestMusicInput, SearchMusicInput, SearchMusicResponse } from '@/features/music/api'
   const route = useRoute()
   const router = useRouter()
@@ -55,6 +55,8 @@
     await result.execute()
     if (result.data.value) {
       requestTimer.requestMusic()
+      const { setHasMusicRequested } = useHasMusicRequested()
+      setHasMusicRequested(true)
       await navigateTo(`/${roomId}/requested`)
     } else {
       alert(result.error.value)
