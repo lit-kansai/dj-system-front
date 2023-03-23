@@ -48,6 +48,7 @@
         line-height: 30px;
         text-align: center;
         padding: 30px 0 25px 0;
+        width: 100%;
       }
       .input {
         padding-bottom: 20px;
