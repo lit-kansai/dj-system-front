@@ -1,7 +1,7 @@
 <template>
   <nav>
     <div class="wrapper mobile">
-      <h1>ルーム名</h1>
+      <h1>{{ currentRoom?.name ?? '' }}</h1>
       <div v-if="props.isShowSearch" class="input">
         <GradationSearchTextInput />
       </div>
@@ -9,16 +9,19 @@
     <div class="wrapper tablet">
       <div class="logo">
         <img src="~/assets/img/logo.svg">
-        <h1 class="room_name">ルーム名</h1>
+        <h1 class="room_name">{{ currentRoom?.name ?? '' }}</h1>
       </div>
       <NavSearchTextInput v-if="props.isShowSearch" />
     </div>
   </nav>
 </template>
 <script setup lang="ts">
+  import { useRoomState } from '@/features'
+
   interface Props {
     isShowSearch: boolean
   }
+  const { currentRoom } = useRoomState()
   const props = withDefaults(defineProps<Props>(), {
     isShowSearch: false
   })
