@@ -1,4 +1,4 @@
-import { room } from '@/features'
+import { room, useRoomState } from '@/features'
 import { getRouteParams, removeExpiredCooltime } from '@/utils'
 import { MEMBER_ALLOW_REQUEST_TIME_LOCAL_STORAGE_KEY } from '@/constants'
 
@@ -21,9 +21,13 @@ export default defineNuxtRouteMiddleware(async ({ path }) => {
   const roomRouteParams = getRouteParams.room()
   if (roomRouteParams) {
     const roomId = roomRouteParams.id
-    const { error } = await room.api.getRoomOverview({ roomId })
+    const { data, error } = await room.api.getRoomOverview({ roomId })
     // ルームが見つからなかったとき(今のやつやと404以外もなのであまり良くないかも)
     if (error.value) { throw createError({ statusCode: 404, statusMessage: 'Room Not Found' }) }
+    if (data.value) {
+      const { setCurrentRoom } = useRoomState()
+      setCurrentRoom(data.value)
+    }
 
     const cooltime = localStorage.getItem(MEMBER_ALLOW_REQUEST_TIME_LOCAL_STORAGE_KEY)
     if (isRootPath(path)) {
