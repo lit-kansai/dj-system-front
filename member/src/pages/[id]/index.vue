@@ -1,16 +1,14 @@
 <template>
   <div>
-    <div class="pc-header">
-      <RoomHeader :is-show-search="true" />
-      <div class="wrapper">
-        <div class="container">
-          <div class="contents">
-            <h1>{{ currentRoom?.name ?? '' }}</h1>
-            <p>自分の好きな曲をリクエストしよう！</p>
-            <GradationSearchTextInput />
-          </div>
-          <img src="~/assets/img/logo.svg">
+    <RoomHeader class="pc-header" :is-show-search="true" />
+    <div class="pc-header wrapper">
+      <div class="container">
+        <div class="contents">
+          <h1>{{ currentRoom?.name ?? '' }}</h1>
+          <p>自分の好きな曲をリクエストしよう！</p>
+          <GradationSearchTextInput />
         </div>
+        <img src="~/assets/img/logo.svg">
       </div>
     </div>
     <div class="mobile-header">
