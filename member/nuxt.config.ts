@@ -4,19 +4,20 @@ const baseUrl = process.env.HOST_URL ?? 'not found'
 export default defineNuxtConfig({
   app: {
     head: {
+      title: 'DJ Gassi System',
       meta: [
         { charset: 'utf-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-        { name: 'description', content: 'DJ System Member' },
+        { name: 'description', content: '自分の好きな曲をリクエストしよう！' },
         { name: 'robots', content: 'noindex' },
-        { property: 'og:site_name', content: 'DJ System Member' },
+        { property: 'og:site_name', content: 'DJ Gassi System' },
         { property: 'og:type', content: 'website' },
-        { property: 'og:description', content: 'DJ System' },
-        { property: 'og:title', content: 'DJ System' },
+        { property: 'og:description', content: '自分の好きな曲をリクエストしよう！' },
+        { property: 'og:title', content: 'DJ Gassi System' },
         { property: 'og:url', content: baseUrl },
         { property: 'og:image', content: `${baseUrl}/ogp.png` },
         { name: 'twitter:card', content: 'summary_large_image' },
-        { name: 'twitter:site', content: 'DJ System' },
+        { property: 'fb:app:id', content: 'dj_gassi_system' }
       ],
       link: [
         {
