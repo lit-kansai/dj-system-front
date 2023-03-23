@@ -23,10 +23,7 @@ export const useRequestTimer = () => {
 
   // 音楽リクエストが許可されるか
   const isAllowRequestMusic = () => {
-    const requestAllowedTime = localStorage.getItem(MEMBER_ALLOW_REQUEST_TIME_LOCAL_STORAGE_KEY)
-    const currentTime = new Date().getTime()
-    const isExpired = currentTime >= Number(requestAllowedTime)
-    return isExpired
+    return intervalTime().ms <= 0
   }
 
   const removeExpiredCooltime = () => {
