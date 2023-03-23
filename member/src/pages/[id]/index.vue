@@ -30,6 +30,13 @@
 
   const musics = ref<Track[]>([])
 
+  useHead({
+    title: `${currentRoom.value?.name ?? ''}`,
+    meta: [
+      { property: 'og:title', content: `${currentRoom.value?.name ?? ''} | DJ Gassi System` },
+    ]
+  })
+
   const fetchTop50Musics = async () => {
     const requestInput: GetTop50MusicsInput = {
       roomId: `${route.params.id}`,

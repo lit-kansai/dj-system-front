@@ -12,11 +12,19 @@
 </template>
 
 <script setup lang="ts">
-  import { music, useRequestTimer } from '@/features'
+  import { music, useRequestTimer, useRoomState } from '@/features'
   import { RequestMusicInput, SearchMusicInput, SearchMusicResponse } from '@/features/music/api'
+  const { currentRoom } = useRoomState()
   const route = useRoute()
   const router = useRouter()
   const requestTimer = useRequestTimer()
+
+  useHead({
+    title: `${currentRoom.value?.name ?? ''}`,
+    meta: [
+      { property: 'og:title', content: `${currentRoom.value?.name ?? ''} | DJ Gassi System` },
+    ]
+  })
 
   const musicInit: SearchMusicResponse = []
   const state = reactive({

@@ -24,7 +24,8 @@
   </div>
 </template>
 <script setup lang="ts">
-  import { useRequestTimer } from '@/features'
+  import { useRequestTimer, useRoomState } from '@/features'
+  const { currentRoom } = useRoomState()
   const requestTimer = useRequestTimer()
   const route = useRoute()
   const state = reactive({
@@ -37,6 +38,13 @@
 
   definePageMeta({
     layout: 'plain'
+  })
+
+  useHead({
+    title: `${currentRoom.value?.name ?? ''}`,
+    meta: [
+      { property: 'og:title', content: `${currentRoom.value?.name ?? ''} | DJ Gassi System` },
+    ]
   })
 
   onMounted(() => {
