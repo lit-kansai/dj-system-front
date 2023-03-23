@@ -1,13 +1,15 @@
 <template>
-  <div class="loading">
-    <img src="~/assets/img/headphone.svg">
-    <div class="wave">
-      <span />
-      <span />
-      <span />
-      <span />
-      <span />
-      <span />
+  <div class="container">
+    <div class="loading">
+      <img src="~/assets/img/headphone.svg">
+      <div class="wave">
+        <span />
+        <span />
+        <span />
+        <span />
+        <span />
+        <span />
+      </div>
     </div>
   </div>
 </template>
@@ -16,29 +18,35 @@
 </script>
 
 <style scoped lang="scss">
+  .container {
+    position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+  }
   .loading {
     position: relative;
-    width: 230px;
-    height: 230px;
+    width: 100px;
+    height: 100px;
     img {
-      width: 175px;
+      width: 100px;
       position: absolute;
-      top: 33%;
+      top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
     }
     .wave {
       position: absolute;
-      top: 50%;
-      left: calc(50% + 5px);
+      top: 70%;
+      left: calc(50% + 2.5px);
       transform: translate(-50%, -50%);
       display: flex;
       align-items: center;
 
       span{
-        height: 30px;
-        width: 7px;
-        margin-right: 10px;
+        height: 15px;
+        width: 4px;
+        margin-right: 5px;
         background: $gradient-orange;
         animation: loading 1s linear infinite;
       }
@@ -66,10 +74,10 @@
       height: 0;
     }
     25%{
-      height: 42.5px;
+      height: 20px;
     }
     50%{
-      height: 85px;
+      height: 50px;
     }
     100%{
       height: 0;

@@ -2,7 +2,7 @@
   <div>
     <RoomHeader :is-show-search="true" />
     <div class="wrapper">
-      <div v-if="state.loading" class="loading"><music-loading /></div>
+      <music-loading v-if="state.loading" />
       <div v-else-if="state.musics.length === 0">
         <p>楽曲が見つかりませんでした</p>
       </div>
@@ -68,7 +68,4 @@
 </script>
 
 <style scoped lang="scss">
-  .loading {
-    width: 100%;
-  }
 </style>

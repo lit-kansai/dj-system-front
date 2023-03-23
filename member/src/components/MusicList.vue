@@ -103,7 +103,9 @@
   })
 
   onMounted(() => {
-    updateBlankElements()
+    window.onload = () => {
+      updateBlankElements()
+    }
     window.addEventListener('resize', () => {
       updateBlankElements()
     })

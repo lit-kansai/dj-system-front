@@ -21,6 +21,10 @@
     }
   })
 
+  definePageMeta({
+    layout: 'plain'
+  })
+
   onMounted(() => {
     const countdown = () => {
       const time = timer.waitingTime()

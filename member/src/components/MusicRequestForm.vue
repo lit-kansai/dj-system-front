@@ -87,6 +87,8 @@
   }
   .right {
     flex-grow: 1;
+    width: 100%;
+    overflow: hidden;
     .music {
       max-width: calc(100vw - ($padding-wrapper * 2));
       display: flex;
@@ -94,9 +96,6 @@
       gap: 10px;
       @include tablet() {
         max-width: calc(100vw - ($tablet-padding-wrapper * 2));
-      }
-      @include pc() {
-        max-width: calc(100vw - ($pc-padding-wrapper * 2));
       }
       img {
         width: 55px;
