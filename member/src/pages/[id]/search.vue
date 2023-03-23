@@ -68,4 +68,6 @@
 </script>
 
 <style scoped lang="scss">
+  // これ書かないとglobalのものが反映されない時がある
+  .wrapper {}
 </style>
