@@ -5,7 +5,7 @@
       <div class="wrapper">
         <div class="container">
           <div class="contents">
-            <h1>DJ Gassi</h1>
+            <h1>{{ currentRoom?.name ?? '' }}</h1>
             <p>自分の好きな曲をリクエストしよう！</p>
             <GradationSearchTextInput />
           </div>
@@ -15,7 +15,7 @@
     </div>
     <div class="mobile-header">
       <img src="~/assets/img/logo.svg">
-      <h1>ルーム名</h1>
+      <h1>{{ currentRoom?.name ?? '' }}</h1>
       <GradationSearchTextInput />
     </div>
     <MusicList :musics="musics" class="wrapper music-list" :on-click-submit-button="requestMusic" />
@@ -24,10 +24,11 @@
 
 <script setup lang="ts">
   import { Track } from '@dj-system/api-client/src/generated/@types'
-  import { music, useRequestTimer } from '@/features'
+  import { music, useRequestTimer, useRoomState } from '@/features'
   import { GetTop50MusicsInput, RequestMusicInput } from '@/features/music/api'
   const route = useRoute()
   const requestTimer = useRequestTimer()
+  const { currentRoom } = useRoomState()
 
   const musics = ref<Track[]>([])
 
