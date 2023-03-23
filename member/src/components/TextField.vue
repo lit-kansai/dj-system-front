@@ -4,17 +4,23 @@
     type="text"
     :placeholder="placeholder"
     autocomplete="on"
+    @focus="onFocus"
+    @blur="onBlur"
   >
 </template>
 <script setup lang="ts">
   const emits = defineEmits<{(e: 'change', value?: string): void}>()
   interface Props {
     text: string,
-    placeholder: string
+    placeholder: string,
+    onFocus: () => void,
+    onBlur: () => void,
   }
   const props = withDefaults(defineProps<Props>(), {
     text: '',
-    placeholder: ''
+    placeholder: '',
+    onFocus: () => {},
+    onBlur: () => {}
   })
   const textComputed = computed({
     get: () => props.text,
