@@ -13,9 +13,16 @@
   </div>
 </template>
 <script setup lang="ts">
-  import { useRoomState } from '@/features'
+  import { useRequestTimer, useRoomState } from '@/features'
+  const { isAllowRequestMusic, intervalTime } = useRequestTimer()
   const { currentRoom } = useRoomState()
   const route = useRoute()
+  const state = reactive({
+    displayTimer: {
+      min: '00',
+      sec: '00'
+    }
+  })
 
   definePageMeta({
     layout: 'plain'
@@ -27,13 +34,23 @@
       { property: 'og:title', content: `${currentRoom.value?.name ?? ''} | DJ Gassi System` },
     ]
   })
+  let timer: NodeJS.Timer
 
   onMounted(() => {
-    if (window.performance && route.params.id) {
-      if (window.performance.navigation.type === 1) {
-        navigateTo(`/${route.params.id}/cooltime`)
+    const countdown = () => {
+      const time = intervalTime()
+      state.displayTimer.min = time.min
+      state.displayTimer.sec = time.sec
+      if (isAllowRequestMusic()) {
+        removeExpiredCooltime()
+        navigateTo(`/${route.params.id}`)
       }
     }
+    timer = setInterval(countdown, 1000)
+  })
+
+  onUnmounted(() => {
+    clearInterval(timer)
   })
 </script>
 <style scoped lang="scss">

@@ -1,5 +1,5 @@
-import { room, useRoomState } from '@/features'
-import { getRouteParams, removeExpiredCooltime } from '@/utils'
+import { room, useHasMusicRequested, useRequestTimer, useRoomState } from '@/features'
+import { getRouteParams } from '@/utils'
 import { MEMBER_ALLOW_REQUEST_TIME_LOCAL_STORAGE_KEY } from '@/constants'
 
 const isRootPath = (path: string): boolean => {
@@ -17,6 +17,7 @@ const extractPath = (path: string): string | null => {
 
 export default defineNuxtRouteMiddleware(async ({ path }) => {
   if (process.server) { return }
+  const { removeExpiredCooltime } = useRequestTimer()
   removeExpiredCooltime()
   const roomRouteParams = getRouteParams.room()
   if (roomRouteParams) {
@@ -48,6 +49,8 @@ export default defineNuxtRouteMiddleware(async ({ path }) => {
     }
 
     if (roomPagePath === 'requested') {
+      const { hasMusicRequested } = useHasMusicRequested()
+      if (!hasMusicRequested.value) { return navigateTo(`/${roomId}/cooltime`) }
       if (!cooltime) { return navigateTo(`/${roomId}`) }
     }
   }

@@ -22,7 +22,7 @@
 
 <script setup lang="ts">
   import { Track } from '@dj-system/api-client/src/generated/@types'
-  import { music, useRequestTimer, useRoomState } from '@/features'
+  import { music, useHasMusicRequested, useRequestTimer, useRoomState } from '@/features'
   import { GetTop50MusicsInput, RequestMusicInput } from '@/features/music/api'
   const route = useRoute()
   const requestTimer = useRequestTimer()
@@ -59,6 +59,8 @@
     await result.execute()
     if (result.data.value) {
       requestTimer.requestMusic()
+      const { setHasMusicRequested } = useHasMusicRequested()
+      setHasMusicRequested(true)
       await navigateTo(`/${roomId}/requested`)
     } else {
       alert(result.error.value)
