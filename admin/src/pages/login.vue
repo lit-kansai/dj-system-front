@@ -43,7 +43,7 @@
   @import '@/assets/styles/main.scss';
 
   #login-main {
-    min-height: calc(100vh - $app-bar-height);
+    min-height: calc(100dvh - $app-bar-height);
   }
 
   #login-box {

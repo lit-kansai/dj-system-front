@@ -22,7 +22,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: calc(100vh - $app-bar-height);
+    height: calc(100dvh - $app-bar-height);
     .container {
       text-align: center;
       padding-bottom: 70px;

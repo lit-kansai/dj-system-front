@@ -53,7 +53,7 @@
 <style scoped lang="scss">
   .cooltime {
     width: 100vw;
-    height: calc(100vh - $app-bar-height);
+    height: calc(100dvh - $app-bar-height);
     background: $gradient-orange;
     display: flex;
     flex-direction: column;
