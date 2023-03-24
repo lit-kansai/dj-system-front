@@ -12,19 +12,21 @@
 </template>
 
 <script setup lang="ts">
-  import { useRequestTimer, useRoomState } from '@/features'
+  import { useCooltime, useRequestTimer, useRoomState } from '@/features'
   const { isAllowRequestMusic, removeExpiredCooltime, intervalTime } = useRequestTimer()
   const route = useRoute()
   const { currentRoom } = useRoomState()
+  const { cooltime } = useCooltime()
   const state = reactive({
     displayTimer: {
-      min: '00',
-      sec: '00'
+      min: cooltime.value?.min ?? '00',
+      sec: cooltime.value?.sec ?? '00'
     }
   })
 
   definePageMeta({
-    layout: 'plain'
+    layout: 'plain',
+    middleware: ['cooltime']
   })
 
   useHead({
