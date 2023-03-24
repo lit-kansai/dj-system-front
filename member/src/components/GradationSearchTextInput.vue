@@ -6,6 +6,7 @@
       type="text"
       placeholder="曲名・アーティスト名で検索"
       autocomplete="on"
+      autofocus
       @keypress.enter="search"
     >
     <input :class="textComputed.length == 0 ? 'none' : ''" type="submit" value="検索" @click="search">
@@ -76,6 +77,7 @@
       border-radius: 40px;
       outline: none;
       transition: all 0.55s ease-in-out;
+      font-size: 16px;
       &::placeholder {
         font-weight: 400;
         color: $text-color-white;
