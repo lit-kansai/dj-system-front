@@ -6,7 +6,7 @@
         <img src="~/assets/img/requested-orange.svg">
         <div class="message">
           <h1>送信完了</h1>
-          <p>次のリクエストまでちょっと待ってね！</p>
+          <p>リクエストしてくれてありがとう！</p>
         </div>
       </div>
     </div>
@@ -34,7 +34,8 @@
       { property: 'og:title', content: `${currentRoom.value?.name ?? ''} | DJ Gassi System` },
     ]
   })
-  let timer: NodeJS.Timer
+  let countdownTimer: NodeJS.Timer
+  let redirectTimer: NodeJS.Timer
 
   onMounted(() => {
     const countdown = () => {
@@ -46,11 +47,17 @@
         navigateTo(`/${route.params.id}`)
       }
     }
-    timer = setInterval(countdown, 1000)
+    countdownTimer = setInterval(countdown, 1000)
+
+    const redirectCooltime = () => {
+      navigateTo(`/${route.params.id}/cooltime`)
+    }
+    redirectTimer = setTimeout(redirectCooltime, 1000 * 60)
   })
 
   onUnmounted(() => {
-    clearInterval(timer)
+    clearInterval(countdownTimer)
+    clearTimeout(redirectTimer)
   })
 </script>
 <style scoped lang="scss">
