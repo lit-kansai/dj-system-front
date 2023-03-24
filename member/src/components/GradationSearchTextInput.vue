@@ -69,15 +69,15 @@
       width: 100%;
       height: 100%;
       display: block;
+      padding: 16px 0px 14px 55px;
+      margin-right: 80px;
       background-color: transparent;
       color: $text-color-white;
+      font-size: 16px;
       font-weight: 400;
       border: none;
-      padding: 16px 80px 14px 55px;
       border-radius: 40px;
-      outline: none;
-      transition: all 0.55s ease-in-out;
-      font-size: 16px;
+      transition: all 0.55s ease;
       &::placeholder {
         font-weight: 400;
         color: $text-color-white;
