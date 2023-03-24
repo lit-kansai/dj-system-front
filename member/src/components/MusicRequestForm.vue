@@ -14,11 +14,11 @@
       <div class="form_container">
         <div class="form_element">
           <p class="form_label">ニックネーム(匿名OK)</p>
-          <TextField v-model="textFieldComputed" :text="props.textField" placeholder="がっしー" />
+          <TextField v-model="textFieldComputed" :text="props.textField" placeholder="がっしー" :on-focus="onFocus" :on-blur="onBlur" />
         </div>
         <div class="form_element">
           <p class="form_label">メッセージ</p>
-          <TextArea v-model="textAreaComputed" :text="props.textArea" placeholder="開発ここまで終わったよ！（入力しなくても送信できるよ！）" />
+          <TextArea v-model="textAreaComputed" :text="props.textArea" placeholder="開発ここまで終わったよ！（入力しなくても送信できるよ！）" :on-focus="onFocus" :on-blur="onBlur" />
         </div>
         <div class="submit_button_container">
           <button
@@ -33,7 +33,7 @@
   </div>
 </template>
 <script setup lang="ts">
-
+  const { isMobileOrTablet } = useDevice()
   const emits = defineEmits<{
     (e: 'changeTextField', value: string): void,
     (e: 'changeTextArea', value: string): void
@@ -47,7 +47,6 @@
     textField: string,
     textArea: string
   }
-
   const props = withDefaults(defineProps<Props>(), {
     musicName: '',
     artistName: '',
@@ -55,6 +54,23 @@
     textField: '',
     textArea: ''
   })
+
+  const state = reactive({
+    pageYOffset: 0
+  })
+
+  const onFocus = () => {
+    if (!isMobileOrTablet) { return }
+    state.pageYOffset = window.pageYOffset
+    const element = document.documentElement
+    const bottom = element.scrollHeight - element.clientHeight
+    window.scroll(0, bottom)
+  }
+
+  const onBlur = () => {
+    if (!isMobileOrTablet) { return }
+    window.scroll(0, state.pageYOffset)
+  }
 
   const textFieldComputed = computed({
     get: () => props.textField,
