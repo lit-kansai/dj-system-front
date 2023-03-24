@@ -34,6 +34,7 @@
       { property: 'og:title', content: `${currentRoom.value?.name ?? ''} | DJ Gassi System` },
     ]
   })
+  let timer: NodeJS.Timer
 
   onMounted(() => {
     const countdown = () => {
@@ -43,7 +44,13 @@
       if (isAllowRequestMusic()) {
         removeExpiredCooltime()
         navigateTo(`/${route.params.id}`)
+      }
+    }
     timer = setInterval(countdown, 1000)
+  })
+
+  onUnmounted(() => {
+    clearInterval(timer)
   })
 </script>
 <style scoped lang="scss">
