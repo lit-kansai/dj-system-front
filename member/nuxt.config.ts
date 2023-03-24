@@ -10,6 +10,7 @@ export default defineNuxtConfig({
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
         { name: 'description', content: '自分の好きな曲をリクエストしよう！' },
         { name: 'robots', content: 'noindex' },
+        { name: 'viewport', content: 'width=device-width,initial-scale=1.0,maximum-scale=1.0' },
         { property: 'og:site_name', content: 'DJ Gassi System' },
         { property: 'og:type', content: 'website' },
         { property: 'og:description', content: '自分の好きな曲をリクエストしよう！' },
