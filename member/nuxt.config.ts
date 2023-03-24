@@ -46,7 +46,7 @@ export default defineNuxtConfig({
       ]
     },
   },
-  ssr: true,
+  ssr: false,
   dev: process.env.NODE_ENV !== 'production',
   components: [
     {
