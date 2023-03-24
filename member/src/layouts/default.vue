@@ -13,13 +13,13 @@
 
 <style scoped lang="scss">
   div {
-    min-height: calc(100vh - $footer-height);
+    min-height: calc(100dvh - $footer-height);
     @include tablet() {
-      min-height: calc(100vh - $tablet-footer-height);
+      min-height: calc(100dvh - $tablet-footer-height);
     }
   }
   .footer {
     position: sticky;
-    top: 100vh;
+    top: 100dvh;
   }
 </style>

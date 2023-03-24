@@ -56,12 +56,12 @@
 <style scoped lang="scss">
   .requested {
     width: 100vw;
-    height: calc(100vh - $app-bar-height);
+    height: calc(100dvh - $app-bar-height);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: calc(100vh - $app-bar-height);
+    height: calc(100dvh - $app-bar-height);
     @include pc() {
       background: $gradient-orange;
     }
