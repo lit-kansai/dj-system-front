@@ -87,7 +87,7 @@
   .music-list {
     margin-top: 20px;
     @include pc() {
-      margin: 150px auto 110px auto;
+      margin: 110px auto;
     }
     h2 {
       font-weight: 700;
