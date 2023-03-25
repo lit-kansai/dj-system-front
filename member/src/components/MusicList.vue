@@ -120,14 +120,14 @@
       flex-wrap: wrap;
       justify-content: space-between;
       gap: 60px 15px;
-      margin: 110px auto;
+      margin: 0 auto;
     }
     .blank {
       width: 270px;
     }
   }
   .music-cells {
-    margin: 18px 0 40px 0;
+    margin-bottom: 40px;
     display: flex;
     flex-direction: column;
     @include pc() {
