@@ -120,7 +120,7 @@
       flex-wrap: wrap;
       justify-content: space-between;
       gap: 60px 15px;
-      margin: 110px auto;
+      margin: 0 auto;
     }
     .blank {
       width: 270px;

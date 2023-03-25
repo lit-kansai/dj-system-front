@@ -1,22 +1,27 @@
 <template>
   <div>
-    <RoomHeader class="pc-header" :is-show-search="true" />
-    <div class="pc-header wrapper">
-      <div class="container">
-        <div class="contents">
-          <h1>{{ currentRoom?.name ?? '' }}</h1>
-          <p>自分の好きな曲をリクエストしよう！</p>
-          <GradationSearchTextInput />
+    <RoomHeader class="pc-only" :is-show-search="true" />
+    <main class="wrapper">
+      <div class="pc-only">
+        <div class="container">
+          <div class="contents">
+            <h1>{{ currentRoom?.name ?? '' }}</h1>
+            <h3>自分の好きな曲をリクエストしよう！</h3>
+            <GradationSearchTextInput />
+          </div>
+          <img src="~/assets/img/logo.svg">
         </div>
-        <img src="~/assets/img/logo.svg">
       </div>
-    </div>
-    <div class="mobile-header">
-      <img src="~/assets/img/logo.svg">
-      <h1>{{ currentRoom?.name ?? '' }}</h1>
-      <GradationSearchTextInput />
-    </div>
-    <MusicList :musics="musics" class="wrapper music-list" :on-click-submit-button="requestMusic" />
+      <div class="mobile-only">
+        <img src="~/assets/img/logo.svg">
+        <h1>{{ currentRoom?.name ?? '' }}</h1>
+        <GradationSearchTextInput />
+      </div>
+      <div class="music-list">
+        <h2>人気の曲</h2>
+        <MusicList :musics="musics" :on-click-submit-button="requestMusic" />
+      </div>
+    </main>
   </div>
 </template>
 
@@ -73,13 +78,24 @@
 </script>
 
 <style scoped lang="scss">
-  .pc-header {
+  .pc-only {
     display: none;
     @include pc() {
       display: block;
     }
+    .container {
+      display: flex;
+      justify-content: space-between;
+      margin: 130px 0;
+      .contents {
+        h3 {
+          margin: 15px 0 40px 0;
+          color: $text-color-gray;
+        }
+      }
+    }
   }
-  .mobile-header {
+  .mobile-only {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -92,9 +108,6 @@
     }
     h1 {
       margin: 30px 0;
-      font-weight: 700;
-      font-size: 21px;
-      line-height: 30px;
     }
     @include pc() {
       display: none;
@@ -103,38 +116,10 @@
   .music-list {
     margin-top: 50px;
     @include pc() {
-      margin: 0 auto;
+      margin: 110px auto;
+    }
+    h2 {
+      margin-bottom: 30px;
     }
   }
-  .wrapper {
-    .container {
-      display: flex;
-      justify-content: space-between;
-      padding: 130px 0;
-      .contents {
-        h1 {
-          font-weight: 600;
-          font-size: 80px;
-          line-height: 115px;
-          padding-bottom: 10px;
-        }
-        p {
-          font-weight: 700;
-          font-size: 23.5px;
-          line-height: 35px;
-          color: $text-color-gray;
-          padding-bottom: 40px;
-        }
-      }
-    }
-    .top-musics {
-      .music-cards {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-        gap: 60px 15px;
-        margin-bottom: 110px;
-      }
-    }
-}
 </style>
