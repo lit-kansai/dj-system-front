@@ -19,6 +19,7 @@
       </div>
       <div class="music-list">
         <h2>人気の曲</h2>
+        <p>気になる曲を選択してみよう！</p>
         <MusicList :musics="musics" :on-click-submit-button="requestMusic" />
       </div>
     </main>
@@ -114,6 +115,13 @@
       font-weight: 700;
       font-size: 32px;
       line-height: 46px;
+      margin-bottom: 5px;
+    }
+    p {
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 19px;
+      color: $text-color-gray;
       margin-bottom: 30px;
     }
   }
@@ -138,5 +146,5 @@
         }
       }
     }
-}
+  }
 </style>
