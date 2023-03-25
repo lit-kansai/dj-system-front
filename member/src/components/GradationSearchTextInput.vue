@@ -84,12 +84,12 @@
       }
       &:focus {
         width: calc(100% - 80px);
-        color: $text-color-black;
+        color: $text-color-gray;
         background-color: $background-color;
         border-radius: 40px 0px 0px 40px;
         padding-left: 25px;
         &::placeholder {
-          color: $text-color-black;
+          color: $text-color-gray;
         }
       }
 
