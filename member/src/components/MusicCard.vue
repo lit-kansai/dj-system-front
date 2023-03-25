@@ -1,10 +1,11 @@
 <template>
-  <div
-    class="music-card"
-  >
+  <div class="music-card">
     <img :src="thumbnail" :alt="`${name}のサムネイル写真`">
     <p class="name">{{ name }}</p>
     <p class="artists">{{ artists }}</p>
+    <div class="hover">
+      <img src="~/assets/img/plus.svg">
+    </div>
   </div>
 </template>
 
@@ -29,18 +30,16 @@
     border-radius: 10px;
     box-shadow: 0px 0px 12px 2px $music-card-shadow;
     cursor: pointer;
-
+    position: relative;
     img {
       width: 100%;
       object-fit: cover;
     }
-
     p {
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
     }
-
     .name {
       margin: 20px 0 0 -2px;
       font-weight: 700;
@@ -48,13 +47,35 @@
       line-height: 25px;
       color: $text-color-black;
     }
-
     .artists {
       margin-top: 10px;
       font-weight: 300;
       font-size: 14px;
       line-height: 17px;
       color: $text-color-gray;
+    }
+    .hover {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 270px;
+      height: 360px;
+      border-radius: 10px;
+      background-color: rgba($color: $background-color, $alpha: 0.5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: 0.4s;
+      opacity: 0;
+      &:hover {
+        opacity: 1;
+      }
+      img {
+        width: 110px;
+        height: 110px;
+        object-fit: contain;
+        opacity: 0.9;
+      }
     }
   }
 </style>
