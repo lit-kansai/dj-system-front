@@ -127,7 +127,7 @@
     }
   }
   .music-cells {
-    margin: 18px 0 40px 0;
+    margin-bottom: 40px;
     display: flex;
     flex-direction: column;
     @include pc() {

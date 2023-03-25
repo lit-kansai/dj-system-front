@@ -113,16 +113,23 @@
     }
     h2 {
       font-weight: 700;
-      font-size: 32px;
-      line-height: 46px;
+      font-size: 16px;
       margin-bottom: 5px;
+      @include pc() {
+        font-size: 32px;
+        line-height: 46px;
+      }
     }
     p {
       font-weight: 400;
-      font-size: 16px;
-      line-height: 19px;
+      font-size: 13px;
       color: $text-color-gray;
-      margin-bottom: 30px;
+      margin-bottom: 20px;
+      @include pc() {
+        font-size: 16px;
+        line-height: 19px;
+        margin-bottom: 30px;
+      }
     }
   }
   .wrapper {
