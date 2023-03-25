@@ -5,6 +5,9 @@
     <img :src="thumbnail" :alt="`${name}のサムネイル写真`">
     <p class="name">{{ name }}</p>
     <p class="artists">{{ artists }}</p>
+    <div class="hover">
+      <PaperAirplaneAnimation class="plane" />
+    </div>
   </div>
 </template>
 
@@ -29,6 +32,7 @@
     border-radius: 10px;
     box-shadow: 0px 0px 12px 2px $music-card-shadow;
     cursor: pointer;
+    position: relative;
 
     img {
       width: 100%;
@@ -55,6 +59,24 @@
       font-size: 14px;
       line-height: 17px;
       color: $text-color-gray;
+    }
+  }
+  .hover {
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 270px;
+    height: 360px;
+    background-color: rgba($color: $background-color, $alpha: 0.3);
+    transition: all 0.3s ease;
+    &:hover {
+      opacity: 1;
+    }
+    .plane {
+      position: absolute;
+      bottom: 25px;
+      right: 25px;
     }
   }
 </style>

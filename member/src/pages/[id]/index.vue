@@ -11,6 +11,7 @@
         <img src="~/assets/img/logo.svg">
       </div>
     </div>
+    <PaperAirplaneAnimation />
     <div class="mobile-header">
       <img src="~/assets/img/logo.svg">
       <h1>{{ currentRoom?.name ?? '' }}</h1>
