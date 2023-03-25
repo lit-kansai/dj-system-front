@@ -8,7 +8,7 @@
       </div>
       <div v-else class="music-list">
         <h2>検索結果</h2>
-        <p>気になる曲を選択してみよう！</p>
+        <p>好きな曲を選択してみよう！</p>
         <MusicList :musics="state.musics" :on-click-submit-button="requestMusic" />
       </div>
     </div>
