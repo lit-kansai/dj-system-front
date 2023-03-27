@@ -8,10 +8,10 @@
       </div>
     </div>
     <div class="wrapper tablet">
-      <div class="logo">
+      <NuxtLink class="logo" :to="`/${roomRouteParams?.id ?? ''}`">
         <img src="~/assets/img/new-logo.png">
-        <NuxtLink class="title" :to="`/${roomRouteParams?.id ?? ''}`">{{ currentRoom?.name ?? '' }}</NuxtLink>
-      </div>
+        <h2 class="title">{{ currentRoom?.name ?? '' }}</h2>
+      </NuxtLink>
       <NavSearchTextInput v-if="props.isShowSearch" />
     </div>
   </nav>
@@ -77,6 +77,7 @@
         display: flex;
         align-items: center;
         gap: 10px;
+        text-decoration: none;
         img {
           height: 72px;
           display: block;
@@ -85,8 +86,7 @@
           font-weight: 400;
           font-size: 16px;
           line-height: 19px;
-          color: $text-color-gray;
-          text-decoration: none;
+          color: $text-color-black;
           &:hover {
             opacity: 0.8;
           }
