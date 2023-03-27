@@ -84,7 +84,7 @@
       }
       &:focus {
         width: calc(100% - 80px);
-        color: $text-color-gray;
+        color: $text-color-black;
         background-color: $background-color;
         border-radius: 40px 0px 0px 40px;
         padding-left: 25px;
