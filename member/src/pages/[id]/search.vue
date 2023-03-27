@@ -55,6 +55,7 @@
   }
 
   const requestMusic = async (musicId: string, radioName: string, message: string) => {
+    const { setRequestMusicLoading } = useRequestMusicLoading()
     const roomId: string = String(route.params.id)
     const requestMusicInput: RequestMusicInput = {
       roomId,
@@ -64,6 +65,7 @@
     }
 
     const result = music.api.requestMusic(requestMusicInput)
+    setRequestMusicLoading(true)
     await result.execute()
     if (result.data.value) {
       requestTimer.requestMusic()
@@ -73,6 +75,7 @@
     } else {
       alert(result.error.value)
     }
+    setRequestMusicLoading(true)
   }
 
   onMounted(async () => {
