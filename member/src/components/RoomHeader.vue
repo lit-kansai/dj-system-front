@@ -1,7 +1,8 @@
 <template>
   <nav>
     <div class="wrapper mobile">
-      <h1>{{ currentRoom?.name ?? '' }}</h1>
+      :to="`/mc/room/${displayId}/settings`"
+      <NuxtLink class="title" :to="`/${roomRouteParams?.id ?? ''}`">{{ currentRoom?.name ?? '' }}</NuxtLink>
       <div v-if="props.isShowSearch" class="input">
         <GradationSearchTextInput />
       </div>
@@ -9,7 +10,7 @@
     <div class="wrapper tablet">
       <div class="logo">
         <img src="~/assets/img/new-logo.png">
-        <h1 class="room_name">{{ currentRoom?.name ?? '' }}</h1>
+        <NuxtLink class="title" :to="`/${roomRouteParams?.id ?? ''}`">{{ currentRoom?.name ?? '' }}</NuxtLink>
       </div>
       <NavSearchTextInput v-if="props.isShowSearch" />
     </div>
@@ -17,10 +18,12 @@
 </template>
 <script setup lang="ts">
   import { useRoomState } from '@/features'
+  import { getRouteParams } from '@/utils'
 
   interface Props {
     isShowSearch: boolean
   }
+  const roomRouteParams = getRouteParams.room()
   const { currentRoom } = useRoomState()
   const props = withDefaults(defineProps<Props>(), {
     isShowSearch: false
@@ -42,13 +45,17 @@
       @include tablet() {
         display: none;
       }
-      h1 {
+      .title {
         font-weight: 700;
         font-size: 21px;
         line-height: 30px;
         text-align: center;
         padding: 30px 0 25px 0;
         width: 100%;
+        text-decoration: none;
+        &:hover {
+          opacity: 0.8;
+        }
       }
       .input {
         padding-bottom: 20px;
@@ -74,11 +81,15 @@
           height: 72px;
           display: block;
         }
-        h1 {
+        .title {
           font-weight: 400;
           font-size: 16px;
           line-height: 19px;
           color: $text-color-gray;
+          text-decoration: none;
+          &:hover {
+            opacity: 0.8;
+          }
         }
       }
     }
