@@ -8,7 +8,7 @@
     </div>
     <div class="wrapper tablet">
       <div class="logo">
-        <img src="~/assets/img/logo.svg">
+        <img src="~/assets/img/new-logo.png">
         <h1 class="room_name">{{ currentRoom?.name ?? '' }}</h1>
       </div>
       <NavSearchTextInput v-if="props.isShowSearch" />
@@ -71,7 +71,7 @@
         align-items: center;
         gap: 10px;
         img {
-          height: 36px;
+          height: 72px;
           display: block;
         }
         h1 {

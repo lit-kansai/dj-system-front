@@ -9,11 +9,11 @@
             <p>自分の好きな曲をリクエストしよう！</p>
             <GradationSearchTextInput />
           </div>
-          <img src="~/assets/img/logo.svg">
+          <img src="~/assets/img/new-logo.png">
         </div>
       </div>
       <div class="mobile-header">
-        <img src="~/assets/img/logo.svg">
+        <img src="~/assets/img/new-logo.png">
         <h1>{{ currentRoom?.name ?? '' }}</h1>
         <GradationSearchTextInput />
       </div>
@@ -151,6 +151,10 @@
           color: $text-color-gray;
           padding-bottom: 40px;
         }
+      }
+      img {
+        width: 300px;
+        height: 300px;
       }
     }
   }
