@@ -1,5 +1,8 @@
 <template>
   <div class="container">
+    <div v-if="requestMusicLoading" class="loading">
+      <MusicLoading />
+    </div>
     <div class="left">
       <img :src="albumUrl">
     </div>
@@ -39,20 +42,21 @@
     (e: 'changeTextArea', value: string): void
     (e: 'onClickSubmitButton'): void
   }>()
+  const { requestMusicLoading } = useRequestMusicLoading()
 
   interface Props {
     musicName: string,
     artistName: string,
-    albumUrl: string
+    albumUrl: string,
     textField: string,
-    textArea: string
+    textArea: string,
   }
   const props = withDefaults(defineProps<Props>(), {
     musicName: '',
     artistName: '',
     albumUrl: '',
     textField: '',
-    textArea: ''
+    textArea: '',
   })
 
   const state = reactive({
@@ -88,6 +92,16 @@
       align-items: center;
       gap: 30px;
       padding: 90px;
+    }
+    .loading {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      border-radius: 20px;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(255, 255, 255, 0.3);
     }
   }
   .left {
@@ -133,7 +147,6 @@
           font-weight: 700;
           @include pc() {
             font-size: 40px;
-            margin-left: -3px;
           }
         }
         .artist_name {
