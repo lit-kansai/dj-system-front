@@ -44,14 +44,15 @@
       @include tablet() {
         display: none;
       }
+      padding: 30px 25px ;
       .title {
         font-weight: 700;
         font-size: 21px;
         line-height: 30px;
         text-align: center;
-        padding: 30px 0 25px 0;
         width: 100%;
         text-decoration: none;
+        color: $text-color-black;
         &:hover {
           opacity: 0.8;
         }
