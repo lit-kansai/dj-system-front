@@ -1,7 +1,6 @@
 <template>
   <nav>
     <div class="wrapper mobile">
-      :to="`/mc/room/${displayId}/settings`"
       <NuxtLink class="title" :to="`/${roomRouteParams?.id ?? ''}`">{{ currentRoom?.name ?? '' }}</NuxtLink>
       <div v-if="props.isShowSearch" class="input">
         <GradationSearchTextInput />
