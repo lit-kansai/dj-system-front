@@ -12,6 +12,7 @@
     <input :class="textComputed.length == 0 ? 'none' : ''" type="submit" value="検索" @click="search">
   </div>
 </template>
+
 <script setup lang="ts">
   const route = useRoute()
   const router = useRouter()
