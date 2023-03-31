@@ -12,7 +12,7 @@
 </template>
 
 <script setup lang="ts">
-  import { useCooltime, useRequestTimer, useRoomState } from '@/features'
+  import { useCooltime, useHasMusicRequested, useRequestTimer, useRoomState } from '@/features'
   const { isAllowRequestMusic, removeExpiredCooltime, intervalTime } = useRequestTimer()
   const route = useRoute()
   const { currentRoom } = useRoomState()
@@ -42,8 +42,10 @@
       state.displayTimer.min = time.min
       state.displayTimer.sec = time.sec
       if (isAllowRequestMusic()) {
+        const { setHasMusicRequested } = useHasMusicRequested()
+        setHasMusicRequested(false)
         removeExpiredCooltime()
-        navigateTo(`/${route.params.id}`)
+        window.location.href = `/${route.params.id}`
       }
     }
     setInterval(countdown, 1000)
