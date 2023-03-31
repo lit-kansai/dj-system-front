@@ -67,6 +67,8 @@
   .requested {
     width: 100vw;
     height: 100dvh;
+    position: fixed;
+    top: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -104,6 +106,14 @@
         gap: 10px;
         @include pc() {
           gap: 20px;
+        }
+        h1 {
+          font-size: 40px;
+          line-height: 58px;
+          @include pc() {
+            font-size: 80px;
+            line-height: 115px;
+          }
         }
         h2 {
           text-align: center;

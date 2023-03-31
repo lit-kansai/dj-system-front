@@ -52,8 +52,11 @@
 
 <style scoped lang="scss">
   .cooltime {
+    position: fixed;
+    top: 0;
     width: 100vw;
     height: 100dvh;
+    padding-top: 30px;
     background: $color-gradient-orange;
     display: flex;
     flex-direction: column;
