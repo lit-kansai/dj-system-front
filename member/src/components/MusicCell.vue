@@ -3,7 +3,7 @@
     <div class="contents">
       <img :src="thumbnail" :alt="`${name}のサムネイル写真`">
       <div class="text">
-        <p class="name">{{ name }}</p>
+        <h3 class="name">{{ name }}</h3>
         <p class="artists">{{ artists }}</p>
       </div>
     </div>
@@ -29,6 +29,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    cursor: pointer;
     .icon {
       width: 20px;
       height: 20px;
@@ -36,40 +37,21 @@
     }
   }
   .contents {
-    max-width: calc(100vw - ($padding-wrapper * 2) - 35px);
+    width: calc(100% - 35px);
+    padding: 12px 0;
     display: flex;
     align-items: center;
     gap: 10px;
-    padding: 12px 0;
-    @include tablet() {
-      max-width: calc(100vw - ($tablet-padding-wrapper * 2) - 35px);
-    }
-    @include pc() {
-      max-width: calc(100vw - ($pc-padding-wrapper * 2) - 35px);
-    }
     img {
       width: 55px;
       height: 55px;
       object-fit: cover;
     }
-    .text {
+    .text, .name, .artists {
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
-      .name, .artists {
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-      }
-      .name {
-        font-size: 16px;
-        font-weight: 700;
-        line-height: 23px;
-      }
       .artists {
-        font-weight: 400;
-        font-size: 13px;
-        line-height: 19px;
         color: $color-gray;
       }
     }

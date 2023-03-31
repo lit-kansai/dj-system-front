@@ -2,7 +2,7 @@
   <div>
     <RoomHeader :is-show-search="false" />
     <div class="cooltime">
-      <p>次のリクエストまでちょっと待ってね！</p>
+      <h2>次のリクエストまでちょっと待ってね！</h2>
       <strong>{{ state.displayTimer.min }}:{{ state.displayTimer.sec }}</strong>
     </div>
     <div class="mentors">
@@ -53,27 +53,20 @@
 <style scoped lang="scss">
   .cooltime {
     width: 100vw;
-    height: calc(100dvh - $app-bar-height);
+    height: 100dvh;
     background: $color-gradient-orange;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 20px;
-    @include tablet() {
-      padding: 60px 80px 100px 80px;
-      gap: 50px;
+    @include pc() {
+      padding-bottom: 10px;
+      gap: 40px;
     }
-    p {
-      font-weight: 700;
-      font-size: 16px;
-      line-height: 19px;
+    h2 {
       color: $color-white;
       text-align: center;
-      @include tablet() {
-        font-size: 32px;
-        line-height: 39px;
-      }
     }
     strong {
       font-weight: 500;

@@ -101,9 +101,6 @@
     }
     h1 {
       margin: 30px 0;
-      font-weight: 700;
-      font-size: 21px;
-      line-height: 30px;
     }
     @include pc() {
       display: none;
@@ -115,13 +112,7 @@
       margin: 150px auto 110px auto;
     }
     h2 {
-      font-weight: 700;
-      font-size: 16px;
       margin-bottom: 5px;
-      @include pc() {
-        font-size: 32px;
-        line-height: 46px;
-      }
     }
     p {
       font-weight: 400;
@@ -142,9 +133,6 @@
       margin: 130px 0;
       .contents {
         h1 {
-          font-weight: 600;
-          font-size: 80px;
-          line-height: 115px;
           padding-bottom: 10px;
         }
         p {

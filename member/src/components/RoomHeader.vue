@@ -33,7 +33,7 @@
     width: 100vw;
     background-color: $background-color;
     box-shadow: 0px 3px 6px $color-shadow;
-    position: sticky;
+    position: fixed;
     top: 0;
     z-index: 15;
     min-height: $app-bar-height;
