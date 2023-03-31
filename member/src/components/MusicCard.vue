@@ -28,7 +28,7 @@
     height: 360px;
     padding: 25px 25px 0 25px;
     border-radius: 10px;
-    box-shadow: 0px 0px 12px 2px $music-card-shadow;
+    box-shadow: 0px 0px 12px 2px $color-shadow;
     cursor: pointer;
     position: relative;
     img {
@@ -45,14 +45,14 @@
       font-weight: 700;
       font-size: 21px;
       line-height: 25px;
-      color: $text-color-black;
+      color: $color-body;
     }
     .artists {
       margin-top: 10px;
       font-weight: 300;
       font-size: 14px;
       line-height: 17px;
-      color: $text-color-gray;
+      color: $color-gray;
     }
     .hover {
       position: absolute;

@@ -32,7 +32,7 @@
   nav {
     width: 100vw;
     background-color: $background-color;
-    box-shadow: 0px 3px 6px $shadow-color;
+    box-shadow: 0px 3px 6px $color-shadow;
     position: sticky;
     top: 0;
     z-index: 15;
@@ -52,7 +52,7 @@
         text-align: center;
         width: 100%;
         text-decoration: none;
-        color: $text-color-black;
+        color: $color-body;
         &:hover {
           opacity: 0.8;
         }
@@ -86,7 +86,7 @@
           font-weight: 400;
           font-size: 16px;
           line-height: 19px;
-          color: $text-color-black;
+          color: $color-body;
           &:hover {
             opacity: 0.8;
           }

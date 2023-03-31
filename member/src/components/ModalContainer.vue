@@ -57,7 +57,7 @@
       margin: 0 1rem;
       padding: 0;
       border-radius: 25px;
-      box-shadow: 0px 4px 4px $shadow-color;
+      box-shadow: 0px 4px 4px $color-shadow;
     }
     .close-button {
       display: none;

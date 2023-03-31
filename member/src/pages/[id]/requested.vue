@@ -70,7 +70,7 @@
     justify-content: center;
     height: calc(100dvh - $app-bar-height);
     @include pc() {
-      background: $gradient-orange;
+      background: $color-gradient-orange;
     }
     .wrapper {
       display: flex;

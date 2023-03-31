@@ -39,20 +39,20 @@
     display: block;
     width: 330px;
     height: 20px;
-    background: $background-color-textfield;
-    color: $text-color-black;
+    background: $background-color-gray;
+    color: $color-body;
     border: none;
     padding: 16px 40px 14px 55px;
     border-radius: 34px;
     &::placeholder {
-      color: $text-color-placeholder;
+      color: $color-gray;
     }
   }
   div {
     position: relative;
     &::before {
       content: "";
-      background-color: $text-color-placeholder;
+      background-color: $color-gray;
       mask: url(~/assets/img/search.svg);
       position: absolute;
       top: 15px;

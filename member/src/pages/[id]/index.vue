@@ -126,7 +126,7 @@
     p {
       font-weight: 400;
       font-size: 13px;
-      color: $text-color-gray;
+      color: $color-gray;
       margin-bottom: 20px;
       @include pc() {
         font-size: 16px;
@@ -151,7 +151,7 @@
           font-weight: 700;
           font-size: 23.5px;
           line-height: 35px;
-          color: $text-color-gray;
+          color: $color-gray;
           padding-bottom: 40px;
         }
       }

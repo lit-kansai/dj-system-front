@@ -1,37 +1,37 @@
-$text-color-black: #333333;
-$text-color-white: #F8F8F8;
-$text-color-gray: #bbbbbb;
-$color-light-gray: #eeeeee;
-$text-color-placeholder: #bbbbbb;
-$background-color-textfield: #eeeeee;
-$background-color: #FFFFFF;
-$shadow-color: rgba(143, 143, 143, 0.25);
-$gradient-orange: linear-gradient(
-  277deg, 
-  rgba(255, 103, 103, 0.9) -24%, 
+$color-body: #333333;
+$color-gray: #bbbbbb;
+$color-white: #F8F8F8;
+$color-shadow: rgba(143, 143, 143, 0.25);
+$color-gradient-orange: linear-gradient(
+  277deg,
+  rgba(255, 103, 103, 0.9) -24%,
   rgba(255, 184, 72, 0.9) 105.47%
 );
-$default-font: 'Noto Sans', sans-serif;
-$music-card-shadow: rgba(143, 143, 143, 0.25);
+
+$background-color: #ffffff;
+$background-color-gray: #eeeeee;
+
+$font-default: 'Noto Sans', sans-serif;
+$font-english: 'Mukta';
+
+$breakpoint-pc: 1025px;
+$breakpoint-tablet: 767px;
+
 $app-bar-height: 90px;
-$english-font: 'Mukta';
 $padding-wrapper: 16px;
 $tablet-padding-wrapper: 32px;
 $pc-padding-wrapper: 100px;
 $footer-height: 70px;
 $tablet-footer-height: 100px;
 
-$tablet-breakpoint: 767px;
-$pc-breakpoint: 1025px;
-
 @mixin tablet() {
-  @media screen and (min-width: $tablet-breakpoint) {
+  @media screen and (min-width: $breakpoint-tablet) {
     @content;
   }
 }
 
 @mixin pc() {
-  @media screen and (min-width: $pc-breakpoint) {
+  @media screen and (min-width: $breakpoint-pc) {
     @content;
   }
 }

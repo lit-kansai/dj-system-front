@@ -54,7 +54,7 @@
   .cooltime {
     width: 100vw;
     height: calc(100dvh - $app-bar-height);
-    background: $gradient-orange;
+    background: $color-gradient-orange;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -68,7 +68,7 @@
       font-weight: 700;
       font-size: 16px;
       line-height: 19px;
-      color: $text-color-white;
+      color: $color-white;
       text-align: center;
       @include tablet() {
         font-size: 32px;
@@ -80,7 +80,7 @@
       font-size: 64px;
       line-height: 61px;
       background-color: $background-color;
-      box-shadow: 0px 3px 6px $shadow-color;
+      box-shadow: 0px 3px 6px $color-shadow;
       padding: 40px 60px;
       border-radius: 10px;
     }

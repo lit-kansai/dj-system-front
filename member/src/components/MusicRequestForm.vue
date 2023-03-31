@@ -143,7 +143,7 @@
       .name {
         .music_name {
           font-size: 16px;
-          color: $text-color-black;
+          color: $color-body;
           font-weight: 700;
           @include pc() {
             font-size: 40px;
@@ -151,7 +151,7 @@
         }
         .artist_name {
           font-size: 13px;
-          color: $text-color-gray;
+          color: $color-gray;
           @include pc() {
             font-size: 20px;
           }
@@ -175,8 +175,8 @@
   .submit_button_container {
     text-align: center;
     .submit_button {
-      background: $gradient-orange;
-      color: $text-color-white;
+      background: $color-gradient-orange;
+      color: $color-white;
       width: 260px;
       padding: 12px 16px;
       font-size: 16px;

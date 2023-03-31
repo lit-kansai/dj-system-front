@@ -134,7 +134,7 @@
       display: none;
     }
     div + div {
-      border-top: 1px solid $color-light-gray;
+      border-top: 1px solid $background-color-gray;
     }
   }
 </style>

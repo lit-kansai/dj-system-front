@@ -70,7 +70,7 @@
         font-weight: 400;
         font-size: 13px;
         line-height: 19px;
-        color: $text-color-gray;
+        color: $color-gray;
       }
     }
   }

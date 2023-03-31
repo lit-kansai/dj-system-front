@@ -23,7 +23,7 @@
     padding: 0.5rem;
     width: 48px;
     height: 48px;
-    background: $gradient-orange;
+    background: $color-gradient-orange;
     border-radius: 9999px;
     top: -15px;
     right: -15px;

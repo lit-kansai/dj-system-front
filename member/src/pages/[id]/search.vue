@@ -104,7 +104,7 @@
     p {
       font-weight: 400;
       font-size: 13px;
-      color: $text-color-gray;
+      color: $color-gray;
       margin-bottom: 0;
       @include pc() {
         font-size: 16px;
