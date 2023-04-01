@@ -7,7 +7,7 @@
           <div class="contents">
             <h1>{{ currentRoom?.name ?? '' }}</h1>
             <p>自分の好きな曲をリクエストしよう！</p>
-            <GradationSearchTextInput />
+            <GradientSearchTextInput />
           </div>
           <img src="~/assets/img/new-logo.png">
         </div>
@@ -15,7 +15,7 @@
       <div class="mobile-header">
         <img src="~/assets/img/new-logo.png">
         <h1>{{ currentRoom?.name ?? '' }}</h1>
-        <GradationSearchTextInput />
+        <GradientSearchTextInput />
       </div>
       <div class="music-list">
         <h2>人気の曲</h2>

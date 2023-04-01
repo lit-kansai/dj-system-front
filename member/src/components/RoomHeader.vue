@@ -6,7 +6,7 @@
         <h2 class="title">{{ currentRoom?.name ?? '' }}</h2>
       </NuxtLink>
       <div class="search-container">
-        <GradationSearchTextInput v-if="props.isShowSearch" class="mobile-only" />
+        <GradientSearchTextInput v-if="props.isShowSearch" class="mobile-only" />
         <NavSearchTextInput v-if="props.isShowSearch" class="tablet-only" />
       </div>
     </div>
@@ -15,6 +15,7 @@
 <script setup lang="ts">
   import { useRoomState } from '@/features'
   import { getRouteParams } from '@/utils'
+import GradientSearchTextInput from './GradientSearchTextInput.vue';
 
   interface Props {
     isShowSearch: boolean
