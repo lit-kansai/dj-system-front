@@ -89,7 +89,7 @@
         border-radius: 40px 0px 0px 40px;
         padding-left: 25px;
         &::placeholder {
-          color: $text-color-black;
+          color: $text-color-gray;
         }
       }
 

@@ -1,22 +1,28 @@
 <template>
   <div>
     <RoomHeader class="pc-header" :is-show-search="true" />
-    <div class="pc-header wrapper">
-      <div class="container">
-        <div class="contents">
-          <h1>{{ currentRoom?.name ?? '' }}</h1>
-          <p>自分の好きな曲をリクエストしよう！</p>
-          <GradationSearchTextInput />
+    <main class="wrapper">
+      <div class="pc-header">
+        <div class="container">
+          <div class="contents">
+            <h1>{{ currentRoom?.name ?? '' }}</h1>
+            <p>自分の好きな曲をリクエストしよう！</p>
+            <GradationSearchTextInput />
+          </div>
+          <img src="~/assets/img/new-logo.png">
         </div>
-        <img src="~/assets/img/logo.svg">
       </div>
-    </div>
-    <div class="mobile-header">
-      <img src="~/assets/img/logo.svg">
-      <h1>{{ currentRoom?.name ?? '' }}</h1>
-      <GradationSearchTextInput />
-    </div>
-    <MusicList :musics="musics" class="wrapper music-list" :on-click-submit-button="requestMusic" />
+      <div class="mobile-header">
+        <img src="~/assets/img/new-logo.png">
+        <h1>{{ currentRoom?.name ?? '' }}</h1>
+        <GradationSearchTextInput />
+      </div>
+      <div class="music-list">
+        <h2>人気の曲</h2>
+        <p>気になる曲を選択してみよう！</p>
+        <MusicList :musics="musics" :on-click-submit-button="requestMusic" />
+      </div>
+    </main>
   </div>
 </template>
 
@@ -47,6 +53,7 @@
   }
 
   const requestMusic = async (musicId: string, radioName: string, message: string) => {
+    const { setRequestMusicLoading } = useRequestMusicLoading()
     const roomId: string = String(route.params.id)
     const requestMusicInput: RequestMusicInput = {
       roomId,
@@ -56,6 +63,7 @@
     }
 
     const result = music.api.requestMusic(requestMusicInput)
+    setRequestMusicLoading(true)
     await result.execute()
     if (result.data.value) {
       requestTimer.requestMusic()
@@ -65,6 +73,7 @@
     } else {
       alert(result.error.value)
     }
+    setRequestMusicLoading(false)
   }
 
   onMounted(async () => {
@@ -103,14 +112,34 @@
   .music-list {
     margin-top: 50px;
     @include pc() {
-      margin: 0 auto;
+      margin: 150px auto 110px auto;
+    }
+    h2 {
+      font-weight: 700;
+      font-size: 16px;
+      margin-bottom: 5px;
+      @include pc() {
+        font-size: 32px;
+        line-height: 46px;
+      }
+    }
+    p {
+      font-weight: 400;
+      font-size: 13px;
+      color: $text-color-gray;
+      margin-bottom: 20px;
+      @include pc() {
+        font-size: 16px;
+        line-height: 19px;
+        margin-bottom: 30px;
+      }
     }
   }
   .wrapper {
     .container {
       display: flex;
       justify-content: space-between;
-      padding: 130px 0;
+      margin: 130px 0;
       .contents {
         h1 {
           font-weight: 600;
@@ -126,15 +155,10 @@
           padding-bottom: 40px;
         }
       }
-    }
-    .top-musics {
-      .music-cards {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-        gap: 60px 15px;
-        margin-bottom: 110px;
+      img {
+        width: 300px;
+        height: 300px;
       }
     }
-}
+  }
 </style>

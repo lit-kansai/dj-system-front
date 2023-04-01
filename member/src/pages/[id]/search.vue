@@ -6,7 +6,11 @@
       <div v-else-if="state.musics.length === 0">
         <p>楽曲が見つかりませんでした</p>
       </div>
-      <MusicList v-else :musics="state.musics" :on-click-submit-button="requestMusic" />
+      <div v-else class="music-list">
+        <h2>検索結果</h2>
+        <p>好きな曲を選択してみよう！</p>
+        <MusicList :musics="state.musics" :on-click-submit-button="requestMusic" />
+      </div>
     </div>
   </div>
 </template>
@@ -51,6 +55,7 @@
   }
 
   const requestMusic = async (musicId: string, radioName: string, message: string) => {
+    const { setRequestMusicLoading } = useRequestMusicLoading()
     const roomId: string = String(route.params.id)
     const requestMusicInput: RequestMusicInput = {
       roomId,
@@ -60,6 +65,7 @@
     }
 
     const result = music.api.requestMusic(requestMusicInput)
+    setRequestMusicLoading(true)
     await result.execute()
     if (result.data.value) {
       requestTimer.requestMusic()
@@ -69,6 +75,7 @@
     } else {
       alert(result.error.value)
     }
+    setRequestMusicLoading(true)
   }
 
   onMounted(async () => {
@@ -80,4 +87,30 @@
 <style scoped lang="scss">
   // これ書かないとglobalのものが反映されない時がある
   .wrapper {}
+  .music-list {
+    margin-top: 20px;
+    @include pc() {
+      margin: 110px auto;
+    }
+    h2 {
+      font-weight: 700;
+      font-size: 16px;
+      margin-bottom: 5px;
+      @include pc() {
+        font-size: 32px;
+        line-height: 46px;
+      }
+    }
+    p {
+      font-weight: 400;
+      font-size: 13px;
+      color: $text-color-gray;
+      margin-bottom: 0;
+      @include pc() {
+        font-size: 16px;
+        line-height: 19px;
+        margin-bottom: 30px;
+      }
+    }
+  }
 </style>
