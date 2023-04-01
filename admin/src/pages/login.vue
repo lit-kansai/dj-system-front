@@ -1,8 +1,8 @@
 <template>
   <div id="login-main" class="column justify-center items-center">
-    <div id="login-box" class="q-mb-md" />
+    <img id="login-box" class="q-mb-md" src="~/assets/img/new-logo.png">
     <p id="login-text" class="text-h5 text-weight-bold q-mb-md">
-      Welcome to DJGassi Console
+      Welcome to DJ Gassi Console
     </p>
     <q-btn
       id="login-button"
@@ -40,8 +40,6 @@
 </script>
 
 <style lang="scss" scoped>
-  @import '@/assets/styles/main.scss';
-
   #login-main {
     min-height: calc(100dvh - $app-bar-height);
   }
@@ -49,6 +47,5 @@
   #login-box {
     width: 200px;
     height: 200px;
-    background-color: #d9d9d9;
   }
 </style>

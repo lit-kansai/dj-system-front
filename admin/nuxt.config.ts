@@ -34,7 +34,6 @@ export default defineNuxtConfig({
     },
   ],
   css: [
-    '@/assets/styles/main.scss',
     'quasar/dist/quasar.prod.css',
     '@quasar/extras/roboto-font/roboto-font.css',
     '@quasar/extras/material-icons/material-icons.css',
@@ -67,6 +66,15 @@ export default defineNuxtConfig({
     }
   },
   vite: {
+    css: {
+      preprocessorOptions: {
+        scss: {
+          additionalData: `
+            @import "@/assets/styles/main.scss";
+          `,
+        },
+      },
+    },
     plugins: [
       quasar({
         sassVariables: 'assets/styles/quasar-variables.sass',
