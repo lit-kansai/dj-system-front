@@ -57,7 +57,7 @@
     width: 100vw;
     height: 100dvh;
     padding-top: 30px;
-    background: $color-gradient-orange;
+    background-color: $color-gradient-orange;
     display: flex;
     flex-direction: column;
     justify-content: center;

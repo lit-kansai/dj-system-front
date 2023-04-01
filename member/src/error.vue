@@ -35,7 +35,7 @@
         font-size: 130px;
         line-height: 130px;
         letter-spacing: 0.1em;
-        background: $color-gradient-orange;
+        background-color: $color-gradient-orange;
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
       }

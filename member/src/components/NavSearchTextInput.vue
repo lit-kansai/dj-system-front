@@ -39,7 +39,7 @@
     display: block;
     width: 330px;
     height: 20px;
-    background: $background-color-gray;
+    background-color: $background-color-gray;
     color: $color-body;
     border: none;
     padding: 16px 40px 14px 55px;

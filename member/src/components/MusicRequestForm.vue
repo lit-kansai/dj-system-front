@@ -171,7 +171,7 @@
   .submit_button_container {
     text-align: center;
     .submit_button {
-      background: $color-gradient-orange;
+      background-color: $color-gradient-orange;
       color: $color-white;
       width: 260px;
       padding: 12px 16px;
