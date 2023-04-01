@@ -15,7 +15,6 @@
 <script setup lang="ts">
   import { useRoomState } from '@/features'
   import { getRouteParams } from '@/utils'
-import GradientSearchTextInput from './GradientSearchTextInput.vue';
 
   interface Props {
     isShowSearch: boolean
