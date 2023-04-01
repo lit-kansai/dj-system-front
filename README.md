@@ -25,3 +25,9 @@ $ yarn admin dev // 管理者側の起動
 $ yarn member build // メンバー側のビルド
 $ yarn admin build // 管理者側のビルド
 ```
+### 環境変数
+
+```
+NUXT_PUBLIC_BASE_API_URL=
+HOST_URL=
+```
