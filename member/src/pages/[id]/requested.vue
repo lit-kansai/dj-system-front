@@ -74,7 +74,7 @@
     align-items: center;
     justify-content: center;
     @include pc() {
-      background-color: $color-gradient-orange;
+      background: $color-gradient-orange;
     }
     .container {
       display: flex;

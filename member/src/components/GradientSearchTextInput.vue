@@ -43,7 +43,7 @@
     height: 50px;
     padding: 3px !important;
     border-radius: 40px;
-    background-color: $color-gradient-orange;
+    background: $color-gradient-orange;
     display: flex;
     justify-content: left;
     align-items: center;

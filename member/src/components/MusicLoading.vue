@@ -47,7 +47,7 @@
         height: 15px;
         width: 4px;
         margin-right: 5px;
-        background-color: $color-gradient-orange;
+        background: $color-gradient-orange;
         animation: loading 1s linear infinite;
       }
       span:nth-child(1){
