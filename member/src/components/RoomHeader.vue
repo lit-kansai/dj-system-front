@@ -87,8 +87,7 @@
         width: auto;
       }
       .mobile-only {
-        width: 100%;
-        display: block;
+        display: flex;
         margin: 20px auto;
         @include tablet() {
           display: none;

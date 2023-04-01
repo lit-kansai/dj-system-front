@@ -9,7 +9,7 @@
       autofocus
       @keypress.enter="search"
     >
-    <input :class="textComputed.length == 0 ? 'none' : ''" type="submit" value="検索" @click="search">
+    <input :class="textComputed.length == 0 ? 'zero' : ''" type="submit" value="検索" @click="search">
   </div>
 </template>
 
@@ -35,7 +35,7 @@
 </script>
 
 <style scoped lang="scss">
-  .none {
+  .zero {
     display: none;
   }
   div {
@@ -110,6 +110,7 @@
       background-color: transparent;
       border: none;
       cursor: pointer;
+      transition: all 0.55s ease;
     }
   }
 </style>
