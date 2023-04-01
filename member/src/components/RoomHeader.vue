@@ -5,7 +5,7 @@
         <img src="~/assets/img/new-logo.png">
         <h2 class="title">{{ currentRoom?.name ?? '' }}</h2>
       </NuxtLink>
-      <SearchTextInput v-if="props.isShowSearch" :is-gradient="!isTabletOrPc" class="search" />
+      <SearchTextInput v-if="props.isShowSearch" :is-gradient="isMobile" class="search" />
     </div>
   </nav>
 </template>
@@ -21,11 +21,11 @@
   const props = withDefaults(defineProps<Props>(), {
     isShowSearch: false
   })
-  const isTabletOrPc = ref(window.innerWidth > 767)
+  const isMobile = ref(window.innerWidth < 767)
 
   onMounted(() => {
     window.addEventListener('resize', () => {
-      isTabletOrPc.value = window.innerWidth > 767
+      isMobile.value = window.innerWidth < 767
     })
   })
 </script>
