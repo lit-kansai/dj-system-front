@@ -3,7 +3,7 @@ import { getRouteParams } from '@/utils'
 import { MEMBER_ALLOW_REQUEST_TIME_LOCAL_STORAGE_KEY } from '@/constants'
 
 const isRootPath = (path: string): boolean => {
-  const rootPath = /^\/[a-zA-Z0-9_-]+\/?$/
+  const rootPath = /^\/[a-zA-Z0-9_-]+$/
   return rootPath.test(path)
 }
 
