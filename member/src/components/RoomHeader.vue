@@ -5,10 +5,7 @@
         <img src="~/assets/img/new-logo.png">
         <h2 class="title">{{ currentRoom?.name ?? '' }}</h2>
       </NuxtLink>
-      <div class="search-container">
-        <GradientSearchTextInput v-if="props.isShowSearch" class="mobile-only" />
-        <NavSearchTextInput v-if="props.isShowSearch" class="tablet-only" />
-      </div>
+      <SearchTextInput v-if="props.isShowSearch" :is-gradient="!isTabletOrPc" class="search" />
     </div>
   </nav>
 </template>
@@ -23,6 +20,13 @@
   const { currentRoom } = useRoomState()
   const props = withDefaults(defineProps<Props>(), {
     isShowSearch: false
+  })
+  const isTabletOrPc = ref(window.innerWidth > 767)
+
+  onMounted(() => {
+    window.addEventListener('resize', () => {
+      isTabletOrPc.value = window.innerWidth > 767
+    })
   })
 </script>
 <style scoped lang="scss">
@@ -81,23 +85,10 @@
         color: $color-body;
       }
     }
-    .search-container {
-      width: 100%;
+    .search {
+      margin: 20px auto;
       @include tablet() {
-        width: auto;
-      }
-      .mobile-only {
-        display: flex;
-        margin: 20px auto;
-        @include tablet() {
-          display: none;
-        }
-      }
-      .tablet-only {
-        display: none;
-        @include tablet() {
-          display: block;
-        }
+        margin: 0;
       }
     }
   }
