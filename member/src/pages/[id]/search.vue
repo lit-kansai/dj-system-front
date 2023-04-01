@@ -93,18 +93,12 @@
       margin: 110px auto;
     }
     h2 {
-      font-weight: 700;
-      font-size: 16px;
       margin-bottom: 5px;
-      @include pc() {
-        font-size: 32px;
-        line-height: 46px;
-      }
     }
     p {
       font-weight: 400;
       font-size: 13px;
-      color: $text-color-gray;
+      color: $color-gray;
       margin-bottom: 0;
       @include pc() {
         font-size: 16px;

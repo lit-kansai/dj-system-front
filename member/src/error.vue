@@ -27,7 +27,7 @@
       text-align: center;
       padding-bottom: 70px;
       h1, p {
-        font-family: $english-font;
+        font-family: $font-english;
         font-weight: 700;
       }
       h1 {
@@ -35,7 +35,7 @@
         font-size: 130px;
         line-height: 130px;
         letter-spacing: 0.1em;
-        background: $gradient-orange;
+        background: $color-gradient-orange;
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
       }

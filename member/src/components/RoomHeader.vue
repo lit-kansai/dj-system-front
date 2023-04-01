@@ -1,17 +1,14 @@
 <template>
   <nav>
-    <div class="wrapper mobile">
-      <NuxtLink class="title" :to="`/${roomRouteParams?.id ?? ''}`">{{ currentRoom?.name ?? '' }}</NuxtLink>
-      <div v-if="props.isShowSearch" class="input">
-        <GradationSearchTextInput />
-      </div>
-    </div>
-    <div class="wrapper tablet">
-      <NuxtLink class="logo" :to="`/${roomRouteParams?.id ?? ''}`">
+    <div class="wrapper">
+      <NuxtLink :class="props.isShowSearch ? 'logo show-search' : 'logo'" :to="`/${roomRouteParams?.id ?? ''}`">
         <img src="~/assets/img/new-logo.png">
         <h2 class="title">{{ currentRoom?.name ?? '' }}</h2>
       </NuxtLink>
-      <NavSearchTextInput v-if="props.isShowSearch" />
+      <div class="search-container">
+        <GradientSearchTextInput v-if="props.isShowSearch" class="mobile-only" />
+        <NavSearchTextInput v-if="props.isShowSearch" class="tablet-only" />
+      </div>
     </div>
   </nav>
 </template>
@@ -32,64 +29,75 @@
   nav {
     width: 100vw;
     background-color: $background-color;
-    box-shadow: 0px 3px 6px $shadow-color;
+    box-shadow: 0px 3px 6px $color-shadow;
     position: sticky;
     top: 0;
     z-index: 15;
     min-height: $app-bar-height;
+    height: 100%;
     @include tablet() {
       height: $app-bar-height;
     }
-    .wrapper.mobile {
+    .wrapper {
+      min-height: $app-bar-height;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
       @include tablet() {
-        display: none;
+        flex-direction: row;
+        justify-content: space-between;
+        margin: 0 auto;
       }
-      padding: 30px 25px ;
-      .title {
+    }
+    .show-search {
+      margin-top: 30px;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      &:hover {
+        opacity: 0.8;
+      }
+      @include tablet() {
+        margin: 0;
+      }
+      img {
+        display: none;
+        @include tablet() {
+          display: block;
+          height: 72px;
+        }
+      }
+      h2 {
         font-weight: 700;
         font-size: 21px;
         line-height: 30px;
         text-align: center;
         width: 100%;
         text-decoration: none;
-        color: $text-color-black;
-        &:hover {
-          opacity: 0.8;
-        }
-      }
-      .input {
-        padding-bottom: 20px;
+        color: $color-body;
       }
     }
-    .wrapper.tablet {
-      display: none;
+    .search-container {
+      width: 100%;
       @include tablet() {
+        width: auto;
+      }
+      .mobile-only {
+        width: 100%;
         display: block;
-        height: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-      }
-      .logo, p {
-        display: inline;
-      }
-      .logo{
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        text-decoration: none;
-        img {
-          height: 72px;
-          display: block;
+        margin: 20px auto;
+        @include tablet() {
+          display: none;
         }
-        .title {
-          font-weight: 400;
-          font-size: 16px;
-          line-height: 19px;
-          color: $text-color-black;
-          &:hover {
-            opacity: 0.8;
-          }
+      }
+      .tablet-only {
+        display: none;
+        @include tablet() {
+          display: block;
         }
       }
     }

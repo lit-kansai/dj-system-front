@@ -12,6 +12,7 @@
     <input :class="textComputed.length == 0 ? 'none' : ''" type="submit" value="検索" @click="search">
   </div>
 </template>
+
 <script setup lang="ts">
   const route = useRoute()
   const router = useRouter()
@@ -42,7 +43,7 @@
     height: 50px;
     padding: 3px !important;
     border-radius: 40px;
-    background: $gradient-orange;
+    background: $color-gradient-orange;
     display: flex;
     justify-content: left;
     align-items: center;
@@ -52,7 +53,7 @@
     }
     &::before {
       content: "";
-      background-color: $text-color-white;
+      background-color: $color-white;
       mask: url(~/assets/img/search.svg);
       position: absolute;
       top: 15px;
@@ -72,7 +73,7 @@
       padding: 16px 0px 14px 55px;
       margin-right: 80px;
       background-color: transparent;
-      color: $text-color-white;
+      color: $color-white;
       font-size: 16px;
       font-weight: 400;
       border: none;
@@ -80,16 +81,16 @@
       transition: all 0.55s ease;
       &::placeholder {
         font-weight: 400;
-        color: $text-color-white;
+        color: $color-white;
       }
       &:focus {
         width: calc(100% - 80px);
-        color: $text-color-black;
+        color: $color-body;
         background-color: $background-color;
         border-radius: 40px 0px 0px 40px;
         padding-left: 25px;
         &::placeholder {
-          color: $text-color-gray;
+          color: $color-gray;
         }
       }
 
@@ -105,7 +106,7 @@
       padding: 0;
       position: absolute;
       right: 0px;
-      color: $text-color-white;
+      color: $color-white;
       background-color: transparent;
       border: none;
       cursor: pointer;

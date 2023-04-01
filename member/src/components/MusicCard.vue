@@ -1,7 +1,7 @@
 <template>
   <div class="music-card">
     <img :src="thumbnail" :alt="`${name}のサムネイル写真`">
-    <p class="name">{{ name }}</p>
+    <h3 class="name">{{ name }}</h3>
     <p class="artists">{{ artists }}</p>
     <div class="hover">
       <img src="~/assets/img/plus.svg">
@@ -28,7 +28,7 @@
     height: 360px;
     padding: 25px 25px 0 25px;
     border-radius: 10px;
-    box-shadow: 0px 0px 12px 2px $music-card-shadow;
+    box-shadow: 0px 0px 12px 2px $color-shadow;
     cursor: pointer;
     position: relative;
     img {
@@ -40,19 +40,13 @@
       text-overflow: ellipsis;
       white-space: nowrap;
     }
-    .name {
+    h3.name {
       margin: 20px 0 0 -2px;
-      font-weight: 700;
-      font-size: 21px;
-      line-height: 25px;
-      color: $text-color-black;
+      color: $color-body;
     }
     .artists {
-      margin-top: 10px;
-      font-weight: 300;
-      font-size: 14px;
-      line-height: 17px;
-      color: $text-color-gray;
+      margin-top: 5px;
+      color: $color-gray;
     }
     .hover {
       position: absolute;

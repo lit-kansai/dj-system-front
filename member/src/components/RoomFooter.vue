@@ -13,7 +13,7 @@
     display: flex !important;
     justify-content: center;
     align-items: center;
-    background: $gradient-orange;
+    background: $color-gradient-orange;
     @include tablet() {
       height: $tablet-footer-height;
     }

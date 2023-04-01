@@ -7,7 +7,7 @@
           <div class="contents">
             <h1>{{ currentRoom?.name ?? '' }}</h1>
             <p>自分の好きな曲をリクエストしよう！</p>
-            <GradationSearchTextInput />
+            <GradientSearchTextInput />
           </div>
           <img src="~/assets/img/new-logo.png">
         </div>
@@ -15,7 +15,7 @@
       <div class="mobile-header">
         <img src="~/assets/img/new-logo.png">
         <h1>{{ currentRoom?.name ?? '' }}</h1>
-        <GradationSearchTextInput />
+        <GradientSearchTextInput />
       </div>
       <div class="music-list">
         <h2>人気の曲</h2>
@@ -101,9 +101,6 @@
     }
     h1 {
       margin: 30px 0;
-      font-weight: 700;
-      font-size: 21px;
-      line-height: 30px;
     }
     @include pc() {
       display: none;
@@ -115,18 +112,12 @@
       margin: 150px auto 110px auto;
     }
     h2 {
-      font-weight: 700;
-      font-size: 16px;
       margin-bottom: 5px;
-      @include pc() {
-        font-size: 32px;
-        line-height: 46px;
-      }
     }
     p {
       font-weight: 400;
       font-size: 13px;
-      color: $text-color-gray;
+      color: $color-gray;
       margin-bottom: 20px;
       @include pc() {
         font-size: 16px;
@@ -142,16 +133,13 @@
       margin: 130px 0;
       .contents {
         h1 {
-          font-weight: 600;
-          font-size: 80px;
-          line-height: 115px;
           padding-bottom: 10px;
         }
         p {
           font-weight: 700;
           font-size: 23.5px;
           line-height: 35px;
-          color: $text-color-gray;
+          color: $color-gray;
           padding-bottom: 40px;
         }
       }

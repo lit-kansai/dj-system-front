@@ -3,10 +3,12 @@
     <RoomHeader :is-show-search="false" />
     <div class="requested">
       <div class="wrapper">
-        <img src="~/assets/img/requested-orange.svg">
-        <div class="message">
-          <h1>送信完了</h1>
-          <p>リクエストしてくれてありがとう！</p>
+        <div class="container">
+          <img src="~/assets/img/requested-orange.svg">
+          <div class="message">
+            <h1>送信完了</h1>
+            <h2>リクエストしてくれてありがとう！</h2>
+          </div>
         </div>
       </div>
     </div>
@@ -60,27 +62,29 @@
     clearTimeout(redirectTimer)
   })
 </script>
+
 <style scoped lang="scss">
   .requested {
     width: 100vw;
-    height: calc(100dvh - $app-bar-height);
+    height: 100dvh;
+    position: fixed;
+    top: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: calc(100dvh - $app-bar-height);
     @include pc() {
-      background: $gradient-orange;
+      background: $color-gradient-orange;
     }
-    .wrapper {
+    .container {
       display: flex;
       align-items: center;
       flex-direction: column;
       gap: 15px;
       margin-bottom: 30px;
       @include pc() {
-        padding: 85px 110px;
-        gap: 60px;
+        padding: 85px 80px;
+        gap: 40px;
         flex-direction: row;
         border-radius: 25px;
         background-color: $background-color;
@@ -90,8 +94,8 @@
         height: 190px;
         object-fit: cover;
         @include pc() {
-          width: 350px;
-          height: 350px;
+          width: 300px;
+          height: 300px;
           margin: 30px 0 15px 0;
         }
       }
@@ -104,22 +108,15 @@
           gap: 20px;
         }
         h1 {
-          font-weight: 700;
           font-size: 40px;
           line-height: 58px;
           @include pc() {
-            font-size: 72px;
-            line-height: 87px;
+            font-size: 80px;
+            line-height: 115px;
           }
         }
-        p {
-          font-size: 16px;
-          line-height: 19px;
+        h2 {
           text-align: center;
-          @include pc() {
-            font-size: 24px;
-            line-height: 29px;
-          }
         }
       }
     }

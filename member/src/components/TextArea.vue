@@ -30,13 +30,13 @@
   textarea {
     display: block;
     width: 100%;
-    background: $background-color-textfield;
-    color: $text-color-black;
+    background-color: $background-color-gray;
+    color: $color-body;
     border: none;
     padding: 16px 12px;
     border-radius: 8px;
     &::placeholder {
-      color: $text-color-placeholder;
+      color: $color-gray;
     }
   }
 </style>

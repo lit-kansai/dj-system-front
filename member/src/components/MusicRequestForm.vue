@@ -10,18 +10,18 @@
       <div class="music">
         <img :src="albumUrl">
         <div class="name">
-          <p class="music_name">{{ musicName }}</p>
+          <h2 class="music_name">{{ musicName }}</h2>
           <p class="artist_name">{{ artistName }}</p>
         </div>
       </div>
       <div class="form_container">
-        <div class="form_element">
-          <p class="form_label">ニックネーム(匿名OK)</p>
+        <div>
+          <p class="form_label">ニックネーム<span class="optional">- 任意</span></p>
           <TextField v-model="textFieldComputed" :text="props.textField" placeholder="がっしー" :on-focus="onFocus" :on-blur="onBlur" />
         </div>
-        <div class="form_element">
-          <p class="form_label">メッセージ</p>
-          <TextArea v-model="textAreaComputed" :text="props.textArea" placeholder="開発ここまで終わったよ！（入力しなくても送信できるよ！）" :on-focus="onFocus" :on-blur="onBlur" />
+        <div>
+          <p class="form_label">メッセージ<span class="optional">- 任意</span></p>
+          <TextArea v-model="textAreaComputed" :text="props.textArea" placeholder="開発ここまで終わったよ！" :on-focus="onFocus" :on-blur="onBlur" />
         </div>
         <div class="submit_button_container">
           <button
@@ -35,6 +35,7 @@
     </div>
   </div>
 </template>
+
 <script setup lang="ts">
   const { isMobileOrTablet } = useDevice()
   const emits = defineEmits<{
@@ -85,6 +86,7 @@
     set: value => emits('changeTextArea', value)
   })
 </script>
+
 <style scoped lang="scss">
   .container {
     @include pc() {
@@ -120,13 +122,9 @@
     width: 100%;
     overflow: hidden;
     .music {
-      max-width: calc(100vw - ($padding-wrapper * 2));
       display: flex;
       align-items: center;
       gap: 10px;
-      @include tablet() {
-        max-width: calc(100vw - ($tablet-padding-wrapper * 2));
-      }
       img {
         width: 55px;
         height: 55px;
@@ -143,18 +141,14 @@
       .name {
         .music_name {
           font-size: 16px;
-          color: $text-color-black;
-          font-weight: 700;
+          color: $color-body;
           @include pc() {
             font-size: 40px;
+            line-height: 58px;
           }
         }
         .artist_name {
-          font-size: 13px;
-          color: $text-color-gray;
-          @include pc() {
-            font-size: 20px;
-          }
+          color: $color-gray;
         }
       }
     }
@@ -163,11 +157,13 @@
       margin-top: 30px;
       display: flex;
       flex-direction: column;
-      .form_element {
-        font-size: 14px;
-      }
       .form_label {
         padding-bottom: 5px;
+      }
+      .optional {
+        color: $color-gray;
+        font-size: 12px;
+        margin-left: 5px;
       }
     }
   }
@@ -175,8 +171,8 @@
   .submit_button_container {
     text-align: center;
     .submit_button {
-      background: $gradient-orange;
-      color: $text-color-white;
+      background: $color-gradient-orange;
+      color: $color-white;
       width: 260px;
       padding: 12px 16px;
       font-size: 16px;

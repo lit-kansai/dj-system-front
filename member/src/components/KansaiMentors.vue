@@ -21,12 +21,12 @@
     }
   }
   p {
-    font-family: $english-font;
+    font-family: $font-english;
     font-weight: 400;
     font-size: 14px;
     line-height: 23px;
     letter-spacing: 0.05em;
-    color: $text-color-white;
+    color: $color-white;
     @include tablet() {
       font-size: 21px;
     }
