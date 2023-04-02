@@ -1,6 +1,9 @@
 import { expect } from 'chai'
 import { clearLocalStorage, setDefaultCooltime, setPreviousCooltime } from '@/utils'
 describe('/[id]/index.vue', () => {
+  afterEach(() => {
+    clearLocalStorage()
+  })
   it('localStorageにCooltimeが保存されている時にcooltimeに遷移する', () => {
     setDefaultCooltime()
     cy.visitRoomTopPage()
@@ -26,9 +29,5 @@ describe('/[id]/index.vue', () => {
     cy.location().should((location) => {
       expect(location.pathname).to.eq('/sample-gassi')
     })
-  })
-
-  afterEach(() => {
-    clearLocalStorage()
   })
 })
