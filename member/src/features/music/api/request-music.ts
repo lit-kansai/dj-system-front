@@ -1,6 +1,6 @@
 import { z } from 'zod'
-import { CamelizedAPIResponse, toSchema, _CamelizedAPIResponse } from '@dj-system/utils'
-import { GetRequestOutput, apiClient, ApiInstance, PostRequestOutput } from '@/libs'
+import { CamelizedAPIResponse, toSchema } from '@dj-system/utils'
+import { apiClient, ApiInstance, PostRequestOutput } from '@/libs'
 
 export type RequestMusicResponse = CamelizedAPIResponse<ReturnType<ApiInstance['room']['_roomId']>['request']['$post']>
 export type RequestMusicInput = {

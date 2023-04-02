@@ -1,5 +1,5 @@
 <template>
-  <div class="cell">
+  <div class="cell" data-test-id="music-cell">
     <div class="contents">
       <img :src="thumbnail" :alt="`${name}のサムネイル写真`">
       <div class="text">

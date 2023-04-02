@@ -1,6 +1,9 @@
 <template>
   <div>
-    <div class="music-cards">
+    <div
+      class="music-cards"
+      data-test-id="music-card-container"
+    >
       <MusicCard
         v-for="music in musics"
         :key="music.id"
