@@ -6,8 +6,8 @@
         <q-toolbar-title>DJ Gassi Console</q-toolbar-title>
         <div class="profile">
           <div class="button">
-            <q-btn round @click="toggleProfileOpen">
-              <q-avatar size="42px">
+            <q-btn dense round @click="toggleProfileOpen">
+              <q-avatar size="36px">
                 <img :src="state.user.image">
               </q-avatar>
             </q-btn>
@@ -35,43 +35,35 @@
 
     <q-drawer v-model="state.leftDrawerOpen" show-if-above side="left" bordered>
       <div class="column justify-between window-height no-wrap">
-        <div class="q-pt-xl">
+        <div class="q-pt-lg">
           <div class="column q-pb-xl items-start">
-            <p class="q-px-lg text-subtitle1 font-weight-bold">自分のルーム</p>
-
-            <NuxtLink
+            <p class="q-px-lg q-mb-none text-subtitle1 text-weight-bold">自分のルーム</p>
+            <q-btn
               v-for="room of rooms"
               :key="room.id"
+              flat
+              no-caps
+              align="left"
+              class="q-px-lg q-py-sm full-width"
               :to="'/room/' + room.displayId"
-              style="text-decoration: none;"
-              class="full-width"
             >
-              <q-btn flat align="left" class="q-px-lg q-py-sm q-pl-none full-width">
+              <span class="column items-start">
                 {{ room.name }}
-              </q-btn>
-            </NuxtLink>
-            <NuxtLink to="/room/create" style="text-decoration: none;" class="full-width">
-              <q-btn flat align="left" class="q-px-lg q-pl-none full-width q-py-sm">
-                <q-icon name="add" size="0.9em">ルームを追加</q-icon>
-              </q-btn>
-            </NuxtLink>
+                <span class="text-caption text-grey">{{ `${room.description}(/${room.displayId})` }}</span>
+              </span>
+            </q-btn>
+            <q-btn flat align="left" class="q-px-lg q-py-sm full-width" to="/room/create">
+              <q-icon name="add" size="0.9em" />ルームを追加
+            </q-btn>
           </div>
         </div>
         <div class="column">
-          <NuxtLink to="/settings" style="text-decoration: none;">
-            <div class="q-pb-md">
-              <q-btn flat align="left" class="q-px-lg q-pl-none full-width">
-                <q-icon name="settings" size="1.6em" />外部サービス連携
-              </q-btn>
-            </div>
-          </NuxtLink>
-          <NuxtLink to="https://forms.gle/AbUwewkPuLWJjgrL8" target="_blank" style="text-decoration: none;">
-            <div class="q-pb-md">
-              <q-btn flat align="left" class="q-px-lg q-pl-none full-width">
-                <q-icon name="reviews" size="1.6em" />フィードバックを送信
-              </q-btn>
-            </div>
-          </NuxtLink>
+          <q-btn flat align="left" class="q-px-lg q-py-md full-width" to="/settings">
+            <q-icon name="settings" size="1.6em" class="q-mr-sm" />外部サービス連携
+          </q-btn>
+          <q-btn flat align="left" class="q-px-lg q-py-md full-width" to="https://forms.gle/AbUwewkPuLWJjgrL8">
+            <q-icon name="reviews" size="1.6em" class="q-mr-sm" />フィードバックを送信
+          </q-btn>
         </div>
       </div>
     </q-drawer>

@@ -1,15 +1,14 @@
 <template>
-  <div>
+  <div :class="props.isGradient ? 'gradient' : 'gray'">
     <input
       v-model="textComputed"
-      class="search"
       type="text"
       placeholder="曲名・アーティスト名で検索"
       autocomplete="on"
       autofocus
       @keypress.enter="search"
     >
-    <input :class="textComputed.length == 0 ? 'none' : ''" type="submit" value="検索" @click="search">
+    <input :class="textComputed.length == 0 ? 'zero' : ''" type="submit" value="検索" @click="search">
   </div>
 </template>
 
@@ -17,6 +16,13 @@
   const route = useRoute()
   const router = useRouter()
   const query = ref('')
+
+  interface Props {
+    isGradient: boolean
+  }
+  const props = withDefaults(defineProps<Props>(), {
+    isGradient: false
+  })
 
   const textComputed = computed({
     get: () => query.value,
@@ -35,15 +41,49 @@
 </script>
 
 <style scoped lang="scss">
-  .none {
+  .zero {
     display: none;
+  }
+  div.gradient {
+    background: $color-gradient-orange;
+    &::before {
+      background-color: $color-white;
+    }
+    input[type="text"] {
+      background-color: transparent;
+      color: $color-white;
+      &:focus {
+        background-color: $background-color;
+      }
+      &::placeholder {
+        color: $color-white;
+      }
+    }
+    input[type="submit"] {
+      color: $color-white;
+    }
+  }
+  div.gray {
+    background-color: $background-color-gray;
+    &::before {
+      background-color: $color-gray;
+    }
+    input[type="text"] {
+      background-color: $background-color-gray;
+      color: $color-body;
+      &::placeholder {
+        color: $color-gray;
+      }
+    }
+    input[type="submit"] {
+      color: $color-gray;
+    }
   }
   div {
     width: 100%;
     height: 50px;
     padding: 3px !important;
     border-radius: 40px;
-    background: $color-gradient-orange;
     display: flex;
     justify-content: left;
     align-items: center;
@@ -53,7 +93,6 @@
     }
     &::before {
       content: "";
-      background-color: $color-white;
       mask: url(~/assets/img/search.svg);
       position: absolute;
       top: 15px;
@@ -72,8 +111,6 @@
       display: block;
       padding: 16px 0px 14px 55px;
       margin-right: 80px;
-      background-color: transparent;
-      color: $color-white;
       font-size: 16px;
       font-weight: 400;
       border: none;
@@ -81,12 +118,10 @@
       transition: all 0.55s ease;
       &::placeholder {
         font-weight: 400;
-        color: $color-white;
       }
       &:focus {
         width: calc(100% - 80px);
         color: $color-body;
-        background-color: $background-color;
         border-radius: 40px 0px 0px 40px;
         padding-left: 25px;
         &::placeholder {
@@ -106,10 +141,10 @@
       padding: 0;
       position: absolute;
       right: 0px;
-      color: $color-white;
-      background-color: transparent;
       border: none;
       cursor: pointer;
+      background-color: transparent;
+      transition: all 0.55s ease;
     }
   }
 </style>
