@@ -5,6 +5,7 @@
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxi dev --dotenv .env.development",
+    "mock": "nuxi dev --dotenv .env.mock --port 4444",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare"
