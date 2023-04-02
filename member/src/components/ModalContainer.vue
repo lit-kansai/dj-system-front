@@ -1,5 +1,10 @@
 <template>
-  <div v-if="isOpen" class="wrapper" @click="onClickOutside">
+  <div
+    v-if="isOpen"
+    class="wrapper"
+    data-test-id="modal-container"
+    @click="onClickOutside"
+  >
     <div class="container" @click.stop>
       <ModalCloseButton class="close-button" @click.stop="onClickCloseButton" />
       <slot name="content" />

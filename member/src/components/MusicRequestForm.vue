@@ -8,10 +8,10 @@
     </div>
     <div class="right">
       <div class="music">
-        <img :src="albumUrl">
+        <img data-test-id="modal-album-url" :src="albumUrl">
         <div class="name">
-          <h2 class="music_name">{{ musicName }}</h2>
-          <p class="artist_name">{{ artistName }}</p>
+          <h2 data-test-id="modal-music-name" class="music_name">{{ musicName }}</h2>
+          <p data-test-id="modal-artist-name" class="artist_name">{{ artistName }}</p>
         </div>
       </div>
       <div class="form_container">
@@ -25,6 +25,7 @@
         </div>
         <div class="submit_button_container">
           <button
+            data-test-id="modal-submit-button"
             class="submit_button"
             @click="emits('onClickSubmitButton')"
           >
