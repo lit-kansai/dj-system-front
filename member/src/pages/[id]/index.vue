@@ -7,7 +7,7 @@
           <div class="contents">
             <h1>{{ currentRoom?.name ?? '' }}</h1>
             <p>自分の好きな曲をリクエストしよう！</p>
-            <GradientSearchTextInput />
+            <GradientSearchTextInput data-test-id="music-search-text-input" />
           </div>
           <img src="~/assets/img/new-logo.png">
         </div>
