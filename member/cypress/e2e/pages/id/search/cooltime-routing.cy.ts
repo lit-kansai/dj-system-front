@@ -32,3 +32,4 @@ describe('/[id]/search.vue', () => {
     clearLocalStorage()
   })
 })
+
