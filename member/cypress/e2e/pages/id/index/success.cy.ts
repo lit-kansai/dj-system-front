@@ -65,4 +65,16 @@ describe('/[id]/index.vue', () => {
       expect(location.pathname).to.eq('/sample-gassi/search')
     })
   })
+
+  it('ヘッダーに文字を入力してエンターを押したら、/searchへ遷移する', () => {
+    cy.get('[data-test-id=header-search-text-input]')
+      .click()
+      .find('input[type="text"]')
+      .type('YOASOBI{enter}')
+    cy.wait(500)
+    cy.location().should((location) => {
+      expect(location.search).to.eq('?q=YOASOBI')
+      expect(location.pathname).to.eq('/sample-gassi/search')
+    })
+  })
 })
