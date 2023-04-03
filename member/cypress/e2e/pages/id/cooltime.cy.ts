@@ -27,6 +27,18 @@ describe('/[id]/cooltime.vue', () => {
     })
   })
 
+  it('クールタイム終わったらトップページに画面遷移する', () => {
+    setDefaultCooltime()
+    cy.visitCoolTimePage()
+    // 5分
+    cy.clock(new Date().getTime())
+    cy.tick(1000 * 60 * 5)
+    cy.wait(500)
+    cy.location().should((location) => {
+      expect(location.pathname).to.eq('/sample-gassi')
+    })
+  })
+
   afterEach(() => {
     clearLocalStorage()
   })
