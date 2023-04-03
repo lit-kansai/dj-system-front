@@ -5,7 +5,12 @@
         <img src="~/assets/img/new-logo.png">
         <h2 class="title">{{ currentRoom?.name ?? '' }}</h2>
       </NuxtLink>
-      <SearchTextInput v-if="props.isShowSearch" :is-gradient="isMobile" class="search" />
+      <SearchTextInput
+        v-if="props.isShowSearch"
+        :is-gradient="isMobile"
+        data-test-id="header-search-text-input"
+        class="search"
+      />
     </div>
   </nav>
 </template>
