@@ -1,0 +1,37 @@
+name: Lint and TypeScript Check
+
+on:
+  pull_request:
+
+jobs:
+  lint_and_tsc_check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 14
+
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Run ESLint with reviewdog
+        uses: reviewdog/action-eslint@v1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          reporter: github-pr-review
+
+      - name: Run TypeScript Compiler with reviewdog
+        run: |
+          yarn tsc --noEmit --incremental false > tsc_output.txt 2>&1 || true
+          cat tsc_output.txt
+        env:
+          REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        uses: reviewdog/action-tsc@v1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          reporter: github-pr-review
+
