@@ -1,0 +1,28 @@
+name: E2E Tests
+
+on:
+  pull_request:
+
+jobs:
+  e2e_tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 14
+
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Start mock server
+        run: yarn mock &
+
+      - name: Run Cypress E2E tests
+        uses: cypress-io/github-action@v2
+        with:
+          start: yarn start
+          wait-on: 'http://localhost:3000'
