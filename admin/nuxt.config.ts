@@ -47,8 +47,8 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     public: {
-      BASE_API_URL: '',
-      MEMBER_SITE_URL: '',
+      BASE_API_URL: process.env.NUXT_PUBLIC_BASE_API_URL ?? '',
+      MEMBER_SITE_URL: process.env.MEMBER_SITE_URL ?? '',
       MOCK_ENABLED: false,
     }
   },
