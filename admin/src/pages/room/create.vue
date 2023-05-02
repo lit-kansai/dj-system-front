@@ -66,7 +66,6 @@
 <script setup lang="ts">
   import { room } from '@/features'
 
-  // const $q = quasar()
   const { MEMBER_SITE_URL } = useRuntimeConfig().public
   const router = useRouter()
   const userState = useUserState()
@@ -86,9 +85,7 @@
   const onClickCreateButton = async () => {
     const { setRoom } = useRoomsState()
     const stop = watch(result.pending, (pending) => { state.loading = pending })
-    // loading.show()
     await result.execute()
-    // loading.hide()
     stop()
     const { error, data } = result
     if (error.value) { alert(JSON.stringify(error.value)) }
@@ -103,7 +100,6 @@
     state.form.description = ''
     state.form.provider = ''
   }
-
 </script>
 
 <style lang="scss" scoped>
