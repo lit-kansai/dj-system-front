@@ -11,9 +11,9 @@ const usersSchema = toSchema<GetRoomResponse['users']>()(
   z.object({
     id: z.number(),
     googleId: z.string(),
-    email: z.string(),
-    name: z.string(),
-    icon: z.string(),
+    email: z.string().optional(),
+    name: z.string().optional(),
+    icon: z.string().optional(),
     isAdmin: z.boolean(),
     createdAt: z.string(),
     updatedAt: z.string(),
@@ -33,7 +33,7 @@ const musicsSchema = toSchema<GetRoomResponse['musics']>()(
     album: z.string(),
     name: z.string(),
     thumbnail: z.string(),
-    duration: z.string(),
+    duration: z.number(),
     letter: z.object({
       id: z.string(),
       roomId: z.number(),
@@ -61,7 +61,7 @@ const lettersSchema = toSchema<GetRoomResponse['letters']>()(
       album: z.string(),
       name: z.string(),
       thumbnail: z.string(),
-      duration: z.string(),
+      duration: z.number(),
     }).array()
   }).array()
 )
