@@ -18,9 +18,9 @@
       prefix="https://dj.life-is-tech.com/"
       :rules="[(val) => !!val || 'Field is required']"
     />
-    <div class="row justify-end items-end">
-      <q-btn color="grey-1" text-color="dark" class="q-mr-sm" label="キャンセル" @click="onClickCancel" />
-      <q-btn color="primary" label="保存する" @click="onClickSave" />
+    <div class="row justify-start">
+      <q-btn color="primary" class="q-mr-sm" label="保存する" @click="onClickSave" />
+      <q-btn color="primary" flat label="キャンセル" @click="onClickCancel" />
     </div>
   </div>
 </template>
@@ -68,7 +68,7 @@
     currentRoomName.value = data.value.name
     state.form.roomName = data.value.name
     state.form.roomDescription = data.value.description
-    state.form.requestUrl = data.value.id
+    state.form.requestUrl = data.value.displayId
     state.loading = false
   })
 </script>

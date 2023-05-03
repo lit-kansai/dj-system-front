@@ -143,9 +143,9 @@ export type InternalServerError = Error
 export type User = {
   id: User_id
   google_id: Google_id
-  email: Email
-  name: Name
-  icon: Icon
+  email?: Email | undefined
+  name?: Name | undefined
+  icon?: Icon | undefined
   is_admin: Is_admin
   created_at: Created_at
   updated_at: Updated_at

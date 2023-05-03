@@ -15,7 +15,7 @@ const responseSchema = toSchema<GetRoomMusicsResponse>()(
     album: z.string(),
     name: z.string(),
     thumbnail: z.string(),
-    duration: z.string(),
+    duration: z.number(),
     letter: z.object({
       id: z.string(),
       roomId: z.number(),
