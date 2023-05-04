@@ -6,10 +6,17 @@
     <q-input
       v-model="state.form.roomName"
       outlined
-      label="メモ（ルーム説明）*"
+      label="ルームネーム*"
       :rules="[(val) => !!val || 'Field is required']"
+      hint="今から作成する部屋の名前です。"
     />
-    <q-input v-model="state.form.roomDescription" outlined label="ルーム説明" class="not-rule-input" />
+    <q-input
+      v-model="state.form.roomDescription"
+      outlined
+      label="メモ（ルーム説明）*"
+      class="not-rule-input"
+      hint="あなた専用のメモスペースです。参加者には公開されません。"
+    />
     <q-input
       v-model="state.form.requestUrl"
       outlined
