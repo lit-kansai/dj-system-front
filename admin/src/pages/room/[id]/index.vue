@@ -28,11 +28,24 @@
       </div>
     </div>
 
-    <div>
+    <div class="q-mb-xl">
       <p class="text-h6 text-weight-bold q-mb-xs">
         お便り一覧
       </p>
       <q-table :rows="state.letters" :columns="letterColumns" row-key="name" />
+    </div>
+
+    <div>
+      <p class="text-h6 text-weight-bold q-mb-xs">
+        Danger Zone
+      </p>
+      <div class="row justify-between no-wrap items-center danger-item">
+        <div>
+          <p class="q-mb-sm text-weight-bold text-subtitle1">ルームを削除する</p>
+          <span>ルームを削除すると元に戻すことはできません。お便りのデータも同時に削除されます。プレイリストは、連携している音楽ストリーミングサービスに残ります。</span>
+        </div>
+        <q-btn class="danger-button " color="negative" flat label="ルームを削除" />
+      </div>
     </div>
   </div>
 </template>
@@ -129,3 +142,14 @@
     },
   ]
 </script>
+
+<style lang="scss" scoped>
+  .danger-item {
+    border: $negative 1px solid;
+    border-radius: 6px;
+    padding: 16px;
+  }
+  .danger-button {
+    min-width: 120px;
+  }
+</style>
