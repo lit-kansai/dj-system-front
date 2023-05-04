@@ -3,26 +3,28 @@ import { dataToURLString } from 'aspida'
 import type { Methods as Methods0 } from './mc/auth/signin'
 import type { Methods as Methods1 } from './mc/auth/signin/callback'
 import type { Methods as Methods2 } from './mc/room'
-import type { Methods as Methods3 } from './mc/room/_roomId@string'
-import type { Methods as Methods4 } from './mc/room/_roomId@string/letter/_letterId@string'
-import type { Methods as Methods5 } from './mc/room/_roomId@string/letters'
-import type { Methods as Methods6 } from './mc/room/_roomId@string/music/_musicId@string'
-import type { Methods as Methods7 } from './mc/room/_roomId@string/musics'
-import type { Methods as Methods8 } from './mc/room/_roomId@string/playlist'
-import type { Methods as Methods9 } from './mc/room/_roomId@string/playlist/music'
+import type { Methods as Methods3 } from './mc/room/_roomId'
+import type { Methods as Methods4 } from './mc/room/_roomId/letter/_letterId@string'
+import type { Methods as Methods5 } from './mc/room/_roomId/letters'
+import type { Methods as Methods6 } from './mc/room/_roomId/music/_musicId@string'
+import type { Methods as Methods7 } from './mc/room/_roomId/musics'
+import type { Methods as Methods8 } from './mc/room/_roomId/playlist'
+import type { Methods as Methods9 } from './mc/room/_roomId/playlist/music'
 import type { Methods as Methods10 } from './mc/user'
-import type { Methods as Methods11 } from './mc/user/link/spotify'
-import type { Methods as Methods12 } from './mc/user/link/spotify/callback'
-import type { Methods as Methods13 } from './mc/user/playlist'
-import type { Methods as Methods14 } from './mc/user/playlist/_provider@string'
-import type { Methods as Methods15 } from './mc/user/playlist/_provider@string/_playlist_id@string'
-import type { Methods as Methods16 } from './room/_roomId@string'
-import type { Methods as Methods17 } from './room/_roomId@string/music/search'
-import type { Methods as Methods18 } from './room/_roomId@string/request'
-import type { Methods as MusicTop } from './room/_roomId@string/music/top'
+import type { Methods as Methods11 } from './mc/user/link/applemusic'
+import type { Methods as Methods12 } from './mc/user/link/applemusic/callback'
+import type { Methods as Methods13 } from './mc/user/link/spotify'
+import type { Methods as Methods14 } from './mc/user/link/spotify/callback'
+import type { Methods as Methods15 } from './mc/user/playlist'
+import type { Methods as Methods16 } from './mc/user/playlist/_provider_name'
+import type { Methods as Methods17 } from './mc/user/playlist/_provider_name/_playlist_id@string'
+import type { Methods as Methods18 } from './room/_roomId'
+import type { Methods as Methods19 } from './room/_roomId/music/search'
+import type { Methods as Methods20 } from './room/_roomId/music/top'
+import type { Methods as Methods21 } from './room/_roomId/request'
 
 export const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
-  const prefix = (baseURL === undefined ? 'https://raw.githubusercontent.com/' : baseURL).replace(/\/$/, '')
+  const prefix = (baseURL === undefined ? '/' : baseURL).replace(/\/$/, '')
   const PATH0 = '/mc/auth/signin'
   const PATH1 = '/mc/auth/signin/callback'
   const PATH2 = '/mc/room'
@@ -33,12 +35,15 @@ export const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
   const PATH7 = '/playlist'
   const PATH8 = '/playlist/music'
   const PATH9 = '/mc/user'
-  const PATH10 = '/mc/user/link/spotify'
-  const PATH11 = '/mc/user/link/spotify/callback'
-  const PATH12 = '/mc/user/playlist'
-  const PATH13 = '/room'
-  const PATH14 = '/music/search'
-  const PATH15 = '/request'
+  const PATH10 = '/mc/user/link/applemusic'
+  const PATH11 = '/mc/user/link/applemusic/callback'
+  const PATH12 = '/mc/user/link/spotify'
+  const PATH13 = '/mc/user/link/spotify/callback'
+  const PATH14 = '/mc/user/playlist'
+  const PATH15 = '/room'
+  const PATH16 = '/music/search'
+  const PATH17 = '/music/top'
+  const PATH18 = '/request'
   const GET = 'GET'
   const POST = 'POST'
   const PUT = 'PUT'
@@ -64,7 +69,8 @@ export const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
           /**
            * @returns Success
            */
-          get: (option: { query: Methods0['get']['query'], config?: T | undefined }) => fetch<Methods0['get']['status']>(prefix, PATH0, GET, option).json(),
+          get: (option: { query: Methods0['get']['query'], config?: T | undefined }) =>
+            fetch<Methods0['get']['resBody'], BasicHeaders, Methods0['get']['status']>(prefix, PATH0, GET, option).json(),
           /**
            * @returns Success
            */
@@ -75,7 +81,7 @@ export const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
         }
       },
       room: {
-        _roomId: (val2: string) => {
+        _roomId: (val2: number | string) => {
           const prefix2 = `${PATH2}/${val2}`
 
           return {
@@ -238,7 +244,7 @@ export const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
       },
       user: {
         link: {
-          spotify: {
+          applemusic: {
             callback: {
               /**
                * @returns 要求に成功した
@@ -255,20 +261,46 @@ export const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
             /**
              * @returns Success
              */
-            get: (option: { query: Methods11['get']['query'], config?: T | undefined }) =>
+            get: (option?: { config?: T | undefined } | undefined) =>
               fetch<Methods11['get']['resBody'], BasicHeaders, Methods11['get']['status']>(prefix, PATH10, GET, option).json(),
             /**
              * @returns Success
              */
-            $get: (option: { query: Methods11['get']['query'], config?: T | undefined }) =>
+            $get: (option?: { config?: T | undefined } | undefined) =>
               fetch<Methods11['get']['resBody'], BasicHeaders, Methods11['get']['status']>(prefix, PATH10, GET, option).json().then(r => r.body),
-            $path: (option?: { method?: 'get' | undefined; query: Methods11['get']['query'] } | undefined) =>
-              `${prefix}${PATH10}${option && option.query ? `?${dataToURLString(option.query)}` : ''}`
+            $path: () => `${prefix}${PATH10}`
+          },
+          spotify: {
+            callback: {
+              /**
+               * @returns 要求に成功した
+               */
+              post: (option: { body: Methods14['post']['reqBody'], config?: T | undefined }) =>
+                fetch<Methods14['post']['resBody'], BasicHeaders, Methods14['post']['status']>(prefix, PATH13, POST, option).json(),
+              /**
+               * @returns 要求に成功した
+               */
+              $post: (option: { body: Methods14['post']['reqBody'], config?: T | undefined }) =>
+                fetch<Methods14['post']['resBody'], BasicHeaders, Methods14['post']['status']>(prefix, PATH13, POST, option).json().then(r => r.body),
+              $path: () => `${prefix}${PATH13}`
+            },
+            /**
+             * @returns Success
+             */
+            get: (option: { query: Methods13['get']['query'], config?: T | undefined }) =>
+              fetch<Methods13['get']['resBody'], BasicHeaders, Methods13['get']['status']>(prefix, PATH12, GET, option).json(),
+            /**
+             * @returns Success
+             */
+            $get: (option: { query: Methods13['get']['query'], config?: T | undefined }) =>
+              fetch<Methods13['get']['resBody'], BasicHeaders, Methods13['get']['status']>(prefix, PATH12, GET, option).json().then(r => r.body),
+            $path: (option?: { method?: 'get' | undefined; query: Methods13['get']['query'] } | undefined) =>
+              `${prefix}${PATH12}${option && option.query ? `?${dataToURLString(option.query)}` : ''}`
           }
         },
         playlist: {
-          _provider: (val3: string) => {
-            const prefix3 = `${PATH12}/${val3}`
+          _provider_name: (val3: number | string) => {
+            const prefix3 = `${PATH14}/${val3}`
 
             return {
               _playlist_id: (val4: string) => {
@@ -279,12 +311,12 @@ export const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
                    * @returns Success
                    */
                   get: (option?: { config?: T | undefined } | undefined) =>
-                    fetch<Methods15['get']['resBody'], BasicHeaders, Methods15['get']['status']>(prefix, prefix4, GET, option).json(),
+                    fetch<Methods17['get']['resBody'], BasicHeaders, Methods17['get']['status']>(prefix, prefix4, GET, option).json(),
                   /**
                    * @returns Success
                    */
                   $get: (option?: { config?: T | undefined } | undefined) =>
-                    fetch<Methods15['get']['resBody'], BasicHeaders, Methods15['get']['status']>(prefix, prefix4, GET, option).json().then(r => r.body),
+                    fetch<Methods17['get']['resBody'], BasicHeaders, Methods17['get']['status']>(prefix, prefix4, GET, option).json().then(r => r.body),
                   $path: () => `${prefix}${prefix4}`
                 }
               },
@@ -292,22 +324,22 @@ export const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
                * @returns Success
                */
               get: (option?: { config?: T | undefined } | undefined) =>
-                fetch<Methods14['get']['resBody'], BasicHeaders, Methods14['get']['status']>(prefix, prefix3, GET, option).json(),
+                fetch<Methods16['get']['resBody'], BasicHeaders, Methods16['get']['status']>(prefix, prefix3, GET, option).json(),
               /**
                * @returns Success
                */
               $get: (option?: { config?: T | undefined } | undefined) =>
-                fetch<Methods14['get']['resBody'], BasicHeaders, Methods14['get']['status']>(prefix, prefix3, GET, option).json().then(r => r.body),
+                fetch<Methods16['get']['resBody'], BasicHeaders, Methods16['get']['status']>(prefix, prefix3, GET, option).json().then(r => r.body),
               /**
                * @returns 要求に成功した
                */
-              post: (option: { body: Methods14['post']['reqBody'], config?: T | undefined }) =>
-                fetch<Methods14['post']['resBody'], BasicHeaders, Methods14['post']['status']>(prefix, prefix3, POST, option).json(),
+              post: (option: { body: Methods16['post']['reqBody'], config?: T | undefined }) =>
+                fetch<Methods16['post']['resBody'], BasicHeaders, Methods16['post']['status']>(prefix, prefix3, POST, option).json(),
               /**
                * @returns 要求に成功した
                */
-              $post: (option: { body: Methods14['post']['reqBody'], config?: T | undefined }) =>
-                fetch<Methods14['post']['resBody'], BasicHeaders, Methods14['post']['status']>(prefix, prefix3, POST, option).json().then(r => r.body),
+              $post: (option: { body: Methods16['post']['reqBody'], config?: T | undefined }) =>
+                fetch<Methods16['post']['resBody'], BasicHeaders, Methods16['post']['status']>(prefix, prefix3, POST, option).json().then(r => r.body),
               $path: () => `${prefix}${prefix3}`
             }
           },
@@ -315,13 +347,13 @@ export const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
            * @returns Success
            */
           get: (option?: { config?: T | undefined } | undefined) =>
-            fetch<Methods13['get']['resBody'], BasicHeaders, Methods13['get']['status']>(prefix, PATH12, GET, option).json(),
+            fetch<Methods15['get']['resBody'], BasicHeaders, Methods15['get']['status']>(prefix, PATH14, GET, option).json(),
           /**
            * @returns Success
            */
           $get: (option?: { config?: T | undefined } | undefined) =>
-            fetch<Methods13['get']['resBody'], BasicHeaders, Methods13['get']['status']>(prefix, PATH12, GET, option).json().then(r => r.body),
-          $path: () => `${prefix}${PATH12}`
+            fetch<Methods15['get']['resBody'], BasicHeaders, Methods15['get']['status']>(prefix, PATH14, GET, option).json().then(r => r.body),
+          $path: () => `${prefix}${PATH14}`
         },
         /**
          * @returns Success
@@ -347,66 +379,69 @@ export const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
       }
     },
     room: {
-      _roomId: (val1: string) => {
-        const prefix1 = `${PATH13}/${val1}`
-        const musicTop = `/music/top`
+      _roomId: (val1: number | string) => {
+        const prefix1 = `${PATH15}/${val1}`
 
         return {
           music: {
-            top: {
-              /**
-               * @returns Success
-               */
-              get: (option?: { config?: T | undefined } | undefined) =>
-                fetch<MusicTop['get']['resBody'], BasicHeaders, MusicTop['get']['status']>(prefix, `${prefix1}${musicTop}`, GET, option).json(),
-              /**
-               * @returns Success
-               */
-              $get: (option?: { config?: T | undefined } | undefined) =>
-                fetch<MusicTop['get']['resBody'], BasicHeaders, MusicTop['get']['status']>(prefix, `${prefix1}${musicTop}`, GET, option).json().then(r => r.body),
-              $path: () => `${prefix}${prefix1}${musicTop}`
-            },
             search: {
               /**
                * @returns 音楽情報の配列
                */
-              get: (option: { query: Methods17['get']['query'], config?: T | undefined }) =>
-                fetch<Methods17['get']['resBody'], BasicHeaders, Methods17['get']['status']>(prefix, `${prefix1}${PATH14}`, GET, option).json(),
+              get: (option: { query: Methods19['get']['query'], config?: T | undefined }) =>
+                fetch<Methods19['get']['resBody'], BasicHeaders, Methods19['get']['status']>(prefix, `${prefix1}${PATH16}`, GET, option).json(),
               /**
                * @returns 音楽情報の配列
                */
-              $get: (option: { query: Methods17['get']['query'], config?: T | undefined }) =>
-                fetch<Methods17['get']['resBody'], BasicHeaders, Methods17['get']['status']>(prefix, `${prefix1}${PATH14}`, GET, option).json().then(r => r.body),
-              $path: (option?: { method?: 'get' | undefined; query: Methods17['get']['query'] } | undefined) =>
-                `${prefix}${prefix1}${PATH14}${option && option.query ? `?${dataToURLString(option.query)}` : ''}`
+              $get: (option: { query: Methods19['get']['query'], config?: T | undefined }) =>
+                fetch<Methods19['get']['resBody'], BasicHeaders, Methods19['get']['status']>(prefix, `${prefix1}${PATH16}`, GET, option).json().then(r => r.body),
+              $path: (option?: { method?: 'get' | undefined; query: Methods19['get']['query'] } | undefined) =>
+                `${prefix}${prefix1}${PATH16}${option && option.query ? `?${dataToURLString(option.query)}` : ''}`
+            },
+            top: {
+              /**
+               * @returns Success
+               */
+              get: (option: { query: Methods20['get']['query'], config?: T | undefined }) =>
+                fetch<Methods20['get']['resBody'], BasicHeaders, Methods20['get']['status']>(prefix, `${prefix1}${PATH17}`, GET, option).json(),
+              /**
+               * @returns Success
+               */
+              $get: (option: { query: Methods20['get']['query'], config?: T | undefined }) =>
+                fetch<Methods20['get']['resBody'], BasicHeaders, Methods20['get']['status']>(prefix, `${prefix1}${PATH17}`, GET, option).json().then(r => r.body),
+              $path: (option?: { method?: 'get' | undefined; query: Methods20['get']['query'] } | undefined) =>
+                `${prefix}${prefix1}${PATH17}${option && option.query ? `?${dataToURLString(option.query)}` : ''}`
             }
           },
           request: {
             /**
              * @returns 要求に成功した
              */
-            post: (option: { body: Methods18['post']['reqBody'], config?: T | undefined }) =>
-              fetch<Methods18['post']['resBody'], BasicHeaders, Methods18['post']['status']>(prefix, `${prefix1}${PATH15}`, POST, option).json(),
+            post: (option: { body: Methods21['post']['reqBody'], config?: T | undefined }) =>
+              fetch<Methods21['post']['resBody'], BasicHeaders, Methods21['post']['status']>(prefix, `${prefix1}${PATH18}`, POST, option).json(),
             /**
              * @returns 要求に成功した
              */
-            $post: (option: { body: Methods18['post']['reqBody'], config?: T | undefined }) =>
-              fetch<Methods18['post']['resBody'], BasicHeaders, Methods18['post']['status']>(prefix, `${prefix1}${PATH15}`, POST, option).json().then(r => r.body),
-            $path: () => `${prefix}${prefix1}${PATH15}`
+            $post: (option: { body: Methods21['post']['reqBody'], config?: T | undefined }) =>
+              fetch<Methods21['post']['resBody'], BasicHeaders, Methods21['post']['status']>(prefix, `${prefix1}${PATH18}`, POST, option).json().then(r => r.body),
+            $path: () => `${prefix}${prefix1}${PATH18}`
           },
           /**
            * @returns Roomの情報が返される
            */
           get: (option?: { config?: T | undefined } | undefined) =>
-            fetch<Methods16['get']['resBody'], BasicHeaders, Methods16['get']['status']>(prefix, prefix1, GET, option).json(),
+            fetch<Methods18['get']['resBody'], BasicHeaders, Methods18['get']['status']>(prefix, prefix1, GET, option).json(),
           /**
            * @returns Roomの情報が返される
            */
           $get: (option?: { config?: T | undefined } | undefined) =>
-            fetch<Methods16['get']['resBody'], BasicHeaders, Methods16['get']['status']>(prefix, prefix1, GET, option).json().then(r => r.body),
+            fetch<Methods18['get']['resBody'], BasicHeaders, Methods18['get']['status']>(prefix, prefix1, GET, option).json().then(r => r.body),
           $path: () => `${prefix}${prefix1}`
         }
       }
     }
   }
 }
+
+export type ApiInstance = ReturnType<typeof api>
+export default api

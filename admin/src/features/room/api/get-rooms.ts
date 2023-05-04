@@ -13,6 +13,7 @@ const responseSchema = toSchema<GetRoomsResponse>()(
     description: z.string(),
     playlistId: z.union([z.string(), z.undefined()]),
     provider: z.union([z.string(), z.undefined()]),
+    roomCooltime: z.number(),
     createdAt: z.string(),
     updatedAt: z.string(),
   }).array()

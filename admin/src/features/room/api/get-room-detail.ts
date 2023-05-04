@@ -17,6 +17,7 @@ const responseSchema = toSchema<Partial<GetRoomDetailResponse>>()(
     provider: z.union([z.string(), z.undefined()]),
     createdAt: z.string(),
     updatedAt: z.string(),
+    roomCooltime: z.number(),
   })
 )
 

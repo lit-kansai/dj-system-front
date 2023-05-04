@@ -11,9 +11,9 @@ const usersSchema = toSchema<GetRoomResponse['users']>()(
   z.object({
     id: z.number(),
     googleId: z.string(),
-    email: z.string().optional(),
-    name: z.string().optional(),
-    icon: z.string().optional(),
+    email: z.string(),
+    name: z.string(),
+    icon: z.string(),
     isAdmin: z.boolean(),
     createdAt: z.string(),
     updatedAt: z.string(),
@@ -28,14 +28,14 @@ const musicsSchema = toSchema<GetRoomResponse['musics']>()(
   z.object({
     id: z.number(),
     providedMusicId: z.string(),
-    letterId: z.string().optional(),
-    artists: z.string(),
+    letterId: z.number().optional(),
+    artist: z.string(),
     album: z.string(),
     name: z.string(),
     thumbnail: z.string(),
     duration: z.number(),
     letter: z.object({
-      id: z.string(),
+      id: z.number(),
       roomId: z.number(),
       radioName: z.string(),
       message: z.string(),
@@ -47,7 +47,7 @@ const musicsSchema = toSchema<GetRoomResponse['musics']>()(
 
 const lettersSchema = toSchema<GetRoomResponse['letters']>()(
   z.object({
-    id: z.string(),
+    id: z.number(),
     roomId: z.number(),
     radioName: z.string(),
     message: z.string(),
@@ -56,8 +56,8 @@ const lettersSchema = toSchema<GetRoomResponse['letters']>()(
     musics: z.object({
       id: z.number(),
       providedMusicId: z.string(),
-      letterId: z.string().optional(),
-      artists: z.string(),
+      letterId: z.number().optional(),
+      artist: z.string(),
       album: z.string(),
       name: z.string(),
       thumbnail: z.string(),
@@ -75,6 +75,7 @@ const responseSchema = toSchema<GetRoomResponse>()(
     description: z.string(),
     playlistId: z.string().optional(),
     provider: z.string().optional(),
+    roomCooltime: z.number(),
     createdAt: z.string(),
     updatedAt: z.string(),
     users: usersSchema,

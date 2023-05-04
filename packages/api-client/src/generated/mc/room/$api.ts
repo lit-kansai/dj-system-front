@@ -1,15 +1,15 @@
 import type { AspidaClient, BasicHeaders } from 'aspida'
-import type { Methods as Methods1 } from './_roomId@string'
-import type { Methods as Methods2 } from './_roomId@string/letter/_letterId@string'
-import type { Methods as Methods3 } from './_roomId@string/letters'
-import type { Methods as Methods4 } from './_roomId@string/music/_musicId@string'
-import type { Methods as Methods5 } from './_roomId@string/musics'
-import type { Methods as Methods6 } from './_roomId@string/playlist'
-import type { Methods as Methods7 } from './_roomId@string/playlist/music'
 import type { Methods as Methods0 } from '.'
+import type { Methods as Methods1 } from './_roomId'
+import type { Methods as Methods2 } from './_roomId/letter/_letterId@string'
+import type { Methods as Methods3 } from './_roomId/letters'
+import type { Methods as Methods4 } from './_roomId/music/_musicId@string'
+import type { Methods as Methods5 } from './_roomId/musics'
+import type { Methods as Methods6 } from './_roomId/playlist'
+import type { Methods as Methods7 } from './_roomId/playlist/music'
 
 const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
-  const prefix = (baseURL === undefined ? 'https://raw.githubusercontent.com/' : baseURL).replace(/\/$/, '')
+  const prefix = (baseURL === undefined ? '/' : baseURL).replace(/\/$/, '')
   const PATH0 = '/mc/room'
   const PATH1 = '/letter'
   const PATH2 = '/letters'
@@ -23,7 +23,7 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
   const DELETE = 'DELETE'
 
   return {
-    _roomId: (val0: string) => {
+    _roomId: (val0: number | string) => {
       const prefix0 = `${PATH0}/${val0}`
 
       return {

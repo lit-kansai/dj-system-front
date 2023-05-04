@@ -1,16 +1,16 @@
 import type { AspidaClient, BasicHeaders } from 'aspida'
-import type { Methods as Methods1 } from './_provider@string'
-import type { Methods as Methods2 } from './_provider@string/_playlist_id@string'
 import type { Methods as Methods0 } from '.'
+import type { Methods as Methods1 } from './_provider_name'
+import type { Methods as Methods2 } from './_provider_name/_playlist_id@string'
 
 const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
-  const prefix = (baseURL === undefined ? 'https://raw.githubusercontent.com/' : baseURL).replace(/\/$/, '')
+  const prefix = (baseURL === undefined ? '/' : baseURL).replace(/\/$/, '')
   const PATH0 = '/mc/user/playlist'
   const GET = 'GET'
   const POST = 'POST'
 
   return {
-    _provider: (val0: string) => {
+    _provider_name: (val0: number | string) => {
       const prefix0 = `${PATH0}/${val0}`
 
       return {

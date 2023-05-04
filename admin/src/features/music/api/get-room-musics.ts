@@ -10,14 +10,14 @@ const responseSchema = toSchema<GetRoomMusicsResponse>()(
   z.object({
     id: z.number(),
     providedMusicId: z.string(),
-    letterId: z.string(),
-    artists: z.string(),
+    letterId: z.number(),
+    artist: z.string(),
     album: z.string(),
     name: z.string(),
     thumbnail: z.string(),
     duration: z.number(),
     letter: z.object({
-      id: z.string(),
+      id: z.number(),
       roomId: z.number(),
       radioName: z.string(),
       message: z.string(),

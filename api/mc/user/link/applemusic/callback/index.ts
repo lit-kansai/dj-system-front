@@ -1,5 +1,5 @@
 /* eslint-disable */
-import type * as Types from '../../../@types'
+import type * as Types from '../../../../../@types'
 
 export type Methods = {
   post: {
@@ -12,9 +12,8 @@ export type Methods = {
     }
 
     reqBody: {
-      musics: Types.Provided_music_id[]
-      radio_name?: Types.Radio_name | undefined
-      message?: Types.Message | undefined
+      music_user_token: Types.Music_user_token
+      access_token: Types.Access_token
     }
   }
 }
