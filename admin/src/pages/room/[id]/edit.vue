@@ -6,7 +6,7 @@
     <q-input
       v-model="state.form.roomName"
       outlined
-      label="ルームネーム*"
+      label="メモ（ルーム説明）*"
       :rules="[(val) => !!val || 'Field is required']"
     />
     <q-input v-model="state.form.roomDescription" outlined label="ルーム説明" class="not-rule-input" />
@@ -17,6 +17,8 @@
       class="url-prefix"
       prefix="https://dj.life-is-tech.com/"
       :rules="[(val) => !!val || 'Field is required']"
+      hint="リクエストURLを変更すると、参加者側のURLも変更されます。"
+      color="negative"
     />
     <div class="row justify-start">
       <q-btn color="primary" class="q-mr-sm" label="保存する" @click="onClickSave" />
