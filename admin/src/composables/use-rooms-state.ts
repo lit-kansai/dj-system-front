@@ -8,6 +8,10 @@ export const useRoomsState = () => {
   const setRooms = (_rooms: Room[]) => {
     rooms.value = _rooms
   }
+  const spliceRoom = (_displayId: string) => {
+    const result = rooms.value.findIndex(room => room.displayId === _displayId)
+    rooms.value.splice(result)
+  }
 
-  return { rooms, setRoom, setRooms }
+  return { rooms, setRoom, setRooms, spliceRoom }
 }

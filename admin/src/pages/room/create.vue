@@ -9,6 +9,7 @@
         outlined
         label="ルームネーム*"
         :rules="[(val) => !!val || 'ルームネームを入力してください']"
+        hint="今から作成する部屋の名前です。"
       />
       <q-input
         v-model="state.form.description"
@@ -16,6 +17,7 @@
         label="メモ（ルーム説明）*"
         class="not-rule-input"
         :rules="[(val) => !!val || 'メモ（ルーム説明）を入力してください']"
+        hint="あなた専用のメモスペースです。参加者には公開されません。"
       />
       <q-select
         v-model="state.form.provider"
@@ -24,6 +26,7 @@
         label="外部サービス*"
         class="not-rule-input"
         :rules="[(val) => !!val || '使用する外部サービスを選択してください']"
+        hint="使用する音楽ストリーミングサービスを選択してください。"
       />
       <q-input
         v-model="state.form.urlName"
@@ -32,6 +35,7 @@
         class="url-prefix"
         :prefix="`${MEMBER_SITE_URL}/`"
         :rules="[(val) => !!val || 'リクエストURLを入力してください']"
+        hint="参加者がリクエストする際のURLです。他と被らないような一意な値を設定してください。"
       />
       <div class="row justify-start">
         <q-btn color="primary" type="submit" class="q-mr-sm" label="ルームを作成する" />
