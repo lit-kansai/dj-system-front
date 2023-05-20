@@ -12,7 +12,7 @@ const responseSchema = toSchema<IntegrateApplemusicResponse>()(
   })
 )
 
-export const getApplemusicAccessToken = async (input: IntegrateAppleMusicInput): GetRequestOutput<IntegrateApplemusicResponse> => {
+export const IntegrateAppleMusic = async (input: IntegrateAppleMusicInput): GetRequestOutput<IntegrateApplemusicResponse> => {
   const result = await useLazyAsyncData(async () => {
     const response = await apiClient().mc.user.link.applemusic.callback.$post({
       body: {
