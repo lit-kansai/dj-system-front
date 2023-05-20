@@ -1,52 +1,32 @@
 import { z } from 'zod'
 import { Ref } from 'nuxt/dist/app/compat/capi'
-import { _CamelizedAPIResponse } from '@dj-system/utils'
-import { GetRequestOutput, apiClient } from '@/libs'
+import { CamelizedAPIResponse, toSchema } from '@dj-system/utils'
+import { ApiInstance, GetRequestOutput, apiClient } from '@/libs'
 
 export type GetRoomLettersInput = { roomId: Ref<string> }
 
-const responseSchema = z.object({
-  id: z.number(),
-  roomId: z.number(),
-  radioName: z.string(),
-  message: z.string(),
-  createdAt: z.string(),
-  updatedAt: z.string(),
-  musics: z.object({
+export type GetRoomLettersResponse = CamelizedAPIResponse<ReturnType<ApiInstance['mc']['room']['_roomId']>['letters']['$get']>
+
+const responseSchema = toSchema<GetRoomLettersResponse>()(
+  z.object({
     id: z.number(),
-    providedMusicId: z.string(),
-    letterId: z.number(),
-    artists: z.union([z.string(), z.undefined()]),
-    album: z.string(),
-    name: z.string(),
-    thumbnail: z.string(),
-    duration: z.number()
+    roomId: z.number(),
+    radioName: z.string().optional(),
+    message: z.string(),
+    createdAt: z.string(),
+    updatedAt: z.string(),
+    musics: z.object({
+      id: z.number(),
+      providedMusicId: z.string(),
+      letterId: z.number().optional(),
+      artist: z.string(),
+      album: z.string(),
+      name: z.string(),
+      thumbnail: z.string(),
+      duration: z.number()
+    }).array()
   }).array()
-}).array()
-
-export type GetRoomLettersResponse = _CamelizedAPIResponse<z.infer<typeof responseSchema>>
-
-// NOTE: Swaggerと実際の方が違うので保留
-// const responseSchema = toSchema<Partial<GetRoomLettersResponse>>()(
-//   z.object({
-//     id: z.string(),
-//     roomId: z.number(),
-//     radioName: z.string(),
-//     message: z.string(),
-//     createdAt: z.string(),
-//     updatedAt: z.string(),
-//     musics: z.object({
-//       id: z.number(),
-//       providedMusicId: z.string(),
-//       letterId: z.string(),
-//       artists: z.string(),
-//       album: z.string(),
-//       name: z.string(),
-//       thumbnail: z.string(),
-//       duration: z.string()
-//     }).array()
-//   }).array()
-// )
+)
 
 export const getRoomLetters = async (input: GetRoomLettersInput): GetRequestOutput<GetRoomLettersResponse> => {
   const result = await useLazyAsyncData(async () => {

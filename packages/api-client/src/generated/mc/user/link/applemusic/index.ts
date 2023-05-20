@@ -4,7 +4,10 @@ import type * as Types from '../../../../@types'
 export type Methods = {
   get: {
     status: 200
+
     /** Success */
-    resBody: Types.Track[]
+    resBody: {
+      access_token: Types.Access_token
+    }
   }
 }

@@ -10,6 +10,7 @@ export type Methods = {
       id: Types.Room_display_id
       name: Types.Room_name
       description: Types.Description
+      room_cooltime: Types.Room_cooltime
     }
   }
 }

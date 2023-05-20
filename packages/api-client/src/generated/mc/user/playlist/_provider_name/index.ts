@@ -20,8 +20,8 @@ export type Methods = {
     }
 
     reqBody: {
-      name: Types.Playlist_name
-      description: Types.Playlist_description
+      name: Types.Provider_playlist_name
+      description: Types.Provider_playlist_description
     }
   }
 }

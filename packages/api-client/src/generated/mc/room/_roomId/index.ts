@@ -18,6 +18,7 @@ export type Methods = {
       url_name: Types.Room_display_id
       room_name: Types.Room_name
       description: Types.Description
+      room_cooltime: Types.Room_cooltime
     }
   }
 
