@@ -6,6 +6,8 @@ export const tokenFetcher = {
   local,
   fetch: (): string | null => {
     if (isDev) { return local.fetch() }
-    return cookie.fetch()
+    // FIXME: Cookie動いてないので一旦LocalStorageで
+    return local.fetch()
+    // return cookie.fetch()
   }
 }
