@@ -5,7 +5,7 @@ import { ApiInstance, GetRequestOutput, apiClient } from '@/libs'
 
 export type GetRoomLettersInput = { roomId: Ref<string> }
 
-export type GetRoomLettersResponse = CamelizedAPIResponse<ReturnType<ApiInstance['mc']['room']['_roomId']>['letters']['$get']>
+export type GetRoomLettersResponse = CamelizedAPIResponse<ReturnType<ApiInstance['mc']['room']['_room_id']>['letters']['$get']>
 
 const responseSchema = toSchema<GetRoomLettersResponse>()(
   z.object({
@@ -30,7 +30,7 @@ const responseSchema = toSchema<GetRoomLettersResponse>()(
 
 export const getRoomLetters = async (input: GetRoomLettersInput): GetRequestOutput<GetRoomLettersResponse> => {
   const result = await useLazyAsyncData(async () => {
-    const response = await apiClient().mc.room._roomId(input.roomId.value).letters.$get()
+    const response = await apiClient().mc.room._room_id(input.roomId.value).letters.$get()
 
     const parseResult = responseSchema.safeParse(response)
     if (!parseResult.success) {

@@ -6,13 +6,14 @@ import type { Methods as Methods2 } from './spotify'
 import type { Methods as Methods3 } from './spotify/callback'
 
 const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
-  const prefix = (baseURL === undefined ? '/' : baseURL).replace(/\/$/, '')
+  const prefix = (baseURL === undefined ? 'https://raw.githubusercontent.com/' : baseURL).replace(/\/$/, '')
   const PATH0 = '/mc/user/link/applemusic'
   const PATH1 = '/mc/user/link/applemusic/callback'
   const PATH2 = '/mc/user/link/spotify'
   const PATH3 = '/mc/user/link/spotify/callback'
   const GET = 'GET'
   const POST = 'POST'
+  const DELETE = 'DELETE'
 
   return {
     applemusic: {
@@ -65,6 +66,16 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
        */
       $get: (option: { query: Methods2['get']['query'], config?: T | undefined }) =>
         fetch<Methods2['get']['resBody'], BasicHeaders, Methods2['get']['status']>(prefix, PATH2, GET, option).json().then(r => r.body),
+      /**
+       * @returns Success
+       */
+      delete: (option?: { config?: T | undefined } | undefined) =>
+        fetch<Methods2['delete']['resBody'], BasicHeaders, Methods2['delete']['status']>(prefix, PATH2, DELETE, option).json(),
+      /**
+       * @returns Success
+       */
+      $delete: (option?: { config?: T | undefined } | undefined) =>
+        fetch<Methods2['delete']['resBody'], BasicHeaders, Methods2['delete']['status']>(prefix, PATH2, DELETE, option).json().then(r => r.body),
       $path: (option?: { method?: 'get' | undefined; query: Methods2['get']['query'] } | undefined) =>
         `${prefix}${PATH2}${option && option.query ? `?${dataToURLString(option.query)}` : ''}`
     }
