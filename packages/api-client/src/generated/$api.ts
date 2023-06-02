@@ -3,28 +3,28 @@ import { dataToURLString } from 'aspida'
 import type { Methods as Methods0 } from './mc/auth/signin'
 import type { Methods as Methods1 } from './mc/auth/signin/callback'
 import type { Methods as Methods2 } from './mc/room'
-import type { Methods as Methods3 } from './mc/room/_roomId'
-import type { Methods as Methods4 } from './mc/room/_roomId/letter/_letterId@string'
-import type { Methods as Methods5 } from './mc/room/_roomId/letters'
-import type { Methods as Methods6 } from './mc/room/_roomId/music/_musicId@string'
-import type { Methods as Methods7 } from './mc/room/_roomId/musics'
-import type { Methods as Methods8 } from './mc/room/_roomId/playlist'
-import type { Methods as Methods9 } from './mc/room/_roomId/playlist/music'
+import type { Methods as Methods3 } from './mc/room/_room_id@string'
+import type { Methods as Methods4 } from './mc/room/_room_id@string/letter/_letterId@string'
+import type { Methods as Methods5 } from './mc/room/_room_id@string/letters'
+import type { Methods as Methods6 } from './mc/room/_room_id@string/music/_musicId@string'
+import type { Methods as Methods7 } from './mc/room/_room_id@string/musics'
+import type { Methods as Methods8 } from './mc/room/_room_id@string/playlist'
+import type { Methods as Methods9 } from './mc/room/_room_id@string/playlist/music'
 import type { Methods as Methods10 } from './mc/user'
 import type { Methods as Methods11 } from './mc/user/link/applemusic'
 import type { Methods as Methods12 } from './mc/user/link/applemusic/callback'
 import type { Methods as Methods13 } from './mc/user/link/spotify'
 import type { Methods as Methods14 } from './mc/user/link/spotify/callback'
 import type { Methods as Methods15 } from './mc/user/playlist'
-import type { Methods as Methods16 } from './mc/user/playlist/_provider_name'
-import type { Methods as Methods17 } from './mc/user/playlist/_provider_name/_playlist_id@string'
-import type { Methods as Methods18 } from './room/_roomId'
-import type { Methods as Methods19 } from './room/_roomId/music/search'
-import type { Methods as Methods20 } from './room/_roomId/music/top'
-import type { Methods as Methods21 } from './room/_roomId/request'
+import type { Methods as Methods16 } from './mc/user/playlist/_provider_name@string'
+import type { Methods as Methods17 } from './mc/user/playlist/_provider_name@string/_playlist_id@string'
+import type { Methods as Methods18 } from './room/_room_id@string'
+import type { Methods as Methods19 } from './room/_room_id@string/music/search'
+import type { Methods as Methods20 } from './room/_room_id@string/music/top'
+import type { Methods as Methods21 } from './room/_room_id@string/request'
 
 export const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
-  const prefix = (baseURL === undefined ? '/' : baseURL).replace(/\/$/, '')
+  const prefix = (baseURL === undefined ? 'https://raw.githubusercontent.com/' : baseURL).replace(/\/$/, '')
   const PATH0 = '/mc/auth/signin'
   const PATH1 = '/mc/auth/signin/callback'
   const PATH2 = '/mc/room'
@@ -81,7 +81,7 @@ export const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
         }
       },
       room: {
-        _roomId: (val2: number | string) => {
+        _room_id: (val2: string) => {
           const prefix2 = `${PATH2}/${val2}`
 
           return {
@@ -294,12 +294,22 @@ export const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
              */
             $get: (option: { query: Methods13['get']['query'], config?: T | undefined }) =>
               fetch<Methods13['get']['resBody'], BasicHeaders, Methods13['get']['status']>(prefix, PATH12, GET, option).json().then(r => r.body),
+            /**
+             * @returns Success
+             */
+            delete: (option?: { config?: T | undefined } | undefined) =>
+              fetch<Methods13['delete']['resBody'], BasicHeaders, Methods13['delete']['status']>(prefix, PATH12, DELETE, option).json(),
+            /**
+             * @returns Success
+             */
+            $delete: (option?: { config?: T | undefined } | undefined) =>
+              fetch<Methods13['delete']['resBody'], BasicHeaders, Methods13['delete']['status']>(prefix, PATH12, DELETE, option).json().then(r => r.body),
             $path: (option?: { method?: 'get' | undefined; query: Methods13['get']['query'] } | undefined) =>
               `${prefix}${PATH12}${option && option.query ? `?${dataToURLString(option.query)}` : ''}`
           }
         },
         playlist: {
-          _provider_name: (val3: number | string) => {
+          _provider_name: (val3: string) => {
             const prefix3 = `${PATH14}/${val3}`
 
             return {
@@ -379,7 +389,7 @@ export const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
       }
     },
     room: {
-      _roomId: (val1: number | string) => {
+      _room_id: (val1: string) => {
         const prefix1 = `${PATH15}/${val1}`
 
         return {
@@ -402,12 +412,12 @@ export const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
               /**
                * @returns Success
                */
-              get: (option: { query: Methods20['get']['query'], config?: T | undefined }) =>
+              get: (option?: { query?: Methods20['get']['query'] | undefined, config?: T | undefined } | undefined) =>
                 fetch<Methods20['get']['resBody'], BasicHeaders, Methods20['get']['status']>(prefix, `${prefix1}${PATH17}`, GET, option).json(),
               /**
                * @returns Success
                */
-              $get: (option: { query: Methods20['get']['query'], config?: T | undefined }) =>
+              $get: (option?: { query?: Methods20['get']['query'] | undefined, config?: T | undefined } | undefined) =>
                 fetch<Methods20['get']['resBody'], BasicHeaders, Methods20['get']['status']>(prefix, `${prefix1}${PATH17}`, GET, option).json().then(r => r.body),
               $path: (option?: { method?: 'get' | undefined; query: Methods20['get']['query'] } | undefined) =>
                 `${prefix}${prefix1}${PATH17}${option && option.query ? `?${dataToURLString(option.query)}` : ''}`

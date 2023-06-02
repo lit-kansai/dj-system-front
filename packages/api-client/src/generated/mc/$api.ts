@@ -3,24 +3,24 @@ import { dataToURLString } from 'aspida'
 import type { Methods as Methods0 } from './auth/signin'
 import type { Methods as Methods1 } from './auth/signin/callback'
 import type { Methods as Methods2 } from './room'
-import type { Methods as Methods3 } from './room/_roomId'
-import type { Methods as Methods4 } from './room/_roomId/letter/_letterId@string'
-import type { Methods as Methods5 } from './room/_roomId/letters'
-import type { Methods as Methods6 } from './room/_roomId/music/_musicId@string'
-import type { Methods as Methods7 } from './room/_roomId/musics'
-import type { Methods as Methods8 } from './room/_roomId/playlist'
-import type { Methods as Methods9 } from './room/_roomId/playlist/music'
+import type { Methods as Methods3 } from './room/_room_id@string'
+import type { Methods as Methods4 } from './room/_room_id@string/letter/_letterId@string'
+import type { Methods as Methods5 } from './room/_room_id@string/letters'
+import type { Methods as Methods6 } from './room/_room_id@string/music/_musicId@string'
+import type { Methods as Methods7 } from './room/_room_id@string/musics'
+import type { Methods as Methods8 } from './room/_room_id@string/playlist'
+import type { Methods as Methods9 } from './room/_room_id@string/playlist/music'
 import type { Methods as Methods10 } from './user'
 import type { Methods as Methods11 } from './user/link/applemusic'
 import type { Methods as Methods12 } from './user/link/applemusic/callback'
 import type { Methods as Methods13 } from './user/link/spotify'
 import type { Methods as Methods14 } from './user/link/spotify/callback'
 import type { Methods as Methods15 } from './user/playlist'
-import type { Methods as Methods16 } from './user/playlist/_provider_name'
-import type { Methods as Methods17 } from './user/playlist/_provider_name/_playlist_id@string'
+import type { Methods as Methods16 } from './user/playlist/_provider_name@string'
+import type { Methods as Methods17 } from './user/playlist/_provider_name@string/_playlist_id@string'
 
 const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
-  const prefix = (baseURL === undefined ? '/' : baseURL).replace(/\/$/, '')
+  const prefix = (baseURL === undefined ? 'https://raw.githubusercontent.com/' : baseURL).replace(/\/$/, '')
   const PATH0 = '/mc/auth/signin'
   const PATH1 = '/mc/auth/signin/callback'
   const PATH2 = '/mc/room'
@@ -72,7 +72,7 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
       }
     },
     room: {
-      _roomId: (val1: number | string) => {
+      _room_id: (val1: string) => {
         const prefix1 = `${PATH2}/${val1}`
 
         return {
@@ -285,12 +285,22 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
            */
           $get: (option: { query: Methods13['get']['query'], config?: T | undefined }) =>
             fetch<Methods13['get']['resBody'], BasicHeaders, Methods13['get']['status']>(prefix, PATH12, GET, option).json().then(r => r.body),
+          /**
+           * @returns Success
+           */
+          delete: (option?: { config?: T | undefined } | undefined) =>
+            fetch<Methods13['delete']['resBody'], BasicHeaders, Methods13['delete']['status']>(prefix, PATH12, DELETE, option).json(),
+          /**
+           * @returns Success
+           */
+          $delete: (option?: { config?: T | undefined } | undefined) =>
+            fetch<Methods13['delete']['resBody'], BasicHeaders, Methods13['delete']['status']>(prefix, PATH12, DELETE, option).json().then(r => r.body),
           $path: (option?: { method?: 'get' | undefined; query: Methods13['get']['query'] } | undefined) =>
             `${prefix}${PATH12}${option && option.query ? `?${dataToURLString(option.query)}` : ''}`
         }
       },
       playlist: {
-        _provider_name: (val2: number | string) => {
+        _provider_name: (val2: string) => {
           const prefix2 = `${PATH14}/${val2}`
 
           return {

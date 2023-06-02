@@ -45,7 +45,7 @@
         class="q-mb-lg"
         no-caps
         label="Spotifyにログイン"
-        @click="onClickSpotifyButton"
+        @click="linkSpotify"
       />
       <q-btn
         v-else
@@ -54,8 +54,8 @@
         icon="link"
         class="q-mb-lg"
         no-caps
-        disable
-        label="Spotifyと連携済み"
+        label="Spotifyの連携解除"
+        @click="unlinkSpotify"
       />
     </div>
   </div>
@@ -63,6 +63,7 @@
 
 <script setup lang="ts">
   import { auth } from '@/features'
+  import { deleteUnlinkSpotify } from '@/features/user/api/unlink-spotify'
 
   const state = reactive({
     loading: false,
@@ -87,9 +88,16 @@
     state.loading = false
   })
 
-  const onClickSpotifyButton = async () => {
+  const linkSpotify = async () => {
     const { data } = await auth.api.getSpotifyOAuthUrl()
     if (!data.value) { return }
     window.location.assign(data.value.redirectUrl)
+  }
+
+  const unlinkSpotify = async () => {
+    const { data } = await deleteUnlinkSpotify()
+    if (!data.value) { return }
+    alert('連携解除に成功しました')
+    window.location.reload()
   }
 </script>

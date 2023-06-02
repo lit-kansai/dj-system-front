@@ -2,7 +2,7 @@ import type { AspidaClient, BasicHeaders } from 'aspida'
 import type { Methods as Methods0 } from '.'
 
 const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
-  const prefix = (baseURL === undefined ? '/' : baseURL).replace(/\/$/, '')
+  const prefix = (baseURL === undefined ? 'https://raw.githubusercontent.com/' : baseURL).replace(/\/$/, '')
   const PATH0 = '/mc/user/link/spotify/callback'
   const POST = 'POST'
 

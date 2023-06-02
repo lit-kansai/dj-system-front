@@ -9,7 +9,7 @@ export type updateRoomInput = {
   description: string
 }
 
-export type updateRoomResponse = CamelizedAPIResponse<ReturnType<ApiInstance['mc']['room']['_roomId']>['$put']>
+export type updateRoomResponse = CamelizedAPIResponse<ReturnType<ApiInstance['mc']['room']['_room_id']>['$put']>
 
 const responseSchema = toSchema<updateRoomResponse>()(
   z.object({
@@ -29,7 +29,7 @@ const responseSchema = toSchema<updateRoomResponse>()(
 // room_cooltimeの設定ができるようにする
 export const updateRoom = async (input: updateRoomInput): GetRequestOutput<updateRoomResponse> => {
   const result = await useAsyncData(async () => {
-    const response = await apiClient().mc.room._roomId(input.roomId).$put({
+    const response = await apiClient().mc.room._room_id(input.roomId).$put({
       body: {
         url_name: input.urlName,
         room_name: input.roomName,

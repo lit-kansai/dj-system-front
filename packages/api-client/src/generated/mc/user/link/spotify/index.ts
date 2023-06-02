@@ -11,4 +11,13 @@ export type Methods = {
       redirect_url: Types.Login_url
     }
   }
+
+  delete: {
+    status: 200
+
+    /** Success */
+    resBody: {
+      redirect_url: Types.Login_url
+    }
+  }
 }
