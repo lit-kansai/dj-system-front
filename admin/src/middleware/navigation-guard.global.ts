@@ -4,7 +4,10 @@ import { oauth, tokenFetcher } from '@/libs'
 
 export default defineNuxtRouteMiddleware(async ({ path, query }) => {
   // TODO: テストできるようにええ感じにしたい
-  const token = (isDev ? tokenFetcher.local : tokenFetcher.cookie).fetch()
+
+  // FIXME: Cookie動いてないので一旦LocalStorageで
+  const token = (isDev ? tokenFetcher.local : tokenFetcher.local).fetch()
+  // const token = (isDev ? tokenFetcher.local : tokenFetcher.cookie).fetch()
   switch (path) {
     case '/': {
       if (!token) { return navigateTo(LOGIN_PAGE) }

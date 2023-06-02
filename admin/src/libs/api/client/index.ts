@@ -10,7 +10,9 @@ import {
 
 const requestInterceptor = (request: AxiosRequestConfig) => {
   if (isDev) { return requestHandler(request, tokenFetcher.local) }
-  return requestHandler(request, tokenFetcher.cookie)
+  // FIXME: Cookie動いてないので一旦LocalStorageで
+  return requestHandler(request, tokenFetcher.local)
+  // return requestHandler(request, tokenFetcher.cookie)
 }
 
 const responseInterceptor = (response: AxiosResponse) => responseHandler(response)
