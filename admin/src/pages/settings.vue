@@ -10,19 +10,36 @@
       Apple Music
     </p>
     <p class="q-mb-sm">
-      AppleMusicのサブスクへの登録が必要になります。(近日実装予定です！)
+      AppleMusicのサブスクへの登録が必要になります。
     </p>
-    <!-- <q-btn v-if="!state.provider.applemusic" color="primary" class="q-mb-lg" no-caps label="AppleMusicにログイン" /> -->
-    <!-- <q-btn -->
-    <!--   v-else -->
-    <!--   color="grey-4" -->
-    <!--   text-color="dark" -->
-    <!--   icon="link" -->
-    <!--   class="q-mb-lg" -->
-    <!--   no-caps -->
-    <!--   disable -->
-    <!--   label="AppleMusicと連携済み" -->
-    <!-- /> -->
+    <div v-if="state.loading">
+      <q-circular-progress
+        indeterminate
+        rounded
+        size="25px"
+        color="teal"
+      />
+    </div>
+    <div v-else>
+      <q-btn
+        v-if="!state.provider.applemusic"
+        color="primary"
+        class="q-mb-lg"
+        no-caps
+        label="AppleMusicにログイン"
+        @click="onClickAppleMusicButton"
+      />
+      <q-btn
+        v-else
+        color="grey-4"
+        text-color="dark"
+        icon="link"
+        class="q-mb-lg"
+        no-caps
+        disable
+        label="AppleMusicと連携済み"
+      />
+    </div>
 
     <p class="text-h6 text-weight-bold q-mb-xs">
       Spotify
@@ -63,6 +80,7 @@
 
 <script setup lang="ts">
   import { auth } from '@/features'
+  import { oauth } from '@/libs'
   import { deleteUnlinkSpotify } from '@/features/user/api/unlink-spotify'
 
   const state = reactive({
@@ -73,6 +91,10 @@
     }
   })
   onMounted(async () => {
+    await fetchUserProvider()
+  })
+
+  const fetchUserProvider = async () => {
     state.loading = true
     const { data } = await auth.api.getUserProvider()
     data.value?.forEach((service) => {
@@ -86,7 +108,7 @@
       }
     })
     state.loading = false
-  })
+  }
 
   const linkSpotify = async () => {
     const { data } = await auth.api.getSpotifyOAuthUrl()
@@ -94,6 +116,11 @@
     window.location.assign(data.value.redirectUrl)
   }
 
+  const onClickAppleMusicButton = async () => {
+    if (await oauth.applemusic()) {
+      await fetchUserProvider()
+    }
+  }
   const unlinkSpotify = async () => {
     const { data } = await deleteUnlinkSpotify()
     if (!data.value) { return }

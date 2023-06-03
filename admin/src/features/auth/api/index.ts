@@ -9,6 +9,8 @@ export * from './get-user-provider'
 export * from './register-user'
 export * from './integrate-spotify'
 export * from './get-spotify-oauth-url'
+export * from './get-applemusic-access-token'
+export * from './integrate-applemusic'
 export const api = {
   getUserProvider,
   registerUser,
