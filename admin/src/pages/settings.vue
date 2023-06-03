@@ -10,7 +10,7 @@
       Apple Music
     </p>
     <p class="q-mb-sm">
-      AppleMusicのサブスクへの登録が必要になります。(近日実装予定です！)
+      AppleMusicのサブスクへの登録が必要になります。
     </p>
     <div v-if="state.loading">
       <q-circular-progress

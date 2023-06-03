@@ -28,6 +28,13 @@
       </div>
     </div>
 
+    <div v-if="state.roomDetail.provider == 'applemusic'" class="q-mb-xl">
+      <p class="text-h6 text-weight-bold q-mb-xs">
+        Apple Music使用時の注意点
+      </p>
+      プレイリストを共有する場合は、<a href="https://support.apple.com/ja-jp/guide/music-web/apdm0783785d/web" target="_blank">こちら</a>の方法で作成してください。
+    </div>
+
     <div class="q-mb-xl">
       <p class="text-h6 text-weight-bold q-mb-xs">
         お便り一覧
@@ -53,7 +60,7 @@
 <script setup lang="ts">
   import type { QTableProps } from 'quasar'
   import { ComputedRef } from 'vue'
-  import { SPOTIFY_PLAYLIST_URL, MEMBER_REQUEST_URL } from '@/constants'
+  import { SPOTIFY_PLAYLIST_URL, MEMBER_REQUEST_URL, APPLE_MUSIC_URL } from '@/constants'
   import { room, letter } from '@/features'
   const router = useRouter()
 
@@ -99,7 +106,7 @@
     state.roomDetail.displayId = data.displayId
     state.roomDetail.description = data.description
     state.roomDetail.requestUrl = MEMBER_REQUEST_URL(data.displayId ?? '')
-    state.roomDetail.playlistUrl = SPOTIFY_PLAYLIST_URL(data.playlistId ?? '')
+    state.roomDetail.playlistUrl = data.provider === 'spotify' ? SPOTIFY_PLAYLIST_URL(data.playlistId ?? '') : APPLE_MUSIC_URL(data.playlistId ?? '')
     state.roomDetail.provider = data.provider ?? ''
   })
   watch(letters.data, (data) => {
