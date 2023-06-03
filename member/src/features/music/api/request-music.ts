@@ -2,7 +2,7 @@ import { z } from 'zod'
 import { CamelizedAPIResponse, toSchema } from '@dj-system/utils'
 import { apiClient, ApiInstance, PostRequestOutput } from '@/libs'
 
-export type RequestMusicResponse = CamelizedAPIResponse<ReturnType<ApiInstance['room']['_roomId']>['request']['$post']>
+export type RequestMusicResponse = CamelizedAPIResponse<ReturnType<ApiInstance['room']['_room_id']>['request']['$post']>
 export type RequestMusicInput = {
   roomId: string,
   musics: string[],
@@ -17,7 +17,7 @@ const responseSchema = toSchema<RequestMusicResponse>()(
 )
 export const requestMusic = (input: RequestMusicInput): PostRequestOutput<RequestMusicResponse> => {
   const result = useLazyAsyncData(async () => {
-    const response = await apiClient().room._roomId(input.roomId).request.post({
+    const response = await apiClient().room._room_id(input.roomId).request.post({
       body: {
         musics: input.musics,
         radio_name: input.radioName,

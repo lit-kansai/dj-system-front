@@ -2,7 +2,7 @@ import { z } from 'zod'
 import { CamelizedAPIResponse, toSchema } from '@dj-system/utils'
 import { apiClient, ApiInstance, GetRequestOutput } from '@/libs'
 
-export type GetTop50MusicsResponse = CamelizedAPIResponse<ReturnType<ApiInstance['room']['_roomId']>['music']['top']['$get']>
+export type GetTop50MusicsResponse = CamelizedAPIResponse<ReturnType<ApiInstance['room']['_room_id']>['music']['top']['$get']>
 
 export type GetTop50MusicsInput = {
   roomId: string,
@@ -16,14 +16,14 @@ const responseSchema = toSchema<GetTop50MusicsResponse>()(
       album: z.string(),
       name: z.string(),
       thumbnail: z.string(),
-      duration: z.number()
+      duration: z.string()
     })
   )
 )
 
 export const getTop50Musics = (input: GetTop50MusicsInput): GetRequestOutput<GetTop50MusicsResponse> => {
   const result = useLazyAsyncData(async () => {
-    const response = await apiClient().room._roomId(input.roomId).music.top.$get()
+    const response = await apiClient().room._room_id(input.roomId).music.top.$get()
     const parseResult = responseSchema.safeParse(response)
     if (!parseResult.success) {
       throw parseResult.error
