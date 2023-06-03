@@ -6,7 +6,7 @@ export type DeleteRoomInput = {
   roomId: string
 }
 
-export type DeleteRoomResponse = CamelizedAPIResponse<ReturnType<ApiInstance['mc']['room']['_roomId']>['$delete']>
+export type DeleteRoomResponse = CamelizedAPIResponse<ReturnType<ApiInstance['mc']['room']['_room_id']>['$delete']>
 
 const responseSchema = toSchema<DeleteRoomResponse>()(
   z.object({
@@ -16,7 +16,7 @@ const responseSchema = toSchema<DeleteRoomResponse>()(
 
 export const deleteRoom = async (input: DeleteRoomInput): GetRequestOutput<DeleteRoomResponse> => {
   const result = await useLazyAsyncData(async () => {
-    const response = await apiClient().mc.room._roomId(input.roomId).$delete()
+    const response = await apiClient().mc.room._room_id(input.roomId).$delete()
 
     const parseResult = responseSchema.safeParse(response)
     if (!parseResult.success) {

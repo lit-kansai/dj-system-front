@@ -6,11 +6,11 @@ import type { Methods as Methods2 } from './link/applemusic/callback'
 import type { Methods as Methods3 } from './link/spotify'
 import type { Methods as Methods4 } from './link/spotify/callback'
 import type { Methods as Methods5 } from './playlist'
-import type { Methods as Methods6 } from './playlist/_provider_name'
-import type { Methods as Methods7 } from './playlist/_provider_name/_playlist_id@string'
+import type { Methods as Methods6 } from './playlist/_provider_name@string'
+import type { Methods as Methods7 } from './playlist/_provider_name@string/_playlist_id@string'
 
 const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
-  const prefix = (baseURL === undefined ? '/' : baseURL).replace(/\/$/, '')
+  const prefix = (baseURL === undefined ? 'https://raw.githubusercontent.com/' : baseURL).replace(/\/$/, '')
   const PATH0 = '/mc/user'
   const PATH1 = '/mc/user/link/applemusic'
   const PATH2 = '/mc/user/link/applemusic/callback'
@@ -73,12 +73,22 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
          */
         $get: (option: { query: Methods3['get']['query'], config?: T | undefined }) =>
           fetch<Methods3['get']['resBody'], BasicHeaders, Methods3['get']['status']>(prefix, PATH3, GET, option).json().then(r => r.body),
+        /**
+         * @returns Success
+         */
+        delete: (option?: { config?: T | undefined } | undefined) =>
+          fetch<Methods3['delete']['resBody'], BasicHeaders, Methods3['delete']['status']>(prefix, PATH3, DELETE, option).json(),
+        /**
+         * @returns Success
+         */
+        $delete: (option?: { config?: T | undefined } | undefined) =>
+          fetch<Methods3['delete']['resBody'], BasicHeaders, Methods3['delete']['status']>(prefix, PATH3, DELETE, option).json().then(r => r.body),
         $path: (option?: { method?: 'get' | undefined; query: Methods3['get']['query'] } | undefined) =>
           `${prefix}${PATH3}${option && option.query ? `?${dataToURLString(option.query)}` : ''}`
       }
     },
     playlist: {
-      _provider_name: (val1: number | string) => {
+      _provider_name: (val1: string) => {
         const prefix1 = `${PATH5}/${val1}`
 
         return {

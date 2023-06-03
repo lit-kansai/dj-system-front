@@ -7,14 +7,16 @@ export const logout = () => {
   if (isDev) {
     localStorage.removeItem(USER_INFO)
   } else {
-    const cookies = document.cookie.split(';')
-
-    for (let i = 0; i < cookies.length; i++) {
-      const cookie = cookies[i]
-      const eqPos = cookie.indexOf('=')
-      const name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie
-      document.cookie = name + '=;expires=Thu, 01 Jan 1970 00:00:00 GMT'
-    }
+    // FIXME: Cookie動いてないので一旦LocalStorageで
+    localStorage.removeItem(USER_INFO)
+    // const cookies = document.cookie.split(';')
+    //
+    // for (let i = 0; i < cookies.length; i++) {
+    //   const cookie = cookies[i]
+    //   const eqPos = cookie.indexOf('=')
+    //   const name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie
+    //   document.cookie = name + '=;expires=Thu, 01 Jan 1970 00:00:00 GMT'
+    // }
   }
   userState.setState(null)
 }

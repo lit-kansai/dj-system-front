@@ -68,7 +68,7 @@
       provider: string
     },
     letters: Array<{
-      radioName: string,
+      radioName: string | undefined,
       createdAt: string,
       message: string,
       musicName: string
@@ -105,9 +105,9 @@
   watch(letters.data, (data) => {
     if (!data) { return }
     state.letters = data.map(letter => ({
-      radioName: letter.radioName,
+      radioName: letter.radioName ?? '',
       createdAt: letter.createdAt,
-      message: letter.message,
+      message: letter.message ?? '',
       // TODO: ここ終わってるのでやめる
       musicName: letter?.musics ? letter.musics[0] ? letter.musics[0].name : '' : ''
     }))

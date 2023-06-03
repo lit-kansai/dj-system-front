@@ -1,12 +1,12 @@
 import type { AspidaClient, BasicHeaders } from 'aspida'
 import { dataToURLString } from 'aspida'
-import type { Methods as Methods0 } from './_roomId'
-import type { Methods as Methods1 } from './_roomId/music/search'
-import type { Methods as Methods2 } from './_roomId/music/top'
-import type { Methods as Methods3 } from './_roomId/request'
+import type { Methods as Methods0 } from './_room_id@string'
+import type { Methods as Methods1 } from './_room_id@string/music/search'
+import type { Methods as Methods2 } from './_room_id@string/music/top'
+import type { Methods as Methods3 } from './_room_id@string/request'
 
 const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
-  const prefix = (baseURL === undefined ? '/' : baseURL).replace(/\/$/, '')
+  const prefix = (baseURL === undefined ? 'https://raw.githubusercontent.com/' : baseURL).replace(/\/$/, '')
   const PATH0 = '/room'
   const PATH1 = '/music/search'
   const PATH2 = '/music/top'
@@ -15,7 +15,7 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
   const POST = 'POST'
 
   return {
-    _roomId: (val0: number | string) => {
+    _room_id: (val0: string) => {
       const prefix0 = `${PATH0}/${val0}`
 
       return {
@@ -38,12 +38,12 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
             /**
              * @returns Success
              */
-            get: (option: { query: Methods2['get']['query'], config?: T | undefined }) =>
+            get: (option?: { query?: Methods2['get']['query'] | undefined, config?: T | undefined } | undefined) =>
               fetch<Methods2['get']['resBody'], BasicHeaders, Methods2['get']['status']>(prefix, `${prefix0}${PATH2}`, GET, option).json(),
             /**
              * @returns Success
              */
-            $get: (option: { query: Methods2['get']['query'], config?: T | undefined }) =>
+            $get: (option?: { query?: Methods2['get']['query'] | undefined, config?: T | undefined } | undefined) =>
               fetch<Methods2['get']['resBody'], BasicHeaders, Methods2['get']['status']>(prefix, `${prefix0}${PATH2}`, GET, option).json().then(r => r.body),
             $path: (option?: { method?: 'get' | undefined; query: Methods2['get']['query'] } | undefined) =>
               `${prefix}${prefix0}${PATH2}${option && option.query ? `?${dataToURLString(option.query)}` : ''}`

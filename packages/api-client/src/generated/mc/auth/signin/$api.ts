@@ -4,7 +4,7 @@ import type { Methods as Methods0 } from '.'
 import type { Methods as Methods1 } from './callback'
 
 const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
-  const prefix = (baseURL === undefined ? '/' : baseURL).replace(/\/$/, '')
+  const prefix = (baseURL === undefined ? 'https://raw.githubusercontent.com/' : baseURL).replace(/\/$/, '')
   const PATH0 = '/mc/auth/signin'
   const PATH1 = '/mc/auth/signin/callback'
   const GET = 'GET'

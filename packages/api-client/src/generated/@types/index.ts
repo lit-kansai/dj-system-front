@@ -21,7 +21,7 @@ export type Query = {
 
 export type Limit = {
   /** 返ってくる曲数(max50) */
-  limit: string
+  limit?: string | undefined
 }
 
 export type Google_redirect_url = {
@@ -36,7 +36,7 @@ export type Spotify_redirect_url = {
 
 export type Provider_name = {
   /** プロバイダ識別子 */
-  provider: string
+  provider_name: string
 }
 
 export type Playlist_id = {
@@ -98,7 +98,7 @@ export type Letter = {
 /** 楽曲情報 */
 export type Track = {
   id: Provided_music_id
-  artist: Artist
+  artists: Artists
   album: Album
   name: Music_name
   thumbnail: Thumbnail
@@ -110,7 +110,7 @@ export type Music = {
   id: Music_unique_id
   provided_music_id: Provided_music_id
   letter_id?: Letter_unique_id | undefined
-  artist: Artist
+  artists: Artists
   album: Album
   name: Music_name
   thumbnail: Thumbnail
@@ -120,8 +120,8 @@ export type Music = {
 export type LetterWithMusics = {
   id: Letter_unique_id
   room_id: Room_unique_id
-  radio_name?: Radio_name | undefined
-  message?: Message | undefined
+  radio_name: Radio_name
+  message: Message
   created_at: Created_at
   updated_at: Updated_at
   musics: Music[]
@@ -131,7 +131,7 @@ export type MusicWithLetter = {
   id: Music_unique_id
   provided_music_id: Provided_music_id
   letter_id?: Letter_unique_id | undefined
-  artist: Artist
+  artists: Artists
   album: Album
   name: Music_name
   thumbnail: Thumbnail
@@ -224,7 +224,7 @@ export type Owner_user_id = number
 export type Room_cooltime = number
 
 /** お便りID */
-export type Letter_unique_id = number
+export type Letter_unique_id = string
 
 /** ラジオネーム */
 export type Radio_name = string
@@ -242,7 +242,7 @@ export type Provided_music_id = string
 export type Provided_applemusic_id = string
 
 /** アーティスト名 */
-export type Artist = string
+export type Artists = string
 
 /** アルバム名 */
 export type Album = string
@@ -254,7 +254,7 @@ export type Music_name = string
 export type Thumbnail = string
 
 /** 曲の長さ（秒） */
-export type Duration = number
+export type Duration = string
 
 /** 音楽サービスのプレイリストID */
 export type Provider_playlist_id = string

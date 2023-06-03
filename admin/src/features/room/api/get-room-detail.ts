@@ -4,7 +4,7 @@ import { CamelizedAPIResponse, toSchema } from '@dj-system/utils'
 import { GetRequestOutput, apiClient, ApiInstance } from '@/libs'
 
 export type GetRoomDetailInput = { roomId: Ref<string> }
-export type _GetRoomDetailResponse = CamelizedAPIResponse<ReturnType<ApiInstance['mc']['room']['_roomId']>['$get']>
+export type _GetRoomDetailResponse = CamelizedAPIResponse<ReturnType<ApiInstance['mc']['room']['_room_id']>['$get']>
 export type GetRoomDetailResponse = Omit<_GetRoomDetailResponse, 'users' | 'musics' | 'letters'>
 const responseSchema = toSchema<Partial<GetRoomDetailResponse>>()(
   z.object({
@@ -23,7 +23,7 @@ const responseSchema = toSchema<Partial<GetRoomDetailResponse>>()(
 
 export const getRoomDetail = async (input: GetRoomDetailInput): GetRequestOutput<GetRoomDetailResponse> => {
   const result = await useLazyAsyncData(async () => {
-    const response = await apiClient().mc.room._roomId(input.roomId.value).$get()
+    const response = await apiClient().mc.room._room_id(input.roomId.value).$get()
 
     const parseResult = responseSchema.safeParse(response)
     if (!parseResult.success) {
