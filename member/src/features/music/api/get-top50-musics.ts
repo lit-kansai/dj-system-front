@@ -16,7 +16,7 @@ const responseSchema = toSchema<GetTop50MusicsResponse>()(
       album: z.string(),
       name: z.string(),
       thumbnail: z.string(),
-      duration: z.string()
+      duration: z.number()
     })
   )
 )

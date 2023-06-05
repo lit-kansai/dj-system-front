@@ -17,7 +17,7 @@ const responseSchema = toSchema<SearchMusicResponse>()(
       album: z.string(),
       name: z.string(),
       thumbnail: z.string(),
-      duration: z.string()
+      duration: z.number()
     })
   )
 )
