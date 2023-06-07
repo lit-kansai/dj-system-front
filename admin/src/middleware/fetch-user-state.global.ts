@@ -1,12 +1,18 @@
 import { useUserState } from '@/composables/useUserState'
-import { GOOGLE_API_CALLBACK_PATH, SPOTIFY_API_CALLBACK_PATH } from '@/constants'
+import { GOOGLE_API_CALLBACK_PATH, SPOTIFY_API_CALLBACK_PATH, APPLE_MUSIC_API_CALLBACK_PATH } from '@/constants'
 import { getUser } from '@/features/user'
 import { User } from '@/features/user/domain'
 import { tokenFetcher } from '@/libs'
 
 export default defineNuxtRouteMiddleware(async ({ path }) => {
-  if (path === GOOGLE_API_CALLBACK_PATH || path === SPOTIFY_API_CALLBACK_PATH) { return }
+  // NOTE: OAuth周りのルーティングの時はstateを更新しない
+  if (
+    path === GOOGLE_API_CALLBACK_PATH ||
+    path === SPOTIFY_API_CALLBACK_PATH ||
+    path === APPLE_MUSIC_API_CALLBACK_PATH
+  ) { return }
   if (!tokenFetcher.fetch()) { return }
+
   const userState = useUserState()
   if (path !== '/login' && !userState.state.value) {
     const result = await getUser()
@@ -28,6 +34,7 @@ export default defineNuxtRouteMiddleware(async ({ path }) => {
       updatedAt: data.value.updatedAt,
       linkedProviders: data.value.linkedProviders ? data.value.linkedProviders : null
     }
+    console.log({ user })
     userState.setState(user)
   }
 })
