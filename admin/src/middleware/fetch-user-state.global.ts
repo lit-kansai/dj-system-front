@@ -1,5 +1,10 @@
 import { useUserState } from '@/composables/useUserState'
-import { GOOGLE_API_CALLBACK_PATH, SPOTIFY_API_CALLBACK_PATH, APPLE_MUSIC_API_CALLBACK_PATH } from '@/constants'
+import {
+  GOOGLE_API_CALLBACK_PATH,
+  SPOTIFY_API_CALLBACK_PATH,
+  APPLE_MUSIC_API_CALLBACK_PATH,
+  LOGIN_PAGE
+} from '@/constants'
 import { getUser } from '@/features/user'
 import { User } from '@/features/user/domain'
 import { tokenFetcher } from '@/libs'
@@ -9,12 +14,15 @@ export default defineNuxtRouteMiddleware(async ({ path }) => {
   if (
     path === GOOGLE_API_CALLBACK_PATH ||
     path === SPOTIFY_API_CALLBACK_PATH ||
-    path === APPLE_MUSIC_API_CALLBACK_PATH
+    path === APPLE_MUSIC_API_CALLBACK_PATH ||
+    path === LOGIN_PAGE
   ) { return }
+
   if (!tokenFetcher.fetch()) { return }
 
+  // NOTE: ここで毎回userの情報fetchしちゃうとページ遷移毎にAPIにリクエストが走ってしまうので更新すべきときに別で更新する
   const userState = useUserState()
-  if (path !== '/login' && !userState.state.value) {
+  if (!userState.state.value) {
     const result = await getUser()
     const { data, error } = result
     if (error.value) {
@@ -34,7 +42,6 @@ export default defineNuxtRouteMiddleware(async ({ path }) => {
       updatedAt: data.value.updatedAt,
       linkedProviders: data.value.linkedProviders ? data.value.linkedProviders : null
     }
-    console.log({ user })
     userState.setState(user)
   }
 })
