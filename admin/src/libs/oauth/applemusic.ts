@@ -1,4 +1,5 @@
 import { IntegrateAppleMusic, getApplemusicAccessToken } from '@/features/auth/api'
+import { getUser } from '@/features/user'
 
 export const applemusic = async () => {
   let musicUserToken: string | null = null
@@ -22,5 +23,9 @@ export const applemusic = async () => {
 
   if (musicUserToken == null) { return false }
   await IntegrateAppleMusic({ musicUserToken: musicUserToken!, accessToken: accessToken! })
+
+  const { data: userData, error } = await getUser()
+  if (error.value) { throw new Error(JSON.stringify(error.value)) }
+  useUserState().setState(userData.value)
   return true
 }
