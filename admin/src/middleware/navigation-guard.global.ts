@@ -1,6 +1,7 @@
 import { tokenRequired, isDev } from '@/utils'
 import { LOGIN_PAGE, GOOGLE_API_CALLBACK_PATH, SPOTIFY_API_CALLBACK_PATH, SETTINGS_PAGE } from '@/constants'
 import { oauth, tokenFetcher } from '@/libs'
+import { getUser } from '@/features/user'
 
 export default defineNuxtRouteMiddleware(async ({ path, query }) => {
   // TODO: テストできるようにええ感じにしたい
@@ -19,11 +20,17 @@ export default defineNuxtRouteMiddleware(async ({ path, query }) => {
     }
     case GOOGLE_API_CALLBACK_PATH: {
       await oauth.google({ query })
+      const { data, error } = await getUser()
+      if (error.value) { throw new Error(JSON.stringify(error.value)) }
+      useUserState().setState(data.value)
       return navigateTo('/')
     }
     case SPOTIFY_API_CALLBACK_PATH: {
       // TODO: これからじっそうするで
       await oauth.spotify({ query })
+      const { data, error } = await getUser()
+      if (error.value) { throw new Error(JSON.stringify(error.value)) }
+      useUserState().setState(data.value)
       return navigateTo(SETTINGS_PAGE)
     }
     default: {
