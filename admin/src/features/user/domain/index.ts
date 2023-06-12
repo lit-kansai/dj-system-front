@@ -7,7 +7,7 @@ export type User = {
   isAdmin: boolean
   createdAt: string
   updatedAt: string
-  linkedProviders?: Array<{provider: string, isConnected: boolean}> | null
+  linkedProviders?: Array<{ provider: string, isConnected: boolean }> | null | undefined
 }
 
 export type CurrentUser = User | null;
