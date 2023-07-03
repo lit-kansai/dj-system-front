@@ -1,7 +1,7 @@
 <template>
   <div class="cell" data-test-id="music-cell">
     <div class="contents">
-      <img :src="thumbnail" :alt="`${name}のサムネイル写真`">
+      <nuxt-img :src="thumbnail" :alt="`${name}のサムネイル写真`" />
       <div class="text">
         <h3 class="name">{{ name }}</h3>
         <p class="artists">{{ artists }}</p>
