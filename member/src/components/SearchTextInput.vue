@@ -5,7 +5,7 @@
       type="text"
       placeholder="曲名・アーティスト名で検索"
       autocomplete="on"
-      autofocus
+      :autofocus="props.autofocus"
       @keypress.enter="search"
     >
     <input :class="textComputed.length == 0 ? 'zero' : ''" type="submit" value="検索" @click="search">
@@ -19,9 +19,11 @@
 
   interface Props {
     isGradient: boolean
+    autofocus: boolean
   }
   const props = withDefaults(defineProps<Props>(), {
-    isGradient: false
+    isGradient: false,
+    autofocus: true
   })
 
   const textComputed = computed({
