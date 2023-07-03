@@ -93,7 +93,7 @@
     }
     &::before {
       content: "";
-      mask: url(~/assets/img/search.svg);
+      mask: url(/img/search.svg);
       position: absolute;
       top: 15px;
       left: 25px;

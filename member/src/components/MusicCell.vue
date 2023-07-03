@@ -7,7 +7,7 @@
         <p class="artists">{{ artists }}</p>
       </div>
     </div>
-    <img src="~/assets/img/arrow_forward.svg" class="icon">
+    <nuxt-img src="/img/arrow_forward.svg" class="icon" />
   </div>
 </template>
 

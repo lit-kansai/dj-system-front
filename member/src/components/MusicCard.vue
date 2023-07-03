@@ -4,7 +4,7 @@
     <h3 class="name">{{ name }}</h3>
     <p class="artists">{{ artists }}</p>
     <div class="hover">
-      <img src="~/assets/img/plus.svg">
+      <nuxt-img src="/img/plus.svg" />
     </div>
   </div>
 </template>
