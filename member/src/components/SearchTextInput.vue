@@ -110,7 +110,6 @@
       height: 100%;
       display: block;
       padding: 16px 0px 14px 55px;
-      margin-right: 80px;
       font-size: 16px;
       font-weight: 400;
       border: none;
@@ -121,6 +120,7 @@
       }
       &:focus {
         width: calc(100% - 80px);
+      margin-right: 80px;
         color: $color-body;
         border-radius: 40px 0px 0px 40px;
         padding-left: 25px;
