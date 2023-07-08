@@ -26,9 +26,6 @@ export const requestMusic = (input: RequestMusicInput): PostRequestOutput<Reques
     })
     const parseResult = responseSchema.safeParse(response.body)
     if (!parseResult.success) {
-      // const { setCurrentError } = useCurrentError()
-      // setCurrentError(parseResult.error)
-      // throw parseResult.error
       throw parseResult.error
     }
     return parseResult.data

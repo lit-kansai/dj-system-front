@@ -17,9 +17,6 @@ export const getRoomOverview = async (input: GetRoomInput): GetRequestOutput<Get
 
     const parseResult = responseSchema.safeParse(response)
     if (!parseResult.success) {
-      // const { setCurrentError } = useCurrentError()
-      // setCurrentError(parseResult.error)
-      // throw parseResult.error
       throw parseResult.error
     }
     return parseResult.data

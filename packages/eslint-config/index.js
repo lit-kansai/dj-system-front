@@ -22,6 +22,7 @@ module.exports = {
     'sort-keys': 'off',
     'no-return-await': 'error',
     'no-warning-comments': 'off',
+    "space-before-function-paren": 'off',
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     '@typescript-eslint/no-explicit-any': 'error',
     '@typescript-eslint/no-unused-vars': 'error',
