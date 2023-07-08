@@ -23,7 +23,9 @@ const responseSchema = toSchema<GetTop50MusicsResponse>()(
 
 export const getTop50Musics = (input: GetTop50MusicsInput): GetRequestOutput<GetTop50MusicsResponse> => {
   const result = useLazyAsyncData(async () => {
-    const response = await apiClient().room._room_id(input.roomId).music.top.$get()
+    const response = await apiClient()
+      .room._room_id(input.roomId)
+      .music.top.$get()
     const parseResult = responseSchema.safeParse(response)
     if (!parseResult.success) {
       throw parseResult.error
