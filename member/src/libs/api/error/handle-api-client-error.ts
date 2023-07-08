@@ -1,17 +1,21 @@
-import axios from 'axios'
+import axios, { AxiosError } from 'axios'
 import { ZodError } from 'zod'
 import { APIClientError } from './api-client-error'
 import { UnexpectedError } from './unexpected-error'
-import { getAxiosErrorDetail } from './get-axios-error-detail'
 
-export function handleAPIClientError(error: APIClientError): string {
+export const handleAPIClientError = (
+  error: APIClientError,
+  onAxiosError: (error: AxiosError) => void = error => console.error('AxiosError:', error),
+  onZodError: (error: ZodError) => void = error => console.error('ZodError:', error),
+  onUnexpectedError: (error: UnexpectedError) => void = error => console.error('UnexpectedError:', error),
+) => {
   if (axios.isAxiosError(error)) {
-    return getAxiosErrorDetail(error)
+    onAxiosError(error)
   } else if (error instanceof ZodError) {
-    return 'レスポンスの変換でエラーが発生しました。'
+    onZodError(error)
   } else if (error instanceof UnexpectedError) {
-    return '予期せぬエラーが発生しました。'
+    onUnexpectedError(error)
   } else {
-    return '予期せぬエラーが発生しました。'
+    console.error('Unknown error:', error)
   }
 }
