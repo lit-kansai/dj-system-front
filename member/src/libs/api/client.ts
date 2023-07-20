@@ -5,6 +5,7 @@ import {
   generateApiClient,
 } from '@dj-system/api-client'
 import { camelToSnake, snakeToCamel } from '@dj-system/utils'
+import axiosRetry, { isNetworkOrIdempotentRequestError } from 'axios-retry'
 
 const requestInterceptor = (request: AxiosRequestConfig) => {
   if (request.data) {
@@ -17,6 +18,7 @@ const requestInterceptor = (request: AxiosRequestConfig) => {
 }
 const responseInterceptor = (response: AxiosResponse) => {
   response.data = snakeToCamel(response.data)
+  console.log({ response })
   return response
 }
 const responseErrorIntercepter = (error: AxiosError) => {
@@ -30,10 +32,32 @@ const axios = aspidaAxios({
   responseErrorIntercepter,
 })
 
+const onRetry = (
+  retryCount: number,
+  error: Error,
+  requestConfig: AxiosRequestConfig
+) => {
+  console.log({ retryCount })
+  console.log({ error })
+  console.log({ requestConfig })
+}
+
+const retryCondition = (error: AxiosError<unknown, unknown>) => {
+  return isNetworkOrIdempotentRequestError(error) ||
+    error.message.includes('timeout')
+}
+
+axiosRetry(axios, {
+  retryCondition,
+  onRetry,
+  shouldResetTimeout: true,
+  retryDelay: (_) => { return 1000 }
+})
+
 export const apiClient = () => {
   return generateApiClient(axios, {
     baseURL: useRuntimeConfig().public.BASE_API_URL,
-    timeout: 7000,
+    timeout: 5000,
     withCredentials: true,
   })
 }
