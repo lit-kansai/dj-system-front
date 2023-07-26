@@ -8,6 +8,7 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
   const PATH1 = '/mc/user/link/applemusic/callback'
   const GET = 'GET'
   const POST = 'POST'
+  const DELETE = 'DELETE'
 
   return {
     callback: {
@@ -33,6 +34,16 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
      */
     $get: (option?: { config?: T | undefined } | undefined) =>
       fetch<Methods0['get']['resBody'], BasicHeaders, Methods0['get']['status']>(prefix, PATH0, GET, option).json().then(r => r.body),
+    /**
+     * @returns 要求に成功した
+     */
+    delete: (option?: { config?: T | undefined } | undefined) =>
+      fetch<Methods0['delete']['resBody'], BasicHeaders, Methods0['delete']['status']>(prefix, PATH0, DELETE, option).json(),
+    /**
+     * @returns 要求に成功した
+     */
+    $delete: (option?: { config?: T | undefined } | undefined) =>
+      fetch<Methods0['delete']['resBody'], BasicHeaders, Methods0['delete']['status']>(prefix, PATH0, DELETE, option).json().then(r => r.body),
     $path: () => `${prefix}${PATH0}`
   }
 }
