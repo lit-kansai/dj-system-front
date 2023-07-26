@@ -2,7 +2,7 @@
   <nav>
     <div class="wrapper">
       <NuxtLink :class="props.isShowSearch ? 'logo show-search' : 'logo'" :to="`/${roomRouteParams?.id ?? ''}`">
-        <img src="~/assets/img/new-logo.png">
+        <nuxt-img src="/img/logo.png" />
         <h2 class="title">{{ currentRoom?.name ?? '' }}</h2>
       </NuxtLink>
       <SearchTextInput

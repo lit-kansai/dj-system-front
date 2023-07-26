@@ -19,6 +19,7 @@
   },
   "devDependencies": {
     "@dj-system/eslint-config": "*",
+    "@nuxt/image": "^1.0.0-rc.1",
     "@nuxt/typescript-build": "^2.1.0",
     "cypress": "^12.8.1",
     "eslint": "^8.24.0",
