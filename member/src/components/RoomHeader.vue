@@ -8,6 +8,7 @@
       <SearchTextInput
         v-if="props.isShowSearch"
         :is-gradient="isMobile"
+        :autofocus="props.searchBarAutofocus"
         data-test-id="header-search-text-input"
         class="search"
       />
@@ -20,11 +21,13 @@
 
   interface Props {
     isShowSearch: boolean
+    searchBarAutofocus: boolean
   }
   const roomRouteParams = getRouteParams.room()
   const { currentRoom } = useRoomState()
   const props = withDefaults(defineProps<Props>(), {
-    isShowSearch: false
+    isShowSearch: false,
+    searchBarAutofocus: true
   })
   const isMobile = ref(window.innerWidth < 767)
 

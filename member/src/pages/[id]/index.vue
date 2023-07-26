@@ -1,6 +1,6 @@
 <template>
   <div>
-    <RoomHeader class="pc-header" :is-show-search="true" />
+    <RoomHeader class="pc-header" :is-show-search="true" :search-bar-autofocus="false" />
     <main class="wrapper">
       <div class="pc-header">
         <div class="container">

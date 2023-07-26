@@ -174,7 +174,8 @@
     .submit_button {
       background: $color-gradient-orange;
       color: $color-white;
-      width: 260px;
+      width: 100%;
+      max-width: 260px;
       padding: 12px 16px;
       font-size: 16px;
       border: none;
