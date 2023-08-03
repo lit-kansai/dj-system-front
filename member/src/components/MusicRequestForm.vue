@@ -4,7 +4,7 @@
       <MusicLoading />
     </div>
     <div class="left">
-      <nuxt-img :src="albumUrl" />
+      <img :src="albumUrl" />
     </div>
     <div class="right">
       <div class="music">
