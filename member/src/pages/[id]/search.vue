@@ -18,6 +18,7 @@
 <script setup lang="ts">
   import { music, useHasMusicRequested, useRequestTimer, useRoomState } from '@/features'
   import { RequestMusicInput, SearchMusicInput, SearchMusicResponse } from '@/features/music/api'
+  import { showErrorByErrorType } from '@/libs'
   const { currentRoom } = useRoomState()
   const route = useRoute()
   const router = useRouter()
@@ -72,8 +73,9 @@
       const { setHasMusicRequested } = useHasMusicRequested()
       setHasMusicRequested(true)
       await navigateTo(`/${roomId}/requested`)
-    } else {
-      alert(result.error.value)
+    }
+    if (result.error.value) {
+      showErrorByErrorType(result.error.value)
     }
     setRequestMusicLoading(true)
   }

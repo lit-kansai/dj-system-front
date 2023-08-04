@@ -1,7 +1,7 @@
 import { _AsyncData } from 'nuxt/dist/app/composables/asyncData'
 import { Ref } from 'nuxt/dist/app/compat/capi'
 
-export type APIRequestError = true | Error | null
+export type APIRequestError = Error | null
 /* NOTE: Promiseで囲わないほうが良い？
    APIのレスポンスは全部Promiseでラップされてそうだからこれでも良い気がする。
 */
