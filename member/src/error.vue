@@ -1,7 +1,7 @@
 <template>
   <div class="wrapper">
     <div class="container">
-      <h1 class="gradient-title">{{ statusCode.length ? statusCode : "( ˃ᗝ˂ )" }}</h1>
+      <h1 class="gradient-title">{{ errorTitle }}</h1>
       <p class="error-overview">{{ errorOverview }}</p>
       <GradientButton v-if="isShowReloadButton" class="button-container" title="再読み込みする" @click.native="reloadPage()" />
     </div>
@@ -23,6 +23,7 @@
     return arg != null && typeof arg === 'object' && 'statusCode' in arg
   }
   const statusCode = ref('')
+  const errorTitle = ref('問題が発生しました')
   const errorOverview = ref('')
   const isShowReloadButton = ref(true)
   const stack = ref('')
@@ -38,8 +39,12 @@
             statusCode.value = String(axiosError.response?.status)
             switch (axiosError.response.status) {
             case 404:
+              errorTitle.value = 'ページが見つかりません'
               errorOverview.value = 'URLが違います。メンターに正しいURLを聞いてみましょう！'
               isShowReloadButton.value = false
+              break
+            case 500:
+              errorOverview.value = '一時的にアクセスできない状況です。時間をおいて再度お試しください。'
               break
             }
           }
@@ -78,8 +83,8 @@
     font-family: $font-english;
     font-weight: 700;
     display: inline-block;
-    font-size: 130px;
-    line-height: 130px;
+    font-size: 26px;
+    line-height: 30px;
     letter-spacing: 0.1em;
     margin-right: -0.1em;
     background: $color-gradient-orange;
@@ -87,12 +92,12 @@
     -webkit-text-fill-color: transparent;
   }
   p {
-    margin-top: 10px;
+    margin-top: 14px;
   }
   .error-overview {
     font-weight: 600;
   }
   .button-container {
-    margin-top: 24px;
+    margin-top: 55px;
   }
 </style>
