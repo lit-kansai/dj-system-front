@@ -1,3 +1,4 @@
+<!-- TODO: モーダルの中身DIできるようにしたい；； -->
 <template>
   <div class="container">
     <div class="loading">
@@ -11,10 +12,14 @@
         <span />
       </div>
     </div>
+    <div class="retry-dialog">
+      <RetryDialog v-if="isRetrying()" />
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
+  const { isRetrying } = useRetryStatus()
 </script>
 
 <style scoped lang="scss">
@@ -23,6 +28,10 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
   }
   .loading {
     position: relative;
@@ -66,6 +75,10 @@
         animation-delay: 0.5s;
       }
     }
+  }
+  .retry-dialog {
+    height: 54px;
+    margin-top: 16px;
   }
 
   // @keyframes for animation
