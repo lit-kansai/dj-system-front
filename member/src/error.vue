@@ -26,7 +26,6 @@
   const errorTitle = ref('問題が発生しました')
   const errorOverview = ref('')
   const isShowReloadButton = ref(true)
-  const stack = ref('')
   const error = useError().value
   const reloadPage = () => {
     window.location.reload()
@@ -49,15 +48,12 @@
             }
           }
           if (!errorOverview.value.length) { errorOverview.value = axiosError.message }
-          stack.value = axiosError.stack ?? ''
         },
-        onZodError: (zodError) => {
+        onZodError: (_) => {
           errorOverview.value = 'レスポンスのパース中にエラーが発生しました。'
-          stack.value = zodError.stack ?? ''
         },
-        onUnexpectedError: (unexpectedError) => {
+        onUnexpectedError: (_) => {
           errorOverview.value = '予期せぬエラーが発生しました。'
-          stack.value = unexpectedError.stack ?? ''
         }
       })
     }
