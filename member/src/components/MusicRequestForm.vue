@@ -4,7 +4,7 @@
       <MusicLoading />
     </div>
     <div class="left">
-      <img :src="albumUrl">
+      <img :src="albumUrl" />
     </div>
     <div class="right">
       <div class="music">
@@ -174,7 +174,8 @@
     .submit_button {
       background: $color-gradient-orange;
       color: $color-white;
-      width: 260px;
+      width: 100%;
+      max-width: 260px;
       padding: 12px 16px;
       font-size: 16px;
       border: none;

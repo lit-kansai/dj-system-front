@@ -2,12 +2,13 @@
   <nav>
     <div class="wrapper">
       <NuxtLink :class="props.isShowSearch ? 'logo show-search' : 'logo'" :to="`/${roomRouteParams?.id ?? ''}`">
-        <img src="~/assets/img/new-logo.png">
+        <img src="/img/logo.png" />
         <h2 class="title">{{ currentRoom?.name ?? '' }}</h2>
       </NuxtLink>
       <SearchTextInput
         v-if="props.isShowSearch"
         :is-gradient="isMobile"
+        :autofocus="props.searchBarAutofocus"
         data-test-id="header-search-text-input"
         class="search"
       />
@@ -20,11 +21,13 @@
 
   interface Props {
     isShowSearch: boolean
+    searchBarAutofocus: boolean
   }
   const roomRouteParams = getRouteParams.room()
   const { currentRoom } = useRoomState()
   const props = withDefaults(defineProps<Props>(), {
-    isShowSearch: false
+    isShowSearch: false,
+    searchBarAutofocus: true
   })
   const isMobile = ref(window.innerWidth < 767)
 

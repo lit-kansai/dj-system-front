@@ -5,7 +5,7 @@
       type="text"
       placeholder="曲名・アーティスト名で検索"
       autocomplete="on"
-      autofocus
+      :autofocus="props.autofocus"
       @keypress.enter="search"
     >
     <input :class="textComputed.length == 0 ? 'zero' : ''" type="submit" value="検索" @click="search">
@@ -19,9 +19,11 @@
 
   interface Props {
     isGradient: boolean
+    autofocus: boolean
   }
   const props = withDefaults(defineProps<Props>(), {
-    isGradient: false
+    isGradient: false,
+    autofocus: true
   })
 
   const textComputed = computed({
@@ -93,7 +95,7 @@
     }
     &::before {
       content: "";
-      mask: url(~/assets/img/search.svg);
+      mask: url(/img/search.svg);
       position: absolute;
       top: 15px;
       left: 25px;
@@ -110,7 +112,6 @@
       height: 100%;
       display: block;
       padding: 16px 0px 14px 55px;
-      margin-right: 80px;
       font-size: 16px;
       font-weight: 400;
       border: none;
@@ -121,6 +122,7 @@
       }
       &:focus {
         width: calc(100% - 80px);
+      margin-right: 80px;
         color: $color-body;
         border-radius: 40px 0px 0px 40px;
         padding-left: 25px;

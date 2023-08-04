@@ -1,13 +1,13 @@
 <template>
   <div class="cell" data-test-id="music-cell">
     <div class="contents">
-      <img :src="thumbnail" :alt="`${name}のサムネイル写真`">
+      <img :src="thumbnail" :alt="`${name}のサムネイル写真`" width="55" />
       <div class="text">
         <h3 class="name">{{ name }}</h3>
         <p class="artists">{{ artists }}</p>
       </div>
     </div>
-    <img src="~/assets/img/arrow_forward.svg" class="icon">
+    <img src="/img/arrow_forward.svg" class="icon" />
   </div>
 </template>
 
