@@ -6,15 +6,16 @@ export default defineNuxtConfig({
   telemetry: false,
   app: {
     head: {
+      title: 'DJ Gassi Console',
       meta: [
         { charset: 'utf-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-        { name: 'description', content: 'DJ System Admin' },
+        { name: 'description', content: 'DJ System Console' },
         { name: 'robots', content: 'noindex' },
-        { property: 'og:site_name', content: 'DJ System Admin' },
+        { property: 'og:site_name', content: 'DJ System Console' },
         { property: 'og:type', content: 'website' },
         { property: 'og:description', content: 'DJ Systemの管理画面サイト' },
-        { property: 'og:title', content: 'DJ System Admin' },
+        { property: 'og:title', content: 'DJ System Console' },
         { property: 'og:url', content: baseUrl },
         { property: 'og:image', content: `${baseUrl}/ogp.png` },
         { name: 'twitter:card', content: 'summary_large_image' },
