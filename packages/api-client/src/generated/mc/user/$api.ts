@@ -47,6 +47,16 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
          */
         $get: (option?: { config?: T | undefined } | undefined) =>
           fetch<Methods1['get']['resBody'], BasicHeaders, Methods1['get']['status']>(prefix, PATH1, GET, option).json().then(r => r.body),
+        /**
+         * @returns 要求に成功した
+         */
+        delete: (option?: { config?: T | undefined } | undefined) =>
+          fetch<Methods1['delete']['resBody'], BasicHeaders, Methods1['delete']['status']>(prefix, PATH1, DELETE, option).json(),
+        /**
+         * @returns 要求に成功した
+         */
+        $delete: (option?: { config?: T | undefined } | undefined) =>
+          fetch<Methods1['delete']['resBody'], BasicHeaders, Methods1['delete']['status']>(prefix, PATH1, DELETE, option).json().then(r => r.body),
         $path: () => `${prefix}${PATH1}`
       },
       spotify: {
@@ -74,12 +84,12 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
         $get: (option: { query: Methods3['get']['query'], config?: T | undefined }) =>
           fetch<Methods3['get']['resBody'], BasicHeaders, Methods3['get']['status']>(prefix, PATH3, GET, option).json().then(r => r.body),
         /**
-         * @returns Success
+         * @returns 要求に成功した
          */
         delete: (option?: { config?: T | undefined } | undefined) =>
           fetch<Methods3['delete']['resBody'], BasicHeaders, Methods3['delete']['status']>(prefix, PATH3, DELETE, option).json(),
         /**
-         * @returns Success
+         * @returns 要求に成功した
          */
         $delete: (option?: { config?: T | undefined } | undefined) =>
           fetch<Methods3['delete']['resBody'], BasicHeaders, Methods3['delete']['status']>(prefix, PATH3, DELETE, option).json().then(r => r.body),

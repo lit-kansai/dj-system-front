@@ -33,3 +33,9 @@ $ yarn admin build // 管理者側のビルド
 NUXT_PUBLIC_BASE_API_URL=
 HOST_URL=
 ```
+
+## APIの型定義ファイルのアップデート
+
+```bash
+npx openapi2aspida -i https://raw.githubusercontent.com/lit-kansai/dj_system-api/main/public/docs/dj-system-api.yaml
+```

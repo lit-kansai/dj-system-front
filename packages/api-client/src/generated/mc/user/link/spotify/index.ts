@@ -15,9 +15,10 @@ export type Methods = {
   delete: {
     status: 200
 
-    /** Success */
+    /** 要求に成功した */
     resBody: {
-      redirect_url: Types.Login_url
+      /** 成功したか */
+      ok: boolean
     }
   }
 }

@@ -254,7 +254,7 @@ export type Music_name = string
 export type Thumbnail = string
 
 /** 曲の長さ（秒） */
-export type Duration = number
+export type Duration = string
 
 /** 音楽サービスのプレイリストID */
 export type Provider_playlist_id = string

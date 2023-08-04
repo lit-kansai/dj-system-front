@@ -36,8 +36,8 @@
         icon="link"
         class="q-mb-lg"
         no-caps
-        disable
-        label="AppleMusicと連携済み"
+        label="AppleMusicの連携解除"
+        @click="unlinkAppleMusic"
       />
     </div>
 
@@ -82,6 +82,7 @@
   import { auth } from '@/features'
   import { oauth } from '@/libs'
   import { deleteUnlinkSpotify } from '@/features/user/api/unlink-spotify'
+  import { deleteUnlinkAppleMusic } from '@/features/user/api/unlink-applemusic'
 
   const state = reactive({
     loading: false,
@@ -123,6 +124,12 @@
   }
   const unlinkSpotify = async () => {
     const { data } = await deleteUnlinkSpotify()
+    if (!data.value) { return }
+    alert('連携解除に成功しました')
+    window.location.reload()
+  }
+  const unlinkAppleMusic = async () => {
+    const { data } = await deleteUnlinkAppleMusic()
     if (!data.value) { return }
     alert('連携解除に成功しました')
     window.location.reload()
