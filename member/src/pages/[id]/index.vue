@@ -130,7 +130,8 @@
     .container {
       display: flex;
       justify-content: space-between;
-      margin: 130px 0;
+      align-items: center;
+      margin: 125px 0;
       .contents {
         h1 {
           padding-bottom: 10px;
@@ -144,8 +145,9 @@
         }
       }
       img {
-        width: 300px;
-        height: 300px;
+        width: 350px;
+        height: 350px;
+        margin-right: 30px;
       }
     }
   }
