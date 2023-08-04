@@ -4,7 +4,7 @@
     <div class="requested">
       <div class="wrapper">
         <div class="container">
-          <nuxt-img src="/img/requested-orange.svg" />
+          <img src="/img/requested-orange.svg" />
           <div class="message">
             <h1>送信完了</h1>
             <h2>リクエストしてくれてありがとう！</h2>

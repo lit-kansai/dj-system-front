@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="loading">
-      <nuxt-img src="/img/headphone.svg" />
+      <img src="/img/headphone.svg" />
       <div class="wave">
         <span />
         <span />

@@ -9,11 +9,11 @@
             <p>自分の好きな曲をリクエストしよう！</p>
             <SearchTextInput :is-gradient="true" data-test-id="music-search-text-input" />
           </div>
-          <nuxt-img src="/img/logo.png" />
+          <img src="/img/logo.png" />
         </div>
       </div>
       <div class="mobile-header">
-        <nuxt-img src="/img/logo.png" />
+        <img src="/img/logo.png" />
         <h1>{{ currentRoom?.name ?? '' }}</h1>
         <SearchTextInput :is-gradient="true" />
       </div>

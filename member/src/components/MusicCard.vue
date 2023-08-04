@@ -1,10 +1,10 @@
 <template>
   <div class="music-card" data-test-id="music-card">
-    <nuxt-img :src="thumbnail" :alt="`${name}のサムネイル写真`" width="220" />
+    <img :src="thumbnail" :alt="`${name}のサムネイル写真`" width="220" />
     <h3 class="name">{{ name }}</h3>
     <p class="artists">{{ artists }}</p>
     <div class="hover">
-      <nuxt-img src="/img/plus.svg" />
+      <img src="/img/plus.svg" />
     </div>
   </div>
 </template>
