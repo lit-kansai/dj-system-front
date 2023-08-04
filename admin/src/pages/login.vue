@@ -1,6 +1,6 @@
 <template>
   <div id="login-main" class="column justify-center items-center">
-    <img id="login-box" class="q-mb-md" src="~/assets/img/new-logo.png">
+    <img id="login-box" class="q-mb-md" src="/img/logo.svg">
     <p id="login-text" class="text-h5 text-weight-bold q-mb-md">
       Welcome to DJ Gassi Console
     </p>

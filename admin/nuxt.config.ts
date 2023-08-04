@@ -20,6 +20,9 @@ export default defineNuxtConfig({
         { name: 'twitter:card', content: 'summary_large_image' },
         { name: 'twitter:site', content: 'DJ Gassi' },
       ],
+      link: [
+        { rel: 'icon', type: 'image/x-icon', href: '/favicon.svg' }
+      ],
       script: [
         { src: 'https://js-cdn.music.apple.com/musickit/v3/musickit.js' }
       ]
