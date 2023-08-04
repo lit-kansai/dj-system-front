@@ -24,7 +24,7 @@ export default defineNuxtRouteMiddleware(async ({ path }) => {
     const roomId = roomRouteParams.id
     const { data, error } = await room.api.getRoomOverview({ roomId })
     // ルームが見つからなかったとき(今のやつやと404以外もなのであまり良くないかも)
-    if (error.value) { throw createError({ statusCode: 404, statusMessage: 'Room Not Found' }) }
+    if (error.value) { throw createError({ statusCode: 404, statusMessage: 'Room Not Found', data: error.value }) }
     if (data.value) {
       const { setCurrentRoom } = useRoomState()
       setCurrentRoom(data.value)
