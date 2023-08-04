@@ -1,20 +1,27 @@
 import axios, { AxiosError } from 'axios'
 import { ZodError } from 'zod'
-import { APIClientError } from './api-client-error'
+import { getAxiosErrorDetail } from './get-axios-error-detail'
 import { UnexpectedError } from './unexpected-error'
+interface ErrorHandlers {
+  onAxiosError: (error: AxiosError) => void;
+  onZodError: (error: ZodError) => void;
+  onUnexpectedError: (error: UnexpectedError) => void;
+}
 
 export const handleAPIClientError = (
-  error: APIClientError,
-  onAxiosError: (error: AxiosError) => void = error => console.error('AxiosError:', error),
-  onZodError: (error: ZodError) => void = error => console.error('ZodError:', error),
-  onUnexpectedError: (error: UnexpectedError) => void = error => console.error('UnexpectedError:', error),
+  error: Error,
+  handlers: ErrorHandlers = {
+    onAxiosError: error => console.error('AxiosError: ', error),
+    onZodError: error => console.error('ZodError:', error),
+    onUnexpectedError: error => console.log('UnexpectedError:', error)
+  }
 ) => {
   if (axios.isAxiosError(error)) {
-    onAxiosError(error)
+    handlers.onAxiosError(error)
   } else if (error instanceof ZodError) {
-    onZodError(error)
+    handlers.onZodError(error)
   } else if (error instanceof UnexpectedError) {
-    onUnexpectedError(error)
+    handlers.onUnexpectedError(error)
   } else {
     console.error('Unknown error:', error)
   }
