@@ -30,6 +30,7 @@
   import { Track } from '@dj-system/api-client/src/generated/@types'
   import { music, useHasMusicRequested, useRequestTimer, useRoomState } from '@/features'
   import { GetTop50MusicsInput, RequestMusicInput } from '@/features/music/api'
+  import { showErrorByErrorType } from '@/libs'
   const route = useRoute()
   const requestTimer = useRequestTimer()
   const { currentRoom } = useRoomState()
@@ -70,8 +71,9 @@
       const { setHasMusicRequested } = useHasMusicRequested()
       setHasMusicRequested(true)
       await navigateTo(`/${roomId}/requested`)
-    } else {
-      alert(result.error.value)
+    }
+    if (result.error.value) {
+      showErrorByErrorType(result.error.value)
     }
     setRequestMusicLoading(false)
   }
