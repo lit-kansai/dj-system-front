@@ -1,13 +1,9 @@
 <template>
-  <div>
-    <RoomHeader :is-show-search="false" />
-    <div class="wrapper">
-      <div class="container">
-        <h1 v-if="statusCode.length" class="gradient-title">{{ statusCode }}</h1>
-        <h1 v-if="!statusCode.length" class="normal-title">エラーが発生しました</h1>
-        <p class="error-overview">{{ errorOverview }}</p>
-        <GradientButton class="button-container" title="元のページに戻る" @click.native="reloadPage()" />
-      </div>
+  <div class="wrapper">
+    <div class="container">
+      <h1 class="gradient-title">{{ statusCode.length ? statusCode : "( ˃ᗝ˂ )" }}</h1>
+      <p class="error-overview">{{ errorOverview }}</p>
+      <GradientButton v-if="isShowReloadButton" class="button-container" title="再読み込みする" @click.native="reloadPage()" />
     </div>
   </div>
 </template>
@@ -28,6 +24,7 @@
   }
   const statusCode = ref('')
   const errorOverview = ref('')
+  const isShowReloadButton = ref(true)
   const stack = ref('')
   const error = useError().value
   const reloadPage = () => {
@@ -37,8 +34,16 @@
     if (error && isAppError(error) && error.data instanceof Error) {
       handleAPIClientError(error.data, {
         onAxiosError: (axiosError) => {
-          if (axiosError.response) { statusCode.value = String(axiosError.response?.status) }
-          errorOverview.value = axiosError.message
+          if (axiosError.response) {
+            statusCode.value = String(axiosError.response?.status)
+            switch (axiosError.response.status) {
+            case 404:
+              errorOverview.value = 'URLが違います。メンターに正しいURLを聞いてみましょう！'
+              isShowReloadButton.value = false
+              break
+            }
+          }
+          if (!errorOverview.value.length) { errorOverview.value = axiosError.message }
           stack.value = axiosError.stack ?? ''
         },
         onZodError: (zodError) => {
@@ -63,15 +68,11 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    height: calc(100dvh - $app-bar-height);
+    height: 100dvh;
     .container {
       text-align: center;
+      margin-bottom: 30px;
     }
-  }
-  .normal-title {
-    font-weight: 700;
-    font-size: 64px;
-    line-height: 1.5;
   }
   .gradient-title {
     font-family: $font-english;
@@ -80,9 +81,13 @@
     font-size: 130px;
     line-height: 130px;
     letter-spacing: 0.1em;
+    margin-right: -0.1em;
     background: $color-gradient-orange;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+  }
+  p {
+    margin-top: 10px;
   }
   .error-overview {
     font-weight: 600;
