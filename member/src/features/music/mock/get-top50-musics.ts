@@ -102,5 +102,15 @@ export const mockGetTop50MusicsResponse: GetTop50MusicsResponse = [
 
 export const getTop50MusicsHandler = rest.get(
   '/room/:roomId/music/top',
-  (_, res, ctx) => res(ctx.json(mockGetTop50MusicsResponse))
+  (_, res, ctx) => {
+    // 正常系
+    // return res(ctx.json(mockGetTop50MusicsResponse))
+
+    // タイムアウト
+    return res(
+      ctx.status(408),
+      ctx.delay(4000),
+      ctx.json({ status: 'timeout' })
+    )
+  }
 )

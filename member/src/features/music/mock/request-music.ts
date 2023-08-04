@@ -6,5 +6,15 @@ export const mockRequestMusicResponse: RequestMusicResponse = {
 
 export const requestMusicHandler = rest.post(
   '/room/:roomId/request',
-  (_, res, ctx) => res(ctx.json(mockRequestMusicResponse))
+  (_, res, ctx) => {
+    // 正常系
+    // res(ctx.json(mockRequestMusicResponse))
+
+    // タイムアウト
+    return res(
+      ctx.status(408),
+      ctx.delay(4000),
+      ctx.json({ status: 'timeout' })
+    )
+  }
 )

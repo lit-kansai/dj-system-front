@@ -101,5 +101,6 @@ export const mockSearchMusicResponse: SearchMusicResponse = [
 
 export const searchMusicsHandler = rest.get(
   '/room/:roomId/music/search',
+  // 正常系
   (_, res, ctx) => res(ctx.json(mockSearchMusicResponse))
 )

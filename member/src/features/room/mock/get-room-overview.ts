@@ -9,5 +9,14 @@ export const mockRoomOverviewResponse: GetRoomResponse = {
 
 export const roomOverviewResponseHandler = rest.get(
   '/room/:roomId',
-  (_, res, ctx) => res(ctx.json(mockRoomOverviewResponse))
+  (_, res, ctx) => {
+    // 正常系
+    // return res(ctx.json(mockRoomOverviewResponse))
+
+    // エラー
+    return res(
+      ctx.status(404),
+      ctx.json({ status: 'Room not Found' })
+    )
+  }
 )
