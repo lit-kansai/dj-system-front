@@ -9,11 +9,11 @@
             <p>自分の好きな曲をリクエストしよう！</p>
             <SearchTextInput :is-gradient="true" data-test-id="music-search-text-input" />
           </div>
-          <img src="/img/logo.png" />
+          <img src="/img/logo.svg" />
         </div>
       </div>
       <div class="mobile-header">
-        <img src="/img/logo.png" />
+        <img src="/img/logo.svg" />
         <h1>{{ currentRoom?.name ?? '' }}</h1>
         <SearchTextInput :is-gradient="true" />
       </div>
@@ -132,7 +132,8 @@
     .container {
       display: flex;
       justify-content: space-between;
-      margin: 130px 0;
+      align-items: center;
+      margin: 125px 0;
       .contents {
         h1 {
           padding-bottom: 10px;
@@ -146,8 +147,9 @@
         }
       }
       img {
-        width: 300px;
-        height: 300px;
+        width: 350px;
+        height: 350px;
+        margin-right: 30px;
       }
     }
   }

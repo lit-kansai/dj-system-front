@@ -18,7 +18,7 @@ export default defineNuxtConfig({
         { property: 'og:url', content: baseUrl },
         { property: 'og:image', content: `${baseUrl}/ogp.png` },
         { name: 'twitter:card', content: 'summary_large_image' },
-        { property: 'fb:app:id', content: 'dj_gassi_system' }
+        { property: 'fb:app:id', content: 'dj_gassi_system' },
       ],
       link: [
         {
@@ -39,6 +39,7 @@ export default defineNuxtConfig({
           rel: 'stylesheet',
           href: 'https://fonts.googleapis.com/css2?family=Mukta:wght@200;300;400;500;600;700;800&display=swap'
         },
+        { rel: 'icon', type: 'image/x-icon', href: '/favicon.svg' }
       ]
     },
   },
