@@ -137,6 +137,11 @@
       .contents {
         h1 {
           padding-bottom: 10px;
+          @include pc() {
+            max-width: calc(1400px - 410px - 200px);
+            width: calc(100vw - 410px - 200px);
+            word-wrap: break-word;
+          }
         }
         p {
           font-weight: 700;
