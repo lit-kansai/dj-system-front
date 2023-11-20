@@ -22,7 +22,7 @@
   const { currentRoom } = useRoomState()
   const route = useRoute()
   const router = useRouter()
-  const requestTimer = useRequestTimer()
+  const { setCooltime } = useRequestTimer()
 
   useHead({
     title: `${currentRoom.value?.name ?? ''}`,
@@ -69,7 +69,7 @@
     setRequestMusicLoading(true)
     await result.execute()
     if (result.data.value) {
-      requestTimer.requestMusic()
+      setCooltime(currentRoom.value?.roomCooltime ?? 300)
       const { setHasMusicRequested } = useHasMusicRequested()
       setHasMusicRequested(true)
       await navigateTo(`/${roomId}/requested`)

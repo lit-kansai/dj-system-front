@@ -1,10 +1,14 @@
 import { MEMBER_ALLOW_REQUEST_TIME_LOCAL_STORAGE_KEY, MEMBER_REQUEST_ALLOW_INTERVAL_DEFAULT_TIME } from '@/constants'
 
 export const useRequestTimer = () => {
-  const _intervalTime = ref(MEMBER_REQUEST_ALLOW_INTERVAL_DEFAULT_TIME)
+  const _intervalTime = ref<number>(MEMBER_REQUEST_ALLOW_INTERVAL_DEFAULT_TIME)
 
   // 音楽をリクエストしたとき
-  const requestMusic = () => {
+  const setCooltime = (time: number) => {
+    if (time) {
+      _intervalTime.value = time * 1000
+    }
+
     const now = new Date().getTime()
     localStorage.setItem(MEMBER_ALLOW_REQUEST_TIME_LOCAL_STORAGE_KEY, String(now + _intervalTime.value))
   }
@@ -33,6 +37,6 @@ export const useRequestTimer = () => {
   }
 
   return {
-    requestMusic, intervalTime, isAllowRequestMusic, removeExpiredCooltime
+    setCooltime, intervalTime, isAllowRequestMusic, removeExpiredCooltime
   }
 }
