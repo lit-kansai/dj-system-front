@@ -7,8 +7,8 @@
       v-model="state.form.roomName"
       outlined
       label="ルームネーム*"
-      :rules="[(val) => !!val || 'Field is required']"
-      hint="今から作成する部屋の名前です。"
+      :rules="[(val: string) => !!val || 'Field is required']"
+      hint="今編集している部屋の名前です。"
     />
     <q-input
       v-model="state.form.roomDescription"
@@ -22,10 +22,9 @@
       outlined
       label="リクエストURL*"
       class="url-prefix"
-      prefix="https://dj.life-is-tech.com/"
-      :rules="[(val) => !!val || 'Field is required']"
+      :prefix="requestUrlPrefix"
+      :rules="[(val: string) => !!val || 'Field is required']"
       hint="リクエストURLを変更すると、参加者側のURLも変更されます。"
-      color="negative"
     />
     <div class="row justify-start">
       <q-btn color="primary" class="q-mr-sm" label="保存する" @click="onClickSave" />
@@ -35,9 +34,13 @@
 </template>
 
 <script setup lang="ts">
+  import { MEMBER_REQUEST_URL } from '@/constants/external-url'
   import { room } from '@/features'
   import { getRouteParams } from '@/utils'
   const router = useRouter()
+  const roomId = useRoomId()
+  const roomDetail = await room.api.getRoomDetail({ roomId })
+  const requestUrlPrefix = MEMBER_REQUEST_URL('')
 
   const currentRoomName = ref('')
   const state = reactive({
@@ -50,8 +53,7 @@
   })
 
   const onClickCancel = () => {
-    const { id } = getRouteParams.room()
-    router.push('/room/' + id)
+    router.push('/room/' + roomId.value)
   }
 
   const onClickSave = async () => {
@@ -66,19 +68,16 @@
     if (error.value) { JSON.stringify(error); return }
 
     state.loading = false
-    router.push('/room/' + id)
+    router.push('/room/' + state.form.requestUrl)
   }
 
-  onMounted(async () => {
-    const { id } = getRouteParams.room()
-    state.loading = true
-    const { data } = await room.api.getRoom({ roomId: id })
-    if (!data.value) { state.loading = false; return }
-    currentRoomName.value = data.value.name
-    state.form.roomName = data.value.name
-    state.form.roomDescription = data.value.description
-    state.form.requestUrl = data.value.displayId
-    state.loading = false
+  watch(roomId, () => { roomDetail.refresh() }, { immediate: true })
+  watch(roomDetail.data, (data) => {
+    if (!data) { return }
+    currentRoomName.value = data.name
+    state.form.roomName = data.name
+    state.form.roomDescription = data.description
+    state.form.requestUrl = data.displayId
   })
 </script>
 
