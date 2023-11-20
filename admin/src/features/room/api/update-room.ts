@@ -7,6 +7,7 @@ export type updateRoomInput = {
   urlName: string,
   roomName: string,
   description: string
+  roomCooltime: number,
 }
 
 export type updateRoomResponse = CamelizedAPIResponse<ReturnType<ApiInstance['mc']['room']['_room_id']>['$put']>
@@ -34,7 +35,7 @@ export const updateRoom = async (input: updateRoomInput): GetRequestOutput<updat
         url_name: input.urlName,
         room_name: input.roomName,
         description: input.description,
-        room_cooltime: 300
+        room_cooltime: input.roomCooltime
       }
     })
 

@@ -26,6 +26,14 @@
       :rules="[(val: string) => !!val || 'Field is required']"
       hint="リクエストURLを変更すると、参加者側のURLも変更されます。"
     />
+    <q-input
+      v-model="state.form.roomCooltime"
+      outlined
+      type="number"
+      suffix="秒"
+      label="クールダウンタイム"
+      hint="参加者のリクエスト間隔を制限します。（制限なしは、0と入力してください。）"
+    />
     <div class="row justify-start">
       <q-btn color="primary" class="q-mr-sm" label="保存する" @click="onClickSave" />
       <q-btn color="primary" flat label="キャンセル" @click="onClickCancel" />
@@ -48,7 +56,8 @@
     form: {
       roomName: '',
       roomDescription: '',
-      requestUrl: ''
+      requestUrl: '',
+      roomCooltime: 300,
     }
   })
 
@@ -63,7 +72,8 @@
       roomId: id,
       urlName: state.form.requestUrl,
       roomName: state.form.roomName,
-      description: state.form.roomDescription
+      description: state.form.roomDescription,
+      roomCooltime: state.form.roomCooltime,
     })
     if (error.value) { JSON.stringify(error); return }
 
@@ -78,6 +88,7 @@
     state.form.roomName = data.name
     state.form.roomDescription = data.description
     state.form.requestUrl = data.displayId
+    state.form.roomCooltime = data.roomCooltime
   })
 </script>
 
