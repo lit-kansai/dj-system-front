@@ -27,7 +27,6 @@ const responseSchema = toSchema<updateRoomResponse>()(
   })
 )
 
-// room_cooltimeの設定ができるようにする
 export const updateRoom = async (input: updateRoomInput): GetRequestOutput<updateRoomResponse> => {
   const result = await useAsyncData(async () => {
     const response = await apiClient().mc.room._room_id(input.roomId).$put({
