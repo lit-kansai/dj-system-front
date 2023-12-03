@@ -56,6 +56,12 @@
           errorOverview.value = '予期せぬエラーが発生しました。'
         }
       })
+    } else if ((error?.message)?.includes('Page not found')) {
+      errorTitle.value = 'ページが見つかりません'
+      errorOverview.value = 'URLが違います。メンターに正しいURLを聞いてみましょう！'
+      isShowReloadButton.value = false
+    } else {
+      errorOverview.value = String(error?.message)
     }
   })
   useHead({
