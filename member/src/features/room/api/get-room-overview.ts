@@ -6,7 +6,8 @@ export type GetRoomInput = { roomId: string }
 const responseSchema = z.object({
   description: z.string(),
   id: z.string(),
-  name: z.string()
+  name: z.string(),
+  roomCooltime: z.number(),
 })
 
 export type GetRoomResponse = _CamelizedAPIResponse<z.infer<typeof responseSchema>>

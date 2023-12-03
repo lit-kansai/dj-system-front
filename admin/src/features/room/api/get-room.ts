@@ -28,14 +28,14 @@ const musicsSchema = toSchema<GetRoomResponse['musics']>()(
   z.object({
     id: z.number(),
     providedMusicId: z.string(),
-    letterId: z.number().optional(),
-    artist: z.string(),
+    letterId: z.string().optional(),
+    artists: z.string(),
     album: z.string(),
     name: z.string(),
     thumbnail: z.string(),
-    duration: z.number(),
+    duration: z.string(),
     letter: z.object({
-      id: z.number(),
+      id: z.string(),
       roomId: z.number(),
       radioName: z.string(),
       message: z.string(),
@@ -47,7 +47,7 @@ const musicsSchema = toSchema<GetRoomResponse['musics']>()(
 
 const lettersSchema = toSchema<GetRoomResponse['letters']>()(
   z.object({
-    id: z.number(),
+    id: z.string(),
     roomId: z.number(),
     radioName: z.string(),
     message: z.string(),
@@ -56,12 +56,12 @@ const lettersSchema = toSchema<GetRoomResponse['letters']>()(
     musics: z.object({
       id: z.number(),
       providedMusicId: z.string(),
-      letterId: z.number().optional(),
-      artist: z.string(),
+      letterId: z.string().optional(),
+      artists: z.string(),
       album: z.string(),
       name: z.string(),
       thumbnail: z.string(),
-      duration: z.number(),
+      duration: z.string(),
     }).array()
   }).array()
 )

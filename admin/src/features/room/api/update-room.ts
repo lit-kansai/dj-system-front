@@ -7,6 +7,7 @@ export type updateRoomInput = {
   urlName: string,
   roomName: string,
   description: string
+  roomCooltime: number,
 }
 
 export type updateRoomResponse = CamelizedAPIResponse<ReturnType<ApiInstance['mc']['room']['_room_id']>['$put']>
@@ -26,7 +27,6 @@ const responseSchema = toSchema<updateRoomResponse>()(
   })
 )
 
-// room_cooltimeの設定ができるようにする
 export const updateRoom = async (input: updateRoomInput): GetRequestOutput<updateRoomResponse> => {
   const result = await useAsyncData(async () => {
     const response = await apiClient().mc.room._room_id(input.roomId).$put({
@@ -34,7 +34,7 @@ export const updateRoom = async (input: updateRoomInput): GetRequestOutput<updat
         url_name: input.urlName,
         room_name: input.roomName,
         description: input.description,
-        room_cooltime: 300
+        room_cooltime: input.roomCooltime
       }
     })
 

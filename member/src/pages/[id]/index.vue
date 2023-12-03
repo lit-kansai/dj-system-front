@@ -9,11 +9,11 @@
             <p>自分の好きな曲をリクエストしよう！</p>
             <SearchTextInput :is-gradient="true" data-test-id="music-search-text-input" />
           </div>
-          <img src="/img/logo.svg" />
+          <img src="/img/logo.svg">
         </div>
       </div>
       <div class="mobile-header">
-        <img src="/img/logo.svg" />
+        <img src="/img/logo.svg">
         <h1>{{ currentRoom?.name ?? '' }}</h1>
         <SearchTextInput :is-gradient="true" />
       </div>
@@ -32,7 +32,7 @@
   import { GetTop50MusicsInput, RequestMusicInput } from '@/features/music/api'
   import { showErrorByErrorType } from '@/libs'
   const route = useRoute()
-  const requestTimer = useRequestTimer()
+  const { setCooltime } = useRequestTimer()
   const { currentRoom } = useRoomState()
 
   const musics = ref<Track[]>([])
@@ -67,7 +67,7 @@
     setRequestMusicLoading(true)
     await result.execute()
     if (result.data.value) {
-      requestTimer.requestMusic()
+      setCooltime(currentRoom.value?.roomCooltime ?? 300)
       const { setHasMusicRequested } = useHasMusicRequested()
       setHasMusicRequested(true)
       await navigateTo(`/${roomId}/requested`)
