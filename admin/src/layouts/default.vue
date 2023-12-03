@@ -61,7 +61,7 @@
           <q-btn flat align="left" class="q-px-lg q-py-md full-width" to="/settings">
             <q-icon name="settings" size="1.6em" class="q-mr-sm" />外部サービス連携
           </q-btn>
-          <q-btn flat align="left" class="q-px-lg q-py-md full-width" to="https://forms.gle/AbUwewkPuLWJjgrL8">
+          <q-btn flat align="left" class="q-px-lg q-py-md full-width" href="https://forms.gle/AbUwewkPuLWJjgrL8" target="_blank">
             <q-icon name="reviews" size="1.6em" class="q-mr-sm" />フィードバックを送信
           </q-btn>
         </div>
